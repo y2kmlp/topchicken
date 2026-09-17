@@ -1,4 +1,3 @@
-HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,30 +6,32 @@ HTML
     <title>Top Chicken - Fast Food</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #FFF9E6;
             color: #333;
-            padding-bottom: 90px;
+            padding-bottom: 100px;
         }
         header {
             background-color: #1A1A1A;
             color: #FFF;
             text-align: center;
-            padding: 15px;
+            padding: 20px 15px;
             border-bottom: 5px solid #E52321;
         }
         header h1 {
             color: #FFCC00;
             margin: 0;
-            font-size: 26px;
+            font-size: 28px;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
         header p {
             margin: 5px 0 0 0;
             color: #FFF;
-            font-size: 14px;
+            font-size: 15px;
+            font-weight: 500;
         }
         .container {
             padding: 15px;
@@ -40,28 +41,39 @@ HTML
         .section-title {
             background-color: #8B5A2B;
             color: #FFF;
-            padding: 8px 15px;
+            padding: 10px 15px;
             border-radius: 8px;
-            margin: 20px 0 10px 0;
+            margin: 25px 0 12px 0;
             font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         .menu-item {
             background: #FFFFFF;
             border: 1px solid #E0E0E0;
-            border-radius: 10px;
+            border-radius: 12px;
             padding: 12px;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.06);
         }
         .item-info h3 {
-            margin: 0 0 5px 0;
+            margin: 0 0 4px 0;
             font-size: 16px;
             color: #1A1A1A;
         }
-        .item-info p {
+        .item-info .arabic-name {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 6px;
+            direction: rtl;
+            text-align: left;
+        }
+        .item-info .price {
             margin: 0;
             color: #E52321;
             font-weight: bold;
@@ -73,9 +85,13 @@ HTML
             border: none;
             padding: 10px 18px;
             font-weight: bold;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 14px;
+            transition: background 0.2s;
+        }
+        .btn-add:active {
+            background-color: #e6b800;
         }
         .cart-bar {
             position: fixed;
@@ -88,18 +104,23 @@ HTML
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-top: 3px solid #FFCC00;
+            border-top: 4px solid #FFCC00;
+            box-shadow: 0 -3px 10px rgba(0,0,0,0.2);
+        }
+        .cart-info {
+            font-size: 15px;
         }
         .btn-whatsapp {
             background-color: #25D366;
             color: white;
-            padding: 10px 18px;
+            padding: 12px 20px;
             text-decoration: none;
             font-weight: bold;
-            border-radius: 20px;
+            border-radius: 25px;
             border: none;
             cursor: pointer;
             font-size: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
     </style>
 </head>
@@ -107,93 +128,143 @@ HTML
 
     <header>
         <h1>TOP CHICKEN</h1>
-        <p>الدجاج المميز - Fast Food</p>
+        <p>تاپ تشيكن - Fast Food</p>
     </header>
 
     <div class="container">
         
-        <div class="section-title">🍗 Broasted Chicken</div>
+        <!-- Broasted Section -->
+        <div class="section-title">🍗 Broasted Chicken | بروستد</div>
 
         <div class="menu-item">
             <div class="item-info">
                 <h3>4 Pcs Broasted Chicken</h3>
-                <p>18 SAR</p>
+                <div class="arabic-name">بروستد دجاج ٤ قطع</div>
+                <p class="price">18 SAR</p>
             </div>
-            <button class="btn-add" onclick="addItem('4 Pcs Broasted Chicken', 18)">+ Add</button>
+            <button class="btn-add" onclick="addToCart('4 Pcs Broasted Chicken', 18)">+ Add</button>
         </div>
 
         <div class="menu-item">
             <div class="item-info">
                 <h3>8 Pcs Broasted Chicken</h3>
-                <p>35 SAR</p>
+                <div class="arabic-name">بروستد دجاج ٨ قطع</div>
+                <p class="price">35 SAR</p>
             </div>
-            <button class="btn-add" onclick="addItem('8 Pcs Broasted Chicken', 35)">+ Add</button>
+            <button class="btn-add" onclick="addToCart('8 Pcs Broasted Chicken', 35)">+ Add</button>
         </div>
 
         <div class="menu-item">
             <div class="item-info">
                 <h3>Chicken Strips (5 Pcs)</h3>
-                <p>16 SAR</p>
+                <div class="arabic-name">سترپس دجاج ٥ قطع</div>
+                <p class="price">16 SAR</p>
             </div>
-            <button class="btn-add" onclick="addItem('Chicken Strips (5 Pcs)', 16)">+ Add</button>
+            <button class="btn-add" onclick="addToCart('Chicken Strips (5 Pcs)', 16)">+ Add</button>
         </div>
 
-        <div class="section-title">🍔 Burgers & Tortilla</div>
+        <!-- Burgers & Sandwiches -->
+        <div class="section-title">🍔 Burgers & Sandwiches | البرجر والسندويتشات</div>
 
         <div class="menu-item">
             <div class="item-info">
                 <h3>Chicken Burger</h3>
-                <p>12 SAR</p>
+                <div class="arabic-name">برجر دجاج</div>
+                <p class="price">12 SAR</p>
             </div>
-            <button class="btn-add" onclick="addItem('Chicken Burger', 12)">+ Add</button>
+            <button class="btn-add" onclick="addToCart('Chicken Burger', 12)">+ Add</button>
+        </div>
+
+        <div class="menu-item">
+            <div class="item-info">
+                <h3>Broasted Sandwich</h3>
+                <div class="arabic-name">ساندوتش بروستد</div>
+                <p class="price">10 SAR</p>
+            </div>
+            <button class="btn-add" onclick="addToCart('Broasted Sandwich', 10)">+ Add</button>
         </div>
 
         <div class="menu-item">
             <div class="item-info">
                 <h3>Tortilla Sandwich</h3>
-                <p>14 SAR</p>
+                <div class="arabic-name">ساندوتش تورتيلا</div>
+                <p class="price">14 SAR</p>
             </div>
-            <button class="btn-add" onclick="addItem('Tortilla Sandwich', 14)">+ Add</button>
+            <button class="btn-add" onclick="addToCart('Tortilla Sandwich', 14)">+ Add</button>
+        </div>
+
+        <!-- Pizza Section -->
+        <div class="section-title">🍕 Pizza | بيتزا</div>
+
+        <div class="menu-item">
+            <div class="item-info">
+                <h3>Chicken Pizza</h3>
+                <div class="arabic-name">بيتزا دجاج</div>
+                <p class="price">22 SAR</p>
+            </div>
+            <button class="btn-add" onclick="addToCart('Chicken Pizza', 22)">+ Add</button>
+        </div>
+
+        <div class="menu-item">
+            <div class="item-info">
+                <h3>Vegetable Pizza</h3>
+                <div class="arabic-name">بيتزا خضار</div>
+                <p class="price">18 SAR</p>
+            </div>
+            <button class="btn-add" onclick="addToCart('Vegetable Pizza', 18)">+ Add</button>
+        </div>
+
+        <!-- Drinks -->
+        <div class="section-title">🥤 Drinks | المشروبات</div>
+
+        <div class="menu-item">
+            <div class="item-info">
+                <h3>Soft Drinks</h3>
+                <div class="arabic-name">مشروبات غازية</div>
+                <p class="price">3 SAR</p>
+            </div>
+            <button class="btn-add" onclick="addToCart('Soft Drinks', 3)">+ Add</button>
         </div>
 
     </div>
 
     <div class="cart-bar">
-        <div>
+        <div class="cart-info">
             <span id="cart-count">0 Items</span> | 
             <strong id="cart-total">0 SAR</strong>
         </div>
-        <button class="btn-whatsapp" onclick="sendOrder()">Send Order 📲</button>
+        <button class="btn-whatsapp" onclick="sendToWhatsApp()">Send Order 📲</button>
     </div>
 
     <script>
-        var itemCounter = 0;
-        var totalAmount = 0;
-        var selectedItems = [];
+        let cart = [];
+        let total = 0;
 
-        function addItem(name, price) {
-            itemCounter = itemCounter + 1;
-            totalAmount = totalAmount + price;
-            selectedItems.push(name + " (" + price + " SAR)");
-
-            document.getElementById("cart-count").innerHTML = itemCounter + " Items";
-            document.getElementById("cart-total").innerHTML = totalAmount + " SAR";
+        function addToCart(name, price) {
+            cart.push({name, price});
+            total += price;
+            updateCartUI();
         }
 
-        function sendOrder() {
-            if(itemCounter === 0) {
-                alert("Please add at least one item!");
+        function updateCartUI() {
+            document.getElementById('cart-count').innerText = cart.length + ' Items';
+            document.getElementById('cart-total').innerText = total + ' SAR';
+        }
+
+        function sendToWhatsApp() {
+            if(cart.length === 0) {
+                alert("Please add at least one item to order!");
                 return;
             }
 
-            var text = "Hello Top Chicken! Order Details:\n\n";
-            for(var i = 0; i < selectedItems.length; i++) {
-                text += (i + 1) + ". " + selectedItems[i] + "\n";
-            }
-            text += "\nTotal: " + totalAmount + " SAR";
+            let message = "Hello Top Chicken! I would like to order:\n\n";
+            cart.forEach((item, index) => {
+                message += `${index + 1}. ${item.name} - ${item.price} SAR\n`;
+            });
+            message += `\n*Total Amount: ${total} SAR*`;
 
-            var url = "https://wa.me/966554726280?text=" + encodeURIComponent(text);
-            window.open(url, "_blank");
+            let encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/966554726280?text=${encodedMessage}`, '_blank');
         }
     </script>
 
