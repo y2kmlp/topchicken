@@ -1,3 +1,4 @@
+HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,10 +71,11 @@
             background-color: #FFCC00;
             color: #1A1A1A;
             border: none;
-            padding: 8px 16px;
+            padding: 10px 18px;
             font-weight: bold;
             border-radius: 6px;
             cursor: pointer;
+            font-size: 14px;
         }
         .cart-bar {
             position: fixed;
@@ -110,14 +112,14 @@
 
     <div class="container">
         
-        <div class="section-title">🍗 Broasted & Fried Chicken</div>
+        <div class="section-title">🍗 Broasted Chicken</div>
 
         <div class="menu-item">
             <div class="item-info">
                 <h3>4 Pcs Broasted Chicken</h3>
                 <p>18 SAR</p>
             </div>
-            <button class="btn-add" onclick="addToCart('4 Pcs Broasted Chicken', 18)">+ Add</button>
+            <button class="btn-add" onclick="addItem('4 Pcs Broasted Chicken', 18)">+ Add</button>
         </div>
 
         <div class="menu-item">
@@ -125,7 +127,7 @@
                 <h3>8 Pcs Broasted Chicken</h3>
                 <p>35 SAR</p>
             </div>
-            <button class="btn-add" onclick="addToCart('8 Pcs Broasted Chicken', 35)">+ Add</button>
+            <button class="btn-add" onclick="addItem('8 Pcs Broasted Chicken', 35)">+ Add</button>
         </div>
 
         <div class="menu-item">
@@ -133,17 +135,17 @@
                 <h3>Chicken Strips (5 Pcs)</h3>
                 <p>16 SAR</p>
             </div>
-            <button class="btn-add" onclick="addToCart('Chicken Strips (5 Pcs)', 16)">+ Add</button>
+            <button class="btn-add" onclick="addItem('Chicken Strips (5 Pcs)', 16)">+ Add</button>
         </div>
 
-        <div class="section-title">🍔 Burgers & Wraps</div>
+        <div class="section-title">🍔 Burgers & Tortilla</div>
 
         <div class="menu-item">
             <div class="item-info">
                 <h3>Chicken Burger</h3>
                 <p>12 SAR</p>
             </div>
-            <button class="btn-add" onclick="addToCart('Chicken Burger', 12)">+ Add</button>
+            <button class="btn-add" onclick="addItem('Chicken Burger', 12)">+ Add</button>
         </div>
 
         <div class="menu-item">
@@ -151,7 +153,7 @@
                 <h3>Tortilla Sandwich</h3>
                 <p>14 SAR</p>
             </div>
-            <button class="btn-add" onclick="addToCart('Tortilla Sandwich', 14)">+ Add</button>
+            <button class="btn-add" onclick="addItem('Tortilla Sandwich', 14)">+ Add</button>
         </div>
 
     </div>
@@ -161,38 +163,37 @@
             <span id="cart-count">0 Items</span> | 
             <strong id="cart-total">0 SAR</strong>
         </div>
-        <button class="btn-whatsapp" onclick="sendToWhatsApp()">Send Order 📲</button>
+        <button class="btn-whatsapp" onclick="sendOrder()">Send Order 📲</button>
     </div>
 
     <script>
-        let cart = [];
-        let total = 0;
+        var itemCounter = 0;
+        var totalAmount = 0;
+        var selectedItems = [];
 
-        function addToCart(name, price) {
-            cart.push({name, price});
-            total += price;
-            updateCartUI();
+        function addItem(name, price) {
+            itemCounter = itemCounter + 1;
+            totalAmount = totalAmount + price;
+            selectedItems.push(name + " (" + price + " SAR)");
+
+            document.getElementById("cart-count").innerHTML = itemCounter + " Items";
+            document.getElementById("cart-total").innerHTML = totalAmount + " SAR";
         }
 
-        function updateCartUI() {
-            document.getElementById('cart-count').innerText = cart.length + ' Items';
-            document.getElementById('cart-total').innerText = total + ' SAR';
-        }
-
-        function sendToWhatsApp() {
-            if(cart.length === 0) {
-                alert("Please add at least one item to order!");
+        function sendOrder() {
+            if(itemCounter === 0) {
+                alert("Please add at least one item!");
                 return;
             }
 
-            let message = "Hello Top Chicken! I would like to order:\n\n";
-            cart.forEach((item, index) => {
-                message += ${index + 1}. ${item.name} - ${item.price} SAR\n;
-            });
-            message += \n*Total Amount: ${total} SAR*;
+            var text = "Hello Top Chicken! Order Details:\n\n";
+            for(var i = 0; i < selectedItems.length; i++) {
+                text += (i + 1) + ". " + selectedItems[i] + "\n";
+            }
+            text += "\nTotal: " + totalAmount + " SAR";
 
-            let encodedMessage = encodeURIComponent(message);
-            window.open(https://wa.me/966554726280?text=${encodedMessage}, '_blank');
+            var url = "https://wa.me/966554726280?text=" + encodeURIComponent(text);
+            window.open(url, "_blank");
         }
     </script>
 
