@@ -18,33 +18,75 @@
             color: #FFF;
             text-align: center;
             padding: 15px;
-            border-bottom: 5px solid #E52321;
+            border-bottom: 4px solid #E52321;
         }
         header h1 {
             color: #FFCC00;
             margin: 0;
-            font-size: 26px;
+            font-size: 24px;
             text-transform: uppercase;
         }
         header p {
-            margin: 5px 0 0 0;
+            margin: 4px 0 0 0;
             color: #FFF;
-            font-size: 14px;
+            font-size: 13px;
         }
+        
+        /* Navigation Tabs Bar */
+        .category-nav {
+            display: flex;
+            overflow-x: auto;
+            background-color: #1A1A1A;
+            padding: 8px;
+            gap: 8px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid #FFCC00;
+            white-space: nowrap;
+        }
+        .category-nav::-webkit-scrollbar {
+            display: none;
+        }
+        .nav-btn {
+            background-color: #333;
+            color: #FFF;
+            border: 1px solid #555;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .nav-btn.active {
+            background-color: #E52321;
+            color: #FFF;
+            border-color: #E52321;
+        }
+
         .container {
             padding: 12px;
             max-width: 600px;
             margin: 0 auto;
         }
+
+        .category-section {
+            display: none;
+        }
+        .category-section.active {
+            display: block;
+        }
+
         .section-title {
-            background-color: #E52321;
+            background-color: #8B5A2B;
             color: #FFF;
-            padding: 10px 15px;
-            border-radius: 8px;
-            margin: 20px 0 10px 0;
-            font-size: 17px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin: 10px 0 12px 0;
+            font-size: 16px;
             font-weight: bold;
         }
+
         .menu-item {
             background: #FFFFFF;
             border: 1px solid #E0E0E0;
@@ -82,6 +124,7 @@
             cursor: pointer;
             font-size: 14px;
         }
+
         .cart-bar {
             position: fixed;
             bottom: 0;
@@ -115,291 +158,300 @@
         <p>الدجاج المميز - Fast Food</p>
     </header>
 
+    <!-- Top Category Scroll Buttons -->
+    <div class="category-nav">
+        <button class="nav-btn active" onclick="showCategory('broasted', this)">🍗 Broasted</button>
+        <button class="nav-btn" onclick="showCategory('jumbo', this)">🥪 Jumbo</button>
+        <button class="nav-btn" onclick="showCategory('tortilla', this)">🫓 Tortilla</button>
+        <button class="nav-btn" onclick="showCategory('burger', this)">🍔 Burger</button>
+        <button class="nav-btn" onclick="showCategory('pizza', this)">🍕 Pizza</button>
+        <button class="nav-btn" onclick="showCategory('sides', this)">🍟 Extras</button>
+        <button class="nav-btn" onclick="showCategory('juices', this)">🥤 Drinks</button>
+    </div>
+
     <div class="container">
         
-        <!-- 1. Broasted & Fried -->
-        <div class="section-title">🍗 Broasted & Fried | بروستد ومقليات</div>
-        <div class="menu-item">
-            <div class="item-info">
-                <h3>Chicken Broasted (4 Pcs)</h3>
-                <div class="ar">دجاج بروستد (٤ قطع)</div>
-                <p class="price">20 SAR</p>
+        <!-- 1. Broasted -->
+        <div id="broasted" class="category-section active">
+            <div class="section-title">🍗 Broasted & Fried | بروستد ومقليات</div>
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>Chicken Broasted (4 Pcs)</h3>
+                    <div class="ar">دجاج بروستد (٤ قطع)</div>
+                    <p class="price">20 SAR</p>
+                </div>
+                <button class="btn-add" onclick="addToCart('Chicken Broasted (4 Pcs)', 20)">+ Add</button>
             </div>
-            <button class="btn-add" onclick="addToCart('Chicken Broasted (4 Pcs)', 20)">+ Add</button>
-        </div>
-        <div class="menu-item">
-            <div class="item-info">
-                <h3>Fish Broasted</h3>
-                <div class="ar">بروستد سمك</div>
-                <p class="price">19 SAR</p>
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>Fish Broasted</h3>
+                    <div class="ar">بروستد سمك</div>
+                    <p class="price">19 SAR</p>
+                </div>
+                <button class="btn-add" onclick="addToCart('Fish Broasted', 19)">+ Add</button>
             </div>
-            <button class="btn-add" onclick="addToCart('Fish Broasted', 19)">+ Add</button>
-        </div>
-        <div class="menu-item">
-            <div class="item-info">
-                <h3>Chicken Nuggets (13 Pcs)</h3>
-                <div class="ar">نجت دجاج (١٣ قطعة)</div>
-                <p class="price">20 SAR</p>
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>Chicken Nuggets (13 Pcs)</h3>
+                    <div class="ar">نجت دجاج (١٣ قطعة)</div>
+                    <p class="price">20 SAR</p>
+                </div>
+                <button class="btn-add" onclick="addToCart('Chicken Nuggets (13 Pcs)', 20)">+ Add</button>
             </div>
-            <button class="btn-add" onclick="addToCart('Chicken Nuggets (13 Pcs)', 20)">+ Add</button>
-        </div>
-        <div class="menu-item">
-            <div class="item-info">
-                <h3>Shrimp Broast (13-17 Pcs)</h3>
-                <div class="ar">بروست روبيان</div>
-                <p class="price">22 SAR</p>
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>Shrimp Broast (13-17 Pcs)</h3>
+                    <div class="ar">بروست روبيان</div>
+                    <p class="price">22 SAR</p>
+                </div>
+                <button class="btn-add" onclick="addToCart('Shrimp Broast', 22)">+ Add</button>
             </div>
-            <button class="btn-add" onclick="addToCart('Shrimp Broast', 22)">+ Add</button>
-        </div>
-        <div class="menu-item">
-            <div class="item-info">
-                <h3>Chicken Strips (6 Pcs)</h3>
-                <div class="ar">ستريبس الدجاج (٦ قطع)</div>
-                <p class="price">20 SAR</p>
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>Chicken Strips (6 Pcs)</h3>
+                    <div class="ar">ستريبس الدجاج (٦ قطع)</div>
+                    <p class="price">20 SAR</p>
+                </div>
+                <button class="btn-add" onclick="addToCart('Chicken Strips (6 Pcs)', 20)">+ Add</button>
             </div>
-            <button class="btn-add" onclick="addToCart('Chicken Strips (6 Pcs)', 20)">+ Add</button>
-        </div>
-        <div class="menu-item">
-            <div class="item-info">
-                <h3>Finger Chicken (10 Pcs)</h3>
-                <div class="ar">مسحب دجاج (١٠ قطع)</div>
-                <p class="price">20 SAR</p>
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>Finger Chicken (10 Pcs)</h3>
+                    <div class="ar">مسحب دجاج (١٠ قطع)</div>
+                    <p class="price">20 SAR</p>
+                </div>
+                <button class="btn-add" onclick="addToCart('Finger Chicken (10 Pcs)', 20)">+ Add</button>
             </div>
-            <button class="btn-add" onclick="addToCart('Finger Chicken (10 Pcs)', 20)">+ Add</button>
         </div>
 
         <!-- 2. Jumbo Sandwiches -->
-        <div class="section-title">🥪 Jumbo Sandwiches | جامبو ساندويتش</div>
-        <div class="menu-item">
-            <div class="item-info">
-                <h3>Kudu Jumbo</h3>
-                <div class="ar">جامبو كودو</div>
-                <p class="price">12 SAR</p>
+        <div id="jumbo" class="category-section">
+            <div class="section-title">🥪 Jumbo Sandwiches | جامبو ساندويتش</div>
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>Kudu Jumbo</h3>
+                    <div class="ar">جامبو كودو</div>
+                    <p class="price">12 SAR</p>
+                </div>
+                <button class="btn-add" onclick="addToCart('Kudu Jumbo', 12)">+ Add</button>
             </div>
-            <button class="btn-add" onclick="addToCart('Kudu Jumbo', 12)">+ Add</button>
-        </div>
-        <div class="menu-item">
-            <div class="item-info">
-                <h3>Shrimp Jumbo</h3>
-                <div class="ar">جامبو روبيان</div>
-                <p class="price">12 SAR</p>
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>Shrimp Jumbo</h3>
+                    <div class="ar">جامبو روبيان</div>
+                    <p class="price">12 SAR</p>
+                </div>
+                <button class="btn-add" onclick="addToCart('Shrimp Jumbo', 12)">+ Add</button>
             </div>
-            <button class="btn-add" onclick="addToCart('Shrimp Jumbo', 12)">+ Add</button>
-        </div>
-        <div class="menu-item">
-            <div class="item-info">
-                <h3>Zinger Jumbo</h3>
-                <div class="ar">جامبو زنجر</div>
-                <p class="price">12 SAR</p>
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>Zinger Jumbo</h3>
+                    <div class="ar">جامبو زنجر</div>
+                    <p class="price">12 SAR</p>
+                </div>
+                <button class="btn-add" onclick="addToCart('Zinger Jumbo', 12)">+ Add</button>
             </div>
-            <button class="btn-add" onclick="addToCart('Zinger Jumbo', 12)">+ Add</button>
-        </div>
-        <div class="menu-item">
-            <div class="item-info">
-                <h3>Tikka Jumbo</h3>
-                <div class="ar">جامبو تكه</div>
-                <p class="price">12 SAR</p>
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>Tikka Jumbo</h3>
+                    <div class="ar">جامبو تكه</div>
+                    <p class="price">12 SAR</p>
+                </div>
+                <button class="btn-add" onclick="addToCart('Tikka Jumbo', 12)">+ Add</button>
             </div>
-            <button class="btn-add" onclick="addToCart('Tikka Jumbo', 12)">+ Add</button>
-        </div>
-        <div class="menu-item">
-            <div class="item-info">
-                <h3>Kabab Beef Jumbo</h3>
-                <div class="ar">جامبو كباب لحم</div>
-                <p class="price">12 SAR</p>
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>Kabab Beef Jumbo</h3>
+                    <div class="ar">جامبو كباب لحم</div>
+                    <p class="price">12 SAR</p>
+                </div>
+                <button class="btn-add" onclick="addToCart('Kabab Beef Jumbo', 12)">+ Add</button>
             </div>
-            <button class="btn-add" onclick="addToCart('Kabab Beef Jumbo', 12)">+ Add</button>
         </div>
 
         <!-- 3. Tortilla Wraps -->
-        <div class="section-title">🫓 Tortilla Wraps | تورتيلا</div>
-        <div class="menu-item">
-            <div class="item-info">
-                <h3>Chicken Tortilla</h3>
-                <div class="ar">دجاج تورتيلا</div>
-                <p class="price">13 SAR</p>
+        <div id="tortilla" class="category-section">
+            <div class="section-title">🫓 Tortilla Wraps | تورتيلا</div>
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>Chicken Tortilla</h3>
+                    <div class="ar">دجاج تورتيلا</div>
+                    <p class="price">13 SAR</p>
+                </div>
+                <button class="btn-add" onclick="addToCart('Chicken Tortilla', 13)">+ Add</button>
             </div>
-            <button class="btn-add" onclick="addToCart('Chicken Tortilla', 13)">+ Add</button>
-        </div>
-        <div class="menu-item">
-            <div class="item-info">
-                <h3>Tortilla Kabab (Chicken/Beef)</h3>
-                <div class="ar">تورتيلا كباب</div>
-                <p class="price">13 SAR</p>
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>Tortilla Kabab</h3>
+                    <div class="ar">تورتيلا كباب</div>
+                    <p class="price">13 SAR</p>
+                </div>
+                <button class="btn-add" onclick="addToCart('Tortilla Kabab', 13)">+ Add</button>
             </div>
-            <button class="btn-add" onclick="addToCart('Tortilla Kabab', 13)">+ Add</button>
-        </div>
-        <div class="menu-item">
-            <div class="item-info">
-                <h3>Shrimp Tortilla</h3>
-                <div class="ar">تورتيلا روبيان</div>
-                <p class="price">13 SAR</p>
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>Shrimp Tortilla</h3>
+                    <div class="ar">تورتيلا روبيان</div>
+                    <p class="price">13 SAR</p>
+                </div>
+                <button class="btn-add" onclick="addToCart('Shrimp Tortilla', 13)">+ Add</button>
             </div>
-            <button class="btn-add" onclick="addToCart('Shrimp Tortilla', 13)">+ Add</button>
-        </div>
-        <div class="menu-item">
-            <div class="item-info">
-                <h3>Zinger Tortilla</h3>
-                <div class="ar">زنجر تورتيلا</div>
-                <p class="price">13 SAR</p>
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>Zinger Tortilla</h3>
+                    <div class="ar">زنجر تورتيلا</div>
+                    <p class="price">13 SAR</p>
+                </div>
+                <button class="btn-add" onclick="addToCart('Zinger Tortilla', 13)">+ Add</button>
             </div>
-            <button class="btn-add" onclick="addToCart('Zinger Tortilla', 13)">+ Add</button>
         </div>
 
         <!-- 4. Burgers -->
-        <div class="section-title">🍔 Burgers | برجر</div>
-        <div class="menu-item">
-            <div class="item-info">
-                <h3>Chicken Burger</h3>
-                <div class="ar">برجر دجاج</div>
-                <p class="price">8 SAR</p>
+        <div id="burger" class="category-section">
+            <div class="section-title">🍔 Burgers | برجر</div>
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>Chicken Burger</h3>
+                    <div class="ar">برجر دجاج</div>
+                    <p class="price">8 SAR</p>
+                </div>
+                <button class="btn-add" onclick="addToCart('Chicken Burger', 8)">+ Add</button>
             </div>
-            <button class="btn-add" onclick="addToCart('Chicken Burger', 8)">+ Add</button>
-        </div>
-        <div class="menu-item">
-            <div class="item-info">
-                <h3>Beef Burger</h3>
-                <div class="ar">لحم برجر</div>
-                <p class="price">9 SAR</p>
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>Beef Burger</h3>
+                    <div class="ar">لحم برجر</div>
+                    <p class="price">9 SAR</p>
+                </div>
+                <button class="btn-add" onclick="addToCart('Beef Burger', 9)">+ Add</button>
             </div>
-            <button class="btn-add" onclick="addToCart('Beef Burger', 9)">+ Add</button>
-        </div>
-        <div class="menu-item">
-            <div class="item-info">
-                <h3>Zinger Burger</h3>
-                <div class="ar">زنجر برجر</div>
-                <p class="price">10 SAR</p>
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>Zinger Burger</h3>
+                    <div class="ar">زنجر برجر</div>
+                    <p class="price">10 SAR</p>
+                </div>
+                <button class="btn-add" onclick="addToCart('Zinger Burger', 10)">+ Add</button>
             </div>
-            <button class="btn-add" onclick="addToCart('Zinger Burger', 10)">+ Add</button>
         </div>
 
         <!-- 5. Pizza -->
-        <div class="section-title">🍕 Pizza | بيتزا</div>
-        <div class="menu-item">
-            <div class="item-info">
-                <h3>Dynamite Chicken Pizza</h3>
-                <div class="ar">بيتزا ديناميت الدجاج</div>
-                <p class="price">22 SAR</p>
+        <div id="pizza" class="category-section">
+            <div class="section-title">🍕 Pizza | بيتزا</div>
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>Dynamite Chicken Pizza</h3>
+                    <div class="ar">بيتزا ديناميت الدجاج</div>
+                    <p class="price">22 SAR</p>
+                </div>
+                <button class="btn-add" onclick="addToCart('Dynamite Chicken Pizza', 22)">+ Add</button>
             </div>
-            <button class="btn-add" onclick="addToCart('Dynamite Chicken Pizza', 22)">+ Add</button>
-        </div>
-        <div class="menu-item">
-            <div class="item-info">
-                <h3>Dynamite Beef Pizza</h3>
-                <div class="ar">بيتزا ديناميت لحوم</div>
-                <p class="price">23 SAR</p>
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>Dynamite Beef Pizza</h3>
+                    <div class="ar">بيتزا ديناميت لحوم</div>
+                    <p class="price">23 SAR</p>
+                </div>
+                <button class="btn-add" onclick="addToCart('Dynamite Beef Pizza', 23)">+ Add</button>
             </div>
-            <button class="btn-add" onclick="addToCart('Dynamite Beef Pizza', 23)">+ Add</button>
-        </div>
-        <div class="menu-item">
-            <div class="item-info">
-                <h3>Chicken Pizza</h3>
-                <div class="ar">بيتزا دجاج</div>
-                <p class="price">20 SAR</p>
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>Chicken Pizza</h3>
+                    <div class="ar">بيتزا دجاج</div>
+                    <p class="price">20 SAR</p>
+                </div>
+                <button class="btn-add" onclick="addToCart('Chicken Pizza', 20)">+ Add</button>
             </div>
-            <button class="btn-add" onclick="addToCart('Chicken Pizza', 20)">+ Add</button>
-        </div>
-        <div class="menu-item">
-            <div class="item-info">
-                <h3>Vegetable Pizza</h3>
-                <div class="ar">بيتزا خضار</div>
-                <p class="price">15 SAR</p>
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>Vegetable Pizza</h3>
+                    <div class="ar">بيتزا خضار</div>
+                    <p class="price">15 SAR</p>
+                </div>
+                <button class="btn-add" onclick="addToCart('Vegetable Pizza', 15)">+ Add</button>
             </div>
-            <button class="btn-add" onclick="addToCart('Vegetable Pizza', 15)">+ Add</button>
-        </div>
-        <div class="menu-item">
-            <div class="item-info">
-                <h3>Margherita Pizza</h3>
-                <div class="ar">بيتزا مارجريتا</div>
-                <p class="price">18 SAR</p>
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>Margherita Pizza</h3>
+                    <div class="ar">بيتزا مارجريتا</div>
+                    <p class="price">18 SAR</p>
+                </div>
+                <button class="btn-add" onclick="addToCart('Margherita Pizza', 18)">+ Add</button>
             </div>
-            <button class="btn-add" onclick="addToCart('Margherita Pizza', 18)">+ Add</button>
-        </div>
-
-        <!-- 6. Side Orders & Extras -->
-        <div class="section-title">🍟 Side Orders & Sauces | وجبة إضافية</div>
-        <div class="menu-item">
-            <div class="item-info">
-                <h3>French Fries (Small / Medium / Large)</h3>
-                <div class="ar">بطاطس</div>
-                <p class="price">4 SAR</p>
-            </div>
-            <button class="btn-add" onclick="addToCart('French Fries', 4)">+ Add</button>
-        </div>
-        <div class="menu-item">
-            <div class="item-info">
-                <h3>Garlic Sauce</h3>
-                <div class="ar">ثوم</div>
-                <p class="price">1 SAR</p>
-            </div>
-            <button class="btn-add" onclick="addToCart('Garlic Sauce', 1)">+ Add</button>
-        </div>
-        <div class="menu-item">
-            <div class="item-info">
-                <h3>Cocktail / Spicy Garlic Sauce</h3>
-                <div class="ar">صوص كوكتيل / ثوم حراق</div>
-                <p class="price">1 SAR</p>
-            </div>
-            <button class="btn-add" onclick="addToCart('Sauce', 1)">+ Add</button>
-        </div>
-        <div class="menu-item">
-            <div class="item-info">
-                <h3>Cheese / Dynamite Sauce</h3>
-                <div class="ar">صوص جبنة / ديناميت</div>
-                <p class="price">2 SAR</p>
-            </div>
-            <button class="btn-add" onclick="addToCart('Cheese/Dynamite Sauce', 2)">+ Add</button>
-        </div>
-        <div class="menu-item">
-            <div class="item-info">
-                <h3>Coleslaw</h3>
-                <div class="ar">سلطة ملفوف</div>
-                <p class="price">3 SAR</p>
-            </div>
-            <button class="btn-add" onclick="addToCart('Coleslaw', 3)">+ Add</button>
-        </div>
-        <div class="menu-item">
-            <div class="item-info">
-                <h3>Hummus</h3>
-                <div class="ar">حمص</div>
-                <p class="price">3 SAR</p>
-            </div>
-            <button class="btn-add" onclick="addToCart('Hummus', 3)">+ Add</button>
         </div>
 
-        <!-- 7. Fresh Juices & Drinks -->
-        <div class="section-title">🥤 Fresh Juices & Drinks | عصائر طازجة</div>
-        <div class="menu-item">
-            <div class="item-info">
-                <h3>Fresh Juices (Small)</h3>
-                <div class="ar">عصائر طازجة (صغير) - كوكتيل/مانجو/فراولة/ليمون</div>
-                <p class="price">5 SAR</p>
+        <!-- 6. Extras -->
+        <div id="sides" class="category-section">
+            <div class="section-title">🍟 Extras & Sauces | وجبة إضافية</div>
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>French Fries</h3>
+                    <div class="ar">بطاطس</div>
+                    <p class="price">4 SAR</p>
+                </div>
+                <button class="btn-add" onclick="addToCart('French Fries', 4)">+ Add</button>
             </div>
-            <button class="btn-add" onclick="addToCart('Fresh Juice (Small)', 5)">+ Add</button>
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>Garlic Sauce</h3>
+                    <div class="ar">ثوم</div>
+                    <p class="price">1 SAR</p>
+                </div>
+                <button class="btn-add" onclick="addToCart('Garlic Sauce', 1)">+ Add</button>
+            </div>
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>Cocktail / Spicy Sauce</h3>
+                    <div class="ar">صوص كوكتيل / ثوم حراق</div>
+                    <p class="price">1 SAR</p>
+                </div>
+                <button class="btn-add" onclick="addToCart('Sauce', 1)">+ Add</button>
+            </div>
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>Cheese / Dynamite Sauce</h3>
+                    <div class="ar">صوص جبنة / ديناميت</div>
+                    <p class="price">2 SAR</p>
+                </div>
+                <button class="btn-add" onclick="addToCart('Cheese Sauce', 2)">+ Add</button>
+            </div>
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>Hummus</h3>
+                    <div class="ar">حمص</div>
+                    <p class="price">3 SAR</p>
+                </div>
+                <button class="btn-add" onclick="addToCart('Hummus', 3)">+ Add</button>
+            </div>
         </div>
-        <div class="menu-item">
-            <div class="item-info">
-                <h3>Fresh Juices (Big)</h3>
-                <div class="ar">عصائر طازجة (كبير)</div>
-                <p class="price">7 SAR</p>
+
+        <!-- 7. Juices & Drinks -->
+        <div id="juices" class="category-section">
+            <div class="section-title">🥤 Fresh Juices & Drinks | عصائر طازجة</div>
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>Fresh Juice (Small)</h3>
+                    <div class="ar">عصير طازج (صغير)</div>
+                    <p class="price">5 SAR</p>
+                </div>
+                <button class="btn-add" onclick="addToCart('Fresh Juice (Small)', 5)">+ Add</button>
             </div>
-            <button class="btn-add" onclick="addToCart('Fresh Juice (Big)', 7)">+ Add</button>
-        </div>
-        <div class="menu-item">
-            <div class="item-info">
-                <h3>Soft Drinks / Pepsi</h3>
-                <div class="ar">مشروبات غازية</div>
-                <p class="price">3 SAR</p>
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>Fresh Juice (Big)</h3>
+                    <div class="ar">عصير طازج (كبير)</div>
+                    <p class="price">7 SAR</p>
+                </div>
+                <button class="btn-add" onclick="addToCart('Fresh Juice (Big)', 7)">+ Add</button>
             </div>
-            <button class="btn-add" onclick="addToCart('Pepsi/Soft Drink', 3)">+ Add</button>
-        </div>
-        <div class="menu-item">
-            <div class="item-info">
-                <h3>Make it a Meal (Pepsi + Fries)</h3>
-                <div class="ar">مع وجبة (بطاطس + بيبسي)</div>
-                <p class="price">6 SAR</p>
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>Soft Drinks / Pepsi</h3>
+                    <div class="ar">مشروبات غازية</div>
+                    <p class="price">3 SAR</p>
+                </div>
+                <button class="btn-add" onclick="addToCart('Pepsi', 3)">+ Add</button>
             </div>
-            <button class="btn-add" onclick="addToCart('Make it a Meal', 6)">+ Add</button>
         </div>
 
     </div>
@@ -415,6 +467,20 @@
     <script>
         let cart = [];
         let total = 0;
+
+        function showCategory(categoryId, btnElement) {
+            // Hide all categories
+            let sections = document.querySelectorAll('.category-section');
+            sections.forEach(sec => sec.classList.remove('active'));
+
+            // Show selected category
+            document.getElementById(categoryId).classList.add('active');
+
+            // Update active button style
+            let buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+        }
 
         function addToCart(name, price) {
             cart.push({name, price});
