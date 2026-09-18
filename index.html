@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" class="notranslate">
 <head>
   <meta charset="UTF-8">
-<meta name="google" content="notranslate">  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TOP CHICKEN | الدجاج المميز</title>
+  <meta name="google" content="notranslate">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TOP CHICKEN | تاپ تشيكن</title>
   <style>
     :root {
       --primary-yellow: #ffb703;
@@ -29,10 +30,10 @@
       padding-bottom: 90px;
     }
 
-    /* Header Banner with Shop Photo Background */
+    /* Header Banner */
     .header-banner {
       position: relative;
-      background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(43, 30, 23, 0.9)), url('shop.jpg');
+      background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(43, 30, 23, 0.9));
       background-size: cover;
       background-position: center;
       color: white;
@@ -43,7 +44,7 @@
     }
 
     .header-banner h1 {
-      font-size: 2rem;
+      font-size: 2.2rem;
       color: var(--primary-yellow);
       letter-spacing: 1px;
       text-transform: uppercase;
@@ -63,9 +64,10 @@
       color: #ddd;
     }
 
-    /* Categories Horizontal Scroll (LTR) */
+    /* Categories Horizontal Scroll */
     .category-container {
       display: flex;
+      flex-direction: row;
       gap: 10px;
       overflow-x: auto;
       padding: 15px 10px;
@@ -88,7 +90,7 @@
       text-align: center;
       cursor: pointer;
       transition: all 0.3s ease;
-      min-width: 95px;
+      min-width: 100px;
     }
 
     .cat-btn.active {
@@ -114,7 +116,7 @@
     /* Menu Items Grid */
     .menu-container {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
       gap: 15px;
       padding: 15px;
       max-width: 800px;
@@ -132,7 +134,7 @@
       box-shadow: 0 4px 8px rgba(0,0,0,0.3);
     }
 
-    .item-title {
+    .item-title-en {
       font-size: 1rem;
       font-weight: bold;
       color: var(--text-gold);
@@ -140,7 +142,7 @@
 
     .item-title-ar {
       font-size: 0.85rem;
-      color: #aaa;
+      color: #ccc;
       margin-bottom: 8px;
     }
 
@@ -202,7 +204,7 @@
       cursor: pointer;
     }
 
-    /* Modal / Pop-up for Cart */
+    /* Modal for Cart */
     .modal {
       display: none;
       position: fixed;
@@ -260,8 +262,8 @@
   <!-- Header -->
   <div class="header-banner">
     <h1>TOP CHICKEN</h1>
-    <h2>الدجاج المميز</h2>
-    <p>Fast Food & Delicious Broast | وجبات سريعة و بروست لذيذ</p>
+    <h2>تاپ تشيكن</h2>
+    <p>Fast Food & Delicious Broast | وجبات سريعة وبروست لذيذ</p>
   </div>
 
   <!-- Categories -->
@@ -287,7 +289,7 @@
         <button class="close-btn" onclick="closeCartModal()">X</button>
       </div>
       <div class="cart-list" id="cartList">
-        <p style="text-align:center; color:#aaa;">Cart is empty</p>
+        <p style="text-align:center; color:#aaa;">Cart is empty / السلة فارغة</p>
       </div>
       <div style="font-weight:bold; font-size:1.1rem; text-align:right; color:var(--primary-yellow);" id="modalTotal">
         Total: 0 SAR
@@ -296,7 +298,7 @@
   </div>
 
   <script>
-    // Categories Data (English First, Arabic Second)
+    // Correct Categories with Exact Arabic & English Translations
     const categories = [
       { id: 'broast', en: 'Broast', ar: 'بروست' },
       { id: 'burger', en: 'Burger', ar: 'برجر' },
@@ -309,11 +311,11 @@
       { id: 'extra', en: 'Extra', ar: 'إضافات' }
     ];
 
-    // Sample Products Data (Updated Prices to 20 SAR)
+    // Products Data (Regular Broast: 18 SAR, Spicy Broast: 19 SAR)
     const products = {
       broast: [
-        { id: 1, en: 'Regular Broast (4 Pcs)', ar: 'بروست عادي (4 قطع)', price: 20 },
-        { id: 2, en: 'Spicy Broast (4 Pcs)', ar: 'بروست حراق (4 قطع)', price: 20 }
+        { id: 1, en: 'Regular Broast (4 Pcs)', ar: 'بروست عادي (٤ قطع)', price: 18 },
+        { id: 2, en: 'Spicy Broast (4 Pcs)', ar: 'بروست حراق (٤ قطع)', price: 19 }
       ],
       burger: [
         { id: 3, en: 'Chicken Burger', ar: 'برجر دجاج', price: 10 },
@@ -376,7 +378,7 @@
       container.innerHTML = items.map(item => `
         <div class="item-card">
           <div>
-            <div class="item-title">${item.en}</div>
+            <div class="item-title-en">${item.en}</div>
             <div class="item-title-ar">${item.ar}</div>
           </div>
           <div>
