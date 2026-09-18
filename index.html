@@ -35,7 +35,7 @@
       background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(43, 30, 23, 0.9));
       color: white;
       text-align: center;
-      padding: 25px 15px;
+      padding: 20px 15px;
       border-bottom: 4px solid var(--primary-yellow);
       box-shadow: 0 4px 15px rgba(0,0,0,0.5);
     }
@@ -50,14 +50,25 @@
 
     .header-banner h2 {
       font-size: 1.8rem;
-      margin-top: 5px;
+      margin-top: 2px;
       color: #ffffff;
     }
 
     .header-banner p {
       font-size: 0.95rem;
-      margin-top: 8px;
+      margin-top: 5px;
       color: #ddd;
+    }
+
+    /* Contact Info Header */
+    .contact-info {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: var(--primary-yellow);
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
     }
 
     .section-title {
@@ -67,13 +78,13 @@
       font-size: 1.3rem;
     }
 
-    /* Category Boxes Grid (ആദ്യം കാണുന്നത്) */
+    /* Category Boxes Grid */
     .category-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
       gap: 15px;
       padding: 15px;
-      max-width: 800px;
+      max-width: 900px;
       margin: 0 auto;
     }
 
@@ -93,21 +104,21 @@
     }
 
     .cat-title-en {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: bold;
       color: #fff;
     }
 
     .cat-title-ar {
-      font-size: 1.1rem;
+      font-size: 1rem;
       color: var(--primary-yellow);
       margin-top: 4px;
     }
 
-    /* Food Items Section (ക്ലിക്ക് ചെയ്യുമ്പോൾ മാത്രം കാണുന്നത്) */
+    /* Food Items Section */
     .items-container {
       display: none;
-      max-width: 800px;
+      max-width: 900px;
       margin: 0 auto;
       padding: 15px;
     }
@@ -228,9 +239,15 @@
     <h1>TOP CHICKEN</h1>
     <h2>الدجاج المميز</h2>
     <p>Fast Food & Delicious Broast | وجبات سريعة وبروست لذيذ</p>
+    
+    <!-- അഡ്രസ്സും ഫോൺ നമ്പറും ഇവിടെ മാറ്റാം -->
+    <div class="contact-info">
+      <span>📞 +966 5X XXX XXXX</span>
+      <span>📍 Riyadh, KSA / الرياض</span>
+    </div>
   </div>
 
-  <!-- Main Category View (ആദ്യം കാണുന്നത്) -->
+  <!-- Main Category View (9 Categories) -->
   <div id="category-section">
     <h3 class="section-title">Select Category / اختر القسم</h3>
     <div class="category-grid">
@@ -250,10 +267,40 @@
         <div class="cat-title-ar">تورتيلا</div>
       </div>
 
+      <div class="category-card" onclick="openCategory('fries-items', 'Fries & Sides / بطاطس ومقبلات')">
+        <div class="cat-title-en">Fries & Sides</div>
+        <div class="cat-title-ar">بطاطس ومقبلات</div>
+      </div>
+
+      <div class="category-card" onclick="openCategory('drinks-items', 'Drinks / مشروبات')">
+        <div class="cat-title-en">Drinks</div>
+        <div class="cat-title-ar">مشروبات</div>
+      </div>
+
+      <div class="category-card" onclick="openCategory('meals-items', 'Meals / وجبات')">
+        <div class="cat-title-en">Meals</div>
+        <div class="cat-title-ar">وجبات</div>
+      </div>
+
+      <div class="category-card" onclick="openCategory('sandwich-items', 'Sandwiches / ساندويتشات')">
+        <div class="cat-title-en">Sandwiches</div>
+        <div class="cat-title-ar">ساندويتشات</div>
+      </div>
+
+      <div class="category-card" onclick="openCategory('desserts-items', 'Desserts / حلويات')">
+        <div class="cat-title-en">Desserts</div>
+        <div class="cat-title-ar">حلويات</div>
+      </div>
+
+      <div class="category-card" onclick="openCategory('sauce-items', 'Sauces / صلصات')">
+        <div class="cat-title-en">Sauces</div>
+        <div class="cat-title-ar">صلصات</div>
+      </div>
+
     </div>
   </div>
 
-  <!-- Items Display Container (കാറ്റഗറി ക്ലിക്ക് ചെയ്യുമ്പോൾ മാത്രം തെളിയുന്നത്) -->
+  <!-- Items Display Container -->
   <div id="items-section" class="items-container">
     <button class="back-btn" onclick="showCategories()">← All Categories / جميع الأقسام</button>
     <div id="active-title" class="active-cat-header">Category</div>
@@ -326,6 +373,102 @@
       </div>
     </div>
 
+    <!-- Fries Items -->
+    <div id="fries-items" class="item-group" style="display: none;">
+      <div class="menu-grid">
+        <div class="item-card">
+          <div>
+            <div class="item-title-en">French Fries</div>
+            <div class="item-title-ar">بطاطس مقلية</div>
+          </div>
+          <div>
+            <div class="item-price">6 SAR</div>
+            <button class="add-btn">إضافة / Add</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Drinks Items -->
+    <div id="drinks-items" class="item-group" style="display: none;">
+      <div class="menu-grid">
+        <div class="item-card">
+          <div>
+            <div class="item-title-en">Soft Drink</div>
+            <div class="item-title-ar">مشروب غازي</div>
+          </div>
+          <div>
+            <div class="item-price">3 SAR</div>
+            <button class="add-btn">إضافة / Add</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Meals Items -->
+    <div id="meals-items" class="item-group" style="display: none;">
+      <div class="menu-grid">
+        <div class="item-card">
+          <div>
+            <div class="item-title-en">Family Meal</div>
+            <div class="item-title-ar">وجبة عائلية</div>
+          </div>
+          <div>
+            <div class="item-price">45 SAR</div>
+            <button class="add-btn">إضافة / Add</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sandwiches Items -->
+    <div id="sandwich-items" class="item-group" style="display: none;">
+      <div class="menu-grid">
+        <div class="item-card">
+          <div>
+            <div class="item-title-en">Chicken Sandwich</div>
+            <div class="item-title-ar">ساندويتش دجاج</div>
+          </div>
+          <div>
+            <div class="item-price">8 SAR</div>
+            <button class="add-btn">إضافة / Add</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Desserts Items -->
+    <div id="desserts-items" class="item-group" style="display: none;">
+      <div class="menu-grid">
+        <div class="item-card">
+          <div>
+            <div class="item-title-en">Ice Cream</div>
+            <div class="item-title-ar">آيس كريم</div>
+          </div>
+          <div>
+            <div class="item-price">5 SAR</div>
+            <button class="add-btn">إضافة / Add</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sauces Items -->
+    <div id="sauce-items" class="item-group" style="display: none;">
+      <div class="menu-grid">
+        <div class="item-card">
+          <div>
+            <div class="item-title-en">Garlic Sauce</div>
+            <div class="item-title-ar">ثومية</div>
+          </div>
+          <div>
+            <div class="item-price">2 SAR</div>
+            <button class="add-btn">إضافة / Add</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <!-- Bottom Cart Bar -->
@@ -342,13 +485,11 @@
       document.getElementById('category-section').style.display = 'none';
       document.getElementById('items-section').style.display = 'block';
       
-      // Hide all item groups
       var groups = document.getElementsByClassName('item-group');
       for (var i = 0; i < groups.length; i++) {
         groups[i].style.display = 'none';
       }
       
-      // Show selected group
       document.getElementById(categoryId).style.display = 'block';
       document.getElementById('active-title').innerText = categoryTitle;
     }
