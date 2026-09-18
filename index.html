@@ -38,7 +38,7 @@
       background-position: center;
       color: white;
       text-align: center;
-      padding: 35px 15px 25px 15px;
+      padding: 30px 15px 20px 15px;
       border-bottom: 4px solid var(--primary-yellow);
       box-shadow: 0 4px 15px rgba(0,0,0,0.5);
     }
@@ -116,11 +116,12 @@
     /* Menu Items Grid */
     .menu-container {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
       gap: 15px;
       padding: 15px;
       max-width: 800px;
       margin: 0 auto;
+      min-height: 200px;
     }
 
     .item-card {
@@ -162,11 +163,6 @@
       font-weight: bold;
       cursor: pointer;
       width: 100%;
-      transition: background 0.2s;
-    }
-
-    .add-btn:active {
-      transform: scale(0.98);
     }
 
     /* Bottom Cart Bar */
@@ -204,7 +200,7 @@
       cursor: pointer;
     }
 
-    /* Modal for Cart */
+    /* Modal */
     .modal {
       display: none;
       position: fixed;
@@ -259,20 +255,20 @@
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- Header Banner -->
   <div class="header-banner">
     <h1>TOP CHICKEN</h1>
-    <h2>تاپ تشيكن</h2>
+    <h2>الدجاج المميز</h2>
     <p>Fast Food & Delicious Broast | وجبات سريعة وبروست لذيذ</p>
   </div>
 
-  <!-- Categories -->
+  <!-- Categories Section -->
   <div class="category-container" id="categoryContainer"></div>
 
-  <!-- Product List -->
+  <!-- Products Section -->
   <div class="menu-container" id="menuContainer"></div>
 
-  <!-- Bottom Cart Bar -->
+  <!-- Cart Bottom Bar -->
   <div class="cart-bar">
     <div class="cart-info">
       <span id="cartCount">0</span> Items (عناصر)
@@ -298,7 +294,6 @@
   </div>
 
   <script>
-    // Correct Categories with Exact Arabic & English Translations
     const categories = [
       { id: 'broast', en: 'Broast', ar: 'بروست' },
       { id: 'burger', en: 'Burger', ar: 'برجر' },
@@ -311,7 +306,6 @@
       { id: 'extra', en: 'Extra', ar: 'إضافات' }
     ];
 
-    // Products Data (Regular Broast: 18 SAR, Spicy Broast: 19 SAR)
     const products = {
       broast: [
         { id: 1, en: 'Regular Broast (4 Pcs)', ar: 'بروست عادي (٤ قطع)', price: 18 },
@@ -347,9 +341,9 @@
     let cart = [];
     let currentCategory = 'broast';
 
-    // Render Categories
     function renderCategories() {
       const container = document.getElementById('categoryContainer');
+      if(!container) return;
       container.innerHTML = categories.map(cat => `
         <div class="cat-btn ${cat.id === currentCategory ? 'active' : ''}" onclick="selectCategory('${cat.id}')">
           <span class="en">${cat.en}</span>
@@ -358,16 +352,15 @@
       `).join('');
     }
 
-    // Select Category
     function selectCategory(catId) {
       currentCategory = catId;
       renderCategories();
       renderProducts();
     }
 
-    // Render Products
     function renderProducts() {
       const container = document.getElementById('menuContainer');
+      if(!container) return;
       const items = products[currentCategory] || [];
       
       if(items.length === 0) {
@@ -389,20 +382,17 @@
       `).join('');
     }
 
-    // Add to Cart
     function addToCart(id, name, price) {
       cart.push({ id, name, price });
       updateCart();
     }
 
-    // Update Cart Bar
     function updateCart() {
       document.getElementById('cartCount').innerText = cart.length;
       const total = cart.reduce((sum, item) => sum + item.price, 0);
       document.getElementById('cartTotal').innerText = total + ' SAR';
     }
 
-    // Open Cart Modal
     function openCartModal() {
       const modal = document.getElementById('cartModal');
       const cartList = document.getElementById('cartList');
@@ -424,14 +414,15 @@
       modal.style.display = 'flex';
     }
 
-    // Close Cart Modal
     function closeCartModal() {
       document.getElementById('cartModal').style.display = 'none';
     }
 
-    // Initialize
-    renderCategories();
-    renderProducts();
+    // Run after window loads
+    window.onload = function() {
+      renderCategories();
+      renderProducts();
+    };
   </script>
 </body>
 </html>
