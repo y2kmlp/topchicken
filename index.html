@@ -60,7 +60,6 @@
       color: #ddd;
     }
 
-    /* Contact Info Header */
     .contact-info {
       margin-top: 10px;
       font-size: 0.9rem;
@@ -78,7 +77,7 @@
       font-size: 1.3rem;
     }
 
-    /* Category Boxes Grid */
+    /* Category Boxes Grid (9 Categories) */
     .category-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
@@ -240,10 +239,9 @@
     <h2>الدجاج المميز</h2>
     <p>Fast Food & Delicious Broast | وجبات سريعة وبروست لذيذ</p>
     
-    <!-- അഡ്രസ്സും ഫോൺ നമ്പറും ഇവിടെ മാറ്റാം -->
     <div class="contact-info">
-      <span>📞 +966 5X XXX XXXX</span>
-      <span>📍 Riyadh, KSA / الرياض</span>
+      <span>📞 Phone: +966 XXXXXXXXX</span>
+      <span>📍 Location: Riyadh, KSA</span>
     </div>
   </div>
 
@@ -267,40 +265,40 @@
         <div class="cat-title-ar">تورتيلا</div>
       </div>
 
-      <div class="category-card" onclick="openCategory('fries-items', 'Fries & Sides / بطاطس ومقبلات')">
-        <div class="cat-title-en">Fries & Sides</div>
-        <div class="cat-title-ar">بطاطس ومقبلات</div>
+      <div class="category-card" onclick="openCategory('pizza-items', 'Pizza / بيتزا')">
+        <div class="cat-title-en">Pizza</div>
+        <div class="cat-title-ar">بيتزا</div>
       </div>
 
-      <div class="category-card" onclick="openCategory('drinks-items', 'Drinks / مشروبات')">
-        <div class="cat-title-en">Drinks</div>
-        <div class="cat-title-ar">مشروبات</div>
+      <div class="category-card" onclick="openCategory('fries-meals-items', 'Fries & Meals / وجبات و بطاطس')">
+        <div class="cat-title-en">Fries & Meals</div>
+        <div class="cat-title-ar">وجبات و بطاطس</div>
       </div>
 
-      <div class="category-card" onclick="openCategory('meals-items', 'Meals / وجبات')">
-        <div class="cat-title-en">Meals</div>
-        <div class="cat-title-ar">وجبات</div>
+      <div class="category-card" onclick="openCategory('pepsi-items', 'Pepsi / بيبسي')">
+        <div class="cat-title-en">Pepsi</div>
+        <div class="cat-title-ar">بيبسي</div>
       </div>
 
-      <div class="category-card" onclick="openCategory('sandwich-items', 'Sandwiches / ساندويتشات')">
-        <div class="cat-title-en">Sandwiches</div>
-        <div class="cat-title-ar">ساندويتشات</div>
+      <div class="category-card" onclick="openCategory('jumbo-items', 'Jumbo / جامبو')">
+        <div class="cat-title-en">Jumbo</div>
+        <div class="cat-title-ar">جامبو</div>
       </div>
 
-      <div class="category-card" onclick="openCategory('desserts-items', 'Desserts / حلويات')">
-        <div class="cat-title-en">Desserts</div>
-        <div class="cat-title-ar">حلويات</div>
+      <div class="category-card" onclick="openCategory('juices-items', 'Juices / عصائر')">
+        <div class="cat-title-en">Juices</div>
+        <div class="cat-title-ar">عصائر</div>
       </div>
 
-      <div class="category-card" onclick="openCategory('sauce-items', 'Sauces / صلصات')">
-        <div class="cat-title-en">Sauces</div>
-        <div class="cat-title-ar">صلصات</div>
+      <div class="category-card" onclick="openCategory('extra-items', 'Extra / إضافات')">
+        <div class="cat-title-en">Extra</div>
+        <div class="cat-title-ar">إضافات</div>
       </div>
 
     </div>
   </div>
 
-  <!-- Items Display Container -->
+  <!-- Items Section -->
   <div id="items-section" class="items-container">
     <button class="back-btn" onclick="showCategories()">← All Categories / جميع الأقسام</button>
     <div id="active-title" class="active-cat-header">Category</div>
@@ -310,21 +308,197 @@
       <div class="menu-grid">
         <div class="item-card">
           <div>
-            <div class="item-title-en">Regular Broast (4 Pcs)</div>
-            <div class="item-title-ar">بروست عادي (٤ قطع)</div>
+            <div class="item-title-en">Broasted Chicken</div>
+            <div class="item-title-ar">بروستد دجاج</div>
           </div>
           <div>
-            <div class="item-price">18 SAR</div>
+            <div class="item-price">20 SAR</div>
             <button class="add-btn">إضافة / Add</button>
           </div>
         </div>
         <div class="item-card">
           <div>
-            <div class="item-title-en">Spicy Broast (4 Pcs)</div>
-            <div class="item-title-ar">بروست حراق (٤ قطع)</div>
+            <div class="item-title-en">Broasted Chicken Spicy</div>
+            <div class="item-title-ar">بروستد دجاج حراق</div>
+          </div>
+          <div>
+            <div class="item-price">20 SAR</div>
+            <button class="add-btn">إضافة / Add</button>
+          </div>
+        </div>
+        <div class="item-card">
+          <div>
+            <div class="item-title-en">Chicken Nuggets</div>
+            <div class="item-title-ar">നാഗെറ്റ്സ്</div>
+          </div>
+          <div>
+            <div class="item-price">20 SAR</div>
+            <button class="add-btn">إضافة / Add</button>
+          </div>
+        </div>
+        <div class="item-card">
+          <div>
+            <div class="item-title-en">Shrimp Broasted</div>
+            <div class="item-title-ar">بروستد روبيان</div>
+          </div>
+          <div>
+            <div class="item-price">22 SAR</div>
+            <button class="add-btn">إضافة / Add</button>
+          </div>
+        </div>
+        <div class="item-card">
+          <div>
+            <div class="item-title-en">Shrimp Broasted Spicy</div>
+            <div class="item-title-ar">بروستد روبيان حراق</div>
+          </div>
+          <div>
+            <div class="item-price">22 SAR</div>
+            <button class="add-btn">إضافة / Add</button>
+          </div>
+        </div>
+        <div class="item-card">
+          <div>
+            <div class="item-title-en">Fish Broasted</div>
+            <div class="item-title-ar">بروستد سمك</div>
           </div>
           <div>
             <div class="item-price">19 SAR</div>
+            <button class="add-btn">إضافة / Add</button>
+          </div>
+        </div>
+        <div class="item-card">
+          <div>
+            <div class="item-title-en">Fish Broasted Spicy</div>
+            <div class="item-title-ar">بروستد سمك حراق</div>
+          </div>
+          <div>
+            <div class="item-price">19 SAR</div>
+            <button class="add-btn">إضافة / Add</button>
+          </div>
+        </div>
+        <div class="item-card">
+          <div>
+            <div class="item-title-en">Finger Chicken</div>
+            <div class="item-title-ar">اصابع الدجاج</div>
+          </div>
+          <div>
+            <div class="item-price">20 SAR</div>
+            <button class="add-btn">إضافة / Add</button>
+          </div>
+        </div>
+        <div class="item-card">
+          <div>
+            <div class="item-title-en">Finger Chicken Spicy</div>
+            <div class="item-title-ar">اصابع الدجاج حراق</div>
+          </div>
+          <div>
+            <div class="item-price">20 SAR</div>
+            <button class="add-btn">إضافة / Add</button>
+          </div>
+        </div>
+        <div class="item-card">
+          <div>
+            <div class="item-title-en">Finger Fish</div>
+            <div class="item-title-ar">اصابع السمك</div>
+          </div>
+          <div>
+            <div class="item-price">20 SAR</div>
+            <button class="add-btn">إضافة / Add</button>
+          </div>
+        </div>
+        <div class="item-card">
+          <div>
+            <div class="item-title-en">Bread</div>
+            <div class="item-title-ar">خبز</div>
+          </div>
+          <div>
+            <div class="item-price">1 SAR</div>
+            <button class="add-btn">إضافة / Add</button>
+          </div>
+        </div>
+        <div class="item-card">
+          <div>
+            <div class="item-title-en">Chicken Strips</div>
+            <div class="item-title-ar">سترپس دجاج</div>
+          </div>
+          <div>
+            <div class="item-price">20 SAR</div>
+            <button class="add-btn">إضافة / Add</button>
+          </div>
+        </div>
+        <div class="item-card">
+          <div>
+            <div class="item-title-en">Chicken Strips Spicy</div>
+            <div class="item-title-ar">سترپس دجاج حراق</div>
+          </div>
+          <div>
+            <div class="item-price">20 SAR</div>
+            <button class="add-btn">إضافة / Add</button>
+          </div>
+        </div>
+        <div class="item-card">
+          <div>
+            <div class="item-title-en">Beef Kabab</div>
+            <div class="item-title-ar">كباب لحم</div>
+          </div>
+          <div>
+            <div class="item-price">20 SAR</div>
+            <button class="add-btn">إضافة / Add</button>
+          </div>
+        </div>
+        <div class="item-card">
+          <div>
+            <div class="item-title-en">Cheese Stick</div>
+            <div class="item-title-ar">اصابع الجبن</div>
+          </div>
+          <div>
+            <div class="item-price">20 SAR</div>
+            <button class="add-btn">إضافة / Add</button>
+          </div>
+        </div>
+        <div class="item-card">
+          <div>
+            <div class="item-title-en">Chicken Fillet</div>
+            <div class="item-title-ar">فيله دجاج</div>
+          </div>
+          <div>
+            <div class="item-price">20 SAR</div>
+            <button class="add-btn">إضافة / Add</button>
+          </div>
+        </div>
+        <div class="item-card">
+          <div>
+            <div class="item-title-en">Chicken Fillet Spicy</div>
+            <div class="item-title-ar">فيله دجاج حراق</div>
+          </div>
+          <div>
+            <div class="item-price">20 SAR</div>
+            <button class="add-btn">إضافة / Add</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fries & Meals Items -->
+    <div id="fries-meals-items" class="item-group" style="display: none;">
+      <div class="menu-grid">
+        <div class="item-card">
+          <div>
+            <div class="item-title-en">French Fries</div>
+            <div class="item-title-ar">بطاطس مقلية</div>
+          </div>
+          <div>
+            <div class="item-price">6 SAR</div>
+            <button class="add-btn">إضافة / Add</button>
+          </div>
+        </div>
+        <div class="item-card">
+          <div>
+            <div class="item-title-en">Chicken Meal</div>
+            <div class="item-title-ar">وجبة دجاج</div>
+          </div>
+          <div>
+            <div class="item-price">20 SAR</div>
             <button class="add-btn">إضافة / Add</button>
           </div>
         </div>
@@ -341,16 +515,6 @@
           </div>
           <div>
             <div class="item-price">10 SAR</div>
-            <button class="add-btn">إضافة / Add</button>
-          </div>
-        </div>
-        <div class="item-card">
-          <div>
-            <div class="item-title-en">Beef Burger</div>
-            <div class="item-title-ar">برجر لحم</div>
-          </div>
-          <div>
-            <div class="item-price">12 SAR</div>
             <button class="add-btn">إضافة / Add</button>
           </div>
         </div>
@@ -373,29 +537,29 @@
       </div>
     </div>
 
-    <!-- Fries Items -->
-    <div id="fries-items" class="item-group" style="display: none;">
+    <!-- Pizza Items -->
+    <div id="pizza-items" class="item-group" style="display: none;">
       <div class="menu-grid">
         <div class="item-card">
           <div>
-            <div class="item-title-en">French Fries</div>
-            <div class="item-title-ar">بطاطس مقلية</div>
+            <div class="item-title-en">Chicken Pizza</div>
+            <div class="item-title-ar">بيتزا دجاج</div>
           </div>
           <div>
-            <div class="item-price">6 SAR</div>
+            <div class="item-price">25 SAR</div>
             <button class="add-btn">إضافة / Add</button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Drinks Items -->
-    <div id="drinks-items" class="item-group" style="display: none;">
+    <!-- Pepsi Items -->
+    <div id="pepsi-items" class="item-group" style="display: none;">
       <div class="menu-grid">
         <div class="item-card">
           <div>
-            <div class="item-title-en">Soft Drink</div>
-            <div class="item-title-ar">مشروب غازي</div>
+            <div class="item-title-en">Pepsi Can</div>
+            <div class="item-title-ar">بيبسي علبة</div>
           </div>
           <div>
             <div class="item-price">3 SAR</div>
@@ -405,29 +569,29 @@
       </div>
     </div>
 
-    <!-- Meals Items -->
-    <div id="meals-items" class="item-group" style="display: none;">
+    <!-- Jumbo Items -->
+    <div id="jumbo-items" class="item-group" style="display: none;">
       <div class="menu-grid">
         <div class="item-card">
           <div>
-            <div class="item-title-en">Family Meal</div>
-            <div class="item-title-ar">وجبة عائلية</div>
+            <div class="item-title-en">Jumbo Meal</div>
+            <div class="item-title-ar">وجبة جامبو</div>
           </div>
           <div>
-            <div class="item-price">45 SAR</div>
+            <div class="item-price">30 SAR</div>
             <button class="add-btn">إضافة / Add</button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Sandwiches Items -->
-    <div id="sandwich-items" class="item-group" style="display: none;">
+    <!-- Juices Items -->
+    <div id="juices-items" class="item-group" style="display: none;">
       <div class="menu-grid">
         <div class="item-card">
           <div>
-            <div class="item-title-en">Chicken Sandwich</div>
-            <div class="item-title-ar">ساندويتش دجاج</div>
+            <div class="item-title-en">Orange Juice</div>
+            <div class="item-title-ar">عصير برتقال</div>
           </div>
           <div>
             <div class="item-price">8 SAR</div>
@@ -437,29 +601,13 @@
       </div>
     </div>
 
-    <!-- Desserts Items -->
-    <div id="desserts-items" class="item-group" style="display: none;">
-      <div class="menu-grid">
-        <div class="item-card">
-          <div>
-            <div class="item-title-en">Ice Cream</div>
-            <div class="item-title-ar">آيس كريم</div>
-          </div>
-          <div>
-            <div class="item-price">5 SAR</div>
-            <button class="add-btn">إضافة / Add</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Sauces Items -->
-    <div id="sauce-items" class="item-group" style="display: none;">
+    <!-- Extra Items -->
+    <div id="extra-items" class="item-group" style="display: none;">
       <div class="menu-grid">
         <div class="item-card">
           <div>
             <div class="item-title-en">Garlic Sauce</div>
-            <div class="item-title-ar">ثومية</div>
+            <div class="item-title-ar">صلصة ثوم</div>
           </div>
           <div>
             <div class="item-price">2 SAR</div>
