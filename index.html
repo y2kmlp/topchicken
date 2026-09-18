@@ -1,671 +1,339 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top Chicken | تاپ تشيكن</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #d90429;
-            --primary-dark: #ef233c;
-            --secondary: #ffb703;
-            --bg-light: #f8f9fa;
-            --text-dark: #2b2d42;
-            --card-shadow: 0 4px 15px rgba(0,0,0,0.08);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TOP CHICKEN | الدجاج المميز</title>
+  <style>
+    :root {
+      --primary-yellow: #ffb703;
+      --secondary-orange: #fb8500;
+      --wood-dark: #2b1e17;
+      --wood-light: #3a2a22;
+      --bg-dark: #121212;
+      --card-bg: #1e1e1e;
+      --text-light: #f1f1f1;
+      --text-gold: #ffc107;
+    }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-        body {
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-            padding-bottom: 90px;
-            direction: ltr;
-        }
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      padding-bottom: 90px;
+    }
 
-        /* Header Styling */
-        .header {
-            background: linear-gradient(135deg, #111, var(--primary));
-            color: white;
-            text-align: center;
-            padding: 25px 15px;
-            border-bottom-left-radius: 20px;
-            border-bottom-right-radius: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
+    /* Header Banner with Shop Photo Background */
+    .header-banner {
+      position: relative;
+      background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(43, 30, 23, 0.9)), url('shop.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+      padding: 35px 15px 25px 15px;
+      border-bottom: 4px solid var(--primary-yellow);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
 
-        .header h1 {
-            font-size: 2rem;
-            color: var(--secondary);
-            margin-bottom: 5px;
-            letter-spacing: 1px;
-        }
+    .header-banner h1 {
+      font-size: 2rem;
+      color: var(--primary-yellow);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    }
 
-        .header h2 {
-            font-size: 1.4rem;
-            font-weight: 500;
-            direction: rtl;
-        }
+    .header-banner h2 {
+      font-size: 1.8rem;
+      margin-top: 5px;
+      color: #ffffff;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    }
 
-        /* 2-Row Grid Category Nav */
-        .category-container {
-            position: sticky;
-            top: 0;
-            background: white;
-            z-index: 100;
-            padding: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
+    .header-banner p {
+      font-size: 0.95rem;
+      margin-top: 8px;
+      color: #ddd;
+    }
 
-        .category-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 8px;
-        }
+    /* Categories Horizontal Scroll */
+    .category-container {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 15px 10px;
+      background: var(--wood-dark);
+      border-bottom: 1px solid #444;
+      scrollbar-width: none;
+    }
 
-        .cat-btn {
-            background: #f1f3f5;
-            border: 1px solid #e9ecef;
-            border-radius: 10px;
-            padding: 8px 4px;
-            text-align: center;
-            font-size: 0.75rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
+    .category-container::-webkit-scrollbar {
+      display: none;
+    }
 
-        .cat-btn i {
-            font-size: 1.1rem;
-            margin-bottom: 3px;
-            color: var(--primary);
-        }
+    .cat-btn {
+      flex: 0 0 auto;
+      background: var(--wood-light);
+      color: var(--text-light);
+      border: 1px solid #555;
+      padding: 10px 16px;
+      border-radius: 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      min-width: 95px;
+    }
 
-        .cat-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
+    .cat-btn.active {
+      background: var(--primary-yellow);
+      color: #000;
+      font-weight: bold;
+      border-color: var(--secondary-orange);
+      transform: scale(1.05);
+    }
 
-        .cat-btn.active i {
-            color: var(--secondary);
-        }
+    .cat-btn .en {
+      display: block;
+      font-size: 0.85rem;
+      margin-top: 2px;
+    }
 
-        /* Menu Grid */
-        .menu-container {
-            max-width: 800px;
-            margin: 15px auto;
-            padding: 0 12px;
-        }
+    .cat-btn .ar {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: bold;
+    }
 
-        .category-title {
-            font-size: 1.3rem;
-            color: var(--primary);
-            margin: 20px 0 10px 0;
-            border-bottom: 2px solid var(--secondary);
-            padding-bottom: 5px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    /* Menu Items Grid */
+    .menu-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 15px;
+      padding: 15px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
 
-        .item-card {
-            background: white;
-            border-radius: 12px;
-            padding: 12px;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            box-shadow: var(--card-shadow);
-            transition: transform 0.2s ease;
-        }
+    .item-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 12px;
+      border: 1px solid #333;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
 
-        .item-img {
-            width: 75px;
-            height: 75px;
-            border-radius: 10px;
-            object-fit: cover;
-            margin-right: 12px;
-            background: #f8f9fa;
-        }
+    .item-title {
+      font-size: 1rem;
+      font-weight: bold;
+      color: var(--text-gold);
+    }
 
-        .item-details {
-            flex: 1;
-        }
+    .item-title-en {
+      font-size: 0.85rem;
+      color: #aaa;
+      margin-bottom: 8px;
+    }
 
-        .item-title-en {
-            font-size: 0.95rem;
-            font-weight: bold;
-        }
+    .item-price {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 10px;
+    }
 
-        .item-title-ar {
-            font-size: 0.85rem;
-            color: #6c757d;
-            direction: rtl;
-            text-align: left;
-        }
+    .add-btn {
+      background: var(--secondary-orange);
+      color: #fff;
+      border: none;
+      padding: 8px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.2s;
+    }
 
-        .item-price {
-            font-weight: bold;
-            color: var(--primary);
-            font-size: 1rem;
-            margin-top: 4px;
-        }
+    .add-btn:active {
+      transform: scale(0.98);
+    }
 
-        .add-btn {
-            background: var(--secondary);
-            color: #000;
-            border: none;
-            padding: 8px 14px;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
+    /* Bottom Cart Bar */
+    .cart-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--wood-dark);
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 2px solid var(--primary-yellow);
+      box-shadow: 0 -4px 10px rgba(0,0,0,0.5);
+    }
 
-        .add-btn:active {
-            transform: scale(0.95);
-        }
+    .cart-info {
+      font-size: 1rem;
+    }
 
-        /* Floating View Cart Footer Bar */
-        .cart-bar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: white;
-            padding: 12px 20px;
-            box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 200;
-        }
+    .cart-info div {
+      color: var(--primary-yellow);
+      font-weight: bold;
+    }
 
-        .cart-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .view-cart-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 25px;
-            font-weight: bold;
-            font-size: 1rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        /* Modal / Checkout Popup */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6);
-            z-index: 300;
-            justify-content: center;
-            align-items: flex-end;
-        }
-
-        .modal-content {
-            background: white;
-            width: 100%;
-            max-width: 500px;
-            border-top-left-radius: 20px;
-            border-top-right-radius: 20px;
-            padding: 20px;
-            max-height: 85vh;
-            overflow-y: auto;
-            animation: slideUp 0.3s ease;
-        }
-
-        @keyframes slideUp {
-            from { transform: translateY(100%); }
-            to { transform: translateY(0); }
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
-            margin-bottom: 15px;
-        }
-
-        .cart-item-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-            padding-bottom: 8px;
-            border-bottom: 1px dashed #eee;
-        }
-
-        .qty-controls {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .qty-btn {
-            width: 26px;
-            height: 26px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            background: #f8f9fa;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .form-group {
-            margin-bottom: 12px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.85rem;
-            font-weight: bold;
-            margin-bottom: 4px;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 0.9rem;
-        }
-
-        .whatsapp-btn {
-            background: #25D366;
-            color: white;
-            width: 100%;
-            border: none;
-            padding: 14px;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .footer-credit {
-            text-align: center;
-            font-size: 0.8rem;
-            color: #888;
-            margin-top: 25px;
-            padding: 10px;
-        }
-
-        @media (max-width: 480px) {
-            .category-grid {
-                grid-template-columns: repeat(5, 1fr);
-                font-size: 0.65rem;
-            }
-            .cat-btn { padding: 6px 2px; }
-        }
-    </style>
+    .view-cart-btn {
+      background: var(--primary-yellow);
+      color: #000;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
 
-    <div class="header">
-        <h1>TOP CHICKEN</h1>
-        <h2>تاپ تشيكن</h2>
-        <p style="font-size: 0.8rem; margin-top: 4px; opacity: 0.9;">Fast Food & Delicious Broast</p>
-    </div>
+  <!-- Header -->
+  <div class="header-banner">
+    <h1>TOP CHICKEN</h1>
+    <h2>الدجاج المميز</h2>
+    <p>وجبات سريعة و بروست لذيذ | Fast Food & Delicious Broast</p>
+  </div>
 
-    <!-- 2-Row Category Buttons Nav -->
-    <div class="category-container">
-        <div class="category-grid">
-            <button class="cat-btn active" onclick="scrollToCat('broast')"><i class="fa-solid fa-drumstick-bite"></i>Broast</button>
-            <button class="cat-btn" onclick="scrollToCat('burger')"><i class="fa-solid fa-burger"></i>Burger</button>
-            <button class="cat-btn" onclick="scrollToCat('tortilla')"><i class="fa-solid fa-bread-slice"></i>Tortilla</button>
-            <button class="cat-btn" onclick="scrollToCat('pizza')"><i class="fa-solid fa-pizza-slice"></i>Pizza</button>
-            <button class="cat-btn" onclick="scrollToCat('meals')"><i class="fa-solid fa-utensils"></i>Meals/Fries</button>
-            <button class="cat-btn" onclick="scrollToCat('pepsi')"><i class="fa-solid fa-bottle-water"></i>Pepsi</button>
-            <button class="cat-btn" onclick="scrollToCat('jumbo')"><i class="fa-solid fa-hotdog"></i>Jumbo</button>
-            <button class="cat-btn" onclick="scrollToCat('juices')"><i class="fa-solid fa-glass-water"></i>Juices</button>
-            <button class="cat-btn" onclick="scrollToCat('extra')"><i class="fa-solid fa-bowl-food"></i>Extra</button>
+  <!-- Categories -->
+  <div class="category-container" id="categoryContainer"></div>
+
+  <!-- Product List -->
+  <div class="menu-container" id="menuContainer"></div>
+
+  <!-- Bottom Cart Bar -->
+  <div class="cart-bar">
+    <div class="cart-info">
+      <span id="cartCount">0</span> عناصر (Items)
+      <div id="cartTotal">0 SAR</div>
+    </div>
+    <button class="view-cart-btn" onclick="alert('سلة التسوق قيد التطوير')">عرض السلة / View Cart</button>
+  </div>
+
+  <script>
+    // Categories Data
+    const categories = [
+      { id: 'broast', ar: 'بروست', en: 'Broast' },
+      { id: 'burger', ar: 'برجر', en: 'Burger' },
+      { id: 'tortilla', ar: 'تورتيلا', en: 'Tortilla' },
+      { id: 'pizza', ar: 'بيتزا', en: 'Pizza' },
+      { id: 'meals', ar: 'وجبات / بطاطس', en: 'Meals/Fries' },
+      { id: 'pepsi', ar: 'بيبسي', en: 'Pepsi' },
+      { id: 'jumbo', ar: 'جامبو', en: 'Jumbo' },
+      { id: 'juices', ar: 'عصائر', en: 'Juices' },
+      { id: 'extra', ar: 'إضافات', en: 'Extra' }
+    ];
+
+    // Sample Products Data
+    const products = {
+      broast: [
+        { id: 1, ar: 'بروست عادي (4 قطع)', en: 'Regular Broast (4 Pcs)', price: 18 },
+        { id: 2, ar: 'بروست حراق (4 قطع)', en: 'Spicy Broast (4 Pcs)', price: 19 }
+      ],
+      burger: [
+        { id: 3, ar: 'برجر دجاج', en: 'Chicken Burger', price: 10 },
+        { id: 4, ar: 'برجر لحم', en: 'Beef Burger', price: 12 }
+      ],
+      tortilla: [
+        { id: 5, ar: 'تورتيلا دجاج', en: 'Chicken Tortilla', price: 12 }
+      ],
+      pizza: [
+        { id: 6, ar: 'بيتزا خضار', en: 'Vegetable Pizza', price: 15 }
+      ],
+      meals: [
+        { id: 7, ar: 'بطاطس مقلية', en: 'French Fries', price: 6 }
+      ],
+      pepsi: [
+        { id: 8, ar: 'بيبسي علبة', en: 'Pepsi Can', price: 3 }
+      ],
+      jumbo: [
+        { id: 9, ar: 'جامبو ساندويتش', en: 'Jumbo Sandwich', price: 14 }
+      ],
+      juices: [
+        { id: 10, ar: 'عصير برتقال', en: 'Orange Juice', price: 8 }
+      ],
+      extra: [
+        { id: 11, ar: 'ثوم إضافي', en: 'Extra Garlic', price: 2 }
+      ]
+    };
+
+    let cart = [];
+    let currentCategory = 'broast';
+
+    // Render Categories
+    function renderCategories() {
+      const container = document.getElementById('categoryContainer');
+      container.innerHTML = categories.map(cat => `
+        <div class="cat-btn ${cat.id === currentCategory ? 'active' : ''}" onclick="selectCategory('${cat.id}')">
+          <span class="ar">${cat.ar}</span>
+          <span class="en">${cat.en}</span>
         </div>
-    </div>
+      `).join('');
+    }
 
-    <!-- Menu Items -->
-    <div class="menu-container" id="menu-items"></div>
+    // Select Category
+    function selectCategory(catId) {
+      currentCategory = catId;
+      renderCategories();
+      renderProducts();
+    }
 
-    <!-- Creator Branding Footer -->
-    <div class="footer-credit">
-        Designed & Developed by <strong>y2kmlp</strong>
-    </div>
+    // Render Products
+    function renderProducts() {
+      const container = document.getElementById('menuContainer');
+      const items = products[currentCategory] || [];
+      
+      if(items.length === 0) {
+        container.innerHTML = '<p style="text-align:center; grid-column: 1/-1;">لا توجد منتجات حالياً</p>';
+        return;
+      }
 
-    <!-- Bottom Cart Floating Bar -->
-    <div class="cart-bar">
-        <div class="cart-info">
-            <span id="cart-count" style="font-weight: bold;">0 Items</span>
-            <span id="cart-total" style="color: var(--primary); font-size: 1.1rem; font-weight: bold;">0 SAR</span>
+      container.innerHTML = items.map(item => `
+        <div class="item-card">
+          <div>
+            <div class="item-title">${item.ar}</div>
+            <div class="item-title-en">${item.en}</div>
+          </div>
+          <div>
+            <div class="item-price">${item.price} SAR</div>
+            <button class="add-btn" onclick="addToCart(${item.id}, '${item.ar}', ${item.price})">إضافة / Add</button>
+          </div>
         </div>
-        <button class="view-cart-btn" onclick="openCartModal()">
-            <i class="fa-solid fa-cart-shopping"></i> View Cart
-        </button>
-    </div>
+      `).join('');
+    }
 
-    <!-- Cart & Checkout Modal -->
-    <div class="modal" id="cartModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Your Order / الطلب</h3>
-                <i class="fa-solid fa-xmark" style="font-size: 1.3rem; cursor: pointer;" onclick="closeCartModal()"></i>
-            </div>
-            
-            <div id="cart-list"></div>
+    // Add to Cart
+    function addToCart(id, name, price) {
+      cart.push({ id, name, price });
+      updateCart();
+    }
 
-            <hr style="margin: 15px 0;">
+    // Update Cart Bar
+    function updateCart() {
+      document.getElementById('cartCount').innerText = cart.length;
+      const total = cart.reduce((sum, item) => sum + item.price, 0);
+      document.getElementById('cartTotal').innerText = total + ' SAR';
+    }
 
-            <div class="form-group">
-                <label>Order Type / نوع الطلب:</label>
-                <select class="form-control" id="orderType" onchange="toggleDeliveryOptions()">
-                    <option value="delivery">Delivery / توصيل</option>
-                    <option value="pickup">Pick-up / استلام من الفرع</option>
-                </select>
-            </div>
-
-            <div id="delivery-section">
-                <div class="form-group">
-                    <label>Select Distance / اختر المسافة:</label>
-                    <select class="form-control" id="deliveryDistance" onchange="updateCartUI()">
-                        <option value="3.5">0 - 3 KM (3.5 SAR)</option>
-                        <option value="6">3 - 5 KM (6.0 SAR)</option>
-                        <option value="10">5 - 8 KM (10.0 SAR)</option>
-                        <option value="15">8 - 10 KM (15.0 SAR)</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>Special Instructions / ملاحظات خاصة:</label>
-                <input type="text" class="form-control" id="specialNotes" placeholder="e.g. No Garlic, Extra Spicy / بدون ثوم">
-            </div>
-
-            <div style="background: #f8f9fa; padding: 10px; border-radius: 8px; margin-bottom: 12px;">
-                <div style="display: flex; justify-content: space-between;">
-                    <span>Subtotal:</span>
-                    <span id="summary-subtotal">0 SAR</span>
-                </div>
-                <div style="display: flex; justify-content: space-between;" id="delivery-row">
-                    <span>Delivery Charge:</span>
-                    <span id="summary-delivery">3.5 SAR</span>
-                </div>
-                <hr style="margin: 5px 0;">
-                <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 1.1rem; color: var(--primary);">
-                    <span>Total Amount:</span>
-                    <span id="summary-grandtotal">0 SAR</span>
-                </div>
-            </div>
-
-            <button class="whatsapp-btn" onclick="submitToWhatsApp()">
-                <i class="fa-brands fa-whatsapp"></i> Order via WhatsApp
-            </button>
-        </div>
-    </div>
-
-    <script>
-        const menuData = [
-            // Broast
-            { id: 1, cat: 'broast', en: 'Broasted Chicken', ar: 'بروستد دجاج', price: 20, img: 'https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?w=150' },
-            { id: 2, cat: 'broast', en: 'Broasted Chicken Spicy', ar: 'بروستد دجاج حراق', price: 20, img: 'https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?w=150' },
-            { id: 3, cat: 'broast', en: 'Shrimp Broasted', ar: 'بروستد روبيان', price: 22, img: 'https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=150' },
-            { id: 4, cat: 'broast', en: 'Shrimp Broasted Spicy', ar: 'بروستد روبيان حراق', price: 22, img: 'https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=150' },
-            { id: 5, cat: 'broast', en: 'Fish Broasted', ar: 'بروستد سمك', price: 19, img: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=150' },
-            { id: 6, cat: 'broast', en: 'Fish Broasted Spicy', ar: 'بروستد سمك حراق', price: 19, img: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=150' },
-            { id: 7, cat: 'broast', en: 'Finger Chicken', ar: 'اصابع دجاج', price: 20, img: 'https://images.unsplash.com/photo-1562967914-608f82629710?w=150' },
-            { id: 8, cat: 'broast', en: 'Finger Chicken Spicy', ar: 'اصابع دجاج حراق', price: 20, img: 'https://images.unsplash.com/photo-1562967914-608f82629710?w=150' },
-            { id: 9, cat: 'broast', en: 'Finger Fish', ar: 'اصابع سمك', price: 20, img: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=150' },
-
-            // Burger
-            { id: 10, cat: 'burger', en: 'Chicken Burger Big', ar: 'برجر دجاج كبير', price: 7, img: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=150' },
-            { id: 11, cat: 'burger', en: 'Chicken Burger Big Cheese', ar: 'برجر دجاج كبير بالجبن', price: 8, img: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=150' },
-            { id: 12, cat: 'burger', en: 'Chicken Burger Small', ar: 'برجر دجاج صغير', price: 6, img: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=150' },
-            { id: 13, cat: 'burger', en: 'Beef Burger Big', ar: 'برجر لحم كبير', price: 8, img: 'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=150' },
-            { id: 14, cat: 'burger', en: 'Zinger Burger', ar: 'برجر زنجر', price: 10, img: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=150' },
-            { id: 15, cat: 'burger', en: 'Zinger Burger Spicy', ar: 'برجر زنجر حراق', price: 10, img: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=150' },
-
-            // Tortilla
-            { id: 20, cat: 'tortilla', en: 'Tortilla Chicken', ar: 'تورتيلا دجاج', price: 13, img: 'https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=150' },
-            { id: 21, cat: 'tortilla', en: 'Tortilla Chicken Spicy', ar: 'تورتيلا دجاج حراق', price: 13, img: 'https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=150' },
-            { id: 22, cat: 'tortilla', en: 'Tortilla Shrimp', ar: 'تورتيلا روبيان', price: 13, img: 'https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=150' },
-
-            // Pizza
-            { id: 30, cat: 'pizza', en: 'Dynamite Chicken Pizza', ar: 'بيتزا دجاج ديناميت', price: 22, img: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=150' },
-            { id: 31, cat: 'pizza', en: 'Vegetable Pizza', ar: 'بيتزا خضار', price: 15, img: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=150' },
-            { id: 32, cat: 'pizza', en: 'Pepperoni Pizza', ar: 'بيتزا ببروني', price: 18, img: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=150' },
-            { id: 33, cat: 'pizza', en: 'Chicken Pizza', ar: 'بيتزا دجاج', price: 20, img: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=150' },
-
-            // Meals & Fries
-            { id: 40, cat: 'meals', en: 'Potato Small', ar: 'بطاطس صغير', price: 4, img: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=150' },
-            { id: 41, cat: 'meals', en: 'Potato Medium', ar: 'بطاطس وسط', price: 6, img: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=150' },
-            { id: 42, cat: 'meals', en: 'Potato Big', ar: 'بطاطس كبير', price: 10, img: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=150' },
-            { id: 43, cat: 'meals', en: 'Onion Rings', ar: 'حلقات البصل', price: 6, img: 'https://images.unsplash.com/photo-1639024471283-03518883512d?w=150' },
-            { id: 44, cat: 'meals', en: 'Popcorn Chicken', ar: 'بوب كورن دجاج', price: 6, img: 'https://images.unsplash.com/photo-1562967914-608f82629710?w=150' },
-
-            // Pepsi & Soft Drinks
-            { id: 50, cat: 'pepsi', en: 'Pepsi Can', ar: 'ببسي علبة', price: 2.5, img: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=150' },
-            { id: 51, cat: 'pepsi', en: '7UP Can', ar: 'سفن اب علبة', price: 2.5, img: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=150' },
-            { id: 52, cat: 'pepsi', en: 'Citrus Can', ar: 'حمضيات علبة', price: 2.5, img: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=150' },
-            { id: 53, cat: 'pepsi', en: 'Water Small', ar: 'ماء صغير', price: 0.5, img: 'https://images.unsplash.com/photo-1548839140-29a749e1bc4e?w=150' },
-
-            // Jumbo
-            { id: 60, cat: 'jumbo', en: 'Kudu Jumbo', ar: 'كودو جامبو', price: 12, img: 'https://images.unsplash.com/photo-1509722747041-616f39b57569?w=150' },
-            { id: 61, cat: 'jumbo', en: 'Jumbo Zinger', ar: 'جامبو زنجر', price: 12, img: 'https://images.unsplash.com/photo-1509722747041-616f39b57569?w=150' },
-
-            // Juices
-            { id: 70, cat: 'juices', en: 'Cocktail Small', ar: 'كوكتيل صغير', price: 5, img: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=150' },
-            { id: 71, cat: 'juices', en: 'Fresh Orange Small', ar: 'برتقال طازج صغير', price: 6, img: 'https://images.unsplash.com/photo-1613478223719-2ab802602423?w=150' },
-            { id: 72, cat: 'juices', en: 'Mango Small', ar: 'مانجو صغير', price: 5, img: 'https://images.unsplash.com/photo-1546173159-315724a31696?w=150' },
-
-            // Extra
-            { id: 80, cat: 'extra', en: 'Garlic Sauce', ar: 'ثوم', price: 1, img: 'https://images.unsplash.com/photo-1574894709920-11b28e7367e3?w=150' },
-            { id: 81, cat: 'extra', en: 'Hummus', ar: 'حمص', price: 3, img: 'https://images.unsplash.com/photo-1577805947697-89e18249d767?w=150' },
-            { id: 82, cat: 'extra', en: 'Coleslaw', ar: 'كولسلو', price: 3, img: 'https://images.unsplash.com/photo-1625944525533-473f1a3d54e7?w=150' }
-        ];
-
-        let cart = {};
-
-        function renderMenu() {
-            const container = document.getElementById('menu-items');
-            const categories = [
-                { key: 'broast', name: 'Broast / بروستد' },
-                { key: 'burger', name: 'Burger / برجر' },
-                { key: 'tortilla', name: 'Tortilla / تورتيلا' },
-                { key: 'pizza', name: 'Pizza / بيتزا' },
-                { key: 'meals', name: 'Meals & Fries / وجبات وباطاطس' },
-                { key: 'pepsi', name: 'Pepsi & Drinks / المشروبات' },
-                { key: 'jumbo', name: 'Jumbo / جامبو' },
-                { key: 'juices', name: 'Juices / عصائر' },
-                { key: 'extra', name: 'Extra / إضافات' }
-            ];
-
-            let html = '';
-            categories.forEach(cat => {
-                const items = menuData.filter(i => i.cat === cat.key);
-                if(items.length > 0) {
-                    html += <div class="category-title" id="cat-${cat.key}">${cat.name}</div>;
-                    items.forEach(item => {
-                        html += `
-                            <div class="item-card">
-                                <img src="${item.img}" class="item-img" alt="${item.en}">
-                                <div class="item-details">
-                                    <div class="item-title-en">${item.en}</div>
-                                    <div class="item-title-ar">${item.ar}</div>
-                                    <div class="item-price">${item.price} SAR</div>
-                                </div>
-                                <button class="add-btn" onclick="addToCart(${item.id})">+ ADD</button>
-                            </div>
-                        `;
-                    });
-                }
-            });
-            container.innerHTML = html;
-        }
-
-        function addToCart(id) {
-            cart[id] = (cart[id] || 0) + 1;
-            updateCartUI();
-        }
-
-        function changeQty(id, delta) {
-            if (cart[id]) {
-                cart[id] += delta;
-                if (cart[id] <= 0) delete cart[id];
-            }
-            updateCartUI();
-        }
-
-        function updateCartUI() {
-            let totalItems = 0;
-            let subtotal = 0;
-            let cartListHtml = '';
-
-            for (let id in cart) {
-                let qty = cart[id];
-                let item = menuData.find(i => i.id == id);
-                totalItems += qty;
-                subtotal += item.price * qty;
-
-                cartListHtml += `
-                    <div class="cart-item-row">
-                        <div>
-                            <strong>${item.en}</strong><br>
-                            <small>${item.price} SAR x ${qty}</small>
-                        </div>
-                        <div class="qty-controls">
-                            <button class="qty-btn" onclick="changeQty(${id}, -1)">-</button>
-                            <span>${qty}</span>
-                            <button class="qty-btn" onclick="changeQty(${id}, 1)">+</button>
-                        </div>
-                    </div>
-                `;
-            }
-
-            document.getElementById('cart-count').innerText = totalItems + ' Items';
-            document.getElementById('cart-total').innerText = subtotal + ' SAR';
-            document.getElementById('cart-list').innerHTML = cartListHtml || '<p style="text-align:center; color:#777;">Cart is empty / السلة فارغة</p>';
-
-            // Summary Calculation
-            document.getElementById('summary-subtotal').innerText = subtotal + ' SAR';
-            
-            const orderType = document.getElementById('orderType').value;
-            let deliveryCharge = 0;
-            if (orderType === 'delivery') {
-                deliveryCharge = parseFloat(document.getElementById('deliveryDistance').value) || 3.5;
-                document.getElementById('delivery-row').style.display = 'flex';
-            } else {
-                document.getElementById('delivery-row').style.display = 'none';
-            }
-
-            document.getElementById('summary-delivery').innerText = deliveryCharge + ' SAR';
-            document.getElementById('summary-grandtotal').innerText = (subtotal + deliveryCharge) + ' SAR';
-        }
-
-        function toggleDeliveryOptions() {
-            const type = document.getElementById('orderType').value;
-            document.getElementById('delivery-section').style.display = type === 'delivery' ? 'block' : 'none';
-            updateCartUI();
-        }
-
-        function openCartModal() {
-            document.getElementById('cartModal').style.display = 'flex';
-        }
-
-        function closeCartModal() {
-            document.getElementById('cartModal').style.display = 'none';
-        }
-
-        function scrollToCat(key) {
-            document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
-            event.currentTarget.classList.add('active');
-            const el = document.getElementById('cat-' + key);
-            if(el) el.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function submitToWhatsApp() {
-            let grandSubtotal = 0;
-            let foodSubtotal = 0; // Soft drinks ഒഴികെയുള്ള ഫുഡ് ഐറ്റങ്ങളുടെ തുക
-
-            for (let id in cart) {
-                let item = menuData.find(i => i.id == id);
-                let itemTotal = item.price * cart[id];
-                grandSubtotal += itemTotal;
-                
-                // Pepsi / Soft drinks കാറ്റഗറി ഒഴികെയുള്ളവ ഫുഡ് സബ്‌ടോട്ടലിൽ കൂട്ടുന്നു (Juices ഇതിൽ പെടും)
-                if (item.cat !== 'pepsi') {
-                    foodSubtotal += itemTotal;
-                }
-            }
-
-            const orderType = document.getElementById('orderType').value;
-
-            // Delivery Logic Validation
-            if (orderType === 'delivery') {
-                if (foodSubtotal < 20) {
-                    alert('عذراً، الحد الأدنى للطعام للطلبات عبر التوصيل هو 20 ريال (بدون المشروبات الغازية).\n\nDelivery Requires Minimum 20 SAR of Food Items (Excluding Soft Drinks).\nYour Food Total is: ' + foodSubtotal + ' SAR');
-                    return;
-                }
-            }
-
-            if (Object.keys(cart).length === 0) {
-                alert('الرجاء إضافة أصناف للسلة أولاً\nPlease add items to cart');
-                return;
-            }
-
-            let msg = *NEW ORDER - TOP CHICKEN*\n---------------------------\n;
-            msg += *Order Type:* ${orderType.toUpperCase()}\n\n;
-
-            for (let id in cart) {
-                let item = menuData.find(i => i.id == id);
-                msg += • ${item.en} (${item.ar}) x ${cart[id]} = ${item.price * cart[id]} SAR\n;
-            }
-
-            let deliveryCharge = orderType === 'delivery' ? parseFloat(document.getElementById('deliveryDistance').value) : 0;
-            let finalAmount = grandSubtotal + deliveryCharge;
-
-            msg += \n---------------------------;
-            msg += \n*Subtotal:* ${grandSubtotal} SAR;
-            if (orderType === 'delivery') {
-                msg += \n*Delivery Charge:* ${deliveryCharge} SAR;
-            }
-            msg += \n*Grand Total:* ${finalAmount} SAR\n;
-
-            const notes = document.getElementById('specialNotes').value;
-            if (notes) {
-                msg += \n*Notes:* ${notes}\n;
-            }
-
-            msg += \n_Payment via Shabaka / Card Machine on Delivery_;
-
-            const encodedMsg = encodeURIComponent(msg);
-            window.open(https://wa.me/?text=${encodedMsg}, '_blank');
-        }
-
-        renderMenu();
-    </script>
+    // Initialize
+    renderCategories();
+    renderProducts();
+  </script>
 </body>
 </html>
