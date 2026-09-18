@@ -32,13 +32,10 @@
 
     /* Header Banner */
     .header-banner {
-      position: relative;
       background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(43, 30, 23, 0.9));
-      background-size: cover;
-      background-position: center;
       color: white;
       text-align: center;
-      padding: 30px 15px 20px 15px;
+      padding: 25px 15px;
       border-bottom: 4px solid var(--primary-yellow);
       box-shadow: 0 4px 15px rgba(0,0,0,0.5);
     }
@@ -64,64 +61,29 @@
       color: #ddd;
     }
 
-    /* Categories Horizontal Scroll */
-    .category-container {
-      display: flex;
-      flex-direction: row;
-      gap: 10px;
-      overflow-x: auto;
-      padding: 15px 10px;
+    /* Category Section Header */
+    .category-title {
       background: var(--wood-dark);
-      border-bottom: 1px solid #444;
-      scrollbar-width: none;
-    }
-
-    .category-container::-webkit-scrollbar {
-      display: none;
-    }
-
-    .cat-btn {
-      flex: 0 0 auto;
-      background: var(--wood-light);
-      color: var(--text-light);
-      border: 1px solid #555;
-      padding: 10px 16px;
-      border-radius: 12px;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      min-width: 100px;
-    }
-
-    .cat-btn.active {
-      background: var(--primary-yellow);
-      color: #000;
+      color: var(--primary-yellow);
+      padding: 12px 20px;
+      font-size: 1.2rem;
       font-weight: bold;
-      border-color: var(--secondary-orange);
-      transform: scale(1.05);
+      border-bottom: 2px solid var(--secondary-orange);
+      border-top: 1px solid #444;
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    .cat-btn .en {
-      display: block;
-      font-size: 0.95rem;
-      font-weight: bold;
-    }
-
-    .cat-btn .ar {
-      display: block;
-      font-size: 0.85rem;
-      margin-top: 2px;
-    }
-
-    /* Menu Items Grid */
-    .menu-container {
+    /* Food Grid */
+    .menu-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
       gap: 15px;
       padding: 15px;
-      max-width: 800px;
+      max-width: 900px;
       margin: 0 auto;
-      min-height: 200px;
     }
 
     .item-card {
@@ -199,58 +161,6 @@
       border: none;
       cursor: pointer;
     }
-
-    /* Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.8);
-      z-index: 200;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .modal-content {
-      background: var(--wood-dark);
-      padding: 20px;
-      border-radius: 12px;
-      width: 90%;
-      max-width: 400px;
-      border: 2px solid var(--primary-yellow);
-      color: #fff;
-    }
-
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #555;
-      padding-bottom: 10px;
-      margin-bottom: 15px;
-    }
-
-    .close-btn {
-      background: #ff4d4d;
-      color: white;
-      border: none;
-      padding: 5px 10px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .cart-list {
-      max-height: 250px;
-      overflow-y: auto;
-      margin-bottom: 15px;
-    }
-
-    .cart-item-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 8px 0;
-      border-bottom: 1px solid #333;
-    }
   </style>
 </head>
 <body>
@@ -262,167 +172,90 @@
     <p>Fast Food & Delicious Broast | وجبات سريعة وبروست لذيذ</p>
   </div>
 
-  <!-- Categories Section -->
-  <div class="category-container" id="categoryContainer"></div>
+  <!-- Broast Section -->
+  <div class="category-title">
+    <span>Broast</span>
+    <span>بروست</span>
+  </div>
+  <div class="menu-grid">
+    <div class="item-card">
+      <div>
+        <div class="item-title-en">Regular Broast (4 Pcs)</div>
+        <div class="item-title-ar">بروست عادي (٤ قطع)</div>
+      </div>
+      <div>
+        <div class="item-price">18 SAR</div>
+        <button class="add-btn">Add / إضافة</button>
+      </div>
+    </div>
 
-  <!-- Products Section -->
-  <div class="menu-container" id="menuContainer"></div>
+    <div class="item-card">
+      <div>
+        <div class="item-title-en">Spicy Broast (4 Pcs)</div>
+        <div class="item-title-ar">بروست حراق (٤ قطع)</div>
+      </div>
+      <div>
+        <div class="item-price">19 SAR</div>
+        <button class="add-btn">Add / إضافة</button>
+      </div>
+    </div>
+  </div>
 
-  <!-- Cart Bottom Bar -->
+  <!-- Burger Section -->
+  <div class="category-title">
+    <span>Burger</span>
+    <span>برجر</span>
+  </div>
+  <div class="menu-grid">
+    <div class="item-card">
+      <div>
+        <div class="item-title-en">Chicken Burger</div>
+        <div class="item-title-ar">برجر دجاج</div>
+      </div>
+      <div>
+        <div class="item-price">10 SAR</div>
+        <button class="add-btn">Add / إضافة</button>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <div>
+        <div class="item-title-en">Beef Burger</div>
+        <div class="item-title-ar">برجر لحم</div>
+      </div>
+      <div>
+        <div class="item-price">12 SAR</div>
+        <button class="add-btn">Add / إضافة</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tortilla Section -->
+  <div class="category-title">
+    <span>Tortilla</span>
+    <span>تورتيلا</span>
+  </div>
+  <div class="menu-grid">
+    <div class="item-card">
+      <div>
+        <div class="item-title-en">Chicken Tortilla</div>
+        <div class="item-title-ar">تورتيلا دجاج</div>
+      </div>
+      <div>
+        <div class="item-price">12 SAR</div>
+        <button class="add-btn">Add / إضافة</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Cart Bar -->
   <div class="cart-bar">
     <div class="cart-info">
-      <span id="cartCount">0</span> Items (عناصر)
-      <div id="cartTotal">0 SAR</div>
+      0 Items (عناصر)
+      <div>0 SAR</div>
     </div>
-    <button class="view-cart-btn" onclick="openCartModal()">View Cart / عرض السلة</button>
+    <button class="view-cart-btn">View Cart / عرض السلة</button>
   </div>
 
-  <!-- Cart Modal -->
-  <div class="modal" id="cartModal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3>Your Cart / سلة التسوق</h3>
-        <button class="close-btn" onclick="closeCartModal()">X</button>
-      </div>
-      <div class="cart-list" id="cartList">
-        <p style="text-align:center; color:#aaa;">Cart is empty / السلة فارغة</p>
-      </div>
-      <div style="font-weight:bold; font-size:1.1rem; text-align:right; color:var(--primary-yellow);" id="modalTotal">
-        Total: 0 SAR
-      </div>
-    </div>
-  </div>
-
-  <script>
-    const categories = [
-      { id: 'broast', en: 'Broast', ar: 'بروست' },
-      { id: 'burger', en: 'Burger', ar: 'برجر' },
-      { id: 'tortilla', en: 'Tortilla', ar: 'تورتيلا' },
-      { id: 'pizza', en: 'Pizza', ar: 'بيتزا' },
-      { id: 'meals', en: 'Meals/Fries', ar: 'وجبات / بطاطس' },
-      { id: 'pepsi', en: 'Pepsi', ar: 'بيبسي' },
-      { id: 'jumbo', en: 'Jumbo', ar: 'جامبو' },
-      { id: 'juices', en: 'Juices', ar: 'عصائر' },
-      { id: 'extra', en: 'Extra', ar: 'إضافات' }
-    ];
-
-    const products = {
-      broast: [
-        { id: 1, en: 'Regular Broast (4 Pcs)', ar: 'بروست عادي (٤ قطع)', price: 18 },
-        { id: 2, en: 'Spicy Broast (4 Pcs)', ar: 'بروست حراق (٤ قطع)', price: 19 }
-      ],
-      burger: [
-        { id: 3, en: 'Chicken Burger', ar: 'برجر دجاج', price: 10 },
-        { id: 4, en: 'Beef Burger', ar: 'برجر لحم', price: 12 }
-      ],
-      tortilla: [
-        { id: 5, en: 'Chicken Tortilla', ar: 'تورتيلا دجاج', price: 12 }
-      ],
-      pizza: [
-        { id: 6, en: 'Vegetable Pizza', ar: 'بيتزا خضار', price: 15 }
-      ],
-      meals: [
-        { id: 7, en: 'French Fries', ar: 'بطاطس مقلية', price: 6 }
-      ],
-      pepsi: [
-        { id: 8, en: 'Pepsi Can', ar: 'بيبسي علبة', price: 3 }
-      ],
-      jumbo: [
-        { id: 9, en: 'Jumbo Sandwich', ar: 'جامبو ساندويتش', price: 14 }
-      ],
-      juices: [
-        { id: 10, en: 'Orange Juice', ar: 'عصير برتقال', price: 8 }
-      ],
-      extra: [
-        { id: 11, en: 'Extra Garlic', ar: 'ثوم إضافي', price: 2 }
-      ]
-    };
-
-    let cart = [];
-    let currentCategory = 'broast';
-
-    function renderCategories() {
-      const container = document.getElementById('categoryContainer');
-      if(!container) return;
-      container.innerHTML = categories.map(cat => `
-        <div class="cat-btn ${cat.id === currentCategory ? 'active' : ''}" onclick="selectCategory('${cat.id}')">
-          <span class="en">${cat.en}</span>
-          <span class="ar">${cat.ar}</span>
-        </div>
-      `).join('');
-    }
-
-    function selectCategory(catId) {
-      currentCategory = catId;
-      renderCategories();
-      renderProducts();
-    }
-
-    function renderProducts() {
-      const container = document.getElementById('menuContainer');
-      if(!container) return;
-      const items = products[currentCategory] || [];
-      
-      if(items.length === 0) {
-        container.innerHTML = '<p style="text-align:center; grid-column: 1/-1;">No products available</p>';
-        return;
-      }
-
-      container.innerHTML = items.map(item => `
-        <div class="item-card">
-          <div>
-            <div class="item-title-en">${item.en}</div>
-            <div class="item-title-ar">${item.ar}</div>
-          </div>
-          <div>
-            <div class="item-price">${item.price} SAR</div>
-            <button class="add-btn" onclick="addToCart(${item.id}, '${item.en}', ${item.price})">Add / إضافة</button>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function addToCart(id, name, price) {
-      cart.push({ id, name, price });
-      updateCart();
-    }
-
-    function updateCart() {
-      document.getElementById('cartCount').innerText = cart.length;
-      const total = cart.reduce((sum, item) => sum + item.price, 0);
-      document.getElementById('cartTotal').innerText = total + ' SAR';
-    }
-
-    function openCartModal() {
-      const modal = document.getElementById('cartModal');
-      const cartList = document.getElementById('cartList');
-      const modalTotal = document.getElementById('modalTotal');
-      
-      if(cart.length === 0) {
-        cartList.innerHTML = '<p style="text-align:center; color:#aaa;">Cart is empty / السلة فارغة</p>';
-        modalTotal.innerText = 'Total: 0 SAR';
-      } else {
-        cartList.innerHTML = cart.map(item => `
-          <div class="cart-item-row">
-            <span>${item.name}</span>
-            <span>${item.price} SAR</span>
-          </div>
-        `).join('');
-        const total = cart.reduce((sum, item) => sum + item.price, 0);
-        modalTotal.innerText = Total: ${total} SAR;
-      }
-      modal.style.display = 'flex';
-    }
-
-    function closeCartModal() {
-      document.getElementById('cartModal').style.display = 'none';
-    }
-
-    // Run after window loads
-    window.onload = function() {
-      renderCategories();
-      renderProducts();
-    };
-  </script>
 </body>
 </html>
