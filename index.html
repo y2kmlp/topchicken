@@ -77,7 +77,7 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
 
-        /* Sticky Category Navigation Grid */
+        /* Sticky 2-Line Category Navigation Grid */
         .category-container {
             position: sticky;
             top: 0;
@@ -357,18 +357,21 @@
         </div>
     </div>
 
-    <!-- Sticky 2-Line Category Grid -->
+    <!-- Sticky 2-Line Category Grid (Updated Categories Order) -->
     <div class="category-container">
         <div class="category-grid">
-            <button class="category-btn active" onclick="filterCategory('all', event)">All / الكل</button>
-            <button class="category-btn" onclick="filterCategory('broast', event)">Broast / بروست</button>
+            <!-- Row 1 -->
+            <button class="category-btn active" onclick="filterCategory('broasted', event)">Broasted / بروستد</button>
             <button class="category-btn" onclick="filterCategory('burger', event)">Burger / برجر</button>
-            <button class="category-btn" onclick="filterCategory('sandwiches', event)">Sandwiches / ساندويتش</button>
-            <button class="category-btn" onclick="filterCategory('fries', event)">Fries & Sides / بطاطس</button>
-            <button class="category-btn" onclick="filterCategory('sauces', event)">Sauces / صوصات</button>
+            <button class="category-btn" onclick="filterCategory('tortilla', event)">Tortilla / تورتيلا</button>
+            <button class="category-btn" onclick="filterCategory('pizza', event)">Pizza / بيتزا</button>
+            <button class="category-btn" onclick="filterCategory('meals_fries', event)">Meals & Fries / وجبات وبطاطس</button>
+            
+            <!-- Row 2 -->
             <button class="category-btn" onclick="filterCategory('drinks', event)">Drinks / مشروبات</button>
-            <button class="category-btn" onclick="filterCategory('family', event)">Family Meals / وجبات العائلة</button>
-            <button class="category-btn" onclick="filterCategory('offers', event)">Offers / العروض</button>
+            <button class="category-btn" onclick="filterCategory('sandwich', event)">Sandwich / ساندويتش</button>
+            <button class="category-btn" onclick="filterCategory('juice', event)">Juice / عصير</button>
+            <button class="category-btn" onclick="filterCategory('extras', event)">Extras / إضافات</button>
         </div>
     </div>
 
@@ -452,23 +455,25 @@
 
     <script>
         const menuData = [
-            { id: 1, name: "4 Pcs Broast Chicken", cat: "broast", price: 18, isDrink: false, desc: "Fries, Bread, Garlic" },
+            { id: 1, name: "4 Pcs Broasted Chicken", cat: "broasted", price: 18, isDrink: false, desc: "Fries, Bread, Garlic" },
             { id: 2, name: "Spicy Chicken Burger", cat: "burger", price: 12, isDrink: false, desc: "Crispy chicken with spicy sauce" },
-            { id: 3, name: "Zinger Wrap Sandwich", cat: "sandwiches", price: 10, isDrink: false, desc: "Fresh tortilla wrap" },
-            { id: 4, name: "French Fries Large", cat: "fries", price: 7, isDrink: false, desc: "Crispy golden fries" },
-            { id: 5, name: "Garlic Sauce Extra", cat: "sauces", price: 2, isDrink: false, desc: "House special garlic" },
+            { id: 3, name: "Tortilla Chicken Wrap", cat: "tortilla", price: 11, isDrink: false, desc: "Tortilla wrap with chicken" },
+            { id: 4, name: "Chicken Pizza Medium", cat: "pizza", price: 22, isDrink: false, desc: "Fresh baked pizza" },
+            { id: 5, name: "Chicken Meal & Fries", cat: "meals_fries", price: 20, isDrink: false, desc: "Combo meal with fries" },
             { id: 6, name: "Pepsi / Citrus", cat: "drinks", price: 3, isDrink: true, desc: "Chilled soft drink" },
-            { id: 7, name: "Family Meal 12 Pcs", cat: "family", price: 52, isDrink: false, desc: "Fries, Coleslaw, Bread" }
+            { id: 7, name: "Zinger Sandwich", cat: "sandwich", price: 10, isDrink: false, desc: "Crispy zinger sandwich" },
+            { id: 8, name: "Fresh Orange Juice", cat: "juice", price: 8, isDrink: true, desc: "100% Fresh juice" },
+            { id: 9, name: "Garlic Sauce Extra", cat: "extras", price: 2, isDrink: false, desc: "Extra garlic sauce" }
         ];
 
         let cart = {};
         let currentOrderType = 'pickup';
 
-        function renderMenu(filter = 'all') {
+        function renderMenu(filter = 'broasted') {
             const container = document.getElementById('menu-container');
             container.innerHTML = '';
 
-            const filtered = filter === 'all' ? menuData : menuData.filter(i => i.cat === filter);
+            const filtered = menuData.filter(i => i.cat === filter);
 
             filtered.forEach(item => {
                 const qty = cart[item.id] ? cart[item.id].qty : 0;
@@ -504,7 +509,8 @@
             const item = menuData.find(i => i.id === id);
             cart[id] = { ...item, qty: 1 };
             updateCartBar();
-            renderMenu();
+            const activeCat = document.querySelector('.category-btn.active').getAttribute('onclick').split("'")[1];
+            renderMenu(activeCat);
         }
 
         function updateQty(id, change) {
@@ -513,7 +519,8 @@
                 if (cart[id].qty <= 0) delete cart[id];
             }
             updateCartBar();
-            renderMenu();
+            const activeCat = document.querySelector('.category-btn.active').getAttribute('onclick').split("'")[1];
+            renderMenu(activeCat);
         }
 
         function updateCartBar() {
@@ -613,7 +620,7 @@
             document.getElementById('sliderWrapper').style.transform = `translateX(-${currentSlide * 100}%)`;
         }, 3500);
 
-        renderMenu();
+        renderMenu('broasted');
     </script>
 </body>
 </html>
