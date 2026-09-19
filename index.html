@@ -1,95 +1,100 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TOP CHICKEN - တော်ပ် ချစ်ကင်</title>
+    <title>TOP CHICKEN - تاپ تشيكن</title>
     <style>
         :root {
             --primary-color: #d32f2f;
             --secondary-color: #f57c00;
+            --accent-yellow: #ffeb3b;
             --bg-color: #f8f9fa;
             --card-bg: #ffffff;
-            --text-color: #333333;
+            --text-color: #222222;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
-            padding-bottom: 80px;
+            padding-bottom: 90px;
         }
 
-        /* Header Styles */
+        /* Header Section */
         .header {
             position: relative;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('455902.jpg') center/cover no-repeat;
+            background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.75)), url('455902.jpg') center/cover no-repeat;
             color: white;
-            padding: 25px 15px 15px 15px;
+            padding: 25px 15px 20px 15px;
             text-align: center;
             border-bottom-left-radius: 20px;
             border-bottom-right-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
 
         .header h1 {
-            font-size: 28px;
-            margin-bottom: 5px;
-            color: #ffeb3b;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--accent-yellow);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            letter-spacing: 1px;
         }
 
         .header p {
-            font-size: 14px;
+            font-size: 16px;
+            margin-top: 4px;
             margin-bottom: 15px;
-            opacity: 0.9;
+            font-weight: 600;
+            opacity: 0.95;
         }
 
         .header-buttons {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
             margin-top: 10px;
         }
 
         .header-btn {
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: rgba(211, 47, 47, 0.9);
             color: white;
-            border: 1px solid white;
-            padding: 8px 15px;
+            border: 1px solid var(--accent-yellow);
+            padding: 8px 16px;
             border-radius: 20px;
             text-decoration: none;
             font-size: 13px;
+            font-weight: bold;
             display: inline-flex;
             align-items: center;
-            gap: 5px;
-            backdrop-filter: blur(5px);
+            gap: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
 
-        /* Sticky 2-Line Category Grid */
+        /* Sticky Category Navigation Grid */
         .category-container {
             position: sticky;
             top: 0;
             z-index: 100;
             background: white;
             padding: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
         }
 
         .category-grid {
             display: grid;
             grid-template-rows: repeat(2, auto);
             grid-auto-flow: column;
-            grid-auto-columns: minmax(100px, max-content);
+            grid-auto-columns: minmax(110px, max-content);
             gap: 8px;
             overflow-x: auto;
             scrollbar-width: none;
-            padding-bottom: 5px;
         }
 
         .category-grid::-webkit-scrollbar {
@@ -98,15 +103,15 @@
 
         .category-btn {
             background: #f1f3f5;
-            border: 1px solid #e9ecef;
-            padding: 8px 12px;
+            border: 1px solid #e0e0e0;
+            padding: 8px 14px;
             border-radius: 12px;
             font-size: 13px;
             font-weight: bold;
             white-space: nowrap;
             cursor: pointer;
             text-align: center;
-            transition: all 0.2s;
+            color: #444;
         }
 
         .category-btn.active {
@@ -115,35 +120,29 @@
             border-color: var(--primary-color);
         }
 
-        /* Main Layout */
+        /* Container Layout */
         .container {
             max-width: 600px;
             margin: 0 auto;
             padding: 15px;
         }
 
-        .section-title {
-            font-size: 18px;
-            margin: 20px 0 10px 0;
-            padding-bottom: 5px;
-            border-bottom: 2px solid var(--primary-color);
-            color: var(--primary-color);
-        }
-
-        /* Menu Card */
+        /* Menu Item Card */
         .menu-item {
             background: var(--card-bg);
-            border-radius: 12px;
-            padding: 12px;
+            border-radius: 14px;
+            padding: 14px;
             margin-bottom: 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+            border: 1px solid #f0f0f0;
         }
 
         .item-info h3 {
-            font-size: 15px;
+            font-size: 16px;
+            color: #111;
             margin-bottom: 4px;
         }
 
@@ -155,31 +154,31 @@
 
         .item-price {
             font-weight: bold;
-            color: var(--secondary-color);
-            font-size: 14px;
+            color: var(--primary-color);
+            font-size: 15px;
         }
 
         .add-btn {
             background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 6px 16px;
+            padding: 7px 18px;
             border-radius: 8px;
             font-weight: bold;
             cursor: pointer;
         }
 
-        /* Slider Section */
+        /* Gallery Slider */
         .gallery-section {
-            margin: 30px 0 15px 0;
+            margin: 25px 0 10px 0;
         }
 
         .slider-container {
             position: relative;
             overflow: hidden;
-            border-radius: 12px;
-            height: 200px;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+            border-radius: 14px;
+            height: 210px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         .slider-wrapper {
@@ -207,7 +206,7 @@
             right: 0;
             background: white;
             padding: 12px 20px;
-            box-shadow: 0 -3px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.12);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -215,7 +214,8 @@
         }
 
         .cart-info {
-            font-size: 14px;
+            font-size: 15px;
+            color: #333;
         }
 
         .cart-info span {
@@ -227,21 +227,22 @@
             background: #25D366;
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 10px 22px;
             border-radius: 20px;
             font-weight: bold;
+            font-size: 15px;
             cursor: pointer;
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        /* Modal Styles */
+        /* Modal Popup */
         .modal {
             display: none;
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.6);
+            background: rgba(0,0,0,0.65);
             z-index: 2000;
             align-items: center;
             justify-content: center;
@@ -250,7 +251,7 @@
 
         .modal-content {
             background: white;
-            border-radius: 15px;
+            border-radius: 16px;
             padding: 20px;
             width: 100%;
             max-width: 450px;
@@ -275,13 +276,14 @@
 
         .type-btn {
             flex: 1;
-            padding: 10px;
+            padding: 11px;
             border: 2px solid #ddd;
-            border-radius: 8px;
+            border-radius: 10px;
             background: white;
             font-weight: bold;
             cursor: pointer;
             text-align: center;
+            font-size: 14px;
         }
 
         .type-btn.active {
@@ -299,11 +301,12 @@
             font-size: 13px;
             margin-bottom: 5px;
             font-weight: bold;
+            color: #333;
         }
 
         .form-control {
             width: 100%;
-            padding: 10px;
+            padding: 11px;
             border: 1px solid #ccc;
             border-radius: 8px;
             font-size: 14px;
@@ -314,8 +317,8 @@
             background: #25D366;
             color: white;
             border: none;
-            padding: 12px;
-            border-radius: 8px;
+            padding: 13px;
+            border-radius: 10px;
             font-size: 16px;
             font-weight: bold;
             margin-top: 10px;
@@ -327,70 +330,70 @@
             text-align: center;
             padding: 20px 10px;
             font-size: 12px;
-            color: #777;
-            background: #eaeaea;
+            color: #666;
+            background: #f1f1f1;
             margin-top: 30px;
+            border-top: 1px solid #e0e0e0;
         }
 
         .min-alert {
             color: var(--primary-color);
             font-size: 12px;
             margin-top: 5px;
+            font-weight: bold;
             display: none;
         }
     </style>
 </head>
 <body>
 
-    <!-- Header Section with Night Photo Background -->
+    <!-- Header Section -->
     <div class="header">
         <h1>TOP CHICKEN</h1>
-        <p>تاပ် ချစ်ကင် - ടോപ്പ് ചിക്കൻ</p>
+        <p>تاپ تشيكن</p>
         <div class="header-buttons">
             <a href="tel:0554726280" class="header-btn">📞 Call: 0554726280</a>
             <a href="https://maps.google.com" target="_blank" class="header-btn">📍 Location Map</a>
         </div>
     </div>
 
-    <!-- Sticky 2-Line Category Navigation -->
+    <!-- Sticky 2-Line Category Grid -->
     <div class="category-container">
         <div class="category-grid">
-            <button class="category-btn active" onclick="filterCategory('all')">All / الكل</button>
-            <button class="category-btn" onclick="filterCategory('broast')">Broast / بروست</button>
-            <button class="category-btn" onclick="filterCategory('burger')">Burger / برجر</button>
-            <button class="category-btn" onclick="filterCategory('sandwiches')">Sandwiches / ساندويتش</button>
-            <button class="category-btn" onclick="filterCategory('fries')">Fries & Sides / بطاطس</button>
-            <button class="category-btn" onclick="filterCategory('sauces')">Sauces / صوصات</button>
-            <button class="category-btn" onclick="filterCategory('drinks')">Drinks / مشروبات</button>
-            <button class="category-btn" onclick="filterCategory('family')">Family Meals / وجبات العائلة</button>
-            <button class="category-btn" onclick="filterCategory('offers')">Offers / العروض</button>
+            <button class="category-btn active" onclick="filterCategory('all', event)">All / الكل</button>
+            <button class="category-btn" onclick="filterCategory('broast', event)">Broast / بروست</button>
+            <button class="category-btn" onclick="filterCategory('burger', event)">Burger / برجر</button>
+            <button class="category-btn" onclick="filterCategory('sandwiches', event)">Sandwiches / ساندويتش</button>
+            <button class="category-btn" onclick="filterCategory('fries', event)">Fries & Sides / بطاطس</button>
+            <button class="category-btn" onclick="filterCategory('sauces', event)">Sauces / صوصات</button>
+            <button class="category-btn" onclick="filterCategory('drinks', event)">Drinks / مشروبات</button>
+            <button class="category-btn" onclick="filterCategory('family', event)">Family Meals / وجبات العائلة</button>
+            <button class="category-btn" onclick="filterCategory('offers', event)">Offers / العروض</button>
         </div>
     </div>
 
-    <!-- Menu Items Container -->
-    <div class="container" id="menu-container">
-        <!-- Dynamic Items will be rendered here via JS -->
-    </div>
+    <!-- Menu Items -->
+    <div class="container" id="menu-container"></div>
 
     <!-- Interior Photo Gallery Slider -->
     <div class="container gallery-section">
-        <h3 style="font-size: 14px; margin-bottom: 8px; color: #555;">Interior & Restaurant Gallery</h3>
+        <h3 style="font-size: 14px; margin-bottom: 8px; color: #555;">Restaurant Gallery</h3>
         <div class="slider-container">
             <div class="slider-wrapper" id="sliderWrapper">
-                <div class="slide"><img src="459984.jpg" alt="Restaurant Interior 1"></div>
-                <div class="slide"><img src="459985.jpg" alt="Restaurant Interior 2"></div>
-                <div class="slide"><img src="459986.jpg" alt="Restaurant Interior 3"></div>
+                <div class="slide"><img src="459984.jpg" alt="Interior 1"></div>
+                <div class="slide"><img src="459985.jpg" alt="Interior 2"></div>
+                <div class="slide"><img src="459986.jpg" alt="Interior 3"></div>
             </div>
         </div>
     </div>
 
-    <!-- Footer with Developer Info -->
+    <!-- Footer -->
     <div class="footer">
         <p>© TOP CHICKEN. All rights reserved.</p>
-        <p style="margin-top: 5px; font-weight: bold;">Developer: y2kmlpcpr0501163652</p>
+        <p style="margin-top: 5px; font-weight: bold; color: #333;">Developer: y2kmlpcpr0501163652</p>
     </div>
 
-    <!-- Bottom Floating Cart -->
+    <!-- Floating Cart Bar -->
     <div class="cart-bar" id="cartBar" style="display: none;">
         <div class="cart-info">
             <span id="cartCount">0</span> Items | Total: <span id="cartTotal">0</span> SAR
@@ -400,15 +403,15 @@
         </button>
     </div>
 
-    <!-- Checkout Modal -->
+    <!-- Checkout Modal Popup -->
     <div class="modal" id="checkoutModal">
         <div class="modal-content">
             <div class="modal-header">
                 <h3>Order Details / تفاصيل الطلب</h3>
-                <span style="cursor:pointer; font-size: 20px;" onclick="closeCheckout()">✕</span>
+                <span style="cursor:pointer; font-size: 22px; font-weight: bold;" onclick="closeCheckout()">✕</span>
             </div>
 
-            <!-- Order Type Selection -->
+            <!-- Pick up / Delivery Selection -->
             <div class="order-type-selector">
                 <div class="type-btn active" id="btnPickup" onclick="setOrderType('pickup')">
                     Pick up / استلام
@@ -419,17 +422,17 @@
             </div>
 
             <div class="min-alert" id="minAlert">
-                * Minimal 20 SAR Food Order Required for Delivery (Drinks Excluded).
+                * Delivery requires minimum 20 SAR Food Order (Drinks excluded).
             </div>
 
-            <!-- Form Fields -->
+            <!-- Simplified Input Fields -->
             <div class="form-group" style="margin-top: 10px;">
-                <label>Name or Room / Building No (مطلوب - Required) *</label>
+                <label>Name or Building/Room No *</label>
                 <input type="text" id="custName" class="form-control" placeholder="e.g. Abu Muhammad / Israk 510">
             </div>
 
             <div class="form-group" id="addressGroup">
-                <label>Address / Landmark (اختياري - Optional)</label>
+                <label>Address / Landmark (Optional)</label>
                 <input type="text" id="custAddress" class="form-control" placeholder="e.g. Building 30, Gate 5">
             </div>
 
@@ -438,19 +441,16 @@
                 <input type="text" id="custNotes" class="form-control" placeholder="e.g. Spicy, Extra Garlic">
             </div>
 
-            <!-- Summary -->
-            <div style="background: #f9f9f9; padding: 10px; border-radius: 8px; margin-bottom: 10px;" id="orderSummary">
-                <!-- Summary items rendered here -->
+            <div style="background: #f9f9f9; padding: 10px; border-radius: 8px; margin-bottom: 10px; font-size: 13px;" id="orderSummary">
             </div>
 
             <button class="confirm-btn" onclick="sendToWhatsApp()">
-                Send to WhatsApp / إرسال عبر الواتساب
+                Send Order to WhatsApp 💬
             </button>
         </div>
     </div>
 
     <script>
-        // Sample Menu Data
         const menuData = [
             { id: 1, name: "4 Pcs Broast Chicken", cat: "broast", price: 18, isDrink: false, desc: "Fries, Bread, Garlic" },
             { id: 2, name: "Spicy Chicken Burger", cat: "burger", price: 12, isDrink: false, desc: "Crispy chicken with spicy sauce" },
@@ -464,7 +464,6 @@
         let cart = {};
         let currentOrderType = 'pickup';
 
-        // Render Menu
         function renderMenu(filter = 'all') {
             const container = document.getElementById('menu-container');
             container.innerHTML = '';
@@ -495,9 +494,9 @@
             });
         }
 
-        function filterCategory(cat) {
+        function filterCategory(cat, event) {
             document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            if(event) event.target.classList.add('active');
             renderMenu(cat);
         }
 
@@ -559,7 +558,7 @@
             document.getElementById('checkoutModal').style.display = 'flex';
             let summaryHTML = '<b>Order Summary:</b><br>';
             Object.values(cart).forEach(i => {
-                summaryHTML += `<div>${i.name} x ${i.qty} = ${i.qty * i.price} SAR</div>`;
+                summaryHTML += `<div>• ${i.name} x ${i.qty} = ${i.qty * i.price} SAR</div>`;
             });
             document.getElementById('orderSummary').innerHTML = summaryHTML;
             checkDeliveryMin();
@@ -600,21 +599,20 @@
             });
 
             msg += `------------------------\n`;
-                msg += `*Total Amount:* ${total} SAR`;
+            msg += `*Total Amount:* ${total} SAR`;
 
-            const phone = "966554726280"; // WhatsApp Target Number
+            const phone = "966554726280";
             const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
             window.open(url, '_blank');
         }
 
-        // Automatic Image Slider
+        // Image Slider Auto-Scroll
         let currentSlide = 0;
         setInterval(() => {
             currentSlide = (currentSlide + 1) % 3;
-            document.getElementById('sliderWrapper').style.transform = `translateX(${currentSlide * 100}%)`;
+            document.getElementById('sliderWrapper').style.transform = `translateX(-${currentSlide * 100}%)`;
         }, 3500);
 
-        // Initial Load
         renderMenu();
     </script>
 </body>
