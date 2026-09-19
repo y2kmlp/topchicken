@@ -104,14 +104,15 @@
         .category-btn {
             background: #f1f3f5;
             border: 1px solid #e0e0e0;
-            padding: 8px 14px;
-            border-radius: 12px;
+            padding: 9px 14px;
+            border-radius: 10px;
             font-size: 13px;
             font-weight: bold;
             white-space: nowrap;
             cursor: pointer;
             text-align: center;
-            color: #444;
+            color: #333;
+            text-transform: uppercase;
         }
 
         .category-btn.active {
@@ -357,21 +358,21 @@
         </div>
     </div>
 
-    <!-- Sticky 2-Line Category Grid (Updated Categories Order) -->
+    <!-- Sticky 2-Line Category Grid Matching POS Layout -->
     <div class="category-container">
         <div class="category-grid">
             <!-- Row 1 -->
-            <button class="category-btn active" onclick="filterCategory('broasted', event)">Broasted / بروستد</button>
-            <button class="category-btn" onclick="filterCategory('burger', event)">Burger / برجر</button>
-            <button class="category-btn" onclick="filterCategory('tortilla', event)">Tortilla / تورتيلا</button>
-            <button class="category-btn" onclick="filterCategory('pizza', event)">Pizza / بيتزا</button>
-            <button class="category-btn" onclick="filterCategory('meals_fries', event)">Meals & Fries / وجبات وبطاطس</button>
+            <button class="category-btn active" onclick="filterCategory('broast', event)">BROAST</button>
+            <button class="category-btn" onclick="filterCategory('burger', event)">BURGER</button>
+            <button class="category-btn" onclick="filterCategory('tortilla', event)">TORTILLA</button>
+            <button class="category-btn" onclick="filterCategory('pizza', event)">PIZZA</button>
+            <button class="category-btn" onclick="filterCategory('delivery_meal', event)">DELIVERY / MEAL</button>
             
             <!-- Row 2 -->
-            <button class="category-btn" onclick="filterCategory('drinks', event)">Drinks / مشروبات</button>
-            <button class="category-btn" onclick="filterCategory('sandwich', event)">Sandwich / ساندويتش</button>
-            <button class="category-btn" onclick="filterCategory('juice', event)">Juice / عصير</button>
-            <button class="category-btn" onclick="filterCategory('extras', event)">Extras / إضافات</button>
+            <button class="category-btn" onclick="filterCategory('pepsi', event)">PEPSI</button>
+            <button class="category-btn" onclick="filterCategory('jumbo', event)">JUMBO</button>
+            <button class="category-btn" onclick="filterCategory('juices', event)">JUICES</button>
+            <button class="category-btn" onclick="filterCategory('extra', event)">EXTRA</button>
         </div>
     </div>
 
@@ -455,25 +456,32 @@
 
     <script>
         const menuData = [
-            { id: 1, name: "4 Pcs Broasted Chicken", cat: "broasted", price: 18, isDrink: false, desc: "Fries, Bread, Garlic" },
-            { id: 2, name: "Spicy Chicken Burger", cat: "burger", price: 12, isDrink: false, desc: "Crispy chicken with spicy sauce" },
-            { id: 3, name: "Tortilla Chicken Wrap", cat: "tortilla", price: 11, isDrink: false, desc: "Tortilla wrap with chicken" },
-            { id: 4, name: "Chicken Pizza Medium", cat: "pizza", price: 22, isDrink: false, desc: "Fresh baked pizza" },
-            { id: 5, name: "Chicken Meal & Fries", cat: "meals_fries", price: 20, isDrink: false, desc: "Combo meal with fries" },
-            { id: 6, name: "Pepsi / Citrus", cat: "drinks", price: 3, isDrink: true, desc: "Chilled soft drink" },
-            { id: 7, name: "Zinger Sandwich", cat: "sandwich", price: 10, isDrink: false, desc: "Crispy zinger sandwich" },
-            { id: 8, name: "Fresh Orange Juice", cat: "juice", price: 8, isDrink: true, desc: "100% Fresh juice" },
-            { id: 9, name: "Garlic Sauce Extra", cat: "extras", price: 2, isDrink: false, desc: "Extra garlic sauce" }
+            { id: 1, name: "Broasted Chicken Normal", cat: "broast", price: 20, isDrink: false, desc: "Crispy fried chicken with fries & bread" },
+            { id: 2, name: "Broasted Chicken Spicy", cat: "broast", price: 20, isDrink: false, desc: "Spicy fried chicken with fries & bread" },
+            { id: 3, name: "Shrimp Broasted Normal", cat: "broast", price: 22, isDrink: false, desc: "Crispy fried shrimp" },
+            { id: 4, name: "Chicken Burger", cat: "burger", price: 12, isDrink: false, desc: "Fresh chicken burger" },
+            { id: 5, name: "Tortilla Chicken Wrap", cat: "tortilla", price: 11, isDrink: false, desc: "Tortilla wrap with chicken" },
+            { id: 6, name: "Chicken Pizza Medium", cat: "pizza", price: 22, isDrink: false, desc: "Baked cheese chicken pizza" },
+            { id: 7, name: "Chicken Nuggets Meal", cat: "delivery_meal", price: 20, isDrink: false, desc: "Nuggets with fries & drink" },
+            { id: 8, name: "Pepsi Can", cat: "pepsi", price: 3, isDrink: true, desc: "Chilled Pepsi 330ml" },
+            { id: 9, name: "Jumbo Chicken Sandwich", cat: "jumbo", price: 15, isDrink: false, desc: "Large jumbo sandwich" },
+            { id: 10, name: "Fresh Juice", cat: "juices", price: 8, isDrink: true, desc: "Fresh orange / mango juice" },
+            { id: 11, name: "Garlic Sauce Extra", cat: "extra", price: 2, isDrink: false, desc: "Extra garlic dip" }
         ];
 
         let cart = {};
         let currentOrderType = 'pickup';
 
-        function renderMenu(filter = 'broasted') {
+        function renderMenu(filter = 'broast') {
             const container = document.getElementById('menu-container');
             container.innerHTML = '';
 
             const filtered = menuData.filter(i => i.cat === filter);
+
+            if(filtered.length === 0) {
+                container.innerHTML = `<div style="text-align:center; padding:30px; color:#777;">No items in this category yet.</div>`;
+                return;
+            }
 
             filtered.forEach(item => {
                 const qty = cart[item.id] ? cart[item.id].qty : 0;
@@ -620,7 +628,7 @@
             document.getElementById('sliderWrapper').style.transform = `translateX(-${currentSlide * 100}%)`;
         }, 3500);
 
-        renderMenu('broasted');
+        renderMenu('broast');
     </script>
 </body>
 </html>
