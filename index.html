@@ -29,37 +29,37 @@
 
         /* Header Section with main shop photo (1.jpg) */
         .header {
-    position: relative;
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url('1.jpg') center/cover no-repeat;
-    color: white;
-    padding: 30px 15px 25px 15px;
-    text-align: center;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-}
+            position: relative;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url('1.jpg') center/cover no-repeat;
+            color: white;
+            padding: 30px 15px 25px 15px;
+            text-align: center;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
 
-.header h1, .header p {
-    background: rgba(0, 0, 0, 0.55);
-    display: inline-block;
-    padding: 6px 16px;
-    border-radius: 10px;
-    margin-bottom: 6px;
-    backdrop-filter: blur(2px);
-}
+        .header h1, .header p {
+            background: rgba(0, 0, 0, 0.55);
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 10px;
+            margin-bottom: 6px;
+            backdrop-filter: blur(2px);
+        }
 
-.header h1 {
-    font-size: 28px;
-    font-weight: 800;
-    color: var(--accent-yellow);
-    letter-spacing: 1px;
-}
+        .header h1 {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--accent-yellow);
+            letter-spacing: 1px;
+        }
 
-.header p {
-    font-size: 15px;
-    font-weight: bold;
-    color: #ffffff;
-}
+        .header p {
+            font-size: 15px;
+            font-weight: bold;
+            color: #ffffff;
+        }
 
         .header-buttons {
             display: flex;
@@ -462,7 +462,7 @@
     </div>
 
     <script>
-       const menuData = [
+        const menuData = [
             // ================= BROAST & CHICKEN (دجاج بروستد) =================
             { id: 101, name: "Broasted Chicken Normal - دجاج بروستد عادي", cat: "broast", price: 20, isDrink: false, desc: "4 Pcs Chicken, Fries, Hummus, Kubus, Garlic / ٤ قطع دجاج، بطاطس، حمص، خبز، ثوم" },
             { id: 102, name: "Broasted Chicken Spicy - دجاج بروستد حراق", cat: "broast", price: 20, isDrink: false, desc: "4 Pcs Chicken Spicy, Fries, Hummus, Kubus, Garlic / ٤ قطع دجاج حراق، بطاطس، حمص، خبز، ثوم" },
@@ -688,45 +688,47 @@
             const notes = document.getElementById('custNotes').value.trim();
 
             if (!name) {
-                alert("Please enter Name or Building/Room No.");
+                alert('Please enter your Name or Room Number.');
                 return;
             }
 
-            if (currentOrderType === 'delivery' && !checkDeliveryMin()) {
-                alert("Delivery requires minimum 20 SAR Food Order (Drinks excluded).");
+            if (!checkDeliveryMin()) {
+                alert('Delivery order requires minimum 20 SAR Food items.');
                 return;
             }
 
-            let msg = `*NEW ORDER - TOP CHICKEN*\n`;
-            msg += `------------------------\n`;
-            msg += `*Type:* ${currentOrderType.toUpperCase()}\n`;
-            msg += `*Customer:* ${name}\n`;
-            if (address) msg += `*Address:* ${address}\n`;
-            if (notes) msg += `*Notes:* ${notes}\n`;
-            msg += `------------------------\n`;
-            msg += `*Items:*\n`;
+            let text = `*NEW ORDER - TOP CHICKEN*\n`;
+            text += `Type: *${currentOrderType.toUpperCase()}*\n`;
+            text += `Name/Room: ${name}\n`;
+            if (address) text += `Address: ${address}\n`;
+            if (notes) text += `Notes: ${notes}\n`;
+            text += `------------------------\n`;
 
             let total = 0;
             Object.values(cart).forEach(i => {
-                msg += `• ${i.name} x ${i.qty} = ${i.qty * i.price} SAR\n`;
-                total += (i.qty * i.price);
+                const sub = i.qty * i.price;
+                total += sub;
+                text += `• ${i.name} x${i.qty} = ${sub} SAR\n`;
             });
 
-            msg += `------------------------\n`;
-            msg += `*Total Amount:* ${total} SAR`;
+            text += `------------------------\n`;
+            text += `*TOTAL AMOUNT: ${total} SAR*`;
 
             const phone = "966554726280";
-            const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
-            window.open(url, '_blank');
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank');
         }
 
-        // Image Slider Auto-Scroll for 4 images
+        // Image Gallery Auto-Slider
         let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
         setInterval(() => {
-            currentSlide = (currentSlide + 1) % 4;
-            document.getElementById('sliderWrapper').style.transform = `translateX(-${currentSlide * 100}%)`;
-        }, 3500);
+            if (slides.length > 0) {
+                currentSlide = (currentSlide + 1) % slides.length;
+                document.getElementById('sliderWrapper').style.transform = `translateX(-${currentSlide * 100}%)`;
+            }
+        }, 3000);
 
+        // Initial Load
         renderMenu('broast');
     </script>
 </body>
