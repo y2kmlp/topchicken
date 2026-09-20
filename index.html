@@ -350,6 +350,37 @@
             font-weight: bold;
             display: none;
         }
+
+        /* Delivery Notice Box */
+        .delivery-rates-box {
+            display: none;
+            background: #fff8e1;
+            border: 1px solid #ffe082;
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 12px;
+            font-size: 12px;
+            color: #5d4037;
+        }
+
+        .delivery-rates-table {
+            width: 100%;
+            margin-top: 5px;
+            border-collapse: collapse;
+        }
+
+        .delivery-rates-table td {
+            padding: 3px 0;
+            font-weight: bold;
+        }
+
+        .delivery-ar-msg {
+            margin-top: 8px;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-align: right;
+            direction: rtl;
+        }
     </style>
 </head>
 <body>
@@ -432,6 +463,18 @@
                 </div>
             </div>
 
+            <!-- Delivery Rates Notice Box -->
+            <div class="delivery-rates-box" id="deliveryRatesBox">
+                <b>Delivery Rates Notice / رسوم التوصيل:</b>
+                <table class="delivery-rates-table">
+                    <tr><td>0 km - 3 km</td><td style="text-align: right;">4.00 SAR</td></tr>
+                    <tr><td>3 km - 5 km</td><td style="text-align: right;">6.00 SAR</td></tr>
+                    <tr><td>5 km - 8 km</td><td style="text-align: right;">10.00 SAR</td></tr>
+                    <tr><td>8 km - 12 km</td><td style="text-align: right;">15.00 SAR</td></tr>
+                </table>
+                <div class="delivery-ar-msg">المبلغ الإجمالي لا يشمل رسوم التوصيل</div>
+            </div>
+
             <div class="min-alert" id="minAlert">
                 * Delivery requires minimum 20 SAR Food Order (Drinks excluded).<br>التوصيل يتطلب حد أدنى 20 ريال للمأكولات.
             </div>
@@ -466,19 +509,21 @@
             // ================= BROAST & CHICKEN (دجاج بروستد) =================
             { id: 101, name: "Broasted Chicken Normal - دجاج بروستد عادي", cat: "broast", price: 20, isDrink: false, desc: "4 Pcs Chicken, Fries, Hummus, Kubus, Garlic / ٤ قطع دجاج، بطاطس، حمص، خبز، ثوم" },
             { id: 102, name: "Broasted Chicken Spicy - دجاج بروستد حراق", cat: "broast", price: 20, isDrink: false, desc: "4 Pcs Chicken Spicy, Fries, Hummus, Kubus, Garlic / ٤ قطع دجاج حراق، بطاطس، حمص، خبز، ثوم" },
-            { id: 103, name: "Fish Broasted Normal - بروستد سمك عادي", cat: "broast", price: 19, isDrink: false, desc: "Fish fillet with fries & sauce / فيليه سمك مع بطاطس وثوم" },
-            { id: 104, name: "Fish Broasted Spicy - بروستد سمك حراق", cat: "broast", price: 19, isDrink: false, desc: "Spicy fish fillet with fries & sauce / فيليه سمك حراق مع بطاطس وثوم" },
-            { id: 105, name: "Chicken Nuggets Normal - نغت دجاج عادي", cat: "broast", price: 20, isDrink: false, desc: "13 Pcs with fries & bread / ١٣ قطعة مع البطاطس والخبز" },
-            { id: 106, name: "Chicken Nuggets Spicy - نغت دجاج حراق", cat: "broast", price: 20, isDrink: false, desc: "13 Pcs spicy with fries & bread / ١٣ قطعة حراق مع البطاطس والخبز" },
-            { id: 107, name: "Shrimp Broast Normal - بروست روبيان عادي", cat: "broast", price: 22, isDrink: false, desc: "13-17 Pcs with fries & sauce / ١٣-١٧ قطعة روبيان مع البطاطس والثوم" },
-            { id: 108, name: "Shrimp Broast Spicy - بروست روبيان حراق", cat: "broast", price: 22, isDrink: false, desc: "13-17 Pcs spicy shrimp with fries & sauce / ١٣-١٧ قطعة روبيان حراق مع البطاطس والثوم" },
-            { id: 109, name: "Chicken Strips Normal - ستربس الدجاج عادي", cat: "broast", price: 20, isDrink: false, desc: "6 Pcs with fries & bread / ٦ قطع مع البطاطس والخبز" },
-            { id: 110, name: "Chicken Strips Spicy - ستربس الدجاج حراق", cat: "broast", price: 20, isDrink: false, desc: "6 Pcs spicy with fries & bread / ٦ قطع حراق مع البطاطس والخبز" },
-            { id: 111, name: "Finger Chicken Normal - مسحب دجاج عادي", cat: "broast", price: 20, isDrink: false, desc: "10 Pcs with fries & bread / ١٠ قطع مسحب دجاج عادي" },
-            { id: 112, name: "Finger Chicken Spicy - مسحب دجاج حراق", cat: "broast", price: 20, isDrink: false, desc: "10 Pcs spicy with fries & bread / ١٠ قطع مسحب دجاج حراق" },
-            { id: 113, name: "Chicken Chees Stick - اصابع دجاج بالجبن", cat: "broast", price: 20, isDrink: false, desc: "9 Pcs cheese chicken sticks / ٩ قطع اصابع دجاج بالجبن" },
-            { id: 114, name: "Beef Kabab Plate - صحن كباب لحم", cat: "broast", price: 20, isDrink: false, desc: "6 Pcs Kabab with fries & bread / ٦ قطع كباب لحم مع البطاطس" },
-            { id: 115, name: "Finger Fish - اصابع سمك", cat: "broast", price: 20, isDrink: false, desc: "9 Pcs Fish sticks / ٩ قطع اصابع سمك" },
+            { id: 103, name: "Chicken Fillet Normal - فيليه دجاج عادي", cat: "broast", price: 20, isDrink: false, desc: "Chicken Fillet Normal with fries & sauce / فيليه دجاج مع بطاطس وثوم" },
+            { id: 104, name: "Chicken Fillet Spicy - دجاج فيليه حراق", cat: "broast", price: 20, isDrink: false, desc: "Chicken Fillet Spicy with fries & sauce / دجاج فيليه حراق مع بطاطس وثوم" },
+            { id: 105, name: "Fish Broasted Normal - بروستد سمك عادي", cat: "broast", price: 19, isDrink: false, desc: "Fish fillet with fries & sauce / فيليه سمك مع بطاطس وثوم" },
+            { id: 106, name: "Fish Broasted Spicy - بروستد سمك حراق", cat: "broast", price: 19, isDrink: false, desc: "Spicy fish fillet with fries & sauce / فيليه سمك حراق مع بطاطس وثوم" },
+            { id: 107, name: "Chicken Nuggets Normal - نغت دجاج عادي", cat: "broast", price: 20, isDrink: false, desc: "13 Pcs with fries & bread / ١٣ قطعة مع البطاطس والخبز" },
+            { id: 108, name: "Chicken Nuggets Spicy - نغت دجاج حراق", cat: "broast", price: 20, isDrink: false, desc: "13 Pcs spicy with fries & bread / ١٣ قطعة حراق مع البطاطس والخبز" },
+            { id: 109, name: "Shrimp Broast Normal - بروست روبيان عادي", cat: "broast", price: 22, isDrink: false, desc: "13-17 Pcs with fries & sauce / ١٣-١٧ قطعة روبيان مع البطاطس والثوم" },
+            { id: 110, name: "Shrimp Broast Spicy - بروست روبيان حراق", cat: "broast", price: 22, isDrink: false, desc: "13-17 Pcs spicy shrimp with fries & sauce / ١٣-١٧ قطعة روبيان حراق مع البطاطس والثوم" },
+            { id: 111, name: "Chicken Strips Normal - ستربس الدجاج عادي", cat: "broast", price: 20, isDrink: false, desc: "6 Pcs with fries & bread / ٦ قطع مع البطاطس والخبز" },
+            { id: 112, name: "Chicken Strips Spicy - ستربس الدجاج حراق", cat: "broast", price: 20, isDrink: false, desc: "6 Pcs spicy with fries & bread / ٦ قطع حراق مع البطاطس والخبز" },
+            { id: 113, name: "Finger Chicken Normal - مسحب دجاج عادي", cat: "broast", price: 20, isDrink: false, desc: "10 Pcs with fries & bread / ١٠ قطع مسحب دجاج عادي" },
+            { id: 114, name: "Finger Chicken Spicy - مسحب دجاج حراق", cat: "broast", price: 20, isDrink: false, desc: "10 Pcs spicy with fries & bread / ١٠ قطع مسحب دجاج حراق" },
+            { id: 115, name: "Chicken Chees Stick - اصابع دجاج بالجبن", cat: "broast", price: 20, isDrink: false, desc: "9 Pcs cheese chicken sticks / ٩ قطع اصابع دجاج بالجبن" },
+            { id: 116, name: "Beef Kabab Plate - صحن كباب لحم", cat: "broast", price: 20, isDrink: false, desc: "6 Pcs Kabab with fries & bread / ٦ قطع كباب لحم مع البطاطس" },
+            { id: 117, name: "Finger Fish - اصابع سمك", cat: "broast", price: 20, isDrink: false, desc: "9 Pcs Fish sticks / ٩ قطع اصابع سمك" },
 
             // ================= PIZZA (بيتزا) =================
             { id: 201, name: "Dynamite Chicken Pizza - بيتزا ديناميت الدجاج", cat: "pizza", price: 22, isDrink: false, desc: "Special Dynamite Sauce Chicken Pizza / بيتزا ديناميت دجاج المميزة" },
@@ -506,23 +551,27 @@
             { id: 310, name: "Zinger Tortilla Spicy - زنجر تورتيلا حراق", cat: "tortilla", price: 13, isDrink: false, desc: "Zinger Wrap Spicy / زنجر تورتيلا حراق" },
 
             // ================= BURGER (برجر) =================
-            { id: 401, name: "Beef Burger Big - لحم برجر كبير", cat: "burger", price: 9, isDrink: false, desc: "Fresh Beef Burger Big / برجر لحم طازج كبير" },
-            { id: 402, name: "Beef Burger Small - لحم برجر صغير", cat: "burger", price: 8, isDrink: false, desc: "Fresh Beef Burger Small / برجر لحم صغير" },
-            { id: 403, name: "Chicken Burger Big - دجاج برجر كبير", cat: "burger", price: 8, isDrink: false, desc: "Chicken Burger Big / برجر دجاج كبير" },
-            { id: 404, name: "Chicken Burger Small - دجاج برجر صغير", cat: "burger", price: 7, isDrink: false, desc: "Chicken Burger Small / برجر دجاج صغير" },
-            { id: 405, name: "Zinger Burger Normal - زنجر برجر عادي", cat: "burger", price: 10, isDrink: false, desc: "Zinger Burger Normal / زنجر برجر عادي" },
-            { id: 406, name: "Zinger Burger Spicy - زنجر برجر حراق", cat: "burger", price: 10, isDrink: false, desc: "Zinger Burger Spicy / زنجر برجر حراق" },
-            { id: 407, name: "Chicken Grilled Burger - برجر دجاج الصاح", cat: "burger", price: 8, isDrink: false, desc: "Grilled Chicken Burger / برجر دجاج مشوي" },
+            { id: 401, name: "Double Beef Burger Big - دبل برجر لحم كبير", cat: "burger", price: 15, isDrink: false, desc: "Double Beef Burger Big / دبل برجر لحم كبير" },
+            { id: 402, name: "Double Chicken Burger Big - دبل برجر دجاج كبير", cat: "burger", price: 14, isDrink: false, desc: "Double Chicken Burger Big / دبل برجر دجاج كبير" },
+            { id: 403, name: "Beef Burger Big - لحم برجر كبير", cat: "burger", price: 9, isDrink: false, desc: "Fresh Beef Burger Big / برجر لحم طازج كبير" },
+            { id: 404, name: "Beef Burger Small - لحم برجر صغير", cat: "burger", price: 8, isDrink: false, desc: "Fresh Beef Burger Small / برجر لحم صغير" },
+            { id: 405, name: "Chicken Burger Big - دجاج برجر كبير", cat: "burger", price: 8, isDrink: false, desc: "Chicken Burger Big / برجر دجاج كبير" },
+            { id: 406, name: "Chicken Burger Small - دجاج برجر صغير", cat: "burger", price: 7, isDrink: false, desc: "Chicken Burger Small / برجر دجاج صغير" },
+            { id: 407, name: "Zinger Burger Normal - زنجر برجر عادي", cat: "burger", price: 10, isDrink: false, desc: "Zinger Burger Normal / زنجر برجر عادي" },
+            { id: 408, name: "Zinger Burger Spicy - زنجر برجر حراق", cat: "burger", price: 10, isDrink: false, desc: "Zinger Burger Spicy / زنجر برجر حراق" },
+            { id: 409, name: "Chicken Grilled Burger - برجر دجاج الصاح", cat: "burger", price: 8, isDrink: false, desc: "Grilled Chicken Burger / برجر دجاج مشوي" },
 
             // ================= JUMBO (جامبو) =================
-            { id: 501, name: "Kudu Jumbo Normal - جامبو كودو عادي", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Kudu Sandwich / ساندوتش جامبو كودو" },
-            { id: 502, name: "Kudu Jumbo Spicy - جامبو كودو حراق", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Kudu Sandwich Spicy / ساندوتش جامبو كودو حراق" },
-            { id: 503, name: "Shrimp Jumbo Normal - جامبو روبيان عادي", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Shrimp Sandwich / ساندوتش جامبو روبيان" },
-            { id: 504, name: "Shrimp Jumbo Spicy - جامبو روبيان حراق", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Shrimp Sandwich Spicy / ساندوتش جامبو روبيان حراق" },
-            { id: 505, name: "Zinger Jumbo Normal - جامبو زنجر عادي", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Zinger Sandwich / ساندوتش جامبو زنجر" },
-            { id: 506, name: "Zinger Jumbo Spicy - جامبو زنجر حراق", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Zinger Sandwich Spicy / ساندوتش جامبو زنجر حراق" },
-            { id: 507, name: "Tikka Jumbo - جامبو تكه", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Tikka Sandwich / ساندوتش جامبو تكه" },
-            { id: 508, name: "Kabab Beef Jumbo - جامبو كباب لحم", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Beef Kabab / ساندوتش جامبو كباب لحم" },
+            { id: 501, name: "Jumbo Fillet Chicken - دجاج فيليه جامبو", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Fillet Chicken Sandwich / ساندوتش دجاج فيليه جامبو" },
+            { id: 502, name: "Jumbo Fish - جامبو سمك", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Fish Sandwich / ساندوتش جامبو سمك" },
+            { id: 503, name: "Kudu Jumbo Normal - جامبو كودو عادي", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Kudu Sandwich / ساندوتش جامبو كودو" },
+            { id: 504, name: "Kudu Jumbo Spicy - جامبو كودو حراق", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Kudu Sandwich Spicy / ساندوتش جامبو كودو حراق" },
+            { id: 505, name: "Shrimp Jumbo Normal - جامبو روبيان عادي", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Shrimp Sandwich / ساندوتش جامبو روبيان" },
+            { id: 506, name: "Shrimp Jumbo Spicy - جامبو روبيان حراق", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Shrimp Sandwich Spicy / ساندوتش جامبو روبيان حراق" },
+            { id: 507, name: "Zinger Jumbo Normal - جامبو زنجر عادي", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Zinger Sandwich / ساندوتش جامبو زنجر" },
+            { id: 508, name: "Zinger Jumbo Spicy - جامبو زنجر حراق", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Zinger Sandwich Spicy / ساندوتش جامبو زنجر حراق" },
+            { id: 509, name: "Tikka Jumbo - جامبو تكه", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Tikka Sandwich / ساندوتش جامبو تكه" },
+            { id: 510, name: "Kabab Beef Jumbo - جامبو كباب لحم", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Beef Kabab / ساندوتش جامبو كباب لحم" },
 
             // ================= KIDS MEAL (وجبات اطفال) =================
             { id: 601, name: "Kids Meal Nuggets - وجبة اطفال نغت", cat: "fries_meals", price: 13, isDrink: false, desc: "Nuggets Kids Meal / وجبة اطفال نغت" },
@@ -544,24 +593,36 @@
             { id: 713, name: "Dynamite Sauce - صوص ديناميت", cat: "extra", price: 2, isDrink: false, desc: "Dynamite Sauce Dip / صوص ديناميت" },
             { id: 714, name: "Hummus - حمص", cat: "extra", price: 3, isDrink: false, desc: "Fresh Hummus Dip / حمص طازج" },
 
-            // ================= FRESH JUICES & DRINKS (عصائر طازجة) =================
-            { id: 801, name: "Cocktail Juice Big - عصير كوكتيل كبير", cat: "juices", price: 7, isDrink: true, desc: "Fresh Juice Big / عصير طازج كبير" },
-            { id: 802, name: "Cocktail Juice Small - عصير كوكتيل صغير", cat: "juices", price: 5, isDrink: true, desc: "Fresh Juice Small / عصير طازج صغير" },
-            { id: 803, name: "Cocktail Juice Gallon - عصير كوكتيل جالون", cat: "juices", price: 21, isDrink: true, desc: "Fresh Juice Gallon / عصير طازج جالون" },
+            // ================= PEPSI & DRINKS (بيبسي والمشروبات) =================
+            { id: 801, name: "Pepsi - بيبسي", cat: "pepsi", price: 2.50, isDrink: true, desc: "Pepsi Can / بيبسي" },
+            { id: 802, name: "Pepsi D - بيبسي دايت", cat: "pepsi", price: 2.00, isDrink: true, desc: "Pepsi Diet / بيبسي دايت" },
+            { id: 803, name: "Citrus - الحمضيات", cat: "pepsi", price: 2.50, isDrink: true, desc: "Citrus Can / حمضيات" },
+            { id: 804, name: "7UP - سفن اب", cat: "pepsi", price: 2.50, isDrink: true, desc: "7UP Can / سفن اب" },
+            { id: 805, name: "7UP D - سفن اب دايت", cat: "pepsi", price: 2.00, isDrink: true, desc: "7UP Diet / سفن اب دايت" },
+            { id: 806, name: "Dew - ديو", cat: "pepsi", price: 2.50, isDrink: true, desc: "Mountain Dew Can / ديو" },
+            { id: 807, name: "Mirinda Orange - میرندا برتقال", cat: "pepsi", price: 2.50, isDrink: true, desc: "Mirinda Orange / میرندا برتقال" },
+            { id: 808, name: "Pepsi 1L - بيبسي 1 لتر", cat: "pepsi", price: 5.00, isDrink: true, desc: "Pepsi 1 Liter / بيبسي ١ لتر" },
+            { id: 809, name: "7UP 1L - سفن اب 1 لتر", cat: "pepsi", price: 5.00, isDrink: true, desc: "7UP 1 Liter / سفن اب ١ لتر" },
+            { id: 810, name: "Citrus 1L - الحمضيات 1 لتر", cat: "pepsi", price: 5.00, isDrink: true, desc: "Citrus 1 Liter / حمضيات ١ لتر" },
+            { id: 811, name: "Rabia Juice - عصير ربيع", cat: "pepsi", price: 2.00, isDrink: true, desc: "Rabia Juice Box / عصير ربيع" },
+            { id: 812, name: "Water - ماء", cat: "pepsi", price: 1.00, isDrink: true, desc: "Mineral Water / ماء" },
 
-            { id: 804, name: "Mango Juice Big - عصير مانجو كبير", cat: "juices", price: 7, isDrink: true, desc: "Fresh Juice Big / عصير طازج كبير" },
-            { id: 805, name: "Mango Juice Small - عصير مانجو صغير", cat: "juices", price: 5, isDrink: true, desc: "Fresh Juice Small / عصير طازج صغير" },
-            { id: 806, name: "Mango Juice Gallon - عصير مانجو جالون", cat: "juices", price: 21, isDrink: true, desc: "Fresh Juice Gallon / عصير طازج جالون" },
+            // ================= FRESH JUICES (عصائر طازجة) =================
+            { id: 901, name: "Cocktail Juice Big - عصير كوكتيل كبير", cat: "juices", price: 7, isDrink: true, desc: "Fresh Juice Big / عصير طازج كبير" },
+            { id: 902, name: "Cocktail Juice Small - عصير كوكتيل صغير", cat: "juices", price: 5, isDrink: true, desc: "Fresh Juice Small / عصير طازج صغير" },
+            { id: 903, name: "Cocktail Juice Gallon - عصير كوكتيل جالون", cat: "juices", price: 21, isDrink: true, desc: "Fresh Juice Gallon / عصير طازج جالون" },
 
-            { id: 807, name: "Orange Fresh Big - برتقال كبس كبير", cat: "juices", price: 9, isDrink: true, desc: "Fresh Orange Big / عصير برتقال كبير" },
-            { id: 808, name: "Orange Fresh Small - برتقال كبس صغير", cat: "juices", price: 6, isDrink: true, desc: "Fresh Orange Small / عصير برتقال صغير" },
-            { id: 809, name: "Orange Fresh Gallon - برتقال كبس جالون", cat: "juices", price: 27, isDrink: true, desc: "Fresh Orange Gallon / عصير برتقال جالون" },
+            { id: 904, name: "Mango Juice Big - عصير مانجو كبير", cat: "juices", price: 7, isDrink: true, desc: "Fresh Juice Big / عصير طازج كبير" },
+            { id: 905, name: "Mango Juice Small - عصير مانجو صغير", cat: "juices", price: 5, isDrink: true, desc: "Fresh Juice Small / عصير طازج صغير" },
+            { id: 906, name: "Mango Juice Gallon - عصير مانجو جالون", cat: "juices", price: 21, isDrink: true, desc: "Fresh Juice Gallon / عصير طازج جالون" },
 
-            { id: 810, name: "Avocado Big - أفوكادو كبير", cat: "juices", price: 9, isDrink: true, desc: "Fresh Avocado Big / أفوكادو كبير" },
-            { id: 811, name: "Avocado Small - أفوكادو صغير", cat: "juices", price: 6, isDrink: true, desc: "Fresh Avocado Small / أفوكادو صغير" },
-            { id: 812, name: "Avocado Gallon - أفوكادو جالون", cat: "juices", price: 27, isDrink: true, desc: "Fresh Avocado Gallon / أفوكادو جالون" },
+            { id: 907, name: "Orange Fresh Big - برتقال كبس كبير", cat: "juices", price: 9, isDrink: true, desc: "Fresh Orange Big / عصير برتقال كبير" },
+            { id: 908, name: "Orange Fresh Small - برتقال كبس صغير", cat: "juices", price: 6, isDrink: true, desc: "Fresh Orange Small / عصير برتقال صغير" },
+            { id: 909, name: "Orange Fresh Gallon - برتقال كبس جالون", cat: "juices", price: 27, isDrink: true, desc: "Fresh Orange Gallon / عصير برتقال جالون" },
 
-            { id: 813, name: "Pepsi Can - بيبسي", cat: "pepsi", price: 3, isDrink: true, desc: "Soft Drink / مشروب غازي" }
+            { id: 910, name: "Avocado Big - أفوكادو كبير", cat: "juices", price: 9, isDrink: true, desc: "Fresh Avocado Big / أفوكادو كبير" },
+            { id: 911, name: "Avocado Small - أفوكادو صغير", cat: "juices", price: 6, isDrink: true, desc: "Fresh Avocado Small / أفوكادو صغير" },
+            { id: 912, name: "Avocado Gallon - أفوكادو جالون", cat: "juices", price: 27, isDrink: true, desc: "Fresh Avocado Gallon / أفوكادو جالون" }
         ];
 
         let cart = {};
@@ -585,7 +646,7 @@
                         <div class="item-info">
                             <h3>${item.name}</h3>
                             <p>${item.desc}</p>
-                            <div class="item-price">${item.price} SAR</div>
+                            <div class="item-price">${item.price.toFixed(2)} SAR</div>
                         </div>
                         <div>
                             ${qty === 0 ? 
@@ -639,7 +700,7 @@
             });
 
             document.getElementById('cartCount').innerText = count;
-            document.getElementById('cartTotal').innerText = total;
+            document.getElementById('cartTotal').innerText = total.toFixed(2);
             document.getElementById('cartBar').style.display = count > 0 ? 'flex' : 'none';
         }
 
@@ -647,6 +708,14 @@
             currentOrderType = type;
             document.getElementById('btnPickup').classList.toggle('active', type === 'pickup');
             document.getElementById('btnDelivery').classList.toggle('active', type === 'delivery');
+            
+            const ratesBox = document.getElementById('deliveryRatesBox');
+            if(type === 'delivery') {
+                ratesBox.style.display = 'block';
+            } else {
+                ratesBox.style.display = 'none';
+            }
+
             checkDeliveryMin();
         }
 
@@ -672,10 +741,10 @@
             document.getElementById('checkoutModal').style.display = 'flex';
             let summaryHTML = '<b>Order Summary / ملخص الطلب:</b><br>';
             Object.values(cart).forEach(i => {
-                summaryHTML += `<div>• ${i.name} x ${i.qty} = ${i.qty * i.price} SAR</div>`;
+                summaryHTML += `<div>• ${i.name} x ${i.qty} = ${(i.qty * i.price).toFixed(2)} SAR</div>`;
             });
             document.getElementById('orderSummary').innerHTML = summaryHTML;
-            checkDeliveryMin();
+            setOrderType(currentOrderType);
         }
 
         function closeCheckout() {
@@ -692,8 +761,13 @@
                 return;
             }
 
+            if (currentOrderType === 'delivery' && !address) {
+                alert('Please enter your Address / Location for delivery.');
+                return;
+            }
+
             if (!checkDeliveryMin()) {
-                alert('Delivery order requires minimum 20 SAR Food items.');
+                alert('Delivery order requires minimum 20 SAR Food items (Drinks excluded).');
                 return;
             }
 
@@ -708,11 +782,15 @@
             Object.values(cart).forEach(i => {
                 const sub = i.qty * i.price;
                 total += sub;
-                text += `• ${i.name} x${i.qty} = ${sub} SAR\n`;
+                text += `• ${i.name} x${i.qty} = ${sub.toFixed(2)} SAR\n`;
             });
 
             text += `------------------------\n`;
-            text += `*TOTAL AMOUNT: ${total} SAR*`;
+            text += `*TOTAL AMOUNT: ${total.toFixed(2)} SAR*\n`;
+
+            if (currentOrderType === 'delivery') {
+                text += `\n*Note:* المبلغ الإجمالي لا يشمل رسوم التوصيل (Delivery charges will be calculated based on location distance).`;
+            }
 
             const phone = "966554726280";
             window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank');
