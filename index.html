@@ -1,735 +1,562 @@
 <!DOCTYPE html>
-<html lang="ar" dir="ltr">
+<html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TOP CHICKEN</title>
-    <style>
-        :root {
-            --primary-color: #d32f2f;
-            --secondary-color: #f57c00;
-            --accent-yellow: #ffeb3b;
-            --bg-color: #f8f9fa;
-            --card-bg: #ffffff;
-            --text-color: #222222;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top Chicken Al Dijaj Al Mumayaz</title>
+  <style>
+    :root {
+      --primary-color: #d90429;
+      --secondary-color: #ef233c;
+      --bg-color: #f8f9fa;
+      --card-bg: #ffffff;
+      --text-color: #2b2d42;
+      --border-radius: 12px;
+    }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            padding-bottom: 90px;
-        }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      direction: ltr;
+      text-align: left;
+      padding-bottom: 80px;
+    }
 
-        /* Header Section with main shop photo (1.jpg) */
-        .header {
-            position: relative;
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url('1.jpg') center/cover no-repeat;
-            color: white;
-            padding: 30px 15px 25px 15px;
-            text-align: center;
-            border-bottom-left-radius: 20px;
-            border-bottom-right-radius: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        }
+    header {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 15px 20px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
 
-        .header h1, .header p {
-            background: rgba(0, 0, 0, 0.55);
-            display: inline-block;
-            padding: 6px 16px;
-            border-radius: 10px;
-            margin-bottom: 6px;
-            backdrop-filter: blur(2px);
-        }
+    header h1 {
+      font-size: 1.4rem;
+      margin-bottom: 2px;
+    }
 
-        .header h1 {
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--accent-yellow);
-            letter-spacing: 1px;
-        }
+    header p {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
 
-        .header p {
-            font-size: 18px;
-            font-weight: bold;
-            color: #ffffff;
-        }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 15px;
+    }
 
-        .header-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 10px;
-        }
+    /* Category Tabs */
+    .categories {
+      display: flex;
+      overflow-x: auto;
+      gap: 10px;
+      padding: 10px 0;
+      margin-bottom: 15px;
+      scrollbar-width: none;
+    }
 
-        .header-btn {
-            background-color: rgba(211, 47, 47, 0.9);
-            color: white;
-            border: 1px solid var(--accent-yellow);
-            padding: 8px 16px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: bold;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-        }
+    .categories::-webkit-scrollbar {
+      display: none;
+    }
 
-        /* Sticky 2-Line Category Navigation Grid */
-        .category-container {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: white;
-            padding: 10px;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
-        }
+    .category-btn {
+      background: #e9ecef;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      cursor: pointer;
+      color: var(--text-color);
+      transition: all 0.2s ease;
+    }
 
-        .category-grid {
-            display: grid;
-            grid-template-rows: repeat(2, auto);
-            grid-auto-flow: column;
-            grid-auto-columns: minmax(130px, max-content);
-            gap: 8px;
-            overflow-x: auto;
-            scrollbar-width: none;
-        }
+    .category-btn.active {
+      background: var(--primary-color);
+      color: white;
+    }
 
-        .category-grid::-webkit-scrollbar {
-            display: none;
-        }
+    /* Product Section */
+    .category-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin: 15px 0 10px 0;
+      color: var(--primary-color);
+      border-bottom: 2px solid #dee2e6;
+      padding-bottom: 5px;
+    }
 
-        .category-btn {
-            background: #f1f3f5;
-            border: 1px solid #e0e0e0;
-            padding: 9px 12px;
-            border-radius: 10px;
-            font-size: 12px;
-            font-weight: bold;
-            white-space: nowrap;
-            cursor: pointer;
-            text-align: center;
-            color: #333;
-            line-height: 1.3;
-        }
+    .product-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
 
-        .category-btn.active {
-            background: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
-        }
+    .product-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 12px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
 
-        /* Container Layout */
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 15px;
-        }
+    .product-info {
+      flex: 1;
+    }
 
-        /* Menu Item Card */
-        .menu-item {
-            background: var(--card-bg);
-            border-radius: 14px;
-            padding: 14px;
-            margin-bottom: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-            border: 1px solid #f0f0f0;
-        }
+    .product-title-ar {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #111;
+      direction: rtl;
+      display: block;
+      text-align: left;
+    }
 
-        .item-info h3 {
-            font-size: 16px;
-            color: #111;
-            margin-bottom: 4px;
-        }
+    .product-title-en {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 4px;
+    }
 
-        .item-info p {
-            font-size: 12px;
-            color: #666;
-            margin-bottom: 6px;
-        }
+    .product-price {
+      font-weight: 700;
+      color: var(--primary-color);
+      font-size: 0.95rem;
+    }
 
-        .item-price {
-            font-weight: bold;
-            color: var(--primary-color);
-            font-size: 15px;
-        }
+    .add-btn {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+    }
 
-        .add-btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 7px 18px;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+    .qty-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-        /* Gallery Slider */
-        .gallery-section {
-            margin: 25px 0 10px 0;
-        }
+    .qty-btn {
+      background: #e9ecef;
+      border: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+    }
 
-        .slider-container {
-            position: relative;
-            overflow: hidden;
-            border-radius: 14px;
-            height: 220px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
+    .qty-count {
+      font-weight: 600;
+      min-width: 18px;
+      text-align: center;
+    }
 
-        .slider-wrapper {
-            display: flex;
-            transition: transform 0.4s ease-in-out;
-            height: 100%;
-        }
+    /* Floating Cart Footer */
+    .cart-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      padding: 12px 20px;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 600px;
+      margin: 0 auto;
+      z-index: 90;
+    }
 
-        .slide {
-            min-width: 100%;
-            height: 100%;
-        }
+    .checkout-btn {
+      background: #25d366;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+    }
 
-        .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    /* Modal / Order Details */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 200;
+      justify-content: center;
+      align-items: flex-end;
+    }
 
-        /* Bottom Floating Cart Bar */
-        .cart-bar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: white;
-            padding: 12px 20px;
-            box-shadow: 0 -4px 12px rgba(0,0,0,0.12);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-        }
+    .modal-content {
+      background: white;
+      width: 100%;
+      max-width: 600px;
+      border-radius: 16px 16px 0 0;
+      padding: 20px;
+      max-height: 85vh;
+      overflow-y: auto;
+    }
 
-        .cart-info {
-            font-size: 15px;
-            color: #333;
-        }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
 
-        .cart-info span {
-            font-weight: bold;
-            color: var(--primary-color);
-        }
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
 
-        .checkout-btn {
-            background: #25D366;
-            color: white;
-            border: none;
-            padding: 10px 22px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 15px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+    .form-group {
+      margin-bottom: 12px;
+    }
 
-        /* Modal Popup */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.65);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 15px;
-        }
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 4px;
+      font-size: 0.85rem;
+    }
 
-        .modal-content {
-            background: white;
-            border-radius: 16px;
-            padding: 20px;
-            width: 100%;
-            max-width: 450px;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 0.95rem;
+    }
 
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
-        }
+    /* Delivery Rates Notice Box */
+    .delivery-notice-box {
+      display: none;
+      background: #fff3cd;
+      border: 1px solid #ffeeba;
+      border-radius: 8px;
+      padding: 12px;
+      margin: 10px 0;
+      font-size: 0.85rem;
+      color: #856404;
+    }
 
-        .order-type-selector {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
+    .delivery-rates-table {
+      width: 100%;
+      margin-top: 6px;
+      border-collapse: collapse;
+    }
 
-        .type-btn {
-            flex: 1;
-            padding: 11px;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            background: white;
-            font-weight: bold;
-            cursor: pointer;
-            text-align: center;
-            font-size: 14px;
-        }
+    .delivery-rates-table td {
+      padding: 3px 0;
+      font-weight: 600;
+    }
 
-        .type-btn.active {
-            border-color: var(--primary-color);
-            color: var(--primary-color);
-            background: #fff5f5;
-        }
+    .ar-notice {
+      margin-top: 8px;
+      font-weight: 700;
+      text-align: right;
+      direction: rtl;
+      color: #d90429;
+    }
 
-        .form-group {
-            margin-bottom: 12px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 13px;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 11px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 14px;
-        }
-
-        .confirm-btn {
-            width: 100%;
-            background: #25D366;
-            color: white;
-            border: none;
-            padding: 13px;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: bold;
-            margin-top: 10px;
-            cursor: pointer;
-        }
-
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: 20px 10px;
-            font-size: 12px;
-            color: #666;
-            background: #f1f1f1;
-            margin-top: 30px;
-            border-top: 1px solid #e0e0e0;
-        }
-
-        .min-alert {
-            color: var(--primary-color);
-            font-size: 12px;
-            margin-top: 5px;
-            font-weight: bold;
-            display: none;
-        }
-    </style>
+    .warning-msg {
+      color: #d90429;
+      font-weight: bold;
+      font-size: 0.85rem;
+      margin-top: 8px;
+      display: none;
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Header Section -->
-    <div class="header">
-        <h1>TOP CHICKEN</h1>
-        <p>الدجاج المميز</p>
-        <div class="header-buttons">
-            <a href="tel:0554726280" class="header-btn">📞 0554726280</a>
-            <a href="https://maps.app.goo.gl/jyzeBRQ1bsFrCQgs9?g_st=aw" target="_blank" class="header-btn">📍 Location Map / الموقع</a>
-        </div>
+  <header>
+    <h1>TOP CHICKEN AL DIJAJ AL MUMAYAZ</h1>
+    <p>تاوب تشكن الدجاج المميز</p>
+  </header>
+
+  <div class="container">
+    <!-- Category Filter -->
+    <div class="categories">
+      <button class="category-btn active" onclick="filterCategory('all')">All</button>
+      <button class="category-btn" onclick="filterCategory('Broast')">Broast</button>
+      <button class="category-btn" onclick="filterCategory('Jumbo')">Jumbo / ساندويتش</button>
+      <button class="category-btn" onclick="filterCategory('Burger')">Burger</button>
+      <button class="category-btn" onclick="filterCategory('Drinks')">Drinks</button>
     </div>
 
-    <!-- Sticky 2-Line Category Grid with English & Arabic -->
-    <div class="category-container">
-        <div class="category-grid">
-            <!-- Row 1 -->
-            <button class="category-btn active" onclick="filterCategory('broast', event)">BROAST<br>بروستد</button>
-            <button class="category-btn" onclick="filterCategory('burger', event)">BURGER<br>برجر</button>
-            <button class="category-btn" onclick="filterCategory('tortilla', event)">TORTILLA<br>تورتيلا</button>
-            <button class="category-btn" onclick="filterCategory('pizza', event)">PIZZA<br>بيتزا</button>
-            <button class="category-btn" onclick="filterCategory('fries_meals', event)">FRIES / MEALS<br>بطاطس وجبات</button>
-            
-            <!-- Row 2 -->
-            <button class="category-btn" onclick="filterCategory('pepsi', event)">PEPSI<br>بيبسي</button>
-            <button class="category-btn" onclick="filterCategory('jumbo', event)">JUMBO<br>جامبو</button>
-            <button class="category-btn" onclick="filterCategory('juices', event)">JUICES<br>عصائر</button>
-            <button class="category-btn" onclick="filterCategory('extra', event)">EXTRA<br>إضافات</button>
-        </div>
+    <!-- Product List -->
+    <div id="product-container"></div>
+  </div>
+
+  <!-- Cart Footer -->
+  <div class="cart-bar">
+    <div>
+      <small>Total:</small>
+      <div style="font-size: 1.2rem; font-weight: 700;" id="cart-total">0.00 SAR</div>
     </div>
+    <button class="checkout-btn" onclick="openCheckout()">Checkout</button>
+  </div>
 
-    <!-- Menu Items -->
-    <div class="container" id="menu-container"></div>
+  <!-- Checkout Modal -->
+  <div class="modal" id="checkout-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Order Checkout</h3>
+        <button class="close-btn" onclick="closeCheckout()">&times;</button>
+      </div>
 
-    <!-- Interior Photo Gallery Slider (4 images: 2.jpg, 3.jpg, 4.jpg, 5.jpg) -->
-    <div class="container gallery-section">
-        <h3 style="font-size: 14px; margin-bottom: 8px; color: #555;">Restaurant Gallery / معرض الصور</h3>
-        <div class="slider-container">
-            <div class="slider-wrapper" id="sliderWrapper">
-                <div class="slide"><img src="2.jpg" alt="Interior 1"></div>
-                <div class="slide"><img src="3.jpg" alt="Interior 2"></div>
-                <div class="slide"><img src="4.jpg" alt="Interior 3"></div>
-                <div class="slide"><img src="5.jpg" alt="Interior 4"></div>
-            </div>
-        </div>
+      <div class="form-group">
+        <label>Name (اسم):</label>
+        <input type="text" id="cust-name" placeholder="Enter your name">
+      </div>
+
+      <div class="form-group">
+        <label>Address / Location (العنوان):</label>
+        <input type="text" id="cust-address" placeholder="Building, Street, District">
+      </div>
+
+      <div class="form-group">
+        <label>Order Type:</label>
+        <select id="order-type" onchange="toggleDeliveryNotice()">
+          <option value="Takeaway">Takeaway (استلام من الفرع)</option>
+          <option value="Delivery">Delivery (توصيل)</option>
+        </select>
+      </div>
+
+      <!-- Delivery Chart Box -->
+      <div class="delivery-notice-box" id="delivery-box">
+        <strong>Delivery Charges:</strong>
+        <table class="delivery-rates-table">
+          <tr><td>0 km - 3 km</td><td style="text-align: right;">4.00 SAR</td></tr>
+          <tr><td>3 km - 5 km</td><td style="text-align: right;">6.00 SAR</td></tr>
+          <tr><td>5 km - 8 km</td><td style="text-align: right;">10.00 SAR</td></tr>
+          <tr><td>8 km - 12 km</td><td style="text-align: right;">15.00 SAR</td></tr>
+        </table>
+        <div class="ar-notice">المبلغ الإجمالي لا يشمل رسوم التوصيل</div>
+      </div>
+
+      <div class="warning-msg" id="min-order-warning">
+        Minimum food order limit for delivery is 20 SAR (Drinks are excluded from this limit).
+      </div>
+
+      <button class="checkout-btn" style="width: 100%; margin-top: 15px;" onclick="sendToWhatsApp()">Send to WhatsApp</button>
     </div>
+  </div>
 
-    <!-- Footer -->
-    <div class="footer">
-        <p>© TOP CHICKEN. All rights reserved.</p>
-        <p style="margin-top: 5px; font-weight: bold; color: #333;">Developer: y2kmlpcpr0501163652</p>
-    </div>
+  <script>
+    // Complete Product Database from Bill & Requirements
+    const products = [
+      // Broast Category
+      { id: 1, nameEn: "Chicken Fillet Spicy", nameAr: "دجاج فيليه حراق", price: 20.00, category: "Broast", isDrink: false },
+      { id: 2, nameEn: "Chicken Fillet", nameAr: "فيليه دجاج", price: 20.00, category: "Broast", isDrink: false },
+      { id: 3, nameEn: "Broasted Chicken Normal", nameAr: "بروستد دجاج عادي", price: 18.00, category: "Broast", isDrink: false },
+      { id: 4, nameEn: "Broasted Chicken Spicy", nameAr: "بروستد دجاج حراق", price: 19.00, category: "Broast", isDrink: false },
 
-    <!-- Floating Cart Bar -->
-    <div class="cart-bar" id="cartBar" style="display: none;">
-        <div class="cart-info">
-            <span id="cartCount">0</span> Items | Total: <span id="cartTotal">0</span> SAR
-        </div>
-        <button class="checkout-btn" onclick="openCheckout()">
-            Checkout / الطلب 💬
-        </button>
-    </div>
+      // Jumbo / Sandwich Category
+      { id: 5, nameEn: "Jumbo Fillet Chicken", nameAr: "دجاج فيليه جامبو", price: 12.00, category: "Jumbo", isDrink: false },
+      { id: 6, nameEn: "Jumbo fish", nameAr: "جامبو سمك", price: 12.00, category: "Jumbo", isDrink: false },
 
-    <!-- Checkout Modal Popup -->
-    <div class="modal" id="checkoutModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Order Details / تفاصيل الطلب</h3>
-                <span style="cursor:pointer; font-size: 22px; font-weight: bold;" onclick="closeCheckout()">✕</span>
-            </div>
+      // Burger Category
+      { id: 7, nameEn: "Double Chicken burger big", nameAr: "دبل برجر دجاج كبير", price: 14.00, category: "Burger", isDrink: false },
+      { id: 8, nameEn: "Double Beef burger Big", nameAr: "دبل برجر لحم كبير", price: 15.00, category: "Burger", isDrink: false },
+      { id: 9, nameEn: "Chicken Burger", nameAr: "برجر دجاج", price: 8.00, category: "Burger", isDrink: false },
 
-            <!-- Pick up / Delivery Selection -->
-            <div class="order-type-selector">
-                <div class="type-btn active" id="btnPickup" onclick="setOrderType('pickup')">
-                    Pick up / استلام
-                </div>
-                <div class="type-btn" id="btnDelivery" onclick="setOrderType('delivery')">
-                    Delivery / توصيل
-                </div>
-            </div>
+      // Drinks Category
+      { id: 10, nameEn: "Pepsi", nameAr: "بيبسي", price: 2.50, category: "Drinks", isDrink: true },
+      { id: 11, nameEn: "Pepsi D", nameAr: "بيبسي دايت", price: 2.00, category: "Drinks", isDrink: true },
+      { id: 12, nameEn: "Citrus", nameAr: "الحمضيات", price: 2.50, category: "Drinks", isDrink: true },
+      { id: 13, nameEn: "7UP", nameAr: "سفن اب", price: 2.50, category: "Drinks", isDrink: true },
+      { id: 14, nameEn: "7UP D", nameAr: "سفن اب دايت", price: 2.00, category: "Drinks", isDrink: true },
+      { id: 15, nameEn: "Dew", nameAr: "ديو", price: 2.50, category: "Drinks", isDrink: true },
+      { id: 16, nameEn: "Mirinda Orange", nameAr: "میرندا برتقال", price: 2.50, category: "Drinks", isDrink: true },
+      { id: 17, nameEn: "Pepsi 1L", nameAr: "بيبسي 1 لتر", price: 5.00, category: "Drinks", isDrink: true },
+      { id: 18, nameEn: "7UP 1L", nameAr: "سفن اب 1 لتر", price: 5.00, category: "Drinks", isDrink: true },
+      { id: 19, nameEn: "Citrus 1L", nameAr: "الحمضيات 1 لتر", price: 5.00, category: "Drinks", isDrink: true },
+      { id: 20, nameEn: "Rabia Juice", nameAr: "عصير ربيع", price: 2.00, category: "Drinks", isDrink: true },
+      { id: 21, nameEn: "Water", nameAr: "ماء", price: 1.00, category: "Drinks", isDrink: true }
+    ];
 
-            <div class="min-alert" id="minAlert">
-                * Delivery requires minimum 20 SAR Food Order (Drinks excluded).<br>التوصيل يتطلب حد أدنى 20 ريال للمأكولات.
-            </div>
+    let cart = {};
 
-            <!-- Input Fields -->
-            <div class="form-group" style="margin-top: 10px;">
-                <label>Name / Room / Building No * (الاسم / رقم الغرفة)</label>
-                <input type="text" id="custName" class="form-control" placeholder="e.g. Abu Muhammad / Room 510">
-            </div>
+    function renderProducts(filter = 'all') {
+      const container = document.getElementById('product-container');
+      container.innerHTML = '';
 
-            <div class="form-group" id="addressGroup">
-                <label>Address / Landmark (العنوان / الموقع)</label>
-                <input type="text" id="custAddress" class="form-control" placeholder="e.g. Building 30, Gate 5">
-            </div>
+      const categoriesToDisplay = filter === 'all' 
+        ? ['Broast', 'Jumbo', 'Burger', 'Drinks'] 
+        : [filter];
 
-            <div class="form-group">
-                <label>Order Notes / ملاحظات</label>
-                <input type="text" id="custNotes" class="form-control" placeholder="e.g. Spicy, Extra Garlic">
-            </div>
+      categoriesToDisplay.forEach(cat => {
+        const catProducts = products.filter(p => p.category === cat);
+        if (catProducts.length > 0) {
+          const catHeader = document.createElement('div');
+          catHeader.className = 'category-title';
+          catHeader.innerText = cat === 'Jumbo' ? 'Jumbo / ساندويتش' : cat;
+          container.appendChild(catHeader);
 
-            <div style="background: #f9f9f9; padding: 10px; border-radius: 8px; margin-bottom: 10px; font-size: 13px;" id="orderSummary">
-            </div>
+          const grid = document.createElement('div');
+          grid.className = 'product-grid';
 
-            <button class="confirm-btn" onclick="sendToWhatsApp()">
-                Send Order to WhatsApp / ارسال الطلب 💬
-            </button>
-        </div>
-    </div>
-
-    <script>
-        const menuData = [
-            // ================= BROAST & CHICKEN (دجاج بروستد) =================
-            { id: 101, name: "Broasted Chicken Normal - دجاج بروستد عادي", cat: "broast", price: 20, isDrink: false, desc: "4 Pcs Chicken, Fries, Hummus, Kubus, Garlic / ٤ قطع دجاج، بطاطس، حمص، خبز، ثوم" },
-            { id: 102, name: "Broasted Chicken Spicy - دجاج بروستد حراق", cat: "broast", price: 20, isDrink: false, desc: "4 Pcs Chicken Spicy, Fries, Hummus, Kubus, Garlic / ٤ قطع دجاج حراق، بطاطس، حمص، خبز، ثوم" },
-            { id: 103, name: "Fish Broasted Normal - بروستد سمك عادي", cat: "broast", price: 19, isDrink: false, desc: "Fish fillet with fries & sauce / فيليه سمك مع بطاطس وثوم" },
-            { id: 104, name: "Fish Broasted Spicy - بروستد سمك حراق", cat: "broast", price: 19, isDrink: false, desc: "Spicy fish fillet with fries & sauce / فيليه سمك حراق مع بطاطس وثوم" },
-            { id: 105, name: "Chicken Nuggets Normal - نغت دجاج عادي", cat: "broast", price: 20, isDrink: false, desc: "13 Pcs with fries & bread / ١٣ قطعة مع البطاطس والخبز" },
-            { id: 106, name: "Chicken Nuggets Spicy - نغت دجاج حراق", cat: "broast", price: 20, isDrink: false, desc: "13 Pcs spicy with fries & bread / ١٣ قطعة حراق مع البطاطس والخبز" },
-            { id: 107, name: "Shrimp Broast Normal - بروست روبيان عادي", cat: "broast", price: 22, isDrink: false, desc: "13-17 Pcs with fries & sauce / ١٣-١٧ قطعة روبيان مع البطاطس والثوم" },
-            { id: 108, name: "Shrimp Broast Spicy - بروست روبيان حراق", cat: "broast", price: 22, isDrink: false, desc: "13-17 Pcs spicy shrimp with fries & sauce / ١٣-١٧ قطعة روبيان حراق مع البطاطس والثوم" },
-            { id: 109, name: "Chicken Strips Normal - ستربس الدجاج عادي", cat: "broast", price: 20, isDrink: false, desc: "6 Pcs with fries & bread / ٦ قطع مع البطاطس والخبز" },
-            { id: 110, name: "Chicken Strips Spicy - ستربس الدجاج حراق", cat: "broast", price: 20, isDrink: false, desc: "6 Pcs spicy with fries & bread / ٦ قطع حراق مع البطاطس والخبز" },
-            { id: 111, name: "Finger Chicken Normal - مسحب دجاج عادي", cat: "broast", price: 20, isDrink: false, desc: "10 Pcs with fries & bread / ١٠ قطع مسحب دجاج عادي" },
-            { id: 112, name: "Finger Chicken Spicy - مسحب دجاج حراق", cat: "broast", price: 20, isDrink: false, desc: "10 Pcs spicy with fries & bread / ١٠ قطع مسحب دجاج حراق" },
-            { id: 113, name: "Chicken Chees Stick - اصابع دجاج بالجبن", cat: "broast", price: 20, isDrink: false, desc: "9 Pcs cheese chicken sticks / ٩ قطع اصابع دجاج بالجبن" },
-            { id: 114, name: "Beef Kabab Plate - صحن كباب لحم", cat: "broast", price: 20, isDrink: false, desc: "6 Pcs Kabab with fries & bread / ٦ قطع كباب لحم مع البطاطس" },
-            { id: 115, name: "Finger Fish - اصابع سمك", cat: "broast", price: 20, isDrink: false, desc: "9 Pcs Fish sticks / ٩ قطع اصابع سمك" },
-
-            // ================= PIZZA (بيتزا) =================
-            { id: 201, name: "Dynamite Chicken Pizza - بيتزا ديناميت الدجاج", cat: "pizza", price: 22, isDrink: false, desc: "Special Dynamite Sauce Chicken Pizza / بيتزا ديناميت دجاج المميزة" },
-            { id: 202, name: "Dynamite Beef Pizza - بيتزا ديناميت للحوم", cat: "pizza", price: 23, isDrink: false, desc: "Special Dynamite Sauce Beef Pizza / بيتزا ديناميت لحم المميزة" },
-            { id: 203, name: "Chicken Pizza - بيتزا دجاج", cat: "pizza", price: 20, isDrink: false, desc: "Original Large Size / حجم كبير" },
-            { id: 204, name: "Pepperoni Pizza - بيتزا ببروني", cat: "pizza", price: 19, isDrink: false, desc: "Original Large Size / حجم كبير" },
-            { id: 205, name: "Vegetable Pizza - بيتزا خضار", cat: "pizza", price: 15, isDrink: false, desc: "Original Large Size / حجم كبير" },
-            { id: 206, name: "Ranch Pizza - بيتزا رانش", cat: "pizza", price: 21, isDrink: false, desc: "Original Large Size / حجم كبير" },
-            { id: 207, name: "4 Season Pizza - بيتزا ٤ سيسبون", cat: "pizza", price: 23, isDrink: false, desc: "Original Large Size / حجم كبير" },
-            { id: 208, name: "BBQ Chicken Pizza - بيتزا دجاج باربيكيو", cat: "pizza", price: 22, isDrink: false, desc: "Original Large Size / حجم كبير" },
-            { id: 209, name: "Mixed Pizza - بيتزا مشكلة", cat: "pizza", price: 19, isDrink: false, desc: "Original Large Size / حجم كبير" },
-            { id: 210, name: "Margherita Pizza - بيتزا مارجريتا", cat: "pizza", price: 18, isDrink: false, desc: "Original Large Size / حجم كبير" },
-            { id: 211, name: "Hotdog Pizza - بيتزا نقانق", cat: "pizza", price: 18, isDrink: false, desc: "Original Large Size / حجم كبير" },
-
-            // ================= TORTILLA (تورتيلا) =================
-            { id: 301, name: "Chicken Tortilla Normal - دجاج تورتيلا عادي", cat: "tortilla", price: 13, isDrink: false, desc: "Chicken Wrap Normal / تورتيلا دجاج عادي" },
-            { id: 302, name: "Chicken Tortilla Spicy - دجاج تورتيلا حراق", cat: "tortilla", price: 13, isDrink: false, desc: "Chicken Wrap Spicy / تورتيلا دجاج حراق" },
-            { id: 303, name: "Tortilla Kabab Chicken - تورتيلا كباب دجاج", cat: "tortilla", price: 13, isDrink: false, desc: "Kabab Wrap / تورتيلا كباب دجاج" },
-            { id: 304, name: "Tortilla Kabab Beef - تورتيلا كباب لحم", cat: "tortilla", price: 13, isDrink: false, desc: "Kabab Wrap / تورتيلا كباب لحم" },
-            { id: 305, name: "Shrimp Tortilla Normal - تورتيلا روبيان عادي", cat: "tortilla", price: 13, isDrink: false, desc: "Shrimp Wrap Normal / تورتيلا روبيان عادي" },
-            { id: 306, name: "Shrimp Tortilla Spicy - تورتيلا روبيان حراق", cat: "tortilla", price: 13, isDrink: false, desc: "Shrimp Wrap Spicy / تورتيلا روبيان حراق" },
-            { id: 307, name: "Tortilla Fish - تورتيلا سمك", cat: "tortilla", price: 13, isDrink: false, desc: "Fish Wrap / تورتيلا سمك" },
-            { id: 308, name: "Tikka Tortilla - تكه تورتيلا", cat: "tortilla", price: 13, isDrink: false, desc: "Tikka Wrap / تورتيلا تكه" },
-            { id: 309, name: "Zinger Tortilla Normal - زنجر تورتيلا عادي", cat: "tortilla", price: 13, isDrink: false, desc: "Zinger Wrap Normal / زنجر تورتيلا عادي" },
-            { id: 310, name: "Zinger Tortilla Spicy - زنجر تورتيلا حراق", cat: "tortilla", price: 13, isDrink: false, desc: "Zinger Wrap Spicy / زنجر تورتيلا حراق" },
-
-            // ================= BURGER (برجر) =================
-            { id: 401, name: "Beef Burger Big - لحم برجر كبير", cat: "burger", price: 9, isDrink: false, desc: "Fresh Beef Burger Big / برجر لحم طازج كبير" },
-            { id: 402, name: "Beef Burger Small - لحم برجر صغير", cat: "burger", price: 8, isDrink: false, desc: "Fresh Beef Burger Small / برجر لحم صغير" },
-            { id: 403, name: "Chicken Burger Big - دجاج برجر كبير", cat: "burger", price: 8, isDrink: false, desc: "Chicken Burger Big / برجر دجاج كبير" },
-            { id: 404, name: "Chicken Burger Small - دجاج برجر صغير", cat: "burger", price: 7, isDrink: false, desc: "Chicken Burger Small / برجر دجاج صغير" },
-            { id: 405, name: "Zinger Burger Normal - زنجر برجر عادي", cat: "burger", price: 10, isDrink: false, desc: "Zinger Burger Normal / زنجر برجر عادي" },
-            { id: 406, name: "Zinger Burger Spicy - زنجر برجر حراق", cat: "burger", price: 10, isDrink: false, desc: "Zinger Burger Spicy / زنجر برجر حراق" },
-            { id: 407, name: "Chicken Grilled Burger - برجر دجاج الصاح", cat: "burger", price: 8, isDrink: false, desc: "Grilled Chicken Burger / برجر دجاج مشوي" },
-
-            // ================= JUMBO (جامبو) =================
-            { id: 501, name: "Kudu Jumbo Normal - جامبو كودو عادي", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Kudu Sandwich / ساندوتش جامبو كودو" },
-            { id: 502, name: "Kudu Jumbo Spicy - جامبو كودو حراق", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Kudu Sandwich Spicy / ساندوتش جامبو كودو حراق" },
-            { id: 503, name: "Shrimp Jumbo Normal - جامبو روبيان عادي", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Shrimp Sandwich / ساندوتش جامبو روبيان" },
-            { id: 504, name: "Shrimp Jumbo Spicy - جامبو روبيان حراق", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Shrimp Sandwich Spicy / ساندوتش جامبو روبيان حراق" },
-            { id: 505, name: "Zinger Jumbo Normal - جامبو زنجر عادي", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Zinger Sandwich / ساندوتش جامبو زنجر" },
-            { id: 506, name: "Zinger Jumbo Spicy - جامبو زنجر حراق", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Zinger Sandwich Spicy / ساندوتش جامبو زنجر حراق" },
-            { id: 507, name: "Tikka Jumbo - جامبو تكه", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Tikka Sandwich / ساندوتش جامبو تكه" },
-            { id: 508, name: "Kabab Beef Jumbo - جامبو كباب لحم", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Beef Kabab / ساندوتش جامبو كباب لحم" },
-
-            // ================= KIDS MEAL (وجبات اطفال) =================
-            { id: 601, name: "Kids Meal Nuggets - وجبة اطفال نغت", cat: "fries_meals", price: 13, isDrink: false, desc: "Nuggets Kids Meal / وجبة اطفال نغت" },
-            { id: 602, name: "Kids Meal Popcorn/Burger - وجبة اطفال بوب كورن/برجر", cat: "fries_meals", price: 12, isDrink: false, desc: "Kids Meal with toy / وجبة اطفال مع لعبة" },
-
-            // ================= SIDE ORDERS & EXTRAS (وجبة إضافية) =================
-            { id: 701, name: "Onion Rings - حلقات بصل", cat: "extra", price: 6, isDrink: false, desc: "Onion Rings / حلقات بصل مقرمشة" },
-            { id: 702, name: "Popcorn Chicken - بوب كورن", cat: "extra", price: 6, isDrink: false, desc: "Chicken Popcorn / بوب كورن دجاج" },
-            { id: 703, name: "Baby Nuggets - بيبي نغت", cat: "extra", price: 7, isDrink: false, desc: "Baby Nuggets / بيبي نغت" },
-            { id: 704, name: "Fries Big - بطاطس كبير", cat: "extra", price: 10, isDrink: false, desc: "Large Potato Fries / بطاطس مقلية كبير" },
-            { id: 705, name: "Fries Medium - بطاطس وسط", cat: "extra", price: 6, isDrink: false, desc: "Medium Potato Fries / بطاطس مقلية وسط" },
-            { id: 706, name: "Fries Small - بطاطس صغير", cat: "extra", price: 4, isDrink: false, desc: "Small Potato Fries / بطاطس مقلية صغير" },
-            { id: 707, name: "Fries with Meal Deal - بطاطس مع وجبة", cat: "extra", price: 6, isDrink: false, desc: "Fries & Pepsi Combo / بطاطس مع بيبسي" },
-            { id: 708, name: "Coleslaw Salad - سلطة ملفوف", cat: "extra", price: 3, isDrink: false, desc: "Coleslaw Salad / سلطة ملفوف طازجة" },
-            { id: 709, name: "Cocktail Sauce - صوص كوكتيل", cat: "extra", price: 1, isDrink: false, desc: "Cocktail Dip / صوص كوكتيل" },
-            { id: 710, name: "Garlic Sauce - ثوم", cat: "extra", price: 1, isDrink: false, desc: "Garlic Dip / صلصة ثوم" },
-            { id: 711, name: "Spicy Garlic Sauce - ثوم حراق", cat: "extra", price: 1, isDrink: false, desc: "Spicy Garlic Dip / صلصة ثوم حراق" },
-            { id: 712, name: "Cheese Sauce - صوص جبنة", cat: "extra", price: 2, isDrink: false, desc: "Melted Cheese Sauce / صوص جبنة" },
-            { id: 713, name: "Dynamite Sauce - صوص ديناميت", cat: "extra", price: 2, isDrink: false, desc: "Dynamite Sauce Dip / صوص ديناميت" },
-            { id: 714, name: "Hummus - حمص", cat: "extra", price: 3, isDrink: false, desc: "Fresh Hummus Dip / حمص طازج" },
-
-            // ================= FRESH JUICES & DRINKS (عصائر طازجة) =================
-            { id: 801, name: "Cocktail Juice Big - عصير كوكتيل كبير", cat: "juices", price: 7, isDrink: true, desc: "Fresh Juice Big / عصير طازج كبير" },
-            { id: 802, name: "Cocktail Juice Small - عصير كوكتيل صغير", cat: "juices", price: 5, isDrink: true, desc: "Fresh Juice Small / عصير طازج صغير" },
-            { id: 803, name: "Cocktail Juice Gallon - عصير كوكتيل جالون", cat: "juices", price: 21, isDrink: true, desc: "Fresh Juice Gallon / عصير طازج جالون" },
-
-            { id: 804, name: "Mango Juice Big - عصير مانجو كبير", cat: "juices", price: 7, isDrink: true, desc: "Fresh Juice Big / عصير طازج كبير" },
-            { id: 805, name: "Mango Juice Small - عصير مانجو صغير", cat: "juices", price: 5, isDrink: true, desc: "Fresh Juice Small / عصير طازج صغير" },
-            { id: 806, name: "Mango Juice Gallon - عصير مانجو جالون", cat: "juices", price: 21, isDrink: true, desc: "Fresh Juice Gallon / عصير طازج جالون" },
-
-            { id: 807, name: "Orange Fresh Big - برتقال كبس كبير", cat: "juices", price: 9, isDrink: true, desc: "Fresh Orange Big / عصير برتقال كبير" },
-            { id: 808, name: "Orange Fresh Small - برتقال كبس صغير", cat: "juices", price: 6, isDrink: true, desc: "Fresh Orange Small / عصير برتقال صغير" },
-            { id: 809, name: "Orange Fresh Gallon - برتقال كبس جالون", cat: "juices", price: 27, isDrink: true, desc: "Fresh Orange Gallon / عصير برتقال جالون" },
-
-            { id: 810, name: "Avocado Big - أفوكادو كبير", cat: "juices", price: 9, isDrink: true, desc: "Fresh Avocado Big / أفوكادو كبير" },
-            { id: 811, name: "Avocado Small - أفوكادو صغير", cat: "juices", price: 6, isDrink: true, desc: "Fresh Avocado Small / أفوكادو صغير" },
-            { id: 812, name: "Avocado Gallon - أفوكادو جالون", cat: "juices", price: 27, isDrink: true, desc: "Fresh Avocado Gallon / أفوكادو جالون" },
-
-            { id: 813, name: "Pepsi Can - بيبسي", cat: "pepsi", price: 3, isDrink: true, desc: "Soft Drink / مشروب غازي" }
-        ];
-
-        let cart = {};
-        let currentOrderType = 'pickup';
-
-        function renderMenu(filter = 'broast') {
-            const container = document.getElementById('menu-container');
-            container.innerHTML = '';
-
-            const filtered = menuData.filter(i => i.cat === filter);
-
-            if(filtered.length === 0) {
-                container.innerHTML = `<div style="text-align:center; padding:30px; color:#777;">No items in this category yet.</div>`;
-                return;
-            }
-
-            filtered.forEach(item => {
-                const qty = cart[item.id] ? cart[item.id].qty : 0;
-                container.innerHTML += `
-                    <div class="menu-item">
-                        <div class="item-info">
-                            <h3>${item.name}</h3>
-                            <p>${item.desc}</p>
-                            <div class="item-price">${item.price} SAR</div>
-                        </div>
-                        <div>
-                            ${qty === 0 ? 
-                                `<button class="add-btn" onclick="addToCart(${item.id})">+ Add / إضافة</button>` :
-                                `<div style="display:flex; align-items:center; gap:8px;">
-                                    <button class="add-btn" style="padding:4px 10px;" onclick="updateQty(${item.id}, -1)">-</button>
-                                    <b>${qty}</b>
-                                    <button class="add-btn" style="padding:4px 10px;" onclick="updateQty(${item.id}, 1)">+</button>
-                                 </div>`
-                            }
-                        </div>
-                    </div>
-                `;
-            });
-        }
-
-        function filterCategory(cat, event) {
-            document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
-            if(event) {
-                event.target.closest('.category-btn').classList.add('active');
-            }
-            renderMenu(cat);
-        }
-
-        function addToCart(id) {
-            const item = menuData.find(i => i.id === id);
-            cart[id] = { ...item, qty: 1 };
-            updateCartBar();
-            const activeBtn = document.querySelector('.category-btn.active');
-            const activeCat = activeBtn.getAttribute('onclick').split("'")[1];
-            renderMenu(activeCat);
-        }
-
-        function updateQty(id, change) {
-            if (cart[id]) {
-                cart[id].qty += change;
-                if (cart[id].qty <= 0) delete cart[id];
-            }
-            updateCartBar();
-            const activeBtn = document.querySelector('.category-btn.active');
-            const activeCat = activeBtn.getAttribute('onclick').split("'")[1];
-            renderMenu(activeCat);
-        }
-
-        function updateCartBar() {
-            let count = 0;
-            let total = 0;
-            Object.values(cart).forEach(item => {
-                count += item.qty;
-                total += (item.qty * item.price);
-            });
-
-            document.getElementById('cartCount').innerText = count;
-            document.getElementById('cartTotal').innerText = total;
-            document.getElementById('cartBar').style.display = count > 0 ? 'flex' : 'none';
-        }
-
-        function setOrderType(type) {
-            currentOrderType = type;
-            document.getElementById('btnPickup').classList.toggle('active', type === 'pickup');
-            document.getElementById('btnDelivery').classList.toggle('active', type === 'delivery');
-            checkDeliveryMin();
-        }
-
-        function checkDeliveryMin() {
-            let foodTotal = 0;
-            Object.values(cart).forEach(item => {
-                if (!item.isDrink) {
-                    foodTotal += (item.qty * item.price);
+          catProducts.forEach(p => {
+            const qty = cart[p.id] || 0;
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `
+              <div class="product-info">
+                <span class="product-title-ar">${p.nameAr}</span>
+                <div class="product-title-en">${p.nameEn}</div>
+                <div class="product-price">${p.price.toFixed(2)} SAR</div>
+              </div>
+              <div>
+                ${qty === 0 ? 
+                  `<button class="add-btn" onclick="updateQty(${p.id}, 1)">Add</button>` :
+                  `<div class="qty-controls">
+                    <button class="qty-btn" onclick="updateQty(${p.id}, -1)">-</button>
+                    <span class="qty-count">${qty}</span>
+                    <button class="qty-btn" onclick="updateQty(${p.id}, 1)">+</button>
+                  </div>`
                 }
-            });
-
-            const alertBox = document.getElementById('minAlert');
-            if (currentOrderType === 'delivery' && foodTotal < 20) {
-                alertBox.style.display = 'block';
-                return false;
-            } else {
-                alertBox.style.display = 'none';
-                return true;
-            }
+              </div>
+            `;
+            grid.appendChild(card);
+          });
+          container.appendChild(grid);
         }
+      });
+    }
 
-        function openCheckout() {
-            document.getElementById('checkoutModal').style.display = 'flex';
-            let summaryHTML = '<b>Order Summary / ملخص الطلب:</b><br>';
-            Object.values(cart).forEach(i => {
-                summaryHTML += `<div>• ${i.name} x ${i.qty} = ${i.qty * i.price} SAR</div>`;
-            });
-            document.getElementById('orderSummary').innerHTML = summaryHTML;
-            checkDeliveryMin();
+    function filterCategory(cat) {
+      document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+      renderProducts(cat);
+    }
+
+    function updateQty(id, change) {
+      const currentQty = cart[id] || 0;
+      const newQty = currentQty + change;
+      if (newQty <= 0) {
+        delete cart[id];
+      } else {
+        cart[id] = newQty;
+      }
+      renderProducts(document.querySelector('.category-btn.active').innerText.split(' ')[0]);
+      updateCartTotal();
+    }
+
+    function updateCartTotal() {
+      let total = 0;
+      for (let id in cart) {
+        const prod = products.find(p => p.id == id);
+        total += prod.price * cart[id];
+      }
+      document.getElementById('cart-total').innerText = total.toFixed(2) + ' SAR';
+    }
+
+    function openCheckout() {
+      if (Object.keys(cart).length === 0) {
+        alert("Please add items to cart first!");
+        return;
+      }
+      document.getElementById('checkout-modal').style.display = 'flex';
+      toggleDeliveryNotice();
+    }
+
+    function closeCheckout() {
+      document.getElementById('checkout-modal').style.display = 'none';
+    }
+
+    function toggleDeliveryNotice() {
+      const type = document.getElementById('order-type').value;
+      const noticeBox = document.getElementById('delivery-box');
+      if (type === 'Delivery') {
+        noticeBox.style.display = 'block';
+      } else {
+        noticeBox.style.display = 'none';
+        document.getElementById('min-order-warning').style.display = 'none';
+      }
+    }
+
+    function sendToWhatsApp() {
+      const name = document.getElementById('cust-name').value.trim();
+      const address = document.getElementById('cust-address').value.trim();
+      const orderType = document.getElementById('order-type').value;
+
+      if (!name || !address) {
+        alert("Please enter Name and Address!");
+        return;
+      }
+
+      let foodTotal = 0;
+      let grandTotal = 0;
+      let itemDetails = "";
+
+      for (let id in cart) {
+        const prod = products.find(p => p.id == id);
+        const itemSum = prod.price * cart[id];
+        grandTotal += itemSum;
+        if (!prod.isDrink) {
+          foodTotal += itemSum;
         }
+        itemDetails += `• ${prod.nameEn} (${prod.nameAr}) x${cart[id]} = ${itemSum.toFixed(2)} SAR\n`;
+      }
 
-        function closeCheckout() {
-            document.getElementById('checkoutModal').style.display = 'none';
-        }
+      // 20 SAR Food Limit Validation for Delivery
+      if (orderType === 'Delivery' && foodTotal < 20.00) {
+        document.getElementById('min-order-warning').style.display = 'block';
+        return;
+      } else {
+        document.getElementById('min-order-warning').style.display = 'none';
+      }
 
-        function sendToWhatsApp() {
-            const name = document.getElementById('custName').value.trim();
-            const address = document.getElementById('custAddress').value.trim();
-            const notes = document.getElementById('custNotes').value.trim();
+      let message = `*NEW ORDER - TOP CHICKEN*\n`;
+      message += `-------------------------\n`;
+      message += `*Customer:* ${name}\n`;
+      message += `*Address:* ${address}\n`;
+      message += `*Order Type:* ${orderType}\n\n`;
+      message += `*Items Ordered:*\n${itemDetails}\n`;
+      message += `*Gross Total:* ${grandTotal.toFixed(2)} SAR\n`;
 
-            if (!name) {
-                alert('Please enter your Name or Room Number.');
-                return;
-            }
+      if (orderType === 'Delivery') {
+        message += `\n*Note:* المبلغ الإجمالي لا يشمل رسوم التوصيل (Delivery charge will be added based on location distance).`;
+      }
 
-            if (!checkDeliveryMin()) {
-                alert('Delivery order requires minimum 20 SAR Food items.');
-                return;
-            }
+      const whatsappNumber = "966500000000"; // Replace with your WhatsApp Number
+      const encodedMsg = encodeURIComponent(message);
+      window.open(`https://wa.me/${whatsappNumber}?text=${encodedMsg}`, '_blank');
+    }
 
-            let text = `*NEW ORDER - TOP CHICKEN*\n`;
-            text += `Type: *${currentOrderType.toUpperCase()}*\n`;
-            text += `Name/Room: ${name}\n`;
-            if (address) text += `Address: ${address}\n`;
-            if (notes) text += `Notes: ${notes}\n`;
-            text += `------------------------\n`;
-
-            let total = 0;
-            Object.values(cart).forEach(i => {
-                const sub = i.qty * i.price;
-                total += sub;
-                text += `• ${i.name} x${i.qty} = ${sub} SAR\n`;
-            });
-
-            text += `------------------------\n`;
-            text += `*TOTAL AMOUNT: ${total} SAR*`;
-
-            const phone = "966554726280";
-            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank');
-        }
-
-        // Image Gallery Auto-Slider
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        setInterval(() => {
-            if (slides.length > 0) {
-                currentSlide = (currentSlide + 1) % slides.length;
-                document.getElementById('sliderWrapper').style.transform = `translateX(-${currentSlide * 100}%)`;
-            }
-        }, 3000);
-
-        // Initial Load
-        renderMenu('broast');
-    </script>
+    // Initial Render
+    renderProducts();
+  </script>
 </body>
 </html>
