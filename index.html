@@ -1,1227 +1,821 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TOP CHICKEN - تاوب تشيكن</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>TOP CHICKEN</title>
     <style>
         :root {
-            --primary-red: #D32F2F;
-            --dark-red: #9A0007;
-            --accent-yellow: #FFC107;
-            --bg-light: #F8F9FA;
-            --card-bg: #FFFFFF;
-            --text-dark: #212121;
-            --text-muted: #666666;
-            --border-color: #E0E0E0;
-            --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
-            --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
-            --radius-md: 12px;
-            --radius-lg: 16px;
+            --primary-color: #d32f2f;
+            --secondary-color: #f57c00;
+            --accent-yellow: #ffeb3b;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #222222;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Tajawal', sans-serif;
-            -webkit-tap-highlight-color: transparent;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background-color: var(--bg-light);
-            color: var(--text-dark);
+            background-color: var(--bg-color);
+            color: var(--text-color);
             padding-bottom: 90px;
         }
 
-        header {
-            background: linear-gradient(135deg, var(--dark-red), var(--primary-red));
+        /* Header Section with main shop photo (1.jpg) */
+        .header {
+            position: relative;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url('1.jpg') center/cover no-repeat;
             color: white;
-            padding: 20px 16px;
+            padding: 30px 15px 25px 15px;
             text-align: center;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .header h1, .header p {
+            background: rgba(0, 0, 0, 0.55);
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 10px;
+            margin-bottom: 6px;
+            backdrop-filter: blur(2px);
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--accent-yellow);
+            letter-spacing: 1px;
+        }
+
+        .header p {
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .header-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .header-btn {
+            background-color: rgba(211, 47, 47, 0.9);
+            color: white;
+            border: 1px solid var(--accent-yellow);
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        /* Sticky 2-Line Category Navigation Grid */
+        .category-container {
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: var(--shadow-md);
-        }
-
-        .header-title {
-            font-size: 24px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-        }
-
-        .header-subtitle {
-            font-size: 13px;
-            opacity: 0.9;
-            margin-top: 4px;
-        }
-
-        .categories-wrapper {
             background: white;
-            position: sticky;
-            top: 68px;
-            z-index: 99;
-            box-shadow: var(--shadow-sm);
-            border-bottom: 1px solid var(--border-color);
+            padding: 10px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
         }
 
-        .categories-nav {
-            display: flex;
-            overflow-x: auto;
-            white-space: nowrap;
-            padding: 12px 16px;
+        .category-grid {
+            display: grid;
+            grid-template-rows: repeat(2, auto);
+            grid-auto-flow: column;
+            grid-auto-columns: minmax(130px, max-content);
             gap: 8px;
+            overflow-x: auto;
             scrollbar-width: none;
         }
 
-        .categories-nav::-webkit-scrollbar {
+        .category-grid::-webkit-scrollbar {
             display: none;
         }
 
-        .cat-btn {
-            background: #F0F0F0;
-            border: none;
-            outline: none;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--text-dark);
+        .category-btn {
+            background: #f1f3f5;
+            border: 1px solid #e0e0e0;
+            padding: 9px 12px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: bold;
+            white-space: nowrap;
             cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .cat-btn.active {
-            background: var(--primary-red);
-            color: white;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 16px;
-        }
-
-        .category-section {
-            display: none;
-        }
-
-        .category-section.active {
-            display: block;
-        }
-
-        .category-title {
-            font-size: 18px;
-            font-weight: 800;
-            margin-bottom: 12px;
-            color: var(--dark-red);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border-right: 4px solid var(--primary-red);
-            padding-right: 8px;
-        }
-
-        .items-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
-        }
-
-        .item-card {
-            background: var(--card-bg);
-            border-radius: var(--radius-md);
-            padding: 14px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--border-color);
-        }
-
-        .item-details {
-            flex: 1;
-            padding-left: 12px;
-        }
-
-        .item-title-ar {
-            font-size: 15px;
-            font-weight: 700;
-            color: var(--text-dark);
+            text-align: center;
+            color: #333;
             line-height: 1.3;
         }
 
-        .item-title-en {
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-top: 2px;
-            font-weight: 500;
+        .category-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
         }
 
-        .item-desc {
-            font-size: 11px;
-            color: #777;
-            margin-top: 4px;
+        /* Container Layout */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Menu Item Card */
+        .menu-item {
+            background: var(--card-bg);
+            border-radius: 14px;
+            padding: 14px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+            border: 1px solid #f0f0f0;
+        }
+
+        .item-info h3 {
+            font-size: 16px;
+            color: #111;
+            margin-bottom: 4px;
+        }
+
+        .item-info p {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 6px;
         }
 
         .item-price {
-            font-size: 16px;
-            font-weight: 800;
-            color: var(--primary-red);
-            margin-top: 6px;
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 15px;
         }
 
         .add-btn {
-            background: var(--primary-red);
+            background-color: var(--primary-color);
             color: white;
             border: none;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
+            padding: 7px 18px;
+            border-radius: 8px;
+            font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 2px 6px rgba(211, 47, 47, 0.3);
-            transition: transform 0.1s;
         }
 
-        .add-btn:active {
-            transform: scale(0.9);
+        /* Gallery Slider */
+        .gallery-section {
+            margin: 25px 0 10px 0;
         }
 
-        .footer-cart {
+        .slider-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 14px;
+            height: 220px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .slider-wrapper {
+            display: flex;
+            transition: transform 0.4s ease-in-out;
+            height: 100%;
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 100%;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Bottom Floating Cart Bar */
+        .cart-bar {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
             background: white;
             padding: 12px 20px;
-            box-shadow: 0 -4px 16px rgba(0,0,0,0.1);
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.12);
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            border-top: 1px solid var(--border-color);
         }
 
         .cart-info {
-            display: flex;
-            flex-direction: column;
+            font-size: 15px;
+            color: #333;
         }
 
-        .cart-count {
-            font-size: 12px;
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-
-        .cart-total {
-            font-size: 18px;
-            font-weight: 800;
-            color: var(--dark-red);
+        .cart-info span {
+            font-weight: bold;
+            color: var(--primary-color);
         }
 
         .checkout-btn {
-            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+            background: #25D366;
             color: white;
             border: none;
-            padding: 10px 24px;
-            border-radius: 25px;
-            font-weight: 700;
+            padding: 10px 22px;
+            border-radius: 20px;
+            font-weight: bold;
             font-size: 15px;
             cursor: pointer;
-            box-shadow: 0 3px 10px rgba(154, 0, 7, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Modal Popup */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.65);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            width: 100%;
+            max-width: 450px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .order-type-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .type-btn {
+            flex: 1;
+            padding: 11px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            background: white;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .type-btn.active {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            background: #fff5f5;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .confirm-btn {
+            width: 100%;
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 13px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px 10px;
+            font-size: 12px;
+            color: #666;
+            background: #f1f1f1;
+            margin-top: 30px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .min-alert {
+            color: var(--primary-color);
+            font-size: 12px;
+            margin-top: 5px;
+            font-weight: bold;
+            display: none;
+        }
+
+        /* Delivery Notice Box */
+        .delivery-rates-box {
+            display: none;
+            background: #fff8e1;
+            border: 1px solid #ffe082;
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 12px;
+            font-size: 12px;
+            color: #5d4037;
+        }
+
+        .delivery-rates-table {
+            width: 100%;
+            margin-top: 5px;
+            border-collapse: collapse;
+        }
+
+        .delivery-rates-table td {
+            padding: 3px 0;
+            font-weight: bold;
+        }
+
+        .delivery-ar-msg {
+            margin-top: 8px;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-align: right;
+            direction: rtl;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="header-title">TOP CHICKEN | تاوب تشيكن</div>
-        <div class="header-subtitle">قائمة الطعام - Main Menu</div>
-    </header>
-
-    <div class="categories-wrapper">
-        <div class="categories-nav">
-            <button class="cat-btn active" onclick="switchCategory('broast')">بروستد (Broast)</button>
-            <button class="cat-btn" onclick="switchCategory('tortilla')">تورتيلا (Tortilla)</button>
-            <button class="cat-btn" onclick="switchCategory('jumbo')">جامبو (Jumbo)</button>
-            <button class="cat-btn" onclick="switchCategory('burger')">برجر (Burger)</button>
-            <button class="cat-btn" onclick="switchCategory('pizza')">بيتزا (Pizza)</button>
-            <button class="cat-btn" onclick="switchCategory('fries')">بطاطس وجبات (Fries)</button>
-            <button class="cat-btn" onclick="switchCategory('juices')">عصيرات طازجة (Juices)</button>
-            <button class="cat-btn" onclick="switchCategory('extra')">إضافات (Extra)</button>
+    <!-- Header Section -->
+    <div class="header">
+        <h1>TOP CHICKEN</h1>
+        <p>الدجاج المميز</p>
+        <div class="header-buttons">
+            <a href="tel:0554726280" class="header-btn">📞 0554726280</a>
+            <a href="https://maps.app.goo.gl/jyzeBRQ1bsFrCQgs9?g_st=aw" target="_blank" class="header-btn">📍 Location Map / الموقع</a>
         </div>
     </div>
 
-    <div class="container">
-
-        <!-- 1. BROAST CATEGORY -->
-        <div id="broast" class="category-section active">
-            <div class="category-title"><i class="fa-solid fa-drumstick-bite"></i> بروستد - Broast</div>
-            <div class="items-grid">
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">دجاج بروستد حراق</div>
-                        <div class="item-title-en">Broasted Chicken Spicy</div>
-                        <div class="item-price">20 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">دجاج بروستد عادي</div>
-                        <div class="item-title-en">Broasted Chicken Normal</div>
-                        <div class="item-price">20 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">بروستد سمك حراق</div>
-                        <div class="item-title-en">Fish Broasted Spicy</div>
-                        <div class="item-price">22 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">بروستد سمك عادي</div>
-                        <div class="item-title-en">Fish Broasted Normal</div>
-                        <div class="item-price">22 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">بروست روبيان حراق</div>
-                        <div class="item-title-en">Shrimp Broast Spicy</div>
-                        <div class="item-price">25 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">بروست روبيان عادي</div>
-                        <div class="item-title-en">Shrimp Broast Normal</div>
-                        <div class="item-price">25 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">نغت دجاج عادي</div>
-                        <div class="item-title-en">Chicken Nuggets Normal</div>
-                        <div class="item-price">16 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">ستربس الدجاج حراق</div>
-                        <div class="item-title-en">Chicken Strips Spicy</div>
-                        <div class="item-price">18 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">ستربس الدجاج عادي</div>
-                        <div class="item-title-en">Chicken Strips Normal</div>
-                        <div class="item-price">18 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">مسحب دجاج حراق</div>
-                        <div class="item-title-en">Finger Chicken Spicy</div>
-                        <div class="item-price">18 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">مسحب دجاج عادي</div>
-                        <div class="item-title-en">Finger Chicken Normal</div>
-                        <div class="item-price">18 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">اصابع دجاج بالجبن</div>
-                        <div class="item-title-en">Chicken Cheese Stick</div>
-                        <div class="item-price">16 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">اصابع سمك</div>
-                        <div class="item-title-en">Finger Fish</div>
-                        <div class="item-price">18 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">دجاج فيليه حراق</div>
-                        <div class="item-title-en">Chicken Fillet Spicy</div>
-                        <div class="item-price">18 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">فيليه دجاج عادي</div>
-                        <div class="item-title-en">Chicken Fillet Normal</div>
-                        <div class="item-price">18 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">صحن كباب لحم</div>
-                        <div class="item-title-en">Beef Kabab Plate</div>
-                        <div class="item-price">22 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-            </div>
+    <!-- Sticky 2-Line Category Grid with English & Arabic -->
+    <div class="category-container">
+        <div class="category-grid">
+            <!-- Row 1 -->
+            <button class="category-btn active" onclick="filterCategory('broast', event)">BROAST<br>بروستد</button>
+            <button class="category-btn" onclick="filterCategory('burger', event)">BURGER<br>برجر</button>
+            <button class="category-btn" onclick="filterCategory('tortilla', event)">TORTILLA<br>تورتيلا</button>
+            <button class="category-btn" onclick="filterCategory('pizza', event)">PIZZA<br>بيتزا</button>
+            <button class="category-btn" onclick="filterCategory('fries_meals', event)">FRIES / MEALS<br>بطاطس وجبات</button>
+            
+            <!-- Row 2 -->
+            <button class="category-btn" onclick="filterCategory('pepsi', event)">PEPSI<br>بيبسي</button>
+            <button class="category-btn" onclick="filterCategory('jumbo', event)">JUMBO<br>جامبو</button>
+            <button class="category-btn" onclick="filterCategory('juices', event)">JUICES<br>عصائر</button>
+            <button class="category-btn" onclick="filterCategory('extra', event)">EXTRA<br>إضافات</button>
         </div>
-
-        <!-- 2. TORTILLA CATEGORY -->
-        <div id="tortilla" class="category-section">
-            <div class="category-title"><i class="fa-solid fa-bread-slice"></i> تورتيلا - Tortilla</div>
-            <div class="items-grid">
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">دجاج تورتيلا عادي</div>
-                        <div class="item-title-en">Chicken Tortilla Normal</div>
-                        <div class="item-price">12 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">دجاج تورتيلا حراق</div>
-                        <div class="item-title-en">Chicken Tortilla Spicy</div>
-                        <div class="item-price">12 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">تكه تورتيلا</div>
-                        <div class="item-title-en">Tikka Tortilla</div>
-                        <div class="item-price">13 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">زنجر تورتيلا عادي</div>
-                        <div class="item-title-en">Zinger Tortilla Normal</div>
-                        <div class="item-price">13 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">زنجر تورتيلا حراق</div>
-                        <div class="item-title-en">Zinger Tortilla Spicy</div>
-                        <div class="item-price">13 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">تورتيلا روبيان عادي</div>
-                        <div class="item-title-en">Shrimp Tortilla Normal</div>
-                        <div class="item-price">15 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">تورتيلا روبيان حراق</div>
-                        <div class="item-title-en">Shrimp Tortilla Spicy</div>
-                        <div class="item-price">15 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">تورتيلا سمك</div>
-                        <div class="item-title-en">Tortilla Fish</div>
-                        <div class="item-price">13 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">تورتيلا كباب لحم</div>
-                        <div class="item-title-en">Tortilla Kabab Beef</div>
-                        <div class="item-price">14 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-            </div>
-        </div>
-
-        <!-- 3. JUMBO CATEGORY -->
-        <div id="jumbo" class="category-section">
-            <div class="category-title"><i class="fa-solid fa-utensils"></i> جامبو - Jumbo</div>
-            <div class="items-grid">
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">دجاج فيليه جامبو</div>
-                        <div class="item-title-en">Jumbo Fillet Chicken</div>
-                        <div class="item-price">14 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">جامبو تكه</div>
-                        <div class="item-title-en">Tikka Jumbo</div>
-                        <div class="item-price">14 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">جامبو كودو عادي</div>
-                        <div class="item-title-en">Kudu Jumbo Normal</div>
-                        <div class="item-price">14 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">جامبو كودو حراق</div>
-                        <div class="item-title-en">Kudu Jumbo Spicy</div>
-                        <div class="item-price">14 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">جامبو زنجر عادي</div>
-                        <div class="item-title-en">Zinger Jumbo Normal</div>
-                        <div class="item-price">15 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">جامبو زنجر حراق</div>
-                        <div class="item-title-en">Zinger Jumbo Spicy</div>
-                        <div class="item-price">15 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">جامبو روبيان عادي</div>
-                        <div class="item-title-en">Shrimp Jumbo Normal</div>
-                        <div class="item-price">16 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">جامبو روبيان حراق</div>
-                        <div class="item-title-en">Shrimp Jumbo Spicy</div>
-                        <div class="item-price">16 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">جامبو سمك</div>
-                        <div class="item-title-en">Jumbo Fish</div>
-                        <div class="item-price">14 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">جامبو كباب لحم</div>
-                        <div class="item-title-en">Kabab Beef Jumbo</div>
-                        <div class="item-price">15 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-            </div>
-        </div>
-
-        <!-- 4. BURGER CATEGORY (Ascending Price) -->
-        <div id="burger" class="category-section">
-            <div class="category-title"><i class="fa-solid fa-burger"></i> برجر - Burger</div>
-            <div class="items-grid">
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">برجر دجاج صغير</div>
-                        <div class="item-title-en">Chicken Burger Small</div>
-                        <div class="item-price">7 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">برجر دجاج كبير</div>
-                        <div class="item-title-en">Chicken Burger Big</div>
-                        <div class="item-price">8 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">برجر دجاج مشوي</div>
-                        <div class="item-title-en">Chicken Grilled Burger</div>
-                        <div class="item-price">8 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">برجر لحم صغير</div>
-                        <div class="item-title-en">Beef Burger Small</div>
-                        <div class="item-price">8 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">برجر لحم كبير</div>
-                        <div class="item-title-en">Beef Burger Big</div>
-                        <div class="item-price">9 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">برجر زنجر حراق</div>
-                        <div class="item-title-en">Zinger Burger Spicy</div>
-                        <div class="item-price">10 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">برجر زنجر عادي</div>
-                        <div class="item-title-en">Zinger Burger Normal</div>
-                        <div class="item-price">10 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">برجر دجاج كبير دبل</div>
-                        <div class="item-title-en">Double Chicken Burger Big</div>
-                        <div class="item-price">14 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">برجر لحم كبير دبل</div>
-                        <div class="item-title-en">Double Beef Burger Big</div>
-                        <div class="item-price">15 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">برجر زنجر دبل</div>
-                        <div class="item-title-en">Double Zinger Burger</div>
-                        <div class="item-price">17 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-            </div>
-        </div>
-
-        <!-- 5. PIZZA CATEGORY (Descending Price) -->
-        <div id="pizza" class="category-section">
-            <div class="category-title"><i class="fa-solid fa-pizza-slice"></i> بيتزا - Pizza</div>
-            <div class="items-grid">
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">بيتزا دايناميت لحم</div>
-                        <div class="item-title-en">Dynamite Beef Pizza</div>
-                        <div class="item-desc">Original Large Size - حجم كبير</div>
-                        <div class="item-price">23 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">بيتزا أربعة سيزون</div>
-                        <div class="item-title-en">Four Season Pizza</div>
-                        <div class="item-desc">Original Large Size (4 Types) - حجم كبير (أربعة أنواع)</div>
-                        <div class="item-price">23 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">بيتزا دايناميت دجاج</div>
-                        <div class="item-title-en">Dynamite Chicken Pizza</div>
-                        <div class="item-desc">Original Large Size - حجم كبير</div>
-                        <div class="item-price">22 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">بيتزا دجاج باربيكيو</div>
-                        <div class="item-title-en">Barbecue Chicken Pizza</div>
-                        <div class="item-desc">Original Large Size - حجم كبير</div>
-                        <div class="item-price">22 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">بيتزا رانش</div>
-                        <div class="item-title-en">Ranch Pizza</div>
-                        <div class="item-desc">Original Large Size - حجم كبير</div>
-                        <div class="item-price">21 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">بيتزا دجاج</div>
-                        <div class="item-title-en">Chicken Pizza</div>
-                        <div class="item-desc">Original Large Size - حجم كبير</div>
-                        <div class="item-price">20 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">بيتزا ببروني</div>
-                        <div class="item-title-en">Pepperoni Pizza</div>
-                        <div class="item-desc">Original Large Size - حجم كبير</div>
-                        <div class="item-price">20 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">بيتزا مشكل</div>
-                        <div class="item-title-en">Mix Pizza</div>
-                        <div class="item-desc">Original Large Size - حجم كبير</div>
-                        <div class="item-price">20 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">بيتزا مارجريتا</div>
-                        <div class="item-title-en">Margarita Pizza</div>
-                        <div class="item-desc">Original Large Size - حجم كبير</div>
-                        <div class="item-price">18 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">بيتزا هوت دوج</div>
-                        <div class="item-title-en">Hot Dog Pizza</div>
-                        <div class="item-desc">Original Large Size - حجم كبير</div>
-                        <div class="item-price">18 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">بيتزا خضار</div>
-                        <div class="item-title-en">Vegetable Pizza</div>
-                        <div class="item-desc">Original Large Size - حجم كبير</div>
-                        <div class="item-price">15 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-            </div>
-        </div>
-
-        <!-- 6. FRIES & MEALS CATEGORY -->
-        <div id="fries" class="category-section">
-            <div class="category-title"><i class="fa-solid fa-box-archive"></i> بطاطس وجبات - Fries & Meals</div>
-            <div class="items-grid">
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">بطاطس صغير</div>
-                        <div class="item-title-en">Fries Small</div>
-                        <div class="item-price">4 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">بطاطس وسط</div>
-                        <div class="item-title-en">Fries Medium</div>
-                        <div class="item-price">6 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">بطاطس كبير</div>
-                        <div class="item-title-en">Fries Big</div>
-                        <div class="item-price">10 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">وجبة بطاطس</div>
-                        <div class="item-title-en">Fries Meal Deal / Potato Box</div>
-                        <div class="item-price">6 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">وجبة اطفال بوب كورن</div>
-                        <div class="item-title-en">Kids Meal Popcorn</div>
-                        <div class="item-price">12 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">وجبة اطفال نغت</div>
-                        <div class="item-title-en">Kids Meal Nuggets</div>
-                        <div class="item-price">13 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-            </div>
-        </div>
-
-        <!-- 7. JUICES CATEGORY (Full 27 items sorted Small -> Big -> Gallon) -->
-        <div id="juices" class="category-section">
-            <div class="category-title"><i class="fa-solid fa-glass-water"></i> عصيرات طازجة - Fresh Juices</div>
-            <div class="items-grid">
-                <!-- Cocktail -->
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">عصير كوكتيل صغير</div>
-                        <div class="item-title-en">Cocktail Small</div>
-                        <div class="item-price">5 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">عصير كوكتيل كبير</div>
-                        <div class="item-title-en">Cocktail Big</div>
-                        <div class="item-price">7 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">جالون عصير كوكتيل</div>
-                        <div class="item-title-en">Cocktail Gallon</div>
-                        <div class="item-price">21 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-
-                <!-- Mango -->
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">عصير مانجو صغير</div>
-                        <div class="item-title-en">Mango Small</div>
-                        <div class="item-price">5 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">عصير مانجو كبير</div>
-                        <div class="item-title-en">Mango Big</div>
-                        <div class="item-price">7 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">جالون عصير مانجو</div>
-                        <div class="item-title-en">Mango Gallon</div>
-                        <div class="item-price">21 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-
-                <!-- Guava -->
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">عصير جوافة صغير</div>
-                        <div class="item-title-en">Guava Small</div>
-                        <div class="item-price">5 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">عصير جوافة كبير</div>
-                        <div class="item-title-en">Guava Big</div>
-                        <div class="item-price">7 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">جالون عصير جوافة</div>
-                        <div class="item-title-en">Guava Gallon</div>
-                        <div class="item-price">21 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-
-                <!-- Strawberries -->
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">عصير فراولة صغير</div>
-                        <div class="item-title-en">Strawberries Small</div>
-                        <div class="item-price">5 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">عصير فراولة كبير</div>
-                        <div class="item-title-en">Strawberries Big</div>
-                        <div class="item-price">7 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">جالون عصير فراولة</div>
-                        <div class="item-title-en">Strawberries Gallon</div>
-                        <div class="item-price">21 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-
-                <!-- Lemon -->
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">عصير ليمون صغير</div>
-                        <div class="item-title-en">Lemon Small</div>
-                        <div class="item-price">5 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">عصير ليمون كبير</div>
-                        <div class="item-title-en">Lemon Big</div>
-                        <div class="item-price">7 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">جالون عصير ليمون</div>
-                        <div class="item-title-en">Lemon Gallon</div>
-                        <div class="item-price">21 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-
-                <!-- Apple -->
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">عصير تفاح صغير</div>
-                        <div class="item-title-en">Apple Small</div>
-                        <div class="item-price">6 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">عصير تفاح كبير</div>
-                        <div class="item-title-en">Apple Big</div>
-                        <div class="item-price">8 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">جالون عصير تفاح</div>
-                        <div class="item-title-en">Apple Gallon</div>
-                        <div class="item-price">25 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-
-                <!-- Banana Milk -->
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">عصير موز بالحليب صغير</div>
-                        <div class="item-title-en">Banana Milk Small</div>
-                        <div class="item-price">6 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">عصير موز بالحليب كبير</div>
-                        <div class="item-title-en">Banana Milk Big</div>
-                        <div class="item-price">8 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">جالون عصير موز بالحليب</div>
-                        <div class="item-title-en">Banana Milk Gallon</div>
-                        <div class="item-price">25 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-
-                <!-- Avocado -->
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">عصير أفوكادو صغير</div>
-                        <div class="item-title-en">Avocado Small</div>
-                        <div class="item-price">6 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">عصير أفوكادو كبير</div>
-                        <div class="item-title-en">Avocado Big</div>
-                        <div class="item-price">9 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">جالون عصير أفوكادو</div>
-                        <div class="item-title-en">Avocado Gallon</div>
-                        <div class="item-price">27 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-
-                <!-- Orange Fresh -->
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">عصير برتقال كبس صغير</div>
-                        <div class="item-title-en">Orange Fresh Small</div>
-                        <div class="item-price">6 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">عصير برتقال كبس كبير</div>
-                        <div class="item-title-en">Orange Fresh Big</div>
-                        <div class="item-price">9 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">جالون عصير برتقال كبس</div>
-                        <div class="item-title-en">Orange Fresh Gallon</div>
-                        <div class="item-price">27 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-            </div>
-        </div>
-
-        <!-- 8. EXTRA CATEGORY -->
-        <div id="extra" class="category-section">
-            <div class="category-title"><i class="fa-solid fa-plus-circle"></i> إضافات - Extra</div>
-            <div class="items-grid">
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">حلقات البصل</div>
-                        <div class="item-title-en">Onion Rings</div>
-                        <div class="item-price">6 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">بوب كورن</div>
-                        <div class="item-title-en">Popcorn</div>
-                        <div class="item-price">10 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">بيبي نغت</div>
-                        <div class="item-title-en">Baby Nuggets</div>
-                        <div class="item-price">10 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">سلطة ملفوف</div>
-                        <div class="item-title-en">Coleslaw</div>
-                        <div class="item-price">4 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">صلصة كوكتيل</div>
-                        <div class="item-title-en">Cocktail Sauce</div>
-                        <div class="item-price">2 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">صلصة ثوم</div>
-                        <div class="item-title-en">Garlic Sauce</div>
-                        <div class="item-price">2 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">صلصة ثوم حراق</div>
-                        <div class="item-title-en">Spicy Garlic Sauce</div>
-                        <div class="item-price">2 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">صلصة جبن</div>
-                        <div class="item-title-en">Cheese Sauce</div>
-                        <div class="item-price">3 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">ديناميت صوص</div>
-                        <div class="item-title-en">Dynamite Sauce</div>
-                        <div class="item-price">3 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">حمص</div>
-                        <div class="item-title-en">Hummus</div>
-                        <div class="item-price">5 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">كتشب قارورة</div>
-                        <div class="item-title-en">Bottle Ketchup</div>
-                        <div class="item-price">5 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">شطة قارورة</div>
-                        <div class="item-title-en">Hot Sauce</div>
-                        <div class="item-price">5 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">مخلل مشكل</div>
-                        <div class="item-title-en">Mixed Pickle</div>
-                        <div class="item-price">3 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">خبز</div>
-                        <div class="item-title-en">Bread</div>
-                        <div class="item-price">1 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">مايونيز</div>
-                        <div class="item-title-en">Mayonnaise</div>
-                        <div class="item-price">1 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">جبن إضافي</div>
-                        <div class="item-title-en">Extra Cheese</div>
-                        <div class="item-price">2 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="item-card">
-                    <div class="item-details">
-                        <div class="item-title-ar">كتشب</div>
-                        <div class="item-title-en">Ketchup</div>
-                        <div class="item-price">1 SAR</div>
-                    </div>
-                    <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-            </div>
-        </div>
-
     </div>
 
-    <!-- FOOTER CART SUMMARY BAR -->
-    <div class="footer-cart">
+    <!-- Menu Items -->
+    <div class="container" id="menu-container"></div>
+
+    <!-- Interior Photo Gallery Slider (4 images: 2.jpg, 3.jpg, 4.jpg, 5.jpg) -->
+    <div class="container gallery-section">
+        <h3 style="font-size: 14px; margin-bottom: 8px; color: #555;">Restaurant Gallery / معرض الصور</h3>
+        <div class="slider-container">
+            <div class="slider-wrapper" id="sliderWrapper">
+                <div class="slide"><img src="2.jpg" alt="Interior 1"></div>
+                <div class="slide"><img src="3.jpg" alt="Interior 2"></div>
+                <div class="slide"><img src="4.jpg" alt="Interior 3"></div>
+                <div class="slide"><img src="5.jpg" alt="Interior 4"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© TOP CHICKEN. All rights reserved.</p>
+        <p style="margin-top: 5px; font-weight: bold; color: #333;">Developer: y2kmlpcpr0501163652</p>
+    </div>
+
+    <!-- Floating Cart Bar -->
+    <div class="cart-bar" id="cartBar" style="display: none;">
         <div class="cart-info">
-            <span class="cart-count">0 عناصر مختارة</span>
-            <span class="cart-total">0.00 SAR</span>
+            <span id="cartCount">0</span> Items | Total: <span id="cartTotal">0</span> SAR
         </div>
-        <button class="checkout-btn">متابعة الطلب <i class="fa-solid fa-arrow-left"></i></button>
+        <button class="checkout-btn" onclick="openCheckout()">
+            Checkout / الطلب 💬
+        </button>
+    </div>
+
+    <!-- Checkout Modal Popup -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Order Details / تفاصيل الطلب</h3>
+                <span style="cursor:pointer; font-size: 22px; font-weight: bold;" onclick="closeCheckout()">✕</span>
+            </div>
+
+            <!-- Pick up / Delivery Selection -->
+            <div class="order-type-selector">
+                <div class="type-btn active" id="btnPickup" onclick="setOrderType('pickup')">
+                    Pick up / استلام
+                </div>
+                <div class="type-btn" id="btnDelivery" onclick="setOrderType('delivery')">
+                    Delivery / توصيل
+                </div>
+            </div>
+
+            <!-- Delivery Rates Notice Box -->
+            <div class="delivery-rates-box" id="deliveryRatesBox">
+                <b>Delivery Rates Notice / رسوم التوصيل:</b>
+                <table class="delivery-rates-table">
+                    <tr><td>0 km - 3 km</td><td style="text-align: right;">4.00 SAR</td></tr>
+                    <tr><td>3 km - 5 km</td><td style="text-align: right;">6.00 SAR</td></tr>
+                    <tr><td>5 km - 8 km</td><td style="text-align: right;">10.00 SAR</td></tr>
+                    <tr><td>8 km - 12 km</td><td style="text-align: right;">15.00 SAR</td></tr>
+                </table>
+                <div class="delivery-ar-msg">المبلغ الإجمالي لا يشمل رسوم التوصيل</div>
+            </div>
+
+            <div class="min-alert" id="minAlert">
+                * Delivery requires minimum 20 SAR Food Order (Drinks excluded).<br>التوصيل يتطلب حد أدنى 20 ريال للمأكولات.
+            </div>
+
+            <!-- Input Fields -->
+            <div class="form-group" style="margin-top: 10px;">
+                <label>Name / Room / Building No * (الاسم / رقم الغرفة)</label>
+                <input type="text" id="custName" class="form-control" placeholder="e.g. Abu Muhammad / Room 510">
+            </div>
+
+            <div class="form-group" id="addressGroup">
+                <label>Address / Landmark (العنوان / الموقع)</label>
+                <input type="text" id="custAddress" class="form-control" placeholder="e.g. Building 30, Gate 5">
+            </div>
+
+            <div class="form-group">
+                <label>Order Notes / ملاحظات</label>
+                <input type="text" id="custNotes" class="form-control" placeholder="e.g. Spicy, Extra Garlic">
+            </div>
+
+            <div style="background: #f9f9f9; padding: 10px; border-radius: 8px; margin-bottom: 10px; font-size: 13px;" id="orderSummary">
+            </div>
+
+            <button class="confirm-btn" onclick="sendToWhatsApp()">
+                Send Order to WhatsApp / ارسال الطلب 💬
+            </button>
+        </div>
     </div>
 
     <script>
-        function switchCategory(catId) {
-            // Hide all sections
-            document.querySelectorAll('.category-section').forEach(sec => {
-                sec.classList.remove('active');
-            });
-            // Show selected section
-            document.getElementById(catId).classList.add('active');
+        const menuData = [
+            // ================= BROAST & CHICKEN (دجاج بروستد) =================
+            { id: 101, name: "Broasted Chicken Normal - دجاج بروستد عادي", cat: "broast", price: 20, isDrink: false, desc: "4 Pcs Chicken, Fries, Hummus, Kubus, Garlic / ٤ قطع دجاج، بطاطس، حمص، خبز، ثوم" },
+            { id: 102, name: "Broasted Chicken Spicy - دجاج بروستد حراق", cat: "broast", price: 20, isDrink: false, desc: "4 Pcs Chicken Spicy, Fries, Hummus, Kubus, Garlic / ٤ قطع دجاج حراق، بطاطس، حمص، خبز، ثوم" },
+            { id: 103, name: "Chicken Fillet Normal - فيليه دجاج عادي", cat: "broast", price: 20, isDrink: false, desc: "Chicken Fillet Normal with fries & sauce / فيليه دجاج مع بطاطس وثوم" },
+            { id: 104, name: "Chicken Fillet Spicy - دجاج فيليه حراق", cat: "broast", price: 20, isDrink: false, desc: "Chicken Fillet Spicy with fries & sauce / دجاج فيليه حراق مع بطاطس وثوم" },
+            { id: 105, name: "Fish Broasted Normal - بروستد سمك عادي", cat: "broast", price: 19, isDrink: false, desc: "Fish fillet with fries & sauce / فيليه سمك مع بطاطس وثوم" },
+            { id: 106, name: "Fish Broasted Spicy - بروستد سمك حراق", cat: "broast", price: 19, isDrink: false, desc: "Spicy fish fillet with fries & sauce / فيليه سمك حراق مع بطاطس وثوم" },
+            { id: 107, name: "Chicken Nuggets Normal - نغت دجاج عادي", cat: "broast", price: 20, isDrink: false, desc: "13 Pcs with fries & bread / ١٣ قطعة مع البطاطس والخبز" },
+            { id: 108, name: "Chicken Nuggets Spicy - نغت دجاج حراق", cat: "broast", price: 20, isDrink: false, desc: "13 Pcs spicy with fries & bread / ١٣ قطعة حراق مع البطاطس والخبز" },
+            { id: 109, name: "Shrimp Broast Normal - بروست روبيان عادي", cat: "broast", price: 22, isDrink: false, desc: "13-17 Pcs with fries & sauce / ١٣-١٧ قطعة روبيان مع البطاطس والثوم" },
+            { id: 110, name: "Shrimp Broast Spicy - بروست روبيان حراق", cat: "broast", price: 22, isDrink: false, desc: "13-17 Pcs spicy shrimp with fries & sauce / ١٣-١٧ قطعة روبيان حراق مع البطاطس والثوم" },
+            { id: 111, name: "Chicken Strips Normal - ستربس الدجاج عادي", cat: "broast", price: 20, isDrink: false, desc: "6 Pcs with fries & bread / ٦ قطع مع البطاطس والخبز" },
+            { id: 112, name: "Chicken Strips Spicy - ستربس الدجاج حراق", cat: "broast", price: 20, isDrink: false, desc: "6 Pcs spicy with fries & bread / ٦ قطع حراق مع البطاطس والخبز" },
+            { id: 113, name: "Finger Chicken Normal - مسحب دجاج عادي", cat: "broast", price: 20, isDrink: false, desc: "10 Pcs with fries & bread / ١٠ قطع مسحب دجاج عادي" },
+            { id: 114, name: "Finger Chicken Spicy - مسحب دجاج حراق", cat: "broast", price: 20, isDrink: false, desc: "10 Pcs spicy with fries & bread / ١٠ قطع مسحب دجاج حراق" },
+            { id: 115, name: "Chicken Chees Stick - اصابع دجاج بالجبن", cat: "broast", price: 20, isDrink: false, desc: "9 Pcs cheese chicken sticks / ٩ قطع اصابع دجاج بالجبن" },
+            { id: 116, name: "Beef Kabab Plate - صحن كباب لحم", cat: "broast", price: 20, isDrink: false, desc: "6 Pcs Kabab with fries & bread / ٦ قطع كباب لحم مع البطاطس" },
+            { id: 117, name: "Finger Fish - اصابع سمك", cat: "broast", price: 20, isDrink: false, desc: "9 Pcs Fish sticks / ٩ قطع اصابع سمك" },
 
-            // Update active nav button
-            document.querySelectorAll('.cat-btn').forEach(btn => {
-                btn.classList.remove('active');
+            // ================= PIZZA (بيتزا) =================
+            { id: 201, name: "Dynamite Chicken Pizza - بيتزا ديناميت الدجاج", cat: "pizza", price: 22, isDrink: false, desc: "Special Dynamite Sauce Chicken Pizza / بيتزا ديناميت دجاج المميزة" },
+            { id: 202, name: "Dynamite Beef Pizza - بيتزا ديناميت للحوم", cat: "pizza", price: 23, isDrink: false, desc: "Special Dynamite Sauce Beef Pizza / بيتزا ديناميت لحم المميزة" },
+            { id: 203, name: "Chicken Pizza - بيتزا دجاج", cat: "pizza", price: 20, isDrink: false, desc: "Original Large Size / حجم كبير" },
+            { id: 204, name: "Pepperoni Pizza - بيتزا ببروني", cat: "pizza", price: 19, isDrink: false, desc: "Original Large Size / حجم كبير" },
+            { id: 205, name: "Vegetable Pizza - بيتزا خضار", cat: "pizza", price: 15, isDrink: false, desc: "Original Large Size / حجم كبير" },
+            { id: 206, name: "Ranch Pizza - بيتزا رانش", cat: "pizza", price: 21, isDrink: false, desc: "Original Large Size / حجم كبير" },
+            { id: 207, name: "4 Season Pizza - بيتزا ٤ سيسبون", cat: "pizza", price: 23, isDrink: false, desc: "Original Large Size / حجم كبير" },
+            { id: 208, name: "BBQ Chicken Pizza - بيتزا دجاج باربيكيو", cat: "pizza", price: 22, isDrink: false, desc: "Original Large Size / حجم كبير" },
+            { id: 209, name: "Mixed Pizza - بيتزا مشكلة", cat: "pizza", price: 19, isDrink: false, desc: "Original Large Size / حجم كبير" },
+            { id: 210, name: "Margherita Pizza - بيتزا مارجريتا", cat: "pizza", price: 18, isDrink: false, desc: "Original Large Size / حجم كبير" },
+            { id: 211, name: "Hotdog Pizza - بيتزا نقانق", cat: "pizza", price: 18, isDrink: false, desc: "Original Large Size / حجم كبير" },
+
+            // ================= TORTILLA (تورتيلا) =================
+            { id: 301, name: "Chicken Tortilla Normal - دجاج تورتيلا عادي", cat: "tortilla", price: 13, isDrink: false, desc: "Chicken Wrap Normal / تورتيلا دجاج عادي" },
+            { id: 302, name: "Chicken Tortilla Spicy - دجاج تورتيلا حراق", cat: "tortilla", price: 13, isDrink: false, desc: "Chicken Wrap Spicy / تورتيلا دجاج حراق" },
+            { id: 303, name: "Tortilla Kabab Chicken - تورتيلا كباب دجاج", cat: "tortilla", price: 13, isDrink: false, desc: "Kabab Wrap / تورتيلا كباب دجاج" },
+            { id: 304, name: "Tortilla Kabab Beef - تورتيلا كباب لحم", cat: "tortilla", price: 13, isDrink: false, desc: "Kabab Wrap / تورتيلا كباب لحم" },
+            { id: 305, name: "Shrimp Tortilla Normal - تورتيلا روبيان عادي", cat: "tortilla", price: 13, isDrink: false, desc: "Shrimp Wrap Normal / تورتيلا روبيان عادي" },
+            { id: 306, name: "Shrimp Tortilla Spicy - تورتيلا روبيان حراق", cat: "tortilla", price: 13, isDrink: false, desc: "Shrimp Wrap Spicy / تورتيلا روبيان حراق" },
+            { id: 307, name: "Tortilla Fish - تورتيلا سمك", cat: "tortilla", price: 13, isDrink: false, desc: "Fish Wrap / تورتيلا سمك" },
+            { id: 308, name: "Tikka Tortilla - تكه تورتيلا", cat: "tortilla", price: 13, isDrink: false, desc: "Tikka Wrap / تورتيلا تكه" },
+            { id: 309, name: "Zinger Tortilla Normal - زنجر تورتيلا عادي", cat: "tortilla", price: 13, isDrink: false, desc: "Zinger Wrap Normal / زنجر تورتيلا عادي" },
+            { id: 310, name: "Zinger Tortilla Spicy - زنجر تورتيلا حراق", cat: "tortilla", price: 13, isDrink: false, desc: "Zinger Wrap Spicy / زنجر تورتيلا حراق" },
+
+            // ================= BURGER (برجر) =================
+            { id: 401, name: "Double Zinger Burger - زنجر برجر دبل", cat: "burger", price: 17, isDrink: false, desc: "Double Zinger Burger / زنجر برجر دبل" },
+            { id: 402, name: "Double Beef Burger Big - دبل برجر لحم كبير", cat: "burger", price: 15, isDrink: false, desc: "Double Beef Burger Big / دبل برجر لحم كبير" },
+            { id: 403, name: "Double Chicken Burger Big - دبل برجر دجاج كبير", cat: "burger", price: 14, isDrink: false, desc: "Double Chicken Burger Big / دبل برجر دجاج كبير" },
+            { id: 404, name: "Beef Burger Big - لحم برجر كبير", cat: "burger", price: 9, isDrink: false, desc: "Fresh Beef Burger Big / برجر لحم طازج كبير" },
+            { id: 405, name: "Beef Burger Small - لحم برجر صغير", cat: "burger", price: 8, isDrink: false, desc: "Fresh Beef Burger Small / برجر لحم صغير" },
+            { id: 406, name: "Chicken Burger Big - دجاج برجر كبير", cat: "burger", price: 8, isDrink: false, desc: "Chicken Burger Big / برجر دجاج كبير" },
+            { id: 407, name: "Chicken Burger Small - دجاج برجر صغير", cat: "burger", price: 7, isDrink: false, desc: "Chicken Burger Small / برجر دجاج صغير" },
+            { id: 408, name: "Zinger Burger Normal - زنجر برجر عادي", cat: "burger", price: 10, isDrink: false, desc: "Zinger Burger Normal / زنجر برجر عادي" },
+            { id: 409, name: "Zinger Burger Spicy - زنجر برجر حراق", cat: "burger", price: 10, isDrink: false, desc: "Zinger Burger Spicy / زنجر برجر حراق" },
+            { id: 410, name: "Chicken Grilled Burger - برجر دجاج الصاح", cat: "burger", price: 8, isDrink: false, desc: "Grilled Chicken Burger / برجر دجاج مشوي" },
+
+            // ================= JUMBO (جامبو) =================
+            { id: 501, name: "Jumbo Fillet Chicken - دجاج فيليه جامبو", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Fillet Chicken Sandwich / ساندوتش دجاج فيليه جامبو" },
+            { id: 502, name: "Jumbo Fish - جامبو سمك", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Fish Sandwich / ساندوتش جامبو سمك" },
+            { id: 503, name: "Kudu Jumbo Normal - جامبو كودو عادي", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Kudu Sandwich / ساندوتش جامبو كودو" },
+            { id: 504, name: "Kudu Jumbo Spicy - جامبو كودو حراق", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Kudu Sandwich Spicy / ساندوتش جامبو كودو حراق" },
+            { id: 505, name: "Shrimp Jumbo Normal - جامبو روبيان عادي", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Shrimp Sandwich / ساندوتش جامبو روبيان" },
+            { id: 506, name: "Shrimp Jumbo Spicy - جامبو روبيان حراق", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Shrimp Sandwich Spicy / ساندوتش جامبو روبيان حراق" },
+            { id: 507, name: "Zinger Jumbo Normal - جامبو زنجر عادي", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Zinger Sandwich / ساندوتش جامبو زنجر" },
+            { id: 508, name: "Zinger Jumbo Spicy - جامبو زنجر حراق", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Zinger Sandwich Spicy / ساندوتش جامبو زنجر حراق" },
+            { id: 509, name: "Tikka Jumbo - جامبو تكه", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Tikka Sandwich / ساندوتش جامبو تكه" },
+            { id: 510, name: "Kabab Beef Jumbo - جامبو كباب لحم", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Beef Kabab / ساندوتش جامبو كباب لحم" },
+
+            // ================= FRIES & MEALS (بطاطس وجبات) =================
+            { id: 601, name: "Fries Small - بطاطس صغير", cat: "fries_meals", price: 4, isDrink: false, desc: "Small Potato Fries / بطاطس مقلية صغير" },
+            { id: 602, name: "Fries Medium - بطاطس وسط", cat: "fries_meals", price: 6, isDrink: false, desc: "Medium Potato Fries / بطاطس مقلية وسط" },
+            { id: 603, name: "Fries Big - بطاطس كبير", cat: "fries_meals", price: 10, isDrink: false, desc: "Large Potato Fries / بطاطس مقلية كبير" },
+            { id: 604, name: "Fries with Meal Deal - بطاطس مع وجبة", cat: "fries_meals", price: 6, isDrink: false, desc: "Fries & Pepsi Combo / بطاطس مع بيبسي" },
+            { id: 605, name: "Kids Meal Nuggets - وجبة اطفال نغت", cat: "fries_meals", price: 13, isDrink: false, desc: "Nuggets Kids Meal / وجبة اطفال نغت" },
+            { id: 606, name: "Kids Meal Popcorn/Burger - وجبة اطفال بوب كورن/برجر", cat: "fries_meals", price: 12, isDrink: false, desc: "Kids Meal with toy / وجبة اطفال مع لعبة" },
+
+            // ================= SIDE ORDERS & EXTRAS (إضافات) =================
+            { id: 701, name: "Onion Rings - حلقات بصل", cat: "extra", price: 6, isDrink: false, desc: "Onion Rings / حلقات بصل مقرمشة" },
+            { id: 702, name: "Popcorn Chicken - بوب كورن", cat: "extra", price: 6, isDrink: false, desc: "Chicken Popcorn / بوب كورن دجاج" },
+            { id: 703, name: "Baby Nuggets - بيبي نغت", cat: "extra", price: 7, isDrink: false, desc: "Baby Nuggets / بيبي نغت" },
+            { id: 704, name: "Coleslaw Salad - سلطة ملفوف", cat: "extra", price: 3, isDrink: false, desc: "Coleslaw Salad / سلطة ملفوف طازجة" },
+            { id: 705, name: "Cocktail Sauce - صوص كوكتيل", cat: "extra", price: 1, isDrink: false, desc: "Cocktail Dip / صوص كوكتيل" },
+            { id: 706, name: "Garlic Sauce - ثوم", cat: "extra", price: 1, isDrink: false, desc: "Garlic Dip / صلصة ثوم" },
+            { id: 707, name: "Spicy Garlic Sauce - ثوم حراق", cat: "extra", price: 1, isDrink: false, desc: "Spicy Garlic Dip / صلصة ثوم حراق" },
+            { id: 708, name: "Cheese Sauce - صوص جبنة", cat: "extra", price: 2, isDrink: false, desc: "Melted Cheese Sauce / صوص جبنة" },
+            { id: 709, name: "Dynamite Sauce - صوص ديناميت", cat: "extra", price: 2, isDrink: false, desc: "Dynamite Sauce Dip / صوص ديناميت" },
+            { id: 710, name: "Hummus - حمص", cat: "extra", price: 3, isDrink: false, desc: "Fresh Hummus Dip / حمص طازج" },
+            { id: 711, name: "Bottle Ketchup - زجاجة كاتشب", cat: "extra", price: 4, isDrink: false, desc: "Bottle Ketchup / زجاجة كاتشب" },
+            { id: 712, name: "Hot Sauce - شطة", cat: "extra", price: 2, isDrink: false, desc: "Hot Sauce / شطة" },
+            { id: 713, name: "Mixed Pickle - مخلل مشكل", cat: "extra", price: 1, isDrink: false, desc: "Mixed Pickle / مخلل مشكل" },
+            { id: 714, name: "Bread (Kubbus) - خبز (خبوز)", cat: "extra", price: 1, isDrink: false, desc: "Bread (Kubbus) / خبز" },
+            { id: 715, name: "Mayonnaise - مايونيز", cat: "extra", price: 1, isDrink: false, desc: "Mayonnaise / مايونيز" },
+            { id: 716, name: "Extra Cheese - زيادة جبنة", cat: "extra", price: 1, isDrink: false, desc: "Extra Cheese / زيادة جبنة" },
+            { id: 717, name: "Ketchup - كاتشب", cat: "extra", price: 1, isDrink: false, desc: "Ketchup / كاتشب" },
+
+            // ================= PEPSI & DRINKS (بيبسي والمشروبات) =================
+            { id: 801, name: "Pepsi - بيبسي", cat: "pepsi", price: 2.50, isDrink: true, desc: "Pepsi Can / بيبسي" },
+            { id: 802, name: "Pepsi D - بيبسي دايت", cat: "pepsi", price: 2.00, isDrink: true, desc: "Pepsi Diet / بيبسي دايت" },
+            { id: 803, name: "Citrus - الحمضيات", cat: "pepsi", price: 2.50, isDrink: true, desc: "Citrus Can / حمضيات" },
+            { id: 804, name: "7UP - سفن اب", cat: "pepsi", price: 2.50, isDrink: true, desc: "7UP Can / سفن اب" },
+            { id: 805, name: "7UP D - سفن اب دايت", cat: "pepsi", price: 2.00, isDrink: true, desc: "7UP Diet / سفن اب دايت" },
+            { id: 806, name: "Dew - ديو", cat: "pepsi", price: 2.50, isDrink: true, desc: "Mountain Dew Can / ديو" },
+            { id: 807, name: "Mirinda Orange - میرندا برتقال", cat: "pepsi", price: 2.50, isDrink: true, desc: "Mirinda Orange / میرندا برتقال" },
+            { id: 808, name: "Pepsi 1L - بيبسي 1 لتر", cat: "pepsi", price: 5.00, isDrink: true, desc: "Pepsi 1 Liter / بيبسي ١ لتر" },
+            { id: 809, name: "7UP 1L - سفن اب 1 لتر", cat: "pepsi", price: 5.00, isDrink: true, desc: "7UP 1 Liter / سفن اب ١ لتر" },
+            { id: 810, name: "Citrus 1L - الحمضيات 1 لتر", cat: "pepsi", price: 5.00, isDrink: true, desc: "Citrus 1 Liter / حمضيات ١ لتر" },
+            { id: 811, name: "Rabia Juice - عصير ربيع", cat: "pepsi", price: 2.00, isDrink: true, desc: "Rabia Juice Box / عصير ربيع" },
+            { id: 812, name: "Water - ماء", cat: "pepsi", price: 1.00, isDrink: true, desc: "Mineral Water / ماء" },
+
+            // ================= FRESH JUICES (عصائر طازجة) =================
+            { id: 901, name: "Cocktail Juice Big - عصير كوكتيل كبير", cat: "juices", price: 7, isDrink: true, desc: "Fresh Juice Big / عصير طازج كبير" },
+            { id: 902, name: "Cocktail Juice Small - عصير كوكتيل صغير", cat: "juices", price: 5, isDrink: true, desc: "Fresh Juice Small / عصير طازج صغير" },
+            { id: 903, name: "Cocktail Juice Gallon - عصير كوكتيل جالون", cat: "juices", price: 21, isDrink: true, desc: "Fresh Juice Gallon / عصير طازج جالون" },
+
+            { id: 904, name: "Mango Juice Big - عصير مانجو كبير", cat: "juices", price: 7, isDrink: true, desc: "Fresh Juice Big / عصير طازج كبير" },
+            { id: 905, name: "Mango Juice Small - عصير مانجو صغير", cat: "juices", price: 5, isDrink: true, desc: "Fresh Juice Small / عصير طازج صغير" },
+            { id: 906, name: "Mango Juice Gallon - عصير مانجو جالون", cat: "juices", price: 21, isDrink: true, desc: "Fresh Juice Gallon / عصير طازج جالون" },
+
+            { id: 907, name: "Orange Fresh Big - برتقال كبس كبير", cat: "juices", price: 9, isDrink: true, desc: "Fresh Orange Big / عصير برتقال كبير" },
+            { id: 908, name: "Orange Fresh Small - برتقال كبس صغير", cat: "juices", price: 6, isDrink: true, desc: "Fresh Orange Small / عصير برتقال صغير" },
+            { id: 909, name: "Orange Fresh Gallon - برتقال كبس جالون", cat: "juices", price: 27, isDrink: true, desc: "Fresh Orange Gallon / عصير برتقال جالون" },
+
+            { id: 910, name: "Avocado Big - أفوكادو كبير", cat: "juices", price: 9, isDrink: true, desc: "Fresh Avocado Big / أفوكادو كبير" },
+            { id: 911, name: "Avocado Small - أفوكادو صغير", cat: "juices", price: 6, isDrink: true, desc: "Fresh Avocado Small / أفوكادو صغير" },
+            { id: 912, name: "Avocado Gallon - أفوكادو جالون", cat: "juices", price: 27, isDrink: true, desc: "Fresh Avocado Gallon / أفوكادو جالون" }
+        ];
+
+        let cart = {};
+        let currentOrderType = 'pickup';
+
+        function renderMenu(filter = 'broast') {
+            const container = document.getElementById('menu-container');
+            container.innerHTML = '';
+
+            const filtered = menuData.filter(i => i.cat === filter);
+
+            if(filtered.length === 0) {
+                container.innerHTML = `<div style="text-align:center; padding:30px; color:#777;">No items in this category yet.</div>`;
+                return;
+            }
+
+            filtered.forEach(item => {
+                const qty = cart[item.id] ? cart[item.id].qty : 0;
+                container.innerHTML += `
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3>${item.name}</h3>
+                            <p>${item.desc}</p>
+                            <div class="item-price">${item.price.toFixed(2)} SAR</div>
+                        </div>
+                        <div>
+                            ${qty === 0 ? 
+                                `<button class="add-btn" onclick="addToCart(${item.id})">+ Add / إضافة</button>` :
+                                `<div style="display:flex; align-items:center; gap:8px;">
+                                    <button class="add-btn" style="padding:4px 10px;" onclick="updateQty(${item.id}, -1)">-</button>
+                                    <b>${qty}</b>
+                                    <button class="add-btn" style="padding:4px 10px;" onclick="updateQty(${item.id}, 1)">+</button>
+                                 </div>`
+                            }
+                        </div>
+                    </div>
+                `;
             });
-            event.target.classList.add('active');
-            
-            // Scroll to top of content smoothly
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
+        function filterCategory(cat, event) {
+            document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+            if(event) {
+                event.target.closest('.category-btn').classList.add('active');
+            }
+            renderMenu(cat);
+        }
+
+        function addToCart(id) {
+            const item = menuData.find(i => i.id === id);
+            cart[id] = { ...item, qty: 1 };
+            updateCartBar();
+            const activeBtn = document.querySelector('.category-btn.active');
+            const activeCat = activeBtn.getAttribute('onclick').split("'")[1];
+            renderMenu(activeCat);
+        }
+
+        function updateQty(id, change) {
+            if (cart[id]) {
+                cart[id].qty += change;
+                if (cart[id].qty <= 0) delete cart[id];
+            }
+            updateCartBar();
+            const activeBtn = document.querySelector('.category-btn.active');
+            const activeCat = activeBtn.getAttribute('onclick').split("'")[1];
+            renderMenu(activeCat);
+        }
+
+        function updateCartBar() {
+            let count = 0;
+            let total = 0;
+            Object.values(cart).forEach(item => {
+                count += item.qty;
+                total += (item.qty * item.price);
+            });
+
+            document.getElementById('cartCount').innerText = count;
+            document.getElementById('cartTotal').innerText = total.toFixed(2);
+            document.getElementById('cartBar').style.display = count > 0 ? 'flex' : 'none';
+        }
+
+        function setOrderType(type) {
+            currentOrderType = type;
+            document.getElementById('btnPickup').classList.toggle('active', type === 'pickup');
+            document.getElementById('btnDelivery').classList.toggle('active', type === 'delivery');
+            
+            const ratesBox = document.getElementById('deliveryRatesBox');
+            if(type === 'delivery') {
+                ratesBox.style.display = 'block';
+            } else {
+                ratesBox.style.display = 'none';
+            }
+
+            checkDeliveryMin();
+        }
+
+        function checkDeliveryMin() {
+            let foodTotal = 0;
+            Object.values(cart).forEach(item => {
+                if (!item.isDrink) {
+                    foodTotal += (item.qty * item.price);
+                }
+            });
+
+            const alertBox = document.getElementById('minAlert');
+            if (currentOrderType === 'delivery' && foodTotal < 20) {
+                alertBox.style.display = 'block';
+                return false;
+            } else {
+                alertBox.style.display = 'none';
+                return true;
+            }
+        }
+
+        function openCheckout() {
+            document.getElementById('checkoutModal').style.display = 'flex';
+            let summaryHTML = '<b>Order Summary / ملخص الطلب:</b><br>';
+            Object.values(cart).forEach(i => {
+                summaryHTML += `<div>• ${i.name} x ${i.qty} = ${(i.qty * i.price).toFixed(2)} SAR</div>`;
+            });
+            document.getElementById('orderSummary').innerHTML = summaryHTML;
+            setOrderType(currentOrderType);
+        }
+
+        function closeCheckout() {
+            document.getElementById('checkoutModal').style.display = 'none';
+        }
+
+        function sendToWhatsApp() {
+            const name = document.getElementById('custName').value.trim();
+            const address = document.getElementById('custAddress').value.trim();
+            const notes = document.getElementById('custNotes').value.trim();
+
+            if (!name) {
+                alert('Please enter your Name or Room Number.');
+                return;
+            }
+
+            if (currentOrderType === 'delivery' && !address) {
+                alert('Please enter your Address / Location for delivery.');
+                return;
+            }
+
+            if (!checkDeliveryMin()) {
+                alert('Delivery order requires minimum 20 SAR Food items (Drinks excluded).');
+                return;
+            }
+
+            let text = `*NEW ORDER - TOP CHICKEN*\n`;
+            text += `Type: *${currentOrderType.toUpperCase()}*\n`;
+            text += `Name/Room: ${name}\n`;
+            if (address) text += `Address: ${address}\n`;
+            if (notes) text += `Notes: ${notes}\n`;
+            text += `------------------------\n`;
+
+            let total = 0;
+            Object.values(cart).forEach(i => {
+                const sub = i.qty * i.price;
+                total += sub;
+                text += `• ${i.name} x${i.qty} = ${sub.toFixed(2)} SAR\n`;
+            });
+
+            text += `------------------------\n`;
+            text += `*TOTAL AMOUNT: ${total.toFixed(2)} SAR*\n`;
+
+            if (currentOrderType === 'delivery') {
+                text += `\n*Note:* المبلغ الإجمالي لا يشمل رسوم التوصيل (Delivery charges will be calculated based on location distance).`;
+            }
+
+            const phone = "966554726280";
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank');
+        }
+
+        // Image Gallery Auto-Slider
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        setInterval(() => {
+            if (slides.length > 0) {
+                currentSlide = (currentSlide + 1) % slides.length;
+                document.getElementById('sliderWrapper').style.transform = `translateX(-${currentSlide * 100}%)`;
+            }
+        }, 3000);
+
+        // Initial Load
+        renderMenu('broast');
     </script>
 </body>
 </html>
