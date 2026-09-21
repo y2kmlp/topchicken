@@ -32,55 +32,64 @@
             position: relative;
             background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url('1.jpg') center/cover no-repeat;
             color: white;
-            padding: 30px 15px 25px 15px;
+            padding: 20px 10px 15px 10px;
             text-align: center;
             border-bottom-left-radius: 20px;
             border-bottom-right-radius: 20px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
 
-        .header h1, .header p {
-            background: rgba(0, 0, 0, 0.55);
-            display: inline-block;
-            padding: 6px 16px;
-            border-radius: 10px;
-            margin-bottom: 6px;
-            backdrop-filter: blur(2px);
-        }
-
         .header h1 {
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 800;
             color: var(--accent-yellow);
+            background: rgba(0, 0, 0, 0.55);
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 10px;
+            margin-bottom: 4px;
+            backdrop-filter: blur(2px);
             letter-spacing: 1px;
         }
 
         .header p {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: bold;
             color: #ffffff;
+            background: rgba(0, 0, 0, 0.55);
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            backdrop-filter: blur(2px);
         }
 
+        /* Side by Side Buttons placed higher up */
         .header-buttons {
             display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 10px;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            margin-top: 5px;
+            padding: 0 5px;
         }
 
         .header-btn {
+            flex: 1;
             background-color: rgba(211, 47, 47, 0.9);
             color: white;
             border: 1px solid var(--accent-yellow);
-            padding: 8px 16px;
+            padding: 8px 5px;
             border-radius: 20px;
             text-decoration: none;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: bold;
             display: inline-flex;
+            justify-content: center;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            white-space: nowrap;
         }
 
         /* Sticky 2-Line Category Navigation Grid */
@@ -388,6 +397,7 @@
     <!-- Header Section -->
     <div class="header">
         <h1>TOP CHICKEN</h1>
+        <br>
         <p>الدجاج المميز</p>
         <div class="header-buttons">
             <a href="tel:0554726280" class="header-btn">📞 0554726280</a>
