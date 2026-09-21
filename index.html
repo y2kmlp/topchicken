@@ -32,107 +32,119 @@
             position: relative;
             background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.45)), url('1.jpg') center/cover no-repeat;
             color: white;
-            padding: 12px 8px 18px 8px;
+            padding: 12px 6px 18px 6px;
             text-align: center;
             border-bottom-left-radius: 20px;
             border-bottom-right-radius: 20px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
 
-        /* Top Brand Row in Header */
+        /* Grid for Perfect Centered Alignment */
         .header-top-row {
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
             align-items: center;
-            justify-content: space-between;
             max-width: 600px;
-            margin: 0 auto 10px auto;
-            padding: 0 4px;
+            margin: 0 auto 12px auto;
+            gap: 4px;
         }
 
-        /* Left Side: Logo & Curved Text Badge */
+        /* Left Side: Text FIRST, then Logo Image */
         .logo-badge-container {
             display: flex;
             align-items: center;
+            justify-content: flex-start;
             gap: 6px;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.55);
             padding: 4px 8px;
             border-radius: 25px;
-            border: 1px solid rgba(255, 235, 59, 0.4);
+            border: 1px solid rgba(255, 235, 59, 0.5);
             backdrop-filter: blur(3px);
-        }
-
-        .logo-img {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 1.5px solid var(--accent-yellow);
+            justify-self: start;
         }
 
         .logo-text-box {
-            text-align: left;
+            text-align: right;
             line-height: 1.1;
         }
 
         .logo-text-en {
-            font-size: 9px;
+            font-size: 8.5px;
             font-weight: 800;
             color: var(--accent-yellow);
-            letter-spacing: 0.3px;
+            letter-spacing: 0.2px;
+            white-space: nowrap;
         }
 
         .logo-text-ar {
-            font-size: 10px;
+            font-size: 9.5px;
             font-weight: bold;
             color: #ffffff;
             direction: rtl;
+            white-space: nowrap;
         }
 
-        /* Middle: Main Title */
+        .logo-img {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1.5px solid var(--accent-yellow);
+            background: #fff;
+            flex-shrink: 0;
+        }
+
+        /* Middle: Main Title (Perfect Centered Alignment) */
         .main-brand-title {
             text-align: center;
+            padding: 0 4px;
         }
 
         .main-title-en {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 900;
             color: var(--accent-yellow);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.8px;
             text-shadow: 1px 2px 4px rgba(0,0,0,0.9);
             line-height: 1;
+            white-space: nowrap;
         }
 
         .main-title-ar {
-            font-size: 17px;
+            font-size: 15px;
             font-weight: 800;
             color: #ffffff;
             direction: rtl;
             text-shadow: 1px 2px 4px rgba(0,0,0,0.9);
             line-height: 1.1;
+            white-space: nowrap;
         }
 
         /* Right Side: Since 1999 Badge */
         .since-badge {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 235, 59, 0.4);
+            background: rgba(0, 0, 0, 0.55);
+            border: 1px solid rgba(255, 235, 59, 0.5);
             padding: 5px 8px;
             border-radius: 12px;
             text-align: center;
             backdrop-filter: blur(3px);
             line-height: 1.1;
+            justify-self: end;
         }
 
         .since-en {
-            font-size: 10px;
+            font-size: 9.5px;
             font-weight: 800;
             color: var(--accent-yellow);
+            white-space: nowrap;
         }
 
         .since-ar {
-            font-size: 10px;
+            font-size: 9.5px;
             font-weight: bold;
             color: #ffffff;
+            white-space: nowrap;
         }
 
         /* Bottom Row: Horizontal Blue Board Panel for Buttons */
@@ -173,11 +185,11 @@
 
         /* Responsive adjustment for small screens */
         @media (max-width: 420px) {
-            .main-title-en { font-size: 16px; }
-            .main-title-ar { font-size: 14px; }
-            .logo-img { width: 32px; height: 32px; }
-            .logo-text-en { font-size: 8px; }
-            .logo-text-ar { font-size: 9px; }
+            .main-title-en { font-size: 14.5px; }
+            .main-title-ar { font-size: 12.5px; }
+            .logo-img { width: 30px; height: 30px; }
+            .logo-text-en { font-size: 7.5px; }
+            .logo-text-ar { font-size: 8.5px; }
             .since-en, .since-ar { font-size: 8px; }
             .board-btn { font-size: 10px; padding: 6px 2px; }
         }
@@ -513,16 +525,16 @@
     <div class="header">
         <!-- Row 1: Brand Badges & Main Title -->
         <div class="header-top-row">
-            <!-- Left: Logo & Daily Fresh Chicken Text -->
+            <!-- Left: Text FIRST, then Logo Image -->
             <div class="logo-badge-container">
-                <img src="logo.jpg" alt="Top Chicken Logo" class="logo-img">
                 <div class="logo-text-box">
                     <div class="logo-text-en">DAILY FRESH CHICKEN</div>
                     <div class="logo-text-ar">دجاج طازج يومياً</div>
                 </div>
+                <img src="logo.jpg" alt="Top Chicken Logo" class="logo-img">
             </div>
 
-            <!-- Middle: Main Title -->
+            <!-- Middle: Main Title (Perfect Centered Alignment) -->
             <div class="main-brand-title">
                 <div class="main-title-en">TOP CHICKEN</div>
                 <div class="main-title-ar">الدجاج المميز</div>
@@ -806,12 +818,12 @@
             { id: 914, name: "Lemon Juice Big - ليمون كبير", cat: "juices", price: 7, isDrink: true, desc: "Fresh Juice Big / عصير طازج كبير" },
             { id: 915, name: "Lemon Juice Gallon - ليمون جالون", cat: "juices", price: 21, isDrink: true, desc: "Fresh Juice Gallon / عصير طازج جالون" },
 
-            { id: 916, name: "Apple Juice Small - تفاح صغير", cat: "juices", price: 6, isDrink: true, desc: "Fresh Juice Small / عصير طازج صغير" },
-            { id: 917, name: "Apple Juice Big - تفاح كبير", cat: "juices", price: 8, isDrink: true, desc: "Fresh Juice Big / عصير طازج كبير" },
+            { id: 916, name: "Apple Juice Small - تفاح صغير", cat: "juices", price: 6, isDrink: true, desc: "Fresh Juice Small / عصير تفاح صغير" },
+            { id: 917, name: "Apple Juice Big - تفاح كبير", cat: "juices", price: 8, isDrink: true, desc: "Fresh Juice Big / عصير تفاح كبير" },
             { id: 918, name: "Apple Juice Gallon - تفاح جالون", cat: "juices", price: 25, isDrink: true, desc: "Fresh Juice Gallon / عصير تفاح جالون" },
 
-            { id: 919, name: "Banana Milk Small - موز بالحليب صغير", cat: "juices", price: 6, isDrink: true, desc: "Fresh Juice Small / عصير طازج صغير" },
-            { id: 920, name: "Banana Milk Big - موز بالحليب كبير", cat: "juices", price: 8, isDrink: true, desc: "Fresh Juice Big / عصير طازج كبير" },
+            { id: 919, name: "Banana Milk Small - موز بالحليب صغير", cat: "juices", price: 6, isDrink: true, desc: "Fresh Juice Small / عصير موز بالحليب صغير" },
+            { id: 920, name: "Banana Milk Big - موز بالحليب كبير", cat: "juices", price: 8, isDrink: true, desc: "Fresh Juice Big / عصير موز بالحليب كبير" },
             { id: 921, name: "Banana Milk Gallon - موز بالحليب جالون", cat: "juices", price: 25, isDrink: true, desc: "Fresh Juice Gallon / عصير موز بالحليب جالون" },
 
             { id: 922, name: "Avocado Small - أفوكادو صغير", cat: "juices", price: 6, isDrink: true, desc: "Fresh Avocado Small / أفوكادو صغير" },
