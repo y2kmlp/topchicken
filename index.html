@@ -378,6 +378,31 @@
             cursor: pointer;
         }
 
+        /* Cart View Item List styling */
+        .cart-view-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .delete-btn {
+            background: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
         /* Footer */
         .footer {
             text-align: center;
@@ -488,21 +513,46 @@
         <p style="margin-top: 5px; font-weight: bold; color: #333;">Developer: y2kmlpcpr0501163652</p>
     </div>
 
-    <!-- Floating Cart Bar -->
+    <!-- Floating Cart Bar (Navigates to View Cart) -->
     <div class="cart-bar" id="cartBar" style="display: none;">
         <div class="cart-info">
             <span id="cartCount">0</span> Items | Total: <span id="cartTotal">0</span> SAR
         </div>
-        <button class="checkout-btn" onclick="openCheckout()">
-            Checkout / الطلب 💬
+        <button class="checkout-btn" onclick="openCartView()">
+            View Cart / السلة 🛒
         </button>
     </div>
 
-    <!-- Checkout Modal Popup -->
+    <!-- 1. VIEW CART MODAL (കാർട്ട് പരിശോധിക്കാനും കൂട്ടാനും കുറയ്ക്കാനുമുള്ള പേജ്) -->
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Your Cart / سلة التسوق 🛒</h3>
+                <span style="cursor:pointer; font-size: 22px; font-weight: bold;" onclick="closeCartView()">✕</span>
+            </div>
+
+            <div id="cartItemsList" style="max-height: 250px; overflow-y: auto; margin-bottom: 15px;">
+                <!-- Selected items with + - and delete buttons will render here -->
+            </div>
+
+            <div style="font-size: 16px; font-weight: bold; text-align: right; margin-bottom: 15px; border-top: 2px dashed #eee; padding-top: 10px;">
+                Subtotal: <span id="cartModalTotal" style="color: var(--primary-color);">0.00</span> SAR
+            </div>
+
+            <button class="confirm-btn" onclick="proceedToCheckoutFromCart()">
+                Proceed to Checkout / متابعة الطلب ➡️
+            </button>
+        </div>
+    </div>
+
+    <!-- 2. CHECKOUT DETAILS MODAL (കസ്റ്റമർ വിവരങ്ങളും വാട്ട്‌സ്ആപ്പിലേക്ക് ഓർഡർ അയക്കാനുള്ള പേജും) -->
     <div class="modal" id="checkoutModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Order Details / تفاصيل الطلب</h3>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="cursor:pointer; font-size: 18px; font-weight: bold; color: var(--primary-color);" onclick="backToCartFromCheckout()">⬅️</span>
+                    <h3>Order Details / تفاصيل الطلب</h3>
+                </div>
                 <span style="cursor:pointer; font-size: 22px; font-weight: bold;" onclick="closeCheckout()">✕</span>
             </div>
 
@@ -689,11 +739,11 @@
 
             { id: 916, name: "Apple Juice Small - تفاح صغير", cat: "juices", price: 6, isDrink: true, desc: "Fresh Juice Small / عصير طازج صغير" },
             { id: 917, name: "Apple Juice Big - تفاح كبير", cat: "juices", price: 8, isDrink: true, desc: "Fresh Juice Big / عصير طازج كبير" },
-            { id: 918, name: "Apple Juice Gallon - تفاح جالون", cat: "juices", price: 25, isDrink: true, desc: "Fresh Juice Gallon / عصير طازج جالون" },
+            { id: 918, name: "Apple Juice Gallon - تفاح جالون", cat: "juices", price: 25, isDrink: true, desc: "Fresh Juice Gallon / عصير تفاح جالون" },
 
             { id: 919, name: "Banana Milk Small - موز بالحليب صغير", cat: "juices", price: 6, isDrink: true, desc: "Fresh Juice Small / عصير طازج صغير" },
             { id: 920, name: "Banana Milk Big - موز بالحليب كبير", cat: "juices", price: 8, isDrink: true, desc: "Fresh Juice Big / عصير طازج كبير" },
-            { id: 921, name: "Banana Milk Gallon - موز بالحليب جالون", cat: "juices", price: 25, isDrink: true, desc: "Fresh Juice Gallon / عصير طازج جالون" },
+            { id: 921, name: "Banana Milk Gallon - موز بالحليب جالون", cat: "juices", price: 25, isDrink: true, desc: "Fresh Juice Gallon / عصير موز بالحليب جالون" },
 
             { id: 922, name: "Avocado Small - أفوكادو صغير", cat: "juices", price: 6, isDrink: true, desc: "Fresh Avocado Small / أفوكادو صغير" },
             { id: 923, name: "Avocado Big - أفوكادو كبير", cat: "juices", price: 9, isDrink: true, desc: "Fresh Avocado Big / أفوكادو كبير" },
@@ -754,9 +804,8 @@
             const item = menuData.find(i => i.id === id);
             cart[id] = { ...item, qty: 1 };
             updateCartBar();
-            const activeBtn = document.querySelector('.category-btn.active');
-            const activeCat = activeBtn.getAttribute('onclick').split("'")[1];
-            renderMenu(activeCat);
+            refreshCurrentCategoryView();
+            renderCartItemsList();
         }
 
         function updateQty(id, change) {
@@ -765,9 +814,25 @@
                 if (cart[id].qty <= 0) delete cart[id];
             }
             updateCartBar();
+            refreshCurrentCategoryView();
+            renderCartItemsList();
+        }
+
+        function deleteFromCart(id) {
+            if (cart[id]) {
+                delete cart[id];
+            }
+            updateCartBar();
+            refreshCurrentCategoryView();
+            renderCartItemsList();
+        }
+
+        function refreshCurrentCategoryView() {
             const activeBtn = document.querySelector('.category-btn.active');
-            const activeCat = activeBtn.getAttribute('onclick').split("'")[1];
-            renderMenu(activeCat);
+            if (activeBtn) {
+                const activeCat = activeBtn.getAttribute('onclick').split("'")[1];
+                renderMenu(activeCat);
+            }
         }
 
         function updateCartBar() {
@@ -780,9 +845,70 @@
 
             document.getElementById('cartCount').innerText = count;
             document.getElementById('cartTotal').innerText = total.toFixed(2);
-            document.getElementById('cartBar').style.display = count > 0 ? 'flex' : 'none';
+            document.getElementById('cartModalTotal').innerText = total.toFixed(2);
+            
+            if (count === 0) {
+                document.getElementById('cartBar').style.display = 'none';
+                closeCartView();
+                closeCheckout();
+            } else {
+                document.getElementById('cartBar').style.display = 'flex';
+            }
         }
 
+        /* 🛒 VIEW CART FUNCTIONS */
+        function openCartView() {
+            renderCartItemsList();
+            document.getElementById('cartModal').style.display = 'flex';
+        }
+
+        function closeCartView() {
+            document.getElementById('cartModal').style.display = 'none';
+        }
+
+        function renderCartItemsList() {
+            const listContainer = document.getElementById('cartItemsList');
+            listContainer.innerHTML = '';
+
+            const cartArray = Object.values(cart);
+            if (cartArray.length === 0) {
+                listContainer.innerHTML = `<div style="text-align:center; color:#888; padding:20px;">Your cart is empty / السلة فارغة</div>`;
+                return;
+            }
+
+            cartArray.forEach(item => {
+                listContainer.innerHTML += `
+                    <div class="cart-view-item">
+                        <div style="flex:1;">
+                            <div style="font-size:14px; font-weight:bold; color:#222;">${item.name}</div>
+                            <div style="font-size:12px; color:var(--primary-color); font-weight:bold;">${(item.qty * item.price).toFixed(2)} SAR</div>
+                        </div>
+                        <div class="cart-item-controls">
+                            <button class="add-btn" style="padding:2px 8px;" onclick="updateQty(${item.id}, -1)">-</button>
+                            <b>${item.qty}</b>
+                            <button class="add-btn" style="padding:2px 8px;" onclick="updateQty(${item.id}, 1)">+</button>
+                            <button class="delete-btn" onclick="deleteFromCart(${item.id})">🗑️</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function proceedToCheckoutFromCart() {
+            if (Object.keys(cart).length === 0) {
+                alert('Your cart is empty.');
+                return;
+            }
+            closeCartView();
+            openCheckout();
+        }
+
+        function backToCartFromCheckout() {
+            closeCheckout();
+            openCartView();
+        }
+
+        /* 📋 CHECKOUT FUNCTIONS */
         function setOrderType(type) {
             currentOrderType = type;
             document.getElementById('btnPickup').classList.toggle('active', type === 'pickup');
