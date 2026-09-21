@@ -30,103 +30,156 @@
         /* Header Section with main shop photo (1.jpg) */
         .header {
             position: relative;
-            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), url('1.jpg') center/cover no-repeat;
+            background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.45)), url('1.jpg') center/cover no-repeat;
             color: white;
-            padding: 25px 10px;
+            padding: 12px 8px 18px 8px;
             text-align: center;
             border-bottom-left-radius: 20px;
             border-bottom-right-radius: 20px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
 
-        /* Horizontal Blue Board Panel (20% | 30% | 30% | 20%) */
+        /* Top Brand Row in Header */
+        .header-top-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 600px;
+            margin: 0 auto 10px auto;
+            padding: 0 4px;
+        }
+
+        /* Left Side: Logo & Curved Text Badge */
+        .logo-badge-container {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 4px 8px;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 235, 59, 0.4);
+            backdrop-filter: blur(3px);
+        }
+
+        .logo-img {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1.5px solid var(--accent-yellow);
+        }
+
+        .logo-text-box {
+            text-align: left;
+            line-height: 1.1;
+        }
+
+        .logo-text-en {
+            font-size: 9px;
+            font-weight: 800;
+            color: var(--accent-yellow);
+            letter-spacing: 0.3px;
+        }
+
+        .logo-text-ar {
+            font-size: 10px;
+            font-weight: bold;
+            color: #ffffff;
+            direction: rtl;
+        }
+
+        /* Middle: Main Title */
+        .main-brand-title {
+            text-align: center;
+        }
+
+        .main-title-en {
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--accent-yellow);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 1px 2px 4px rgba(0,0,0,0.9);
+            line-height: 1;
+        }
+
+        .main-title-ar {
+            font-size: 17px;
+            font-weight: 800;
+            color: #ffffff;
+            direction: rtl;
+            text-shadow: 1px 2px 4px rgba(0,0,0,0.9);
+            line-height: 1.1;
+        }
+
+        /* Right Side: Since 1999 Badge */
+        .since-badge {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 235, 59, 0.4);
+            padding: 5px 8px;
+            border-radius: 12px;
+            text-align: center;
+            backdrop-filter: blur(3px);
+            line-height: 1.1;
+        }
+
+        .since-en {
+            font-size: 10px;
+            font-weight: 800;
+            color: var(--accent-yellow);
+        }
+
+        .since-ar {
+            font-size: 10px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        /* Bottom Row: Horizontal Blue Board Panel for Buttons */
         .blue-board-panel {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background-color: rgba(10, 50, 110, 0.85); /* ബോർഡിന്റെ നീല പ്രതലം */
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            background-color: rgba(10, 50, 110, 0.88);
+            border: 2px solid rgba(255, 255, 255, 0.35);
             border-radius: 12px;
-            padding: 8px 6px;
+            padding: 6px 8px;
             width: 100%;
             max-width: 600px;
             margin: 0 auto;
             backdrop-filter: blur(3px);
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            gap: 10px;
         }
 
-        /* 1. Left 20%: Phone Number Button */
-        .board-phone {
-            flex: 0 0 20%;
+        /* Matching Red Buttons for Phone & Location */
+        .board-btn {
+            flex: 1;
             background-color: var(--primary-color);
             color: white;
             border: 1px solid var(--accent-yellow);
-            padding: 8px 2px;
+            padding: 8px 4px;
             border-radius: 8px;
             text-decoration: none;
-            font-size: 11px;
+            font-size: 12px;
             font-weight: bold;
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
             white-space: nowrap;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-
-        /* 2. Middle Left 30%: TOP CHICKEN English Text */
-        .board-title-en {
-            flex: 0 0 30%;
-            font-size: 18px;
-            font-weight: 800;
-            color: var(--accent-yellow);
-            text-align: center;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
-            line-height: 1.1;
-        }
-
-        /* 3. Middle Right 30%: الدجاج المميز Arabic Text */
-        .board-title-ar {
-            flex: 0 0 30%;
-            font-size: 18px;
-            font-weight: 800;
-            color: var(--accent-yellow);
-            text-align: center;
-            direction: rtl;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
-            line-height: 1.1;
-        }
-
-        /* 4. Right 20%: Location Button */
-        .board-location {
-            flex: 0 0 20%;
-            background-color: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: 1px solid var(--accent-yellow);
-            padding: 8px 2px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 11px;
-            font-weight: bold;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            white-space: nowrap;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.25);
         }
 
         /* Responsive adjustment for small screens */
-        @media (max-width: 400px) {
-            .board-title-en, .board-title-ar {
-                font-size: 14px;
-            }
-            .board-phone, .board-location {
-                font-size: 9px;
-                padding: 6px 1px;
-            }
+        @media (max-width: 420px) {
+            .main-title-en { font-size: 16px; }
+            .main-title-ar { font-size: 14px; }
+            .logo-img { width: 32px; height: 32px; }
+            .logo-text-en { font-size: 8px; }
+            .logo-text-ar { font-size: 9px; }
+            .since-en, .since-ar { font-size: 8px; }
+            .board-btn { font-size: 10px; padding: 6px 2px; }
         }
 
         /* Sticky 2-Line Category Navigation Grid */
@@ -456,20 +509,36 @@
 </head>
 <body>
 
-    <!-- Header Section with 20% - 30% - 30% - 20% Blue Panel Board Layout -->
+    <!-- Header Section with 2-Row Professional Layout -->
     <div class="header">
+        <!-- Row 1: Brand Badges & Main Title -->
+        <div class="header-top-row">
+            <!-- Left: Logo & Daily Fresh Chicken Text -->
+            <div class="logo-badge-container">
+                <img src="logo.jpg" alt="Top Chicken Logo" class="logo-img">
+                <div class="logo-text-box">
+                    <div class="logo-text-en">DAILY FRESH CHICKEN</div>
+                    <div class="logo-text-ar">دجاج طازج يومياً</div>
+                </div>
+            </div>
+
+            <!-- Middle: Main Title -->
+            <div class="main-brand-title">
+                <div class="main-title-en">TOP CHICKEN</div>
+                <div class="main-title-ar">الدجاج المميز</div>
+            </div>
+
+            <!-- Right: Since 1999 Badge -->
+            <div class="since-badge">
+                <div class="since-en">SINCE 1999</div>
+                <div class="since-ar">منذ ١٩٩٩</div>
+            </div>
+        </div>
+
+        <!-- Row 2: Bottom Blue Panel with Phone & Location Buttons -->
         <div class="blue-board-panel">
-            <!-- 20% Phone Button (Left) -->
-            <a href="tel:0554726280" class="board-phone">📞 0554726280</a>
-            
-            <!-- 30% English Title -->
-            <div class="board-title-en">TOP CHICKEN</div>
-            
-            <!-- 30% Arabic Title -->
-            <div class="board-title-ar">الدجاج المميز</div>
-            
-            <!-- 20% Location Button (Right) -->
-            <a href="https://maps.app.goo.gl/jyzeBRQ1bsFrCQgs9?g_st=aw" target="_blank" class="board-location">📍 Location</a>
+            <a href="tel:0554726280" class="board-btn">📞 0554726280</a>
+            <a href="https://maps.app.goo.gl/jyzeBRQ1bsFrCQgs9?g_st=aw" target="_blank" class="board-btn">📍 Location / الموقع</a>
         </div>
     </div>
 
