@@ -27,7 +27,7 @@
             padding-bottom: 90px;
         }
 
-        /* 1. Top Announcement Bar */
+        /* 1. Top Announcement Bar (English First, Then Arabic in One Continuous Sequence) */
         .announcement-bar {
             background: linear-gradient(90deg, #d32f2f, #f57c00);
             color: #ffffff;
@@ -46,7 +46,18 @@
         .announcement-text {
             display: inline-block;
             padding-left: 100%;
-            animation: marquee 22s linear infinite;
+            animation: marquee 25s linear infinite;
+        }
+
+        .en-msg {
+            display: inline-block;
+            margin-right: 50px;
+            direction: ltr;
+        }
+
+        .ar-msg {
+            display: inline-block;
+            direction: rtl;
         }
 
         @keyframes marquee {
@@ -190,6 +201,33 @@
             white-space: nowrap;
         }
 
+        /* Address Badge Under Main Brand Title */
+        .address-container-box {
+            background: rgba(0, 0, 0, 0.65);
+            border: 1px solid rgba(255, 235, 59, 0.6);
+            border-radius: 10px;
+            padding: 6px 10px;
+            max-width: 600px;
+            margin: 0 auto 10px auto;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+
+        .address-text-en {
+            font-size: 10.5px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 0.3px;
+        }
+
+        .address-text-ar {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--accent-yellow);
+            direction: rtl;
+            margin-top: 2px;
+        }
+
         /* Right Side: Since 1999 Badge */
         .since-badge {
             background: rgba(0, 0, 0, 0.55);
@@ -259,6 +297,8 @@
             .logo-text-ar { font-size: 8.5px; }
             .since-en, .since-ar { font-size: 8px; }
             .board-btn { font-size: 10px; padding: 6px 2px; }
+            .address-text-en { font-size: 9px; }
+            .address-text-ar { font-size: 9.5px; }
         }
 
         /* Sticky 2-Line Category Navigation Grid */
@@ -611,10 +651,11 @@
 </head>
 <body>
 
-    <!-- 1. Top Announcement Bar -->
+    <!-- 1. Top Announcement Bar (English First, then Arabic Continuous Scroll) -->
     <div class="announcement-bar">
         <div class="announcement-text">
-            🔥 Serving Riyadh since 1999 (27 Years of Excellence) | Fresh Daily Chicken & Best Broast in Riyadh | ✨ 27 عاماً من الخبرة - تقديم أفضل دجاج طازج وبروستد في الرياض ✨
+            <span class="en-msg">🔥 Serving Riyadh since 1999 (27 Years of Excellence) | Fresh Daily Chicken & Best Broast in Riyadh</span>
+            <span class="ar-msg">✨ ٢٧ عاماً من الخبرة - تقديم أفضل دجاج طازج وبروستد في الرياض ✨</span>
         </div>
     </div>
 
@@ -649,6 +690,12 @@
                 <div class="since-en">SINCE 1999</div>
                 <div class="since-ar">منذ ١٩٩٩</div>
             </div>
+        </div>
+
+        <!-- Address Badge Container -->
+        <div class="address-container-box">
+            <div class="address-text-en">📍 Building No. 89, Zubair Bin Al Awwam Street, Ar Rawabi, Riyadh</div>
+            <div class="address-text-ar">المبنى رقم ٨٩، شارع الزبير بن العوام، الروابي، الرياض 📍</div>
         </div>
 
         <!-- Row 2: Bottom Blue Panel with Phone & Location Buttons -->
