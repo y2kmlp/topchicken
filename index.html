@@ -27,7 +27,7 @@
             padding-bottom: 90px;
         }
 
-        /* 1. Top Announcement Bar (English First, Then Arabic in One Continuous Sequence) */
+        /* 1. Top Announcement Bar (English First, then Arabic in continuous sequence) */
         .announcement-bar {
             background: linear-gradient(90deg, #d32f2f, #f57c00);
             color: #ffffff;
@@ -201,7 +201,7 @@
             white-space: nowrap;
         }
 
-        /* Address Badge Under Main Brand Title */
+        /* Address Badge Container Under Main Title */
         .address-container-box {
             background: rgba(0, 0, 0, 0.65);
             border: 1px solid rgba(255, 235, 59, 0.6);
@@ -211,6 +211,7 @@
             margin: 0 auto 10px auto;
             backdrop-filter: blur(4px);
             box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            text-align: center;
         }
 
         .address-text-en {
@@ -651,7 +652,7 @@
 </head>
 <body>
 
-    <!-- 1. Top Announcement Bar (English First, then Arabic Continuous Scroll) -->
+    <!-- 1. Top Announcement Bar (English First, then Arabic in continuous sequence) -->
     <div class="announcement-bar">
         <div class="announcement-text">
             <span class="en-msg">🔥 Serving Riyadh since 1999 (27 Years of Excellence) | Fresh Daily Chicken & Best Broast in Riyadh</span>
@@ -679,7 +680,7 @@
                 <img src="logo.jpg" alt="Top Chicken Logo" class="logo-img">
             </div>
 
-            <!-- Middle: Main Title (Perfect Centered Alignment) -->
+            <!-- Middle: Main Title -->
             <div class="main-brand-title">
                 <div class="main-title-en">TOP CHICKEN</div>
                 <div class="main-title-ar">الدجاج المميز</div>
@@ -692,7 +693,7 @@
             </div>
         </div>
 
-        <!-- Address Badge Container -->
+        <!-- Address Box Under Title -->
         <div class="address-container-box">
             <div class="address-text-en">📍 Building No. 89, Zubair Bin Al Awwam Street, Ar Rawabi, Riyadh</div>
             <div class="address-text-ar">المبنى رقم ٨٩، شارع الزبير بن العوام، الروابي، الرياض 📍</div>
@@ -726,7 +727,7 @@
     <!-- Menu Items -->
     <div class="container" id="menu-container"></div>
 
-    <!-- Interior Photo Gallery Slider (Updated with 6 images including 7.jpg & 8.jpg) -->
+    <!-- Interior Photo Gallery Slider -->
     <div class="container gallery-section">
         <h3 style="font-size: 14px; margin-bottom: 8px; color: #555;">Restaurant Gallery / معرض الصور</h3>
         <div class="slider-container">
@@ -747,7 +748,7 @@
         <p style="margin-top: 5px; font-weight: bold; color: #333;">Developer: y2kmlpcpr0501163652</p>
     </div>
 
-    <!-- Floating Cart Bar (Navigates to View Cart) -->
+    <!-- Floating Cart Bar -->
     <div class="cart-bar" id="cartBar" style="display: none;">
         <div class="cart-info">
             <span id="cartCount">0</span> Items | Total: <span id="cartTotal">0</span> SAR
