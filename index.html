@@ -27,7 +27,7 @@
             padding-bottom: 90px;
         }
 
-        /* 1. Top Announcement Bar (Scrolling English & Arabic with Address) */
+        /* 1. Top Announcement Bar (Bi-directional Smooth Scrolling) */
         .announcement-bar {
             background: linear-gradient(90deg, #d32f2f, #f57c00);
             color: #ffffff;
@@ -46,18 +46,19 @@
         .announcement-text {
             display: inline-block;
             padding-left: 100%;
-            animation: marquee 28s linear infinite;
+            animation: marquee 30s linear infinite;
         }
 
         .en-msg {
             display: inline-block;
-            margin-right: 50px;
+            margin-right: 60px;
             direction: ltr;
         }
 
         .ar-msg {
             display: inline-block;
             direction: rtl;
+            unicode-bidi: isolate;
         }
 
         @keyframes marquee {
@@ -275,7 +276,7 @@
         /* Sticky 2-Line Category Navigation Grid */
         .category-container {
             position: sticky;
-            top: 31px; /* Positioned right below announcement bar */
+            top: 31px;
             z-index: 100;
             background: #ffffff;
             padding: 10px;
@@ -297,7 +298,6 @@
             display: none;
         }
 
-        /* Enhanced Category Buttons */
         .category-btn {
             background: #f8f9fa;
             border: 1.5px solid #dcdcdc;
@@ -322,14 +322,12 @@
             transform: translateY(-1px);
         }
 
-        /* Container Layout */
         .container {
             max-width: 600px;
             margin: 0 auto;
             padding: 15px;
         }
 
-        /* Enhanced Menu Item Card */
         .menu-item {
             background: var(--card-bg);
             border-radius: 14px;
@@ -385,7 +383,6 @@
             transform: scale(0.96);
         }
 
-        /* Gallery Slider */
         .gallery-section {
             margin: 25px 0 10px 0;
         }
@@ -415,7 +412,6 @@
             object-fit: cover;
         }
 
-        /* Bottom Floating Cart Bar */
         .cart-bar {
             position: fixed;
             bottom: 0;
@@ -456,7 +452,6 @@
             box-shadow: 0 3px 8px rgba(37, 211, 102, 0.3);
         }
 
-        /* Modal Popup */
         .modal {
             display: none;
             position: fixed;
@@ -544,7 +539,6 @@
             cursor: pointer;
         }
 
-        /* Cart View Item List styling */
         .cart-view-item {
             display: flex;
             justify-content: space-between;
@@ -569,7 +563,6 @@
             font-size: 12px;
         }
 
-        /* Footer */
         .footer {
             text-align: center;
             padding: 20px 10px;
@@ -588,7 +581,6 @@
             display: none;
         }
 
-        /* Delivery Notice Box */
         .delivery-rates-box {
             display: none;
             background: #fff8e1;
@@ -622,7 +614,7 @@
 </head>
 <body>
 
-    <!-- 1. Top Announcement Bar (Address Added Inside Scrolling Text) -->
+    <!-- 1. Top Announcement Bar (English Left-to-Right, Arabic Right-to-Left) -->
     <div class="announcement-bar">
         <div class="announcement-text">
             <span class="en-msg">🔥 Serving Riyadh since 1999 (27 Years of Excellence) | Fresh Daily Chicken & Best Broast in Riyadh | 📍 Address: Building No. 89, Zubair Bin Al Awwam Street, Ar Rawabi, Riyadh</span>
@@ -630,18 +622,14 @@
         </div>
     </div>
 
-    <!-- Header Section with Clean Layout -->
+    <!-- Header Section -->
     <div class="header">
-
-        <!-- Live Clock & Shop Status Banner -->
         <div class="status-container">
             <div class="live-clock" id="liveClock">Saudi Time: --:--:--</div>
             <div class="shop-status" id="shopStatus">Checking Status...</div>
         </div>
 
-        <!-- Row 1: Brand Badges & Main Title -->
         <div class="header-top-row">
-            <!-- Left: Text FIRST, then Logo Image -->
             <div class="logo-badge-container">
                 <div class="logo-text-box">
                     <div class="logo-text-en">DAILY FRESH CHICKEN</div>
@@ -650,37 +638,31 @@
                 <img src="logo.jpg" alt="Top Chicken Logo" class="logo-img">
             </div>
 
-            <!-- Middle: Main Title -->
             <div class="main-brand-title">
                 <div class="main-title-en">TOP CHICKEN</div>
                 <div class="main-title-ar">الدجاج المميز</div>
             </div>
 
-            <!-- Right: Since 1999 Badge -->
             <div class="since-badge">
                 <div class="since-en">SINCE 1999</div>
                 <div class="since-ar">منذ ١٩٩٩</div>
             </div>
         </div>
 
-        <!-- Row 2: Bottom Blue Panel with Phone & Location Buttons -->
         <div class="blue-board-panel">
             <a href="tel:0554726280" class="board-btn">📞 0554726280</a>
             <a href="https://maps.app.goo.gl/jyzeBRQ1bsFrCQgs9?g_st=aw" target="_blank" class="board-btn">📍 Location / الموقع</a>
         </div>
     </div>
 
-    <!-- Sticky 2-Line Category Grid with English & Arabic -->
+    <!-- Sticky 2-Line Category Grid -->
     <div class="category-container">
         <div class="category-grid">
-            <!-- Row 1 -->
             <button class="category-btn active" onclick="filterCategory('broast', event)">BROAST<br>بروستد</button>
             <button class="category-btn" onclick="filterCategory('burger', event)">BURGER<br>برجر</button>
             <button class="category-btn" onclick="filterCategory('tortilla', event)">TORTILLA<br>تورتيلا</button>
             <button class="category-btn" onclick="filterCategory('pizza', event)">PIZZA<br>بيتزا</button>
             <button class="category-btn" onclick="filterCategory('fries_meals', event)">FRIES / MEALS<br>بطاطس وجبات</button>
-            
-            <!-- Row 2 -->
             <button class="category-btn" onclick="filterCategory('pepsi', event)">PEPSI<br>بيبسي</button>
             <button class="category-btn" onclick="filterCategory('jumbo', event)">JUMBO<br>جامبو</button>
             <button class="category-btn" onclick="filterCategory('juices', event)">JUICES<br>عصائر</button>
@@ -754,7 +736,6 @@
                 <span style="cursor:pointer; font-size: 22px; font-weight: bold;" onclick="closeCheckout()">✕</span>
             </div>
 
-            <!-- Pick up / Delivery Selection -->
             <div class="order-type-selector">
                 <div class="type-btn active" id="btnPickup" onclick="setOrderType('pickup')">
                     Pick up / استلام
@@ -764,7 +745,6 @@
                 </div>
             </div>
 
-            <!-- Delivery Rates Notice Box -->
             <div class="delivery-rates-box" id="deliveryRatesBox">
                 <b>Delivery Rates Notice / رسوم التوصيل:</b>
                 <table class="delivery-rates-table">
@@ -780,7 +760,6 @@
                 * Delivery requires minimum 20 SAR Food Order (Drinks excluded).<br>التوصيل يتطلب حد أدنى 20 ريال للمأكولات.
             </div>
 
-            <!-- Input Fields -->
             <div class="form-group" style="margin-top: 10px;">
                 <label>Name / Room / Building No * (الاسم / رقم الغرفة)</label>
                 <input type="text" id="custName" class="form-control" placeholder="e.g. Abu Muhammad / Room 510">
@@ -933,7 +912,7 @@
 
             { id: 913, name: "Lemon Juice Small - ليمون صغير", cat: "juices", price: 5, isDrink: true, desc: "Fresh Juice Small / عصير طازج صغير" },
             { id: 914, name: "Lemon Juice Big - ليمون كبير", cat: "juices", price: 7, isDrink: true, desc: "Fresh Juice Big / عصير طازج كبير" },
-            { id: 915, name: "Lemon Juice Gallon - ليمون جالون", cat: "juices", price: 21, isDrink: true, desc: "Fresh Juice Gallon / عصير طازج جالون" },
+            { id: 915, name: "Lemon Juice Gallon - ليمون جالون", cat: "juices", price: 21, isDrink: true, desc: "Fresh Juice Gallon / عصير تفاح جالون" },
 
             { id: 916, name: "Apple Juice Small - تفاح صغير", cat: "juices", price: 6, isDrink: true, desc: "Fresh Juice Small / عصير تفاح صغير" },
             { id: 917, name: "Apple Juice Big - تفاح كبير", cat: "juices", price: 8, isDrink: true, desc: "Fresh Juice Big / عصير تفاح كبير" },
