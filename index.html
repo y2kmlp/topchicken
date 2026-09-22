@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TOP CHICKEN</title>
+
+    <!-- WhatsApp Link Preview Meta Tags -->
+    <meta property="og:title" content="TOP CHICKEN - Touch here to view Menu & Order Online 🍗">
+    <meta property="og:description" content="اضغط هنا لمشاهدة المنيو والطلب اونلاين | Digital Menu & Fast WhatsApp Ordering">
+    <meta property="og:image" content="https://y2kmlp.github.io/tops/logo.jpg">
+    <meta property="og:url" content="https://y2kmlp.github.io/tops/">
+
     <style>
         :root {
             --primary-color: #d32f2f;
@@ -27,7 +34,7 @@
             padding-bottom: 90px;
         }
 
-        /* 1. Top Announcement Bar (Bi-directional Smooth Scrolling) */
+        /* 1. Top Announcement Bar (English - Scroll Right to Left) */
         .announcement-bar {
             background: linear-gradient(90deg, #d32f2f, #f57c00);
             color: #ffffff;
@@ -43,25 +50,14 @@
             border-bottom: 1px solid var(--accent-yellow);
         }
 
-        .announcement-text {
+        .announcement-text-en {
             display: inline-block;
             padding-left: 100%;
-            animation: marquee 30s linear infinite;
-        }
-
-        .en-msg {
-            display: inline-block;
-            margin-right: 60px;
+            animation: marqueeEN 22s linear infinite;
             direction: ltr;
         }
 
-        .ar-msg {
-            display: inline-block;
-            direction: rtl;
-            unicode-bidi: isolate;
-        }
-
-        @keyframes marquee {
+        @keyframes marqueeEN {
             0% { transform: translate(0, 0); }
             100% { transform: translate(-100%, 0); }
         }
@@ -261,6 +257,32 @@
             text-align: center;
             white-space: nowrap;
             box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+        }
+
+        /* 2. Arabic Bottom Announcement Bar (Scroll Left to Right for Natural Reading) */
+        .arabic-announcement-bar {
+            background: linear-gradient(90deg, #f57c00, #d32f2f);
+            color: #ffffff;
+            padding: 6px 0;
+            font-weight: bold;
+            font-size: 13px;
+            overflow: hidden;
+            white-space: nowrap;
+            border-top: 1px solid var(--accent-yellow);
+            border-bottom: 1px solid var(--accent-yellow);
+            margin-top: 10px;
+        }
+
+        .announcement-text-ar {
+            display: inline-block;
+            padding-right: 100%;
+            animation: marqueeAR 22s linear infinite;
+            direction: rtl;
+        }
+
+        @keyframes marqueeAR {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(100%, 0); }
         }
 
         @media (max-width: 420px) {
@@ -614,11 +636,10 @@
 </head>
 <body>
 
-    <!-- 1. Top Announcement Bar (English Left-to-Right, Arabic Right-to-Left) -->
+    <!-- 1. Top Announcement Bar (English Line) -->
     <div class="announcement-bar">
-        <div class="announcement-text">
-            <span class="en-msg">🔥 Serving Riyadh since 1999 (27 Years of Excellence) | Fresh Daily Chicken & Best Broast in Riyadh | 📍 Address: Building No. 89, Zubair Bin Al Awwam Street, Ar Rawabi, Riyadh</span>
-            <span class="ar-msg">✨ ٢٧ عاماً من الخبرة - تقديم أفضل دجاج طازج وبروستد في الرياض | 📍 العنوان: المبنى رقم ٨٩، شارع الزبير بن العوام، الروابي، الرياض ✨</span>
+        <div class="announcement-text-en">
+            🔥 Serving Riyadh since 1999 (27 Years of Excellence) | Fresh Daily Chicken & Best Broast in Riyadh | 📍 Address: Building No. 89, Zubair Bin Al Awwam Street, Ar Rawabi, Riyadh
         </div>
     </div>
 
@@ -652,6 +673,13 @@
         <div class="blue-board-panel">
             <a href="tel:0554726280" class="board-btn">📞 0554726280</a>
             <a href="https://maps.app.goo.gl/jyzeBRQ1bsFrCQgs9?g_st=aw" target="_blank" class="board-btn">📍 Location / الموقع</a>
+        </div>
+
+        <!-- 2. Header Bottom Announcement Bar (Arabic Line) -->
+        <div class="arabic-announcement-bar">
+            <div class="announcement-text-ar">
+                ✨ ٢٧ عاماً من الخبرة - تقديم أفضل دجاج طازج وبروستد في الرياض | 📍 العنوان: المبنى رقم ٨٩، شارع الزبير بن العوام، الروابي، الرياض ✨
+            </div>
         </div>
     </div>
 
