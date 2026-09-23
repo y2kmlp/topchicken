@@ -1185,6 +1185,12 @@
             document.getElementById('checkoutModal').style.display = 'none';
         }
 
+        // Helper function to convert English numbers to Arabic Digits
+        function toArabicDigits(num) {
+            const indianDigits = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+            return num.toString().replace(/\d/g, d => indianDigits[d]);
+        }
+
         function sendToWhatsApp() {
             const name = document.getElementById('custName').value.trim();
             const address = document.getElementById('custAddress').value.trim();
@@ -1206,24 +1212,42 @@
             }
 
             let text = `*NEW ORDER - TOP CHICKEN*\n`;
-            text += `Type: *${currentOrderType.toUpperCase()}*\n`;
-            text += `Name/Room: ${name}\n`;
-            if (address) text += `Address: ${address}\n`;
-            if (notes) text += `Notes: ${notes}\n`;
-            text += `------------------------\n`;
+            text += `----------------------------------\n`;
+            text += `📍 *Type:* ${currentOrderType.toUpperCase()}\n`;
+            text += `👤 *Name:* ${name}\n`;
+            if (address) text += `🏠 *Address:* ${address}\n`;
+            if (notes) text += `📝 *Notes:* ${notes}\n`;
+            text += `----------------------------------\n\n`;
 
             let total = 0;
             Object.values(cart).forEach(i => {
                 const sub = i.qty * i.price;
                 total += sub;
-                text += `• ${i.name} x${i.qty} = ${sub.toFixed(2)} SAR\n`;
+
+                // Split English and Arabic parts from item name
+                let parts = i.name.split(' - ');
+                let enName = parts[0] ? parts[0].trim() : i.name;
+                let arName = parts[1] ? parts[1].trim() : '';
+
+                // English Line
+                text += `*${i.qty} . ${enName} - ${sub.toFixed(2)} SAR*\n`;
+                
+                // Arabic Line (if Arabic name exists)
+                if (arName) {
+                    let arQty = toArabicDigits(i.qty);
+                    let arPrice = toArabicDigits(sub.toFixed(2));
+                    text += `${arQty} . ${arName} - ${arPrice} ر.س\n`;
+                }
+                text += `\n`;
             });
 
-            text += `------------------------\n`;
-            text += `*TOTAL AMOUNT: ${total.toFixed(2)} SAR*\n`;
+            text += `----------------------------------\n`;
+            text += `💵 *TOTAL AMOUNT: ${total.toFixed(2)} SAR*\n`;
+            text += `💵 *المبلغ الإجمالي: ${toArabicDigits(total.toFixed(2))} ر.س*\n`;
+            text += `----------------------------------\n\n`;
 
             if (currentOrderType === 'delivery') {
-                text += `\n*Note:* المبلغ الإجمالي لا يشمل رسوم التوصيل (Delivery charges will be calculated based on location distance).`;
+                text += `ℹ️ *Note:*\nالمبلغ الإجمالي لا يشمل رسوم التوصيل\n(Delivery charges will be calculated based on location distance)`;
             }
 
             const phone = "966554726280";
