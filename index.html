@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TOP CHICKEN</title>
 
-    <!-- WhatsApp Link Preview Meta Tags -->
     <meta property="og:title" content="TOP CHICKEN - Touch here to view Menu & Order Online 🍗">
     <meta property="og:description" content="اضغط هنا لمشاهدة المنيو والطلب اونلاين | Digital Menu & Fast WhatsApp Ordering">
     <meta property="og:image" content="https://y2kmlp.github.io/tops/logo.jpg">
@@ -48,18 +47,19 @@
             top: 0;
             z-index: 1001;
             border-bottom: 1px solid var(--accent-yellow);
+            width: 100%;
         }
 
         .announcement-text-en {
             display: inline-block;
-            padding-left: 100%;
+            white-space: nowrap;
             animation: marqueeEN 22s linear infinite;
             direction: ltr;
         }
 
         @keyframes marqueeEN {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(-100%, 0); }
+            0% { transform: translateX(100vw); }
+            100% { transform: translateX(-100%); }
         }
 
         /* Header Section with main shop photo (1.jpg) */
@@ -259,7 +259,7 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.25);
         }
 
-        /* 2. Arabic Bottom Announcement Bar (Scroll Left to Right for Natural Reading) */
+        /* 2. Arabic Bottom Announcement Bar (Scroll Left to Right - Smooth Fix) */
         .arabic-announcement-bar {
             background: linear-gradient(90deg, #f57c00, #d32f2f);
             color: #ffffff;
@@ -271,18 +271,19 @@
             border-top: 1px solid var(--accent-yellow);
             border-bottom: 1px solid var(--accent-yellow);
             margin-top: 10px;
+            width: 100%;
         }
 
         .announcement-text-ar {
             display: inline-block;
-            padding-right: 100%;
-            animation: marqueeAR 22s linear infinite;
+            white-space: nowrap;
             direction: rtl;
+            animation: marqueeAR 22s linear infinite;
         }
 
         @keyframes marqueeAR {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(100%, 0); }
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100vw); }
         }
 
         @media (max-width: 420px) {
@@ -636,14 +637,12 @@
 </head>
 <body>
 
-    <!-- 1. Top Announcement Bar (English Line) -->
     <div class="announcement-bar">
         <div class="announcement-text-en">
             🔥 Serving Riyadh since 1999 (27 Years of Excellence) | Fresh Daily Chicken & Best Broast in Riyadh | 📍 Address: Building No. 89, Zubair Bin Al Awwam Street, Ar Rawabi, Riyadh
         </div>
     </div>
 
-    <!-- Header Section -->
     <div class="header">
         <div class="status-container">
             <div class="live-clock" id="liveClock">Saudi Time: --:--:--</div>
@@ -675,7 +674,6 @@
             <a href="https://maps.app.goo.gl/jyzeBRQ1bsFrCQgs9?g_st=aw" target="_blank" class="board-btn">📍 Location / الموقع</a>
         </div>
 
-        <!-- 2. Header Bottom Announcement Bar (Arabic Line) -->
         <div class="arabic-announcement-bar">
             <div class="announcement-text-ar">
                 ✨ ٢٧ عاماً من الخبرة - تقديم أفضل دجاج طازج وبروستد في الرياض | 📍 العنوان: المبنى رقم ٨٩، شارع الزبير بن العوام، الروابي، الرياض ✨
@@ -683,7 +681,6 @@
         </div>
     </div>
 
-    <!-- Sticky 2-Line Category Grid -->
     <div class="category-container">
         <div class="category-grid">
             <button class="category-btn active" onclick="filterCategory('broast', event)">BROAST<br>بروستد</button>
@@ -698,10 +695,8 @@
         </div>
     </div>
 
-    <!-- Menu Items -->
     <div class="container" id="menu-container"></div>
 
-    <!-- Interior Photo Gallery Slider -->
     <div class="container gallery-section">
         <h3 style="font-size: 14px; margin-bottom: 8px; color: #555;">Restaurant Gallery / معرض الصور</h3>
         <div class="slider-container">
@@ -716,13 +711,11 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <div class="footer">
         <p>© TOP CHICKEN. All rights reserved.</p>
         <p style="margin-top: 5px; font-weight: bold; color: #333;">Developer: y2kmlpcpr0501163652</p>
     </div>
 
-    <!-- Floating Cart Bar -->
     <div class="cart-bar" id="cartBar" style="display: none;">
         <div class="cart-info">
             <span id="cartCount">0</span> Items | Total: <span id="cartTotal">0</span> SAR
@@ -732,7 +725,6 @@
         </button>
     </div>
 
-    <!-- 1. VIEW CART MODAL -->
     <div class="modal" id="cartModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -753,7 +745,6 @@
         </div>
     </div>
 
-    <!-- 2. CHECKOUT DETAILS MODAL -->
     <div class="modal" id="checkoutModal">
         <div class="modal-content">
             <div class="modal-header">
