@@ -818,157 +818,276 @@
             { id: 110, name: "Finger Chicken Spicy - مسحب دجاج حراق", cat: "broast", price: 20, isDrink: false, desc: "10 Pcs Spicy Finger Chicken, Fries, Hummus, Kubus, Garlic, Ketchup / ١٠ قطع مسحب دجاج حراق، بطاطس، حمص، خبز، ثوم، كاتشب" },
             { id: 111, name: "Finger Chicken Normal - مسحب دجاج عادي", cat: "broast", price: 20, isDrink: false, desc: "10 Pcs Finger Chicken, Fries, Hummus, Kubus, Garlic, Ketchup / ١٠ قطع مسحب دجاج عادي، بطاطس، حمص، خبز، ثوم، كاتشب" },
             { id: 112, name: "Chicken Cheese Stick - اصابع دجاج بالجبن", cat: "broast", price: 20, isDrink: false, desc: "9 Pcs Cheese Chicken Sticks, Fries, Hummus, Kubus, Garlic, Ketchup / ٩ قطع اصابع دجاج بالجبن، بطاطس، حمص، خبز، ثوم، كاتشب" },
-
-            // ================= BURGERS (برجر) =================
-            { id: 201, name: "Chicken Burger Plain - برجر دجاج سادة", cat: "burger", price: 8, isDrink: false, desc: "Classic Chicken Burger / برجر دجاج كلاسيك" },
-            { id: 202, name: "Chicken Burger Meal - وجبة برجر دجاج", cat: "burger", price: 14, isDrink: false, desc: "Chicken Burger, Fries, Drink / برجر دجاج، بطاطس، مشروب" },
-            { id: 203, name: "Chicken Burger Double - برجر دجاج دبل", cat: "burger", price: 12, isDrink: false, desc: "Double Chicken Patty Burger / برجر دجاج شريحتين" },
-            { id: 204, name: "Chicken Burger Double Meal - وجبة برجر دجاج دبل", cat: "burger", price: 18, isDrink: false, desc: "Double Chicken Burger, Fries, Drink / برجر دجاج دبل، بطاطس، مشروب" },
+            { id: 113, name: "Finger Fish - اصابع سمك", cat: "broast", price: 20, isDrink: false, desc: "9 Pcs Fish Sticks, Fries, Hummus, Kubus, Garlic, Ketchup / ٩ قطع اصابع سمك، بطاطس، حمص، خبز، ثوم، كاتشب" },
+            { id: 114, name: "Chicken Fillet Spicy - دجاج فيليه حراق", cat: "broast", price: 20, isDrink: false, desc: "Spicy Chicken Fillet, Fries, Hummus, Kubus, Garlic, Ketchup / دجاج فيليه حراق، بطاطس، حمص، خبز، ثوم، كاتشب" },
+            { id: 115, name: "Chicken Fillet Normal - فيليه دجاج عادي", cat: "broast", price: 20, isDrink: false, desc: "Chicken Fillet Normal, Fries, Hummus, Kubus, Garlic, Ketchup / فيليه دجاج عادي، بطاطس، حمص، خبز، ثوم، كاتشب" },
+            { id: 116, name: "Beef Kabab Plate - صحن كباب لحم", cat: "broast", price: 20, isDrink: false, desc: "6 Pcs Kabab, Fries, Hummus, Kubus, Garlic, Ketchup / ٦ قطع كباب لحم، بطاطس، حمص، خبز، ثوم، كاتشب" },
 
             // ================= TORTILLA (تورتيلا) =================
-            { id: 301, name: "Tortilla Chicken Sandwich - سندويش تورتيلا دجاج", cat: "tortilla", price: 10, isDrink: false, desc: "Chicken Wrap in Tortilla / رول دجاج بالتورتيلا" },
-            { id: 302, name: "Tortilla Chicken Meal - وجبة تورتيلا دجاج", cat: "tortilla", price: 16, isDrink: false, desc: "Tortilla Sandwich, Fries, Drink / سندويش تورتيلا، بطاطس، مشروب" },
-
-            // ================= PIZZA (بيتزا) =================
-            { id: 401, name: "Chicken Pizza Small - بيتزا دجاج صغير", cat: "pizza", price: 12, isDrink: false, desc: "Small Chicken Pizza / بيتزا بالدجاج حجم صغير" },
-            { id: 402, name: "Chicken Pizza Medium - بيتزا دجاج وسط", cat: "pizza", price: 18, isDrink: false, desc: "Medium Chicken Pizza / بيتزا بالدجاج حجم وسط" },
-            { id: 403, name: "Chicken Pizza Large - بيتزا دجاج كبير", cat: "pizza", price: 25, isDrink: false, desc: "Large Chicken Pizza / بيتزا بالدجاج حجم كبير" },
+            { id: 301, name: "Chicken Tortilla Normal - تورتيلا دجاج عادي", cat: "tortilla", price: 13, isDrink: false, desc: "Chicken Wrap Normal / تورتيلا دجاج عادي" },
+            { id: 302, name: "Chicken Tortilla Spicy - تورتيلا دجاج حراق", cat: "tortilla", price: 13, isDrink: false, desc: "Chicken Wrap Spicy / تورتيلا دجاج حراق" },
+            { id: 303, name: "Tikka Tortilla - تورتيلا تكا", cat: "tortilla", price: 13, isDrink: false, desc: "Tikka Wrap / تورتيلا تكا" },
+            { id: 304, name: "Zinger Tortilla Normal - تورتيلا زنجر عادي", cat: "tortilla", price: 13, isDrink: false, desc: "Zinger Wrap Normal / تورتيلا زنجر عادي" },
+            { id: 305, name: "Zinger Tortilla Spicy - تورتيلا زنجر حراق", cat: "tortilla", price: 13, isDrink: false, desc: "Zinger Wrap Spicy / تورتيلا زنجر حراق" },
+            { id: 306, name: "Shrimp Tortilla Normal - تورتيلا روبيان عادي", cat: "tortilla", price: 13, isDrink: false, desc: "Shrimp Wrap Normal / تورتيلا روبيان عادي" },
+            { id: 307, name: "Shrimp Tortilla Spicy - تورتيلا روبيان حراق", cat: "tortilla", price: 13, isDrink: false, desc: "Shrimp Wrap Spicy / تورتيلا روبيان حراق" },
+            { id: 308, name: "Fish Tortilla - تورتيلا سمك", cat: "tortilla", price: 13, isDrink: false, desc: "Fish Wrap / تورتيلا سمك" },
+            { id: 309, name: "Beef Kabab Tortilla - تورتيلا كباب لحم", cat: "tortilla", price: 13, isDrink: false, desc: "Kabab Wrap / تورتيلا كباب لحم" },
 
             // ================= FRIES & MEALS (بطاطس وجبات) =================
-            { id: 501, name: "French Fries Small - بطاطس مقلية صغير", cat: "fries_meals", price: 5, isDrink: false, desc: "Crispy Potato Fries / بطاطس مقلية مقرمشة" },
-            { id: 502, name: "French Fries Large - بطاطس مقلية كبير", cat: "fries_meals", price: 8, isDrink: false, desc: "Large Portion Crispy Potato Fries / بطاطس مقلية حجم كبير" },
-
-            // ================= PEPSI & DRINKS (بيبسي ومشروبات) =================
-            { id: 601, name: "Pepsi Can - بيبسي علبة", cat: "pepsi", price: 3, isDrink: true, desc: "Chilled Pepsi Can 355ml / بيبسي علبة بارد" },
-            { id: 602, name: "7Up Can - سفن اب علبة", cat: "pepsi", price: 3, isDrink: true, desc: "Chilled 7Up Can 355ml / سفن اب علبة بارد" },
-            { id: 603, name: "Citrus Can - حمضيات علبة", cat: "pepsi", price: 3, isDrink: true, desc: "Chilled Citrus Can 355ml / حمضيات علبة بارد" },
-            { id: 604, name: "Water Small - ماء صغير", cat: "pepsi", price: 1, isDrink: true, desc: "Bottled Mineral Water / مياه معدنية نقية" },
+            { id: 601, name: "Small Fries - بطاطس صغير", cat: "fries_meals", price: 4, isDrink: false, desc: "Small Potato Fries / بطاطس مقلية صغير" },
+            { id: 602, name: "Medium Fries - بطاطس وسط", cat: "fries_meals", price: 6, isDrink: false, desc: "Medium Potato Fries / بطاطس مقلية وسط" },
+            { id: 603, name: "Big Fries - بطاطس كبير", cat: "fries_meals", price: 10, isDrink: false, desc: "Large Potato Fries / بطاطس مقلية كبير" },
+            { id: 604, name: "Fries Meal Deal - بطاطس وجبة", cat: "fries_meals", price: 6, isDrink: false, desc: "Fries & Pepsi Combo / بطاطس مع بيبسي" },
+            { id: 605, name: "Kids Meal Popcorn - وجبة أطفال بوب كورن", cat: "fries_meals", price: 12, isDrink: false, desc: "Kids Meal Popcorn with toy / وجبة اطفال مع لعبة" },
+            { id: 606, name: "Kids Meal Nuggets - وجبة أطفال نغت", cat: "fries_meals", price: 13, isDrink: false, desc: "Nuggets Kids Meal / وجبة اطفال نغت" },
 
             // ================= JUMBO (جامبو) =================
-            { id: 701, name: "Jumbo Chicken Wrap - رول جامبو دجاج", cat: "jumbo", price: 14, isDrink: false, desc: "Large Jumbo Chicken Sandwich / سندويش دجاج جامبو كبير" },
-            { id: 702, name: "Jumbo Chicken Meal - وجبة جامبو دجاج", cat: "jumbo", price: 20, isDrink: false, desc: "Jumbo Wrap, Fries, Drink / سندويش جامبو، بطاطس، مشروب" },
+            { id: 501, name: "Jumbo Fillet Chicken - جامبو فيليه دجاج", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Fillet Chicken Sandwich / ساندوتش جامبو فيليه دجاج" },
+            { id: 502, name: "Tikka Jumbo - تكا جامبو", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Tikka Sandwich / ساندوتش تکا جامبو" },
+            { id: 503, name: "Kudu Jumbo Normal - كودو جامبو عادي", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Kudu Sandwich / ساندوتش كودو جامبو عادي" },
+            { id: 504, name: "Kudu Jumbo Spicy - كودو جامبو حراق", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Kudu Sandwich Spicy / ساندوتش كودو جامبو حراق" },
+            { id: 505, name: "Zinger Jumbo Normal - زنجر جامبو عادي", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Zinger Sandwich / ساندوتش زنجر جامبو عادي" },
+            { id: 506, name: "Zinger Jumbo Spicy - زنجر جامبو حراق", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Zinger Sandwich Spicy / ساندوتش زنجر جامبو حراق" },
+            { id: 507, name: "Shrimp Jumbo Normal - روبيان جامبو عادي", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Shrimp Sandwich / ساندوتش روبيان جامبو عادي" },
+            { id: 508, name: "Shrimp Jumbo Spicy - روبيان جامبو حراق", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Shrimp Sandwich Spicy / ساندوتش روبيان جامبو حراق" },
+            { id: 509, name: "Jumbo Fish - جامبو سمك", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Fish Sandwich / ساندوتش جامبو سمك" },
+            { id: 510, name: "Beef Kabab Jumbo - كباب لحم جامبو", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Beef Kabab / ساندوتش كباب لحم جامبو" },
 
-            // ================= JUICES (عصائر) =================
-            { id: 801, name: "Fresh Orange Juice - عصير برتقال طازج", cat: "juices", price: 7, isDrink: true, desc: "100% Natural Fresh Orange Juice / عصير برتقال طبيعي 100%" },
-            { id: 802, name: "Mango Fresh Juice - عصير مانجو طازج", cat: "juices", price: 8, isDrink: true, desc: "Fresh Cold Mango Juice / عصير مانجو طازج وبارد" },
+            // ================= BURGER (برجر) =================
+            { id: 401, name: "Chicken Burger Small - برجر دجاج صغير", cat: "burger", price: 7, isDrink: false, desc: "Chicken Burger Small / برجر دجاج صغير" },
+            { id: 402, name: "Chicken Burger Big - برجر دجاج كبير", cat: "burger", price: 8, isDrink: false, desc: "Chicken Burger Big / برجر دجاج كبير" },
+            { id: 403, name: "Chicken Grilled Burger - برجر دجاج مشوي", cat: "burger", price: 8, isDrink: false, desc: "Grilled Chicken Burger / برجر دجاج مشوي" },
+            { id: 404, name: "Beef Burger Small - برجر لحم صغير", cat: "burger", price: 8, isDrink: false, desc: "Beef Burger Small / برجر لحم صغير" },
+            { id: 405, name: "Beef Burger Big - برجر لحم كبير", cat: "burger", price: 9, isDrink: false, desc: "Beef Burger Big / برجر لحم كبير" },
+            { id: 406, name: "Zinger Burger Spicy - برجر زنجر حراق", cat: "burger", price: 10, isDrink: false, desc: "Zinger Burger Spicy / برجر زنجر حراق" },
+            { id: 407, name: "Zinger Burger Normal - برجر زنجر عادي", cat: "burger", price: 10, isDrink: false, desc: "Zinger Burger Normal / برجر زنجر عادي" },
+            { id: 408, name: "Double Chicken Burger Big - دبل برجر دجاج كبير", cat: "burger", price: 14, isDrink: false, desc: "Double Chicken Burger Big / دبل برجر دجاج كبير" },
+            { id: 409, name: "Double Beef Burger Big - دبل برجر لحم كبير", cat: "burger", price: 15, isDrink: false, desc: "Double Beef Burger Big / دبل برجر لحم كبير" },
+            { id: 410, name: "Double Zinger Burger - دبل برجر زنجر", cat: "burger", price: 17, isDrink: false, desc: "Double Zinger Burger / دبل برجر زنجر" },
 
-            // ================= EXTRA (إضافات) =================
-            { id: 901, name: "Extra Garlic Dip - ثوم إضافي", cat: "extra", price: 2, isDrink: false, desc: "Signature Garlic Sauce Container / علبة ثوم مميزة" },
-            { id: 902, name: "Extra Hummus - حمص إضافي", cat: "extra", price: 3, isDrink: false, desc: "Fresh Creamy Hummus Plate / صحن حمص طازج" },
-            { id: 903, name: "Extra Bread (Kubus) - خبز إضافي", cat: "extra", price: 1, isDrink: false, desc: "Fresh Baked Bread / خبز طازج" }
+            // ================= PIZZA (بيتزا) =================
+            { id: 201, name: "Dynamite Beef Pizza - بيتزا داينمايت لحم", cat: "pizza", price: 23, isDrink: false, desc: "Original Large Size / حجم كبير" },
+            { id: 202, name: "Four Season Pizza - بيتزا أربعة فصول", cat: "pizza", price: 23, isDrink: false, desc: "Original Large Size / (4 Types) - حجم كبير / (أربعة أنواع)" },
+            { id: 203, name: "Dynamite Chicken Pizza - بيتزا داينمايت دجاج", cat: "pizza", price: 22, isDrink: false, desc: "Original Large Size / حجم كبير" },
+            { id: 204, name: "Barbecue Chicken Pizza - بيتزا دجاج باربيكيو", cat: "pizza", price: 22, isDrink: false, desc: "Original Large Size / حجم كبير" },
+            { id: 205, name: "Ranch Pizza - بيتزا رانش", cat: "pizza", price: 21, isDrink: false, desc: "Original Large Size / حجم كبير" },
+            { id: 206, name: "Chicken Pizza - بيتزا دجاج", cat: "pizza", price: 20, isDrink: false, desc: "Original Large Size / حجم كبير" },
+            { id: 207, name: "Pepperoni Pizza - بيتزا ببروني", cat: "pizza", price: 20, isDrink: false, desc: "Original Large Size / حجم كبير" },
+            { id: 208, name: "Mixed Pizza - بيتزا مشكل", cat: "pizza", price: 20, isDrink: false, desc: "Original Large Size / حجم كبير" },
+            { id: 209, name: "Margarita Pizza - بيتزا مارجريتا", cat: "pizza", price: 18, isDrink: false, desc: "Original Large Size / حجم كبير" },
+            { id: 210, name: "Hot Dog Pizza - بيتزا هوت دوج", cat: "pizza", price: 18, isDrink: false, desc: "Original Large Size / حجم كبير" },
+            { id: 211, name: "Vegetable Pizza - بيتزا خضار", cat: "pizza", price: 15, isDrink: false, desc: "Original Large Size / حجم كبير" },
+
+            // ================= SIDE ORDERS & EXTRAS (إضافات) =================
+            { id: 701, name: "Onion Rings - حلقات بصل", cat: "extra", price: 6, isDrink: false, desc: "Onion Rings / حلقات بصل مقرمشة" },
+            { id: 702, name: "Popcorn Chicken - بوب كورن", cat: "extra", price: 6, isDrink: false, desc: "Chicken Popcorn / بوب كورن دجاج" },
+            { id: 703, name: "Baby Nuggets - بيبي نغت", cat: "extra", price: 7, isDrink: false, desc: "Baby Nuggets / بيبي نغت" },
+            { id: 704, name: "Coleslaw Salad - سلطة ملفوف", cat: "extra", price: 3, isDrink: false, desc: "Coleslaw Salad / سلطة ملفوف طازجة" },
+            { id: 705, name: "Cocktail Sauce - صوص كوكتيل", cat: "extra", price: 1, isDrink: false, desc: "Cocktail Dip / صوص كوكتيل" },
+            { id: 706, name: "Garlic Sauce - ثوم", cat: "extra", price: 1, isDrink: false, desc: "Garlic Dip / صلصة ثوم" },
+            { id: 707, name: "Spicy Garlic Sauce - ثوم حراق", cat: "extra", price: 1, isDrink: false, desc: "Spicy Garlic Dip / صلصة ثوم حراق" },
+            { id: 708, name: "Cheese Sauce - صوص جبنة", cat: "extra", price: 2, isDrink: false, desc: "Melted Cheese Sauce / صوص جبنة" },
+            { id: 709, name: "Dynamite Sauce - صوص ديناميت", cat: "extra", price: 2, isDrink: false, desc: "Dynamite Sauce Dip / صوص ديناميت" },
+            { id: 710, name: "Hummus - حمص", cat: "extra", price: 3, isDrink: false, desc: "Fresh Hummus Dip / حمص طازج" },
+            { id: 711, name: "Bottle Ketchup - زجاجة كاتشب", cat: "extra", price: 4, isDrink: false, desc: "Bottle Ketchup / زجاجة كاتشب" },
+            { id: 712, name: "Hot Sauce - شطة", cat: "extra", price: 2, isDrink: false, desc: "Hot Sauce / شطة" },
+            { id: 713, name: "Mixed Pickle - مخلل مشكل", cat: "extra", price: 1, isDrink: false, desc: "Mixed Pickle / مخلل مشكل" },
+            { id: 714, name: "Bread (Kubbus) - خبز (خبوز)", cat: "extra", price: 1, isDrink: false, desc: "Bread (Kubbus) / خبز" },
+            { id: 715, name: "Mayonnaise - مايونيز", cat: "extra", price: 1, isDrink: false, desc: "Mayonnaise / مايونيز" },
+            { id: 716, name: "Extra Cheese - زيادة جبنة", cat: "extra", price: 1, isDrink: false, desc: "Extra Cheese / زيادة جبنة" },
+            { id: 717, name: "Ketchup - كاتشب", cat: "extra", price: 1, isDrink: false, desc: "Ketchup / كاتشب" },
+
+            // ================= PEPSI & DRINKS (بيبسي والمشروبات) =================
+            { id: 801, name: "Pepsi - بيبسي", cat: "pepsi", price: 2.50, isDrink: true, desc: "Pepsi Can / بيبسي" },
+            { id: 802, name: "Pepsi D - بيبسي دايت", cat: "pepsi", price: 2.00, isDrink: true, desc: "Pepsi Diet / بيبسي دايت" },
+            { id: 803, name: "Citrus - الحمضيات", cat: "pepsi", price: 2.50, isDrink: true, desc: "Citrus Can / حمضيات" },
+            { id: 804, name: "7UP - سفن اب", cat: "pepsi", price: 2.50, isDrink: true, desc: "7UP Can / سفن اب" },
+            { id: 805, name: "7UP D - سفن اب دايت", cat: "pepsi", price: 2.00, isDrink: true, desc: "7UP Diet / سفن اب دايت" },
+            { id: 806, name: "Dew - ديو", cat: "pepsi", price: 2.50, isDrink: true, desc: "Mountain Dew Can / ديو" },
+            { id: 807, name: "Mirinda Orange - میرندا برتقال", cat: "pepsi", price: 2.50, isDrink: true, desc: "Mirinda Orange / میرندا برتقال" },
+            { id: 808, name: "Pepsi 1L - بيبسي 1 لتر", cat: "pepsi", price: 5.00, isDrink: true, desc: "Pepsi 1 Liter / بيبسي ١ لتر" },
+            { id: 809, name: "7UP 1L - سفن اب 1 لتر", cat: "pepsi", price: 5.00, isDrink: true, desc: "7UP 1 Liter / سفن اب ١ لتر" },
+            { id: 810, name: "Citrus 1L - الحمضيات 1 لتر", cat: "pepsi", price: 5.00, isDrink: true, desc: "Citrus 1 Liter / حمضيات ١ لتر" },
+            { id: 811, name: "Rabia Juice - عصير ربيع", cat: "pepsi", price: 2.00, isDrink: true, desc: "Rabia Juice Box / عصير ربيع" },
+            { id: 812, name: "Water - ماء", cat: "pepsi", price: 1.00, isDrink: true, desc: "Mineral Water / ماء" },
+
+            // ================= FRESH JUICES (عصائر طازجة) =================
+            { id: 901, name: "Cocktail Juice Small - كوكتيل صغير", cat: "juices", price: 5, isDrink: true, desc: "Fresh Juice Small / عصير طازج صغير" },
+            { id: 902, name: "Cocktail Juice Big - كوكتيل كبير", cat: "juices", price: 7, isDrink: true, desc: "Fresh Juice Big / عصير طازج كبير" },
+            { id: 903, name: "Cocktail Juice Gallon - كوكتيل جالون", cat: "juices", price: 21, isDrink: true, desc: "Fresh Juice Gallon / عصير طازج جالون" },
+
+            { id: 904, name: "Mango Juice Small - مانجو صغير", cat: "juices", price: 5, isDrink: true, desc: "Fresh Juice Small / عصير طازج صغير" },
+            { id: 905, name: "Mango Juice Big - مانجو كبير", cat: "juices", price: 7, isDrink: true, desc: "Fresh Juice Big / عصير طازج كبير" },
+            { id: 906, name: "Mango Juice Gallon - مانجو جالون", cat: "juices", price: 21, isDrink: true, desc: "Fresh Juice Gallon / عصير طازج جالون" },
+
+            { id: 907, name: "Guava Juice Small - جوافة صغير", cat: "juices", price: 5, isDrink: true, desc: "Fresh Juice Small / عصير طازج صغير" },
+            { id: 908, name: "Guava Juice Big - جوافة كبير", cat: "juices", price: 7, isDrink: true, desc: "Fresh Juice Big / عصير طازج كبير" },
+            { id: 909, name: "Guava Juice Gallon - جوافة جالون", cat: "juices", price: 21, isDrink: true, desc: "Fresh Juice Gallon / عصير طازج جالون" },
+
+            { id: 910, name: "Strawberries Juice Small - فراولة صغير", cat: "juices", price: 5, isDrink: true, desc: "Fresh Juice Small / عصير طازج صغير" },
+            { id: 911, name: "Strawberries Juice Big - فراولة كبير", cat: "juices", price: 7, isDrink: true, desc: "Fresh Juice Big / عصير طازج كبير" },
+            { id: 912, name: "Strawberries Juice Gallon - فراولة جالون", cat: "juices", price: 21, isDrink: true, desc: "Fresh Juice Gallon / عصير طازج جالون" },
+
+            { id: 913, name: "Lemon Juice Small - ليمون صغير", cat: "juices", price: 5, isDrink: true, desc: "Fresh Juice Small / عصير طازج صغير" },
+            { id: 914, name: "Lemon Juice Big - ليمون كبير", cat: "juices", price: 7, isDrink: true, desc: "Fresh Juice Big / عصير طازج كبير" },
+            { id: 915, name: "Lemon Juice Gallon - ليمون جالون", cat: "juices", price: 21, isDrink: true, desc: "Fresh Juice Gallon / عصير تفاح جالون" },
+
+            { id: 916, name: "Apple Juice Small - تفاح صغير", cat: "juices", price: 6, isDrink: true, desc: "Fresh Juice Small / عصير تفاح صغير" },
+            { id: 917, name: "Apple Juice Big - تفاح كبير", cat: "juices", price: 8, isDrink: true, desc: "Fresh Juice Big / عصير تفاح كبير" },
+            { id: 918, name: "Apple Juice Gallon - تفاح جالون", cat: "juices", price: 25, isDrink: true, desc: "Fresh Juice Gallon / عصير تفاح جالون" },
+
+            { id: 919, name: "Banana Milk Small - موز بالحليب صغير", cat: "juices", price: 6, isDrink: true, desc: "Fresh Juice Small / عصير موز بالحليب صغير" },
+            { id: 920, name: "Banana Milk Big - موز بالحليب كبير", cat: "juices", price: 8, isDrink: true, desc: "Fresh Juice Big / عصير موز بالحليب كبير" },
+            { id: 921, name: "Banana Milk Gallon - موز بالحليب جالون", cat: "juices", price: 25, isDrink: true, desc: "Fresh Juice Gallon / عصير موز بالحليب جالون" },
+
+            { id: 922, name: "Avocado Small - أفوكادو صغير", cat: "juices", price: 6, isDrink: true, desc: "Fresh Avocado Small / أفوكادو صغير" },
+            { id: 923, name: "Avocado Big - أفوكادو كبير", cat: "juices", price: 9, isDrink: true, desc: "Fresh Avocado Big / أفوكادو كبير" },
+            { id: 924, name: "Avocado Gallon - أفوكادو جالون", cat: "juices", price: 27, isDrink: true, desc: "Fresh Avocado Gallon / أفوكادو جالون" },
+
+            { id: 925, name: "Orange Fresh Small - برتقال كبس صغير", cat: "juices", price: 6, isDrink: true, desc: "Fresh Orange Small / عصير برتقال صغير" },
+            { id: 926, name: "Orange Fresh Big - برتقال كبس كبير", cat: "juices", price: 9, isDrink: true, desc: "Fresh Orange Big / عصير برتقال كبير" },
+            { id: 927, name: "Orange Fresh Gallon - برتقال كبس جالون", cat: "juices", price: 27, isDrink: true, desc: "Fresh Orange Gallon / عصير برتقال جالون" }
         ];
 
-        let cart = [];
-        let orderType = 'pickup';
+        let cart = {};
+        let currentOrderType = 'pickup';
 
-        // Render Menu
-        function renderMenu(category) {
+        // Saudi Clock & Shop Status Logic (12:30 PM to 01:50 AM)
+        function updateSaudiClockAndStatus() {
+            const now = new Date();
+            const utcTime = now.getTime() + (now.getTimezoneOffset() * 60000);
+            const saudiDate = new Date(utcTime + (3600000 * 3));
+
+            const hours = saudiDate.getHours();
+            const minutes = saudiDate.getMinutes();
+            const seconds = saudiDate.getSeconds();
+
+            const formattedTime = 
+                String(hours).padStart(2, '0') + ":" + 
+                String(minutes).padStart(2, '0') + ":" + 
+                String(seconds).padStart(2, '0');
+            
+            document.getElementById('liveClock').innerText = "Saudi Time: " + formattedTime + " (AST)";
+
+            const currentTimeInMinutes = hours * 60 + minutes;
+            const openTimeInMinutes = 12 * 60 + 30; // 12:30 PM
+            const closeTimeInMinutes = 1 * 60 + 50;  // 01:50 AM
+
+            const statusElement = document.getElementById('shopStatus');
+
+            // Open from 12:30 PM (750 mins) until midnight and up to 01:50 AM (110 mins)
+            if (currentTimeInMinutes >= openTimeInMinutes || currentTimeInMinutes < closeTimeInMinutes) {
+                statusElement.innerText = "🟢 OPEN NOW";
+                statusElement.className = "shop-status status-open";
+            } else {
+                statusElement.innerText = "🔴 CLOSED NOW";
+                statusElement.className = "shop-status status-closed";
+            }
+        }
+
+        function renderMenu(filter = 'broast') {
             const container = document.getElementById('menu-container');
             container.innerHTML = '';
-            
-            const filtered = menuData.filter(item => item.cat === category);
-            
+
+            const filtered = menuData.filter(i => i.cat === filter);
+
+            if(filtered.length === 0) {
+                container.innerHTML = `<div style="text-align:center; padding:30px; color:#777;">No items in this category yet.</div>`;
+                return;
+            }
+
             filtered.forEach(item => {
-                const itemEl = document.createElement('div');
-                itemEl.className = 'menu-item';
-                itemEl.innerHTML = `
-                    <div class="item-info">
-                        <h3>${item.name}</h3>
-                        <p>${item.desc}</p>
-                        <div class="item-price">${item.price} SAR</div>
+                const qty = cart[item.id] ? cart[item.id].qty : 0;
+                container.innerHTML += `
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3>${item.name}</h3>
+                            <p>${item.desc}</p>
+                            <div class="item-price">${item.price.toFixed(2)} SAR</div>
+                        </div>
+                        <div>
+                            ${qty === 0 ? 
+                                `<button class="add-btn" onclick="addToCart(${item.id})">+ Add / إضافة</button>` :
+                                `<div style="display:flex; align-items:center; gap:8px;">
+                                    <button class="add-btn" style="padding:4px 10px;" onclick="updateQty(${item.id}, -1)">-</button>
+                                    <b>${qty}</b>
+                                    <button class="add-btn" style="padding:4px 10px;" onclick="updateQty(${item.id}, 1)">+</button>
+                                 </div>`
+                            }
+                        </div>
                     </div>
-                    <button class="add-btn" onclick="addToCart(${item.id})">+ Add / إضافة</button>
                 `;
-                container.appendChild(itemEl);
             });
         }
 
         function filterCategory(cat, event) {
             document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
-            event.currentTarget.classList.add('active');
+            if(event) {
+                event.target.closest('.category-btn').classList.add('active');
+            }
             renderMenu(cat);
         }
 
-        // Cart Actions
         function addToCart(id) {
             const item = menuData.find(i => i.id === id);
-            const existing = cart.find(i => i.id === id);
-            
-            if (existing) {
-                existing.qty += 1;
-            } else {
-                cart.push({ ...item, qty: 1 });
+            cart[id] = { ...item, qty: 1 };
+            updateCartBar();
+            refreshCurrentCategoryView();
+            renderCartItemsList();
+        }
+
+        function updateQty(id, change) {
+            if (cart[id]) {
+                cart[id].qty += change;
+                if (cart[id].qty <= 0) delete cart[id];
             }
-            updateCartUI();
+            updateCartBar();
+            refreshCurrentCategoryView();
+            renderCartItemsList();
         }
 
-        function updateQty(id, delta) {
-            const item = cart.find(i => i.id === id);
-            if (item) {
-                item.qty += delta;
-                if (item.qty <= 0) {
-                    cart = cart.filter(i => i.id !== id);
-                }
+        function deleteFromCart(id) {
+            if (cart[id]) {
+                delete cart[id];
             }
-            updateCartUI();
-            renderCartModalList();
+            updateCartBar();
+            refreshCurrentCategoryView();
+            renderCartItemsList();
         }
 
-        function removeItem(id) {
-            cart = cart.filter(i => i.id !== id);
-            updateCartUI();
-            renderCartModalList();
+        function refreshCurrentCategoryView() {
+            const activeBtn = document.querySelector('.category-btn.active');
+            if (activeBtn) {
+                const activeCat = activeBtn.getAttribute('onclick').split("'")[1];
+                renderMenu(activeCat);
+            }
         }
 
-        function updateCartUI() {
-            const count = cart.reduce((sum, item) => sum + item.qty, 0);
-            const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-            
+        function updateCartBar() {
+            let count = 0;
+            let total = 0;
+            Object.values(cart).forEach(item => {
+                count += item.qty;
+                total += (item.qty * item.price);
+            });
+
             document.getElementById('cartCount').innerText = count;
             document.getElementById('cartTotal').innerText = total.toFixed(2);
             document.getElementById('cartModalTotal').innerText = total.toFixed(2);
-
-            const cartBar = document.getElementById('cartBar');
-            if (count > 0) {
-                cartBar.style.display = 'flex';
-            } else {
-                cartBar.style.display = 'none';
+            
+            if (count === 0) {
+                document.getElementById('cartBar').style.display = 'none';
                 closeCartView();
                 closeCheckout();
+            } else {
+                document.getElementById('cartBar').style.display = 'flex';
             }
         }
 
-        function renderCartModalList() {
-            const listContainer = document.getElementById('cartItemsList');
-            listContainer.innerHTML = '';
-
-            if (cart.length === 0) {
-                listContainer.innerHTML = '<p style="text-align:center; padding:20px; color:#777;">Your cart is empty / السلة فارغة</p>';
-                return;
-            }
-
-            cart.forEach(item => {
-                const row = document.createElement('div');
-                row.className = 'cart-view-item';
-                row.innerHTML = `
-                    <div style="flex:1;">
-                        <div style="font-size:13.5px; font-weight:bold;">${item.name}</div>
-                        <div style="font-size:12px; color:var(--primary-color);">${item.price} SAR x ${item.qty} = ${item.price * item.qty} SAR</div>
-                    </div>
-                    <div class="cart-item-controls">
-                        <button style="padding:2px 8px; font-weight:bold;" onclick="updateQty(${item.id}, -1)">-</button>
-                        <span style="font-weight:bold; font-size:14px;">${item.qty}</span>
-                        <button style="padding:2px 8px; font-weight:bold;" onclick="updateQty(${item.id}, 1)">+</button>
-                        <button class="delete-btn" onclick="removeItem(${item.id})">✕</button>
-                    </div>
-                `;
-                listContainer.appendChild(row);
-            });
-        }
-
-        // Cart View Modal
+        /* 🛒 VIEW CART FUNCTIONS */
         function openCartView() {
-            renderCartModalList();
+            renderCartItemsList();
             document.getElementById('cartModal').style.display = 'flex';
         }
 
@@ -976,8 +1095,39 @@
             document.getElementById('cartModal').style.display = 'none';
         }
 
+        function renderCartItemsList() {
+            const listContainer = document.getElementById('cartItemsList');
+            listContainer.innerHTML = '';
+
+            const cartArray = Object.values(cart);
+            if (cartArray.length === 0) {
+                listContainer.innerHTML = `<div style="text-align:center; color:#888; padding:20px;">Your cart is empty / السلة فارغة</div>`;
+                return;
+            }
+
+            cartArray.forEach(item => {
+                listContainer.innerHTML += `
+                    <div class="cart-view-item">
+                        <div style="flex:1;">
+                            <div style="font-size:14px; font-weight:bold; color:#222;">${item.name}</div>
+                            <div style="font-size:12px; color:var(--primary-color); font-weight:bold;">${(item.qty * item.price).toFixed(2)} SAR</div>
+                        </div>
+                        <div class="cart-item-controls">
+                            <button class="add-btn" style="padding:2px 8px;" onclick="updateQty(${item.id}, -1)">-</button>
+                            <b>${item.qty}</b>
+                            <button class="add-btn" style="padding:2px 8px;" onclick="updateQty(${item.id}, 1)">+</button>
+                            <button class="delete-btn" onclick="deleteFromCart(${item.id})">🗑️</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
         function proceedToCheckoutFromCart() {
-            if (cart.length === 0) return;
+            if (Object.keys(cart).length === 0) {
+                alert('Your cart is empty.');
+                return;
+            }
             closeCartView();
             openCheckout();
         }
@@ -987,44 +1137,58 @@
             openCartView();
         }
 
-        // Checkout Modal & Order Logic
+        /* 📋 CHECKOUT FUNCTIONS */
+        function setOrderType(type) {
+            currentOrderType = type;
+            document.getElementById('btnPickup').classList.toggle('active', type === 'pickup');
+            document.getElementById('btnDelivery').classList.toggle('active', type === 'delivery');
+            
+            const ratesBox = document.getElementById('deliveryRatesBox');
+            if(type === 'delivery') {
+                ratesBox.style.display = 'block';
+            } else {
+                ratesBox.style.display = 'none';
+            }
+
+            checkDeliveryMin();
+        }
+
+        function checkDeliveryMin() {
+            let foodTotal = 0;
+            Object.values(cart).forEach(item => {
+                if (!item.isDrink) {
+                    foodTotal += (item.qty * item.price);
+                }
+            });
+
+            const alertBox = document.getElementById('minAlert');
+            if (currentOrderType === 'delivery' && foodTotal < 20) {
+                alertBox.style.display = 'block';
+                return false;
+            } else {
+                alertBox.style.display = 'none';
+                return true;
+            }
+        }
+
         function openCheckout() {
             document.getElementById('checkoutModal').style.display = 'flex';
-            updateOrderSummary();
+            let summaryHTML = '<b>Order Summary / ملخص الطلب:</b><br>';
+            Object.values(cart).forEach(i => {
+                summaryHTML += `<div>• ${i.name} x ${i.qty} = ${(i.qty * i.price).toFixed(2)} SAR</div>`;
+            });
+            document.getElementById('orderSummary').innerHTML = summaryHTML;
+            setOrderType(currentOrderType);
         }
 
         function closeCheckout() {
             document.getElementById('checkoutModal').style.display = 'none';
         }
 
-        function setOrderType(type) {
-            orderType = type;
-            document.getElementById('btnPickup').classList.toggle('active', type === 'pickup');
-            document.getElementById('btnDelivery').classList.toggle('active', type === 'delivery');
-            
-            const addressGroup = document.getElementById('addressGroup');
-            const minAlert = document.getElementById('minAlert');
-            const deliveryRatesBox = document.getElementById('deliveryRatesBox');
-
-            if (type === 'delivery') {
-                addressGroup.style.display = 'block';
-                minAlert.style.display = 'block';
-                deliveryRatesBox.style.display = 'block';
-            } else {
-                addressGroup.style.display = 'none';
-                minAlert.style.display = 'none';
-                deliveryRatesBox.style.display = 'none';
-            }
-        }
-
-        function updateOrderSummary() {
-            const foodSubtotal = cart.filter(i => !i.isDrink).reduce((sum, item) => sum + (item.price * item.qty), 0);
-            const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-
-            document.getElementById('orderSummary').innerHTML = `
-                <div>Food Subtotal / مجموع المأكولات: <b>${foodSubtotal.toFixed(2)} SAR</b></div>
-                <div>Total Amount / المبلغ الإجمالي: <b style="color:var(--primary-color);">${total.toFixed(2)} SAR</b></div>
-            `;
+        // Helper function to convert English numbers to Arabic Digits
+        function toArabicDigits(num) {
+            const indianDigits = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+            return num.toString().replace(/\d/g, d => indianDigits[d]);
         }
 
         function sendToWhatsApp() {
@@ -1033,94 +1197,77 @@
             const notes = document.getElementById('custNotes').value.trim();
 
             if (!name) {
-                alert("Please enter your Name / Room / Building No.\nالرجاء إدخال الاسم / رقم الغرفة / المبنى");
+                alert('Please enter your Name or Room Number.');
                 return;
             }
 
-            const foodSubtotal = cart.filter(i => !i.isDrink).reduce((sum, item) => sum + (item.price * item.qty), 0);
-
-            if (orderType === 'delivery' && foodSubtotal < 20) {
-                alert("Minimum order for delivery is 20 SAR (Food items excluding drinks).\nالحد الأدنى لطلب التوصيل هو 20 ريال للمأكولات بدون المشروبات.");
+            if (currentOrderType === 'delivery' && !address) {
+                alert('Please enter your Address / Location for delivery.');
                 return;
             }
 
-            if (orderType === 'delivery' && !address) {
-                alert("Please enter your delivery address / Landmark.\nالرجاء إدخال عنوان التوصيل / الموقع");
+            if (!checkDeliveryMin()) {
+                alert('Delivery order requires minimum 20 SAR Food items (Drinks excluded).');
                 return;
             }
 
-            let msg = `*NEW ORDER - TOP CHICKEN 🍗*\n`;
-            msg += `------------------------------\n`;
-            msg += `*Type:* ${orderType.toUpperCase()} (${orderType === 'delivery' ? 'توصيل' : 'استلام'})\n`;
-            msg += `*Name/Room:* ${name}\n`;
-            if (orderType === 'delivery') {
-                msg += `*Address:* ${address}\n`;
-            }
-            if (notes) {
-                msg += `*Notes:* ${notes}\n`;
-            }
-            msg += `------------------------------\n`;
-            msg += `*ORDER ITEMS / تفاصيل الطلب:*\n`;
+            let text = `*NEW ORDER - TOP CHICKEN*\n`;
+            text += `----------------------------------\n`;
+            text += `📍 *Type:* ${currentOrderType.toUpperCase()}\n`;
+            text += `👤 *Name:* ${name}\n`;
+            if (address) text += `🏠 *Address:* ${address}\n`;
+            if (notes) text += `📝 *Notes:* ${notes}\n`;
+            text += `----------------------------------\n\n`;
 
-            cart.forEach((item, idx) => {
-                msg += `${idx + 1}. ${item.name} x${item.qty} = ${item.price * item.qty} SAR\n`;
+            let total = 0;
+            Object.values(cart).forEach(i => {
+                const sub = i.qty * i.price;
+                total += sub;
+
+                // Split English and Arabic parts from item name
+                let parts = i.name.split(' - ');
+                let enName = parts[0] ? parts[0].trim() : i.name;
+                let arName = parts[1] ? parts[1].trim() : '';
+
+                // English Line
+                text += `*${i.qty} . ${enName} - ${sub.toFixed(2)} SAR*\n`;
+                
+                // Arabic Line (if Arabic name exists)
+                if (arName) {
+                    let arQty = toArabicDigits(i.qty);
+                    let arPrice = toArabicDigits(sub.toFixed(2));
+                    text += `${arQty} . ${arName} - ${arPrice} ر.س\n`;
+                }
+                text += `\n`;
             });
 
-            const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-            msg += `------------------------------\n`;
-            msg += `*TOTAL:* *${total.toFixed(2)} SAR*\n`;
-            if (orderType === 'delivery') {
-                msg += `*(Note: Delivery fee excluded / المبلغ لا يشمل رسوم التوصيل)*\n`;
-            }
-            msg += `------------------------------\n`;
-            msg += `Thank you for ordering with TOP CHICKEN!`;
+            text += `----------------------------------\n`;
+            text += `💵 *TOTAL AMOUNT: ${total.toFixed(2)} SAR*\n`;
+            text += `💵 *المبلغ الإجمالي: ${toArabicDigits(total.toFixed(2))} ر.س*\n`;
+            text += `----------------------------------\n\n`;
 
-            const waUrl = `https://wa.me/966554726280?text=${encodeURIComponent(msg)}`;
-            window.open(waUrl, '_blank');
+            if (currentOrderType === 'delivery') {
+                text += `ℹ️ *Note:*\nالمبلغ الإجمالي لا يشمل رسوم التوصيل\n(Delivery charges will be calculated based on location distance)`;
+            }
+
+            const phone = "966554726280";
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank');
         }
 
-        // Live Clock & Shop Status Logic
-        function updateLiveStatus() {
-            const now = new Date();
-            // Convert to Saudi Arabia Time (UTC+3)
-            const options = { timeZone: 'Asia/Riyadh', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
-            const timeStr = now.toLocaleTimeString('en-US', options);
-            document.getElementById('liveClock').innerText = `Saudi Time: ${timeStr}`;
-
-            // Check shop open status (Example: 12:00 PM to 02:00 AM)
-            const saudiDate = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Riyadh' }));
-            const hours = saudiDate.getHours();
-
-            const statusEl = document.getElementById('shopStatus');
-            // Assuming open from 12 PM (12) to 2 AM (2)
-            if (hours >= 12 || hours < 2) {
-                statusEl.innerText = "OPEN NOW / مفتوح الان";
-                statusEl.className = "shop-status status-open";
-            } else {
-                statusEl.innerText = "CLOSED NOW / مغلق الان";
-                statusEl.className = "shop-status status-closed";
-            }
-        }
-
-        // Image Gallery Auto Slider
+        // Image Gallery Auto-Slider
         let currentSlide = 0;
-        function startSlider() {
-            const wrapper = document.getElementById('sliderWrapper');
-            const totalSlides = wrapper.children.length;
-            setInterval(() => {
-                currentSlide = (currentSlide + 1) % totalSlides;
-                wrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
-            }, 3500);
-        }
+        const slides = document.querySelectorAll('.slide');
+        setInterval(() => {
+            if (slides.length > 0) {
+                currentSlide = (currentSlide + 1) % slides.length;
+                document.getElementById('sliderWrapper').style.transform = `translateX(-${currentSlide * 100}%)`;
+            }
+        }, 3000);
 
-        // Initialize Page
-        window.onload = function() {
-            renderMenu('broast');
-            updateLiveStatus();
-            setInterval(updateLiveStatus, 1000);
-            startSlider();
-            setOrderType('pickup');
-        };
+        // Saudi Clock Timer & Initial Load
+        setInterval(updateSaudiClockAndStatus, 1000);
+        updateSaudiClockAndStatus();
+        renderMenu('broast');
     </script>
 </body>
 </html>
