@@ -307,38 +307,40 @@
             border-bottom: 2px solid #eaeaea;
         }
 
-        .category-grid {
-            display: grid;
-            grid-template-rows: repeat(2, auto);
-            grid-auto-flow: column;
-            grid-auto-columns: minmax(130px, max-content);
-            gap: 8px;
-            overflow-x: auto;
-            scrollbar-width: none;
-        }
+        .category-nav {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 6px !important;
+    padding: 8px !important;
+    background: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
 
-        .category-grid::-webkit-scrollbar {
-            display: none;
-        }
+.category-btn {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    padding: 6px 2px !important;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 10px !important;
+    text-align: center;
+    cursor: pointer;
+    min-height: 52px !important; /* എല്ലാ ബോക്സുകൾക്കും ഒരേ ഹൈറ്റ് നൽകുന്നു */
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.2 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
 
-        .category-btn {
-            background: #f8f9fa;
-            border: 1.5px solid #dcdcdc;
-            padding: 9px 12px;
-            border-radius: 10px;
-            font-size: 12px;
-            font-weight: 700;
-            white-space: nowrap;
-            cursor: pointer;
-            text-align: center;
-            color: #333;
-            line-height: 1.3;
-            transition: all 0.2s ease;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
-        }
-
-        .category-btn.active {
-            background: linear-gradient(135deg, var(--primary-color), #b71c1c);
+.category-btn.active {
+    background-color: #d32f2f;
+    color: white;
+    border-color: #d32f2f;
+}, #b71c1c);
             color: white;
             border-color: #900c0c;
             box-shadow: 0 4px 8px rgba(211, 47, 47, 0.35);
@@ -681,18 +683,19 @@
         </div>
     </div>
 
-    <div class="category-container">
-        <div class="category-grid">
-            <button class="category-btn active" onclick="filterCategory('broast', event)">BROAST<br>بروستد</button>
-            <button class="category-btn" onclick="filterCategory('burger', event)">BURGER<br>برجر</button>
-            <button class="category-btn" onclick="filterCategory('tortilla', event)">TORTILLA<br>تورتيلا</button>
-            <button class="category-btn" onclick="filterCategory('pizza', event)">PIZZA<br>بيتزا</button>
-            <button class="category-btn" onclick="filterCategory('fries_meals', event)">FRIES / MEALS<br>بطاطس وجبات</button>
-            <button class="category-btn" onclick="filterCategory('pepsi', event)">PEPSI<br>بيبسي</button>
-            <button class="category-btn" onclick="filterCategory('jumbo', event)">JUMBO<br>جامبو</button>
-            <button class="category-btn" onclick="filterCategory('juices', event)">JUICES<br>عصائر</button>
-            <button class="category-btn" onclick="filterCategory('extra', event)">EXTRA<br>إضافات</button>
-        </div>
+   <!-- Category Nav -->
+    <div class="category-nav">
+        <button class="category-btn active" onclick="filterCategory('broast', event)">BROAST / بروستد</button>
+        <button class="category-btn" onclick="filterCategory('pizza', event)">PIZZA / بيتزا</button>
+        <button class="category-btn" onclick="filterCategory('extra', event)">EXTRA / إضافات</button>
+
+        <button class="category-btn" onclick="filterCategory('tortilla', event)">TORTILLA / تورتيلا</button>
+        <button class="category-btn" onclick="filterCategory('jumbo', event)">JUMBO / جامبو</button>
+        <button class="category-btn" onclick="filterCategory('burger', event)">BURGER / برجر</button>
+
+        <button class="category-btn" onclick="filterCategory('juices', event)">JUICES / عصائر</button>
+        <button class="category-btn" onclick="filterCategory('pepsi', event)">PEPSI / بيبسي</button>
+        <button class="category-btn" onclick="filterCategory('fries_meals', event)">FRIES / MEALS / بطاطس وجبات</button>
     </div>
 
     <div class="container" id="menu-container"></div>
@@ -812,7 +815,7 @@
             { id: 104, name: "Fish Broasted Normal - بروستد سمك عادي", cat: "broast", price: 19, isDrink: false, desc: "Fish Fillet, Fries, Hummus, Kubus, Garlic, Ketchup / فيليه سمك، بطاطس، حمص، خبز، ثوم، كاتشب" },
             { id: 105, name: "Shrimp Broast Spicy - بروست روبيان حراق", cat: "broast", price: 22, isDrink: false, desc: "13 Pcs Spicy Shrimp, Fries, Hummus, Kubus, Garlic, Ketchup / ١٣ قطعة روبيان حراق، بطاطس، حمص، خبز، ثوم، كاتشب" },
             { id: 106, name: "Shrimp Broast Normal - بروست روبيان عادي", cat: "broast", price: 22, isDrink: false, desc: "17 Pcs Normal Shrimp, Fries, Hummus, Kubus, Garlic, Ketchup / ١٧ قطعة روبيان عادي، بطاطس، حمص، خبز، ثوم، كاتشب" },
-            { id: 107, name: "Chicken Nuggets Normal - نغت دجاج عادي", cat: "broast", price: 20, isDrink: false, desc: "13 Pcs Nuggets, Fries, Hummus, Kubus, Garlic, Ketchup / ١٣ قطعة نغت، بطاطس، حمص، خبز، ثوم، كاتشب" },
+            { id: 107, name: "Chicken Nuggets Normal - نجتس عادي", cat: "broast", price: 20, isDrink: false, desc: "13 Pcs Nuggets, Fries, Hummus, Kubus, Garlic, Ketchup / ١٣ قطعة نغت، بطاطس، حمص، خبز، ثوم، كاتشب" },
             { id: 108, name: "Chicken Strips Spicy - ستربس الدجاج حراق", cat: "broast", price: 20, isDrink: false, desc: "6 Pcs Spicy Strips, Fries, Hummus, Kubus, Garlic, Ketchup / ٦ قطع ستربس حراق، بطاطس، حمص، خبز، ثوم، كاتشب" },
             { id: 109, name: "Chicken Strips Normal - ستربس الدجاج عادي", cat: "broast", price: 20, isDrink: false, desc: "6 Pcs Strips, Fries, Hummus, Kubus, Garlic, Ketchup / ٦ قطع ستربس، بطاطس، حمص، خبز، ثوم، كاتشب" },
             { id: 110, name: "Finger Chicken Spicy - مسحب دجاج حراق", cat: "broast", price: 20, isDrink: false, desc: "10 Pcs Spicy Finger Chicken, Fries, Hummus, Kubus, Garlic, Ketchup / ١٠ قطع مسحب دجاج حراق، بطاطس، حمص، خبز، ثوم، كاتشب" },
@@ -840,7 +843,7 @@
             { id: 603, name: "Big Fries - بطاطس كبير", cat: "fries_meals", price: 10, isDrink: false, desc: "Large Potato Fries / بطاطس مقلية كبير" },
             { id: 604, name: "Fries Meal Deal - بطاطس وجبة", cat: "fries_meals", price: 6, isDrink: false, desc: "Fries & Pepsi Combo / بطاطس مع بيبسي" },
             { id: 605, name: "Kids Meal Popcorn - وجبة أطفال بوب كورن", cat: "fries_meals", price: 12, isDrink: false, desc: "Kids Meal Popcorn with toy / وجبة اطفال مع لعبة" },
-            { id: 606, name: "Kids Meal Nuggets - وجبة أطفال نغت", cat: "fries_meals", price: 13, isDrink: false, desc: "Nuggets Kids Meal / وجبة اطفال نغت" },
+            { id: 606, name: "Kids Meal Nuggets - وجبة أطفال نجتس", cat: "fries_meals", price: 13, isDrink: false, desc: "Nuggets Kids Meal / وجبة أطفال نجتس" },
 
             // ================= JUMBO (جامبو) =================
             { id: 501, name: "Jumbo Fillet Chicken - جامبو فيليه دجاج", cat: "jumbo", price: 12, isDrink: false, desc: "Jumbo Fillet Chicken Sandwich / ساندوتش جامبو فيليه دجاج" },
@@ -882,7 +885,7 @@
             // ================= SIDE ORDERS & EXTRAS (إضافات) =================
             { id: 701, name: "Onion Rings - حلقات بصل", cat: "extra", price: 6, isDrink: false, desc: "Onion Rings / حلقات بصل مقرمشة" },
             { id: 702, name: "Popcorn Chicken - بوب كورن", cat: "extra", price: 6, isDrink: false, desc: "Chicken Popcorn / بوب كورن دجاج" },
-            { id: 703, name: "Baby Nuggets - بيبي نغت", cat: "extra", price: 7, isDrink: false, desc: "Baby Nuggets / بيبي نغت" },
+            { id: 703, name: "Baby Nuggets - بيبي نجتس", cat: "extra", price: 7, isDrink: false, desc: "Baby Nuggets / بيبي نجتس" },
             { id: 704, name: "Coleslaw Salad - سلطة ملفوف", cat: "extra", price: 3, isDrink: false, desc: "Coleslaw Salad / سلطة ملفوف طازجة" },
             { id: 705, name: "Cocktail Sauce - صوص كوكتيل", cat: "extra", price: 1, isDrink: false, desc: "Cocktail Dip / صوص كوكتيل" },
             { id: 706, name: "Garlic Sauce - ثوم", cat: "extra", price: 1, isDrink: false, desc: "Garlic Dip / صلصة ثوم" },
