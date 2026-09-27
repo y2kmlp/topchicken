@@ -308,41 +308,38 @@
         }
 
         .category-nav {
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 6px !important;
-    padding: 8px !important;
-    background: white;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
+            display: grid !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 6px !important;
+            padding: 8px !important;
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
 
-.category-btn {
-    background-color: #f0f0f0;
-    border: 1px solid #ddd;
-    padding: 6px 2px !important;
-    border-radius: 8px;
-    font-weight: bold;
-    font-size: 10px !important;
-    text-align: center;
-    cursor: pointer;
-    min-height: 52px !important; /* എല്ലാ ബോക്സുകൾക്കും ഒരേ ഹൈറ്റ് നൽകുന്നു */
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    line-height: 1.2 !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-}
+        .category-btn {
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            padding: 6px 2px !important;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 10px !important;
+            text-align: center;
+            cursor: pointer;
+            min-height: 52px !important;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.2 !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+        }
 
-.category-btn.active {
-    background-color: #d32f2f;
-    color: white;
-    border-color: #d32f2f;
-}, #b71c1c);
+        .category-btn.active {
+            background-color: #d32f2f;
             color: white;
-            border-color: #900c0c;
+            border-color: #d32f2f;
             box-shadow: 0 4px 8px rgba(211, 47, 47, 0.35);
             transform: translateY(-1px);
         }
@@ -390,6 +387,43 @@
             font-weight: 800;
             color: var(--primary-color);
             font-size: 15.5px;
+        }
+
+        /* ===== JUICE SIZE PILLS STYLES ===== */
+        .juice-pills-container {
+            display: flex;
+            gap: 6px;
+            margin: 8px 0;
+            flex-wrap: wrap;
+        }
+
+        .juice-pill-option {
+            position: relative;
+        }
+
+        .juice-pill-option input[type="radio"] {
+            display: none;
+        }
+
+        .juice-pill-label {
+            display: inline-block;
+            padding: 6px 10px;
+            background: #f1f3f5;
+            border: 1.5px solid #dcdfe6;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+            color: #444;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .juice-pill-option input[type="radio"]:checked + .juice-pill-label {
+            background: #fff5f5;
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            box-shadow: 0 2px 5px rgba(211, 47, 47, 0.15);
         }
 
         .add-btn {
@@ -915,42 +949,124 @@
             { id: 811, name: "Rabia Juice - عصير ربيع", cat: "pepsi", price: 2.00, isDrink: true, desc: "Rabia Juice Box / عصير ربيع" },
             { id: 812, name: "Water - ماء", cat: "pepsi", price: 1.00, isDrink: true, desc: "Mineral Water / ماء" },
 
-            // ================= FRESH JUICES (عصائر طازجة) =================
-            { id: 901, name: "Cocktail Juice Small - كوكتيل صغير", cat: "juices", price: 5, isDrink: true, desc: "Fresh Juice Small / عصير طازج صغير" },
-            { id: 902, name: "Cocktail Juice Big - كوكتيل كبير", cat: "juices", price: 7, isDrink: true, desc: "Fresh Juice Big / عصير طازج كبير" },
-            { id: 903, name: "Cocktail Juice Gallon - كوكتيل جالون", cat: "juices", price: 21, isDrink: true, desc: "Fresh Juice Gallon / عصير طازج جالون" },
-
-            { id: 904, name: "Mango Juice Small - مانجو صغير", cat: "juices", price: 5, isDrink: true, desc: "Fresh Juice Small / عصير طازج صغير" },
-            { id: 905, name: "Mango Juice Big - مانجو كبير", cat: "juices", price: 7, isDrink: true, desc: "Fresh Juice Big / عصير طازج كبير" },
-            { id: 906, name: "Mango Juice Gallon - مانجو جالون", cat: "juices", price: 21, isDrink: true, desc: "Fresh Juice Gallon / عصير طازج جالون" },
-
-            { id: 907, name: "Guava Juice Small - جوافة صغير", cat: "juices", price: 5, isDrink: true, desc: "Fresh Juice Small / عصير طازج صغير" },
-            { id: 908, name: "Guava Juice Big - جوافة كبير", cat: "juices", price: 7, isDrink: true, desc: "Fresh Juice Big / عصير طازج كبير" },
-            { id: 909, name: "Guava Juice Gallon - جوافة جالون", cat: "juices", price: 21, isDrink: true, desc: "Fresh Juice Gallon / عصير طازج جالون" },
-
-            { id: 910, name: "Strawberries Juice Small - فراولة صغير", cat: "juices", price: 5, isDrink: true, desc: "Fresh Juice Small / عصير طازج صغير" },
-            { id: 911, name: "Strawberries Juice Big - فراولة كبير", cat: "juices", price: 7, isDrink: true, desc: "Fresh Juice Big / عصير طازج كبير" },
-            { id: 912, name: "Strawberries Juice Gallon - فراولة جالون", cat: "juices", price: 21, isDrink: true, desc: "Fresh Juice Gallon / عصير طازج جالون" },
-
-            { id: 913, name: "Lemon Juice Small - ليمون صغير", cat: "juices", price: 5, isDrink: true, desc: "Fresh Juice Small / عصير طازج صغير" },
-            { id: 914, name: "Lemon Juice Big - ليمون كبير", cat: "juices", price: 7, isDrink: true, desc: "Fresh Juice Big / عصير طازج كبير" },
-            { id: 915, name: "Lemon Juice Gallon - ليمون جالون", cat: "juices", price: 21, isDrink: true, desc: "Fresh Juice Gallon / عصير تفاح جالون" },
-
-            { id: 916, name: "Apple Juice Small - تفاح صغير", cat: "juices", price: 6, isDrink: true, desc: "Fresh Juice Small / عصير تفاح صغير" },
-            { id: 917, name: "Apple Juice Big - تفاح كبير", cat: "juices", price: 8, isDrink: true, desc: "Fresh Juice Big / عصير تفاح كبير" },
-            { id: 918, name: "Apple Juice Gallon - تفاح جالون", cat: "juices", price: 25, isDrink: true, desc: "Fresh Juice Gallon / عصير تفاح جالون" },
-
-            { id: 919, name: "Banana Milk Small - موز بالحليب صغير", cat: "juices", price: 6, isDrink: true, desc: "Fresh Juice Small / عصير موز بالحليب صغير" },
-            { id: 920, name: "Banana Milk Big - موز بالحليب كبير", cat: "juices", price: 8, isDrink: true, desc: "Fresh Juice Big / عصير موز بالحليب كبير" },
-            { id: 921, name: "Banana Milk Gallon - موز بالحليب جالون", cat: "juices", price: 25, isDrink: true, desc: "Fresh Juice Gallon / عصير موز بالحليب جالون" },
-
-            { id: 922, name: "Avocado Small - أفوكادو صغير", cat: "juices", price: 6, isDrink: true, desc: "Fresh Avocado Small / أفوكادو صغير" },
-            { id: 923, name: "Avocado Big - أفوكادو كبير", cat: "juices", price: 9, isDrink: true, desc: "Fresh Avocado Big / أفوكادو كبير" },
-            { id: 924, name: "Avocado Gallon - أفوكادو جالون", cat: "juices", price: 27, isDrink: true, desc: "Fresh Avocado Gallon / أفوكادو جالون" },
-
-            { id: 925, name: "Orange Fresh Small - برتقال كبس صغير", cat: "juices", price: 6, isDrink: true, desc: "Fresh Orange Small / عصير برتقال صغير" },
-            { id: 926, name: "Orange Fresh Big - برتقال كبس كبير", cat: "juices", price: 9, isDrink: true, desc: "Fresh Orange Big / عصير برتقال كبير" },
-            { id: 927, name: "Orange Fresh Gallon - برتقال كبس جالون", cat: "juices", price: 27, isDrink: true, desc: "Fresh Orange Gallon / عصير برتقال جالون" }
+            // ================= FRESH JUICES - PILLS VERSION (عصائر طازجة) =================
+            { 
+                id: 901, 
+                nameEn: "Cocktail Juice", 
+                nameAr: "عصير كوكتيل", 
+                cat: "juices", 
+                isDrink: true, 
+                desc: "Fresh Juice / عصير طازج", 
+                sizes: [
+                    { sizeEn: "Small", sizeAr: "صغير", price: 5 },
+                    { sizeEn: "Big", sizeAr: "كبير", price: 7 },
+                    { sizeEn: "Gallon", sizeAr: "جالون", price: 21 }
+                ] 
+            },
+            { 
+                id: 902, 
+                nameEn: "Mango Juice", 
+                nameAr: "عصير مانجو", 
+                cat: "juices", 
+                isDrink: true, 
+                desc: "Fresh Juice / عصير طازج", 
+                sizes: [
+                    { sizeEn: "Small", sizeAr: "صغير", price: 5 },
+                    { sizeEn: "Big", sizeAr: "كبير", price: 7 },
+                    { sizeEn: "Gallon", sizeAr: "جالون", price: 21 }
+                ] 
+            },
+            { 
+                id: 903, 
+                nameEn: "Guava Juice", 
+                nameAr: "عصير جوافة", 
+                cat: "juices", 
+                isDrink: true, 
+                desc: "Fresh Juice / عصير طازج", 
+                sizes: [
+                    { sizeEn: "Small", sizeAr: "صغير", price: 5 },
+                    { sizeEn: "Big", sizeAr: "كبير", price: 7 },
+                    { sizeEn: "Gallon", sizeAr: "جالون", price: 21 }
+                ] 
+            },
+            { 
+                id: 904, 
+                nameEn: "Strawberries Juice", 
+                nameAr: "عصير فراولة", 
+                cat: "juices", 
+                isDrink: true, 
+                desc: "Fresh Juice / عصير طازج", 
+                sizes: [
+                    { sizeEn: "Small", sizeAr: "صغير", price: 5 },
+                    { sizeEn: "Big", sizeAr: "كبير", price: 7 },
+                    { sizeEn: "Gallon", sizeAr: "جالون", price: 21 }
+                ] 
+            },
+            { 
+                id: 905, 
+                nameEn: "Lemon Juice", 
+                nameAr: "عصير ليمون", 
+                cat: "juices", 
+                isDrink: true, 
+                desc: "Fresh Juice / عصير طازج", 
+                sizes: [
+                    { sizeEn: "Small", sizeAr: "صغير", price: 5 },
+                    { sizeEn: "Big", sizeAr: "كبير", price: 7 },
+                    { sizeEn: "Gallon", sizeAr: "جالون", price: 21 }
+                ] 
+            },
+            { 
+                id: 906, 
+                nameEn: "Apple Juice", 
+                nameAr: "عصير تفاح", 
+                cat: "juices", 
+                isDrink: true, 
+                desc: "Fresh Juice / عصير طازج", 
+                sizes: [
+                    { sizeEn: "Small", sizeAr: "صغير", price: 6 },
+                    { sizeEn: "Big", sizeAr: "كبير", price: 8 },
+                    { sizeEn: "Gallon", sizeAr: "جالون", price: 25 }
+                ] 
+            },
+            { 
+                id: 907, 
+                nameEn: "Banana Milk", 
+                nameAr: "موز بالحليب", 
+                cat: "juices", 
+                isDrink: true, 
+                desc: "Fresh Juice / عصير طازج", 
+                sizes: [
+                    { sizeEn: "Small", sizeAr: "صغير", price: 6 },
+                    { sizeEn: "Big", sizeAr: "كبير", price: 8 },
+                    { sizeEn: "Gallon", sizeAr: "جالون", price: 25 }
+                ] 
+            },
+            { 
+                id: 908, 
+                nameEn: "Avocado", 
+                nameAr: "أفوكادو", 
+                cat: "juices", 
+                isDrink: true, 
+                desc: "Fresh Avocado / أفوكادو طازج", 
+                sizes: [
+                    { sizeEn: "Small", sizeAr: "صغير", price: 6 },
+                    { sizeEn: "Big", sizeAr: "كبير", price: 9 },
+                    { sizeEn: "Gallon", sizeAr: "جالون", price: 27 }
+                ] 
+            },
+            { 
+                id: 909, 
+                nameEn: "Orange Fresh", 
+                nameAr: "برتقال كبس", 
+                cat: "juices", 
+                isDrink: true, 
+                desc: "Fresh Orange / عصير برتقال طازج", 
+                sizes: [
+                    { sizeEn: "Small", sizeAr: "صغير", price: 6 },
+                    { sizeEn: "Big", sizeAr: "كبير", price: 9 },
+                    { sizeEn: "Gallon", sizeAr: "جالون", price: 27 }
+                ] 
+            }
         ];
 
         let cart = {};
@@ -979,13 +1095,19 @@
 
             const statusElement = document.getElementById('shopStatus');
 
-            // Open from 12:30 PM (750 mins) until midnight and up to 01:50 AM (110 mins)
             if (currentTimeInMinutes >= openTimeInMinutes || currentTimeInMinutes < closeTimeInMinutes) {
                 statusElement.innerText = "🟢 OPEN NOW";
                 statusElement.className = "shop-status status-open";
             } else {
                 statusElement.innerText = "🔴 CLOSED NOW";
                 statusElement.className = "shop-status status-closed";
+            }
+        }
+
+        function updateJuicePriceDisplay(itemId, price) {
+            const priceElem = document.getElementById(`juice-price-${itemId}`);
+            if (priceElem) {
+                priceElem.innerText = `${price.toFixed(2)} SAR`;
             }
         }
 
@@ -1001,27 +1123,85 @@
             }
 
             filtered.forEach(item => {
-                const qty = cart[item.id] ? cart[item.id].qty : 0;
-                container.innerHTML += `
-                    <div class="menu-item">
-                        <div class="item-info">
-                            <h3>${item.name}</h3>
-                            <p>${item.desc}</p>
-                            <div class="item-price">${item.price.toFixed(2)} SAR</div>
+                if (filter === 'juices') {
+                    // Render Fresh Juice Item with Radio Pills
+                    let pillsHTML = item.sizes.map((s, idx) => `
+                        <div class="juice-pill-option">
+                            <input type="radio" id="juice-${item.id}-size-${idx}" name="juice-size-${item.id}" value="${idx}" ${idx === 0 ? 'checked' : ''} onchange="updateJuicePriceDisplay(${item.id}, ${s.price})">
+                            <label for="juice-${item.id}-size-${idx}" class="juice-pill-label">
+                                ${s.sizeEn} / ${s.sizeAr}
+                            </label>
                         </div>
-                        <div>
-                            ${qty === 0 ? 
-                                `<button class="add-btn" onclick="addToCart(${item.id})">+ Add / إضافة</button>` :
-                                `<div style="display:flex; align-items:center; gap:8px;">
-                                    <button class="add-btn" style="padding:4px 10px;" onclick="updateQty(${item.id}, -1)">-</button>
-                                    <b>${qty}</b>
-                                    <button class="add-btn" style="padding:4px 10px;" onclick="updateQty(${item.id}, 1)">+</button>
-                                 </div>`
-                            }
+                    `).join('');
+
+                    const defaultPrice = item.sizes[0].price;
+
+                    container.innerHTML += `
+                        <div class="menu-item">
+                            <div class="item-info" style="flex: 1; padding-right: 10px;">
+                                <h3>${item.nameEn} - ${item.nameAr}</h3>
+                                <p>${item.desc}</p>
+                                <div class="juice-pills-container">
+                                    ${pillsHTML}
+                                </div>
+                                <div class="item-price" id="juice-price-${item.id}">${defaultPrice.toFixed(2)} SAR</div>
+                            </div>
+                            <div>
+                                <button class="add-btn" onclick="addJuiceToCart(${item.id})">+ Add / إضافة</button>
+                            </div>
                         </div>
-                    </div>
-                `;
+                    `;
+                } else {
+                    // Render Normal Food Item
+                    const qty = cart[item.id] ? cart[item.id].qty : 0;
+                    container.innerHTML += `
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h3>${item.name}</h3>
+                                <p>${item.desc}</p>
+                                <div class="item-price">${item.price.toFixed(2)} SAR</div>
+                            </div>
+                            <div>
+                                ${qty === 0 ? 
+                                    `<button class="add-btn" onclick="addToCart(${item.id})">+ Add / إضافة</button>` :
+                                    `<div style="display:flex; align-items:center; gap:8px;">
+                                        <button class="add-btn" style="padding:4px 10px;" onclick="updateQty('${item.id}', -1)">-</button>
+                                        <b>${qty}</b>
+                                        <button class="add-btn" style="padding:4px 10px;" onclick="updateQty('${item.id}', 1)">+</button>
+                                     </div>`
+                                }
+                            </div>
+                        </div>
+                    `;
+                }
             });
+        }
+
+        function addJuiceToCart(itemId) {
+            const item = menuData.find(i => i.id === itemId);
+            const selectedRadio = document.querySelector(`input[name="juice-size-${itemId}"]:checked`);
+            const selectedIdx = selectedRadio ? selectedRadio.value : 0;
+            const selectedSize = item.sizes[selectedIdx];
+
+            // Unique ID for Cart (e.g., 901_0, 901_1)
+            const cartKey = `${itemId}_${selectedIdx}`;
+            const fullName = `${item.nameEn} ${selectedSize.sizeEn} - ${item.nameAr} ${selectedSize.sizeAr}`;
+
+            if (cart[cartKey]) {
+                cart[cartKey].qty += 1;
+            } else {
+                cart[cartKey] = {
+                    id: cartKey,
+                    name: fullName,
+                    cat: item.cat,
+                    price: selectedSize.price,
+                    isDrink: item.isDrink,
+                    qty: 1
+                };
+            }
+
+            updateCartBar();
+            renderCartItemsList();
         }
 
         function filterCategory(cat, event) {
@@ -1116,10 +1296,10 @@
                             <div style="font-size:12px; color:var(--primary-color); font-weight:bold;">${(item.qty * item.price).toFixed(2)} SAR</div>
                         </div>
                         <div class="cart-item-controls">
-                            <button class="add-btn" style="padding:2px 8px;" onclick="updateQty(${item.id}, -1)">-</button>
+                            <button class="add-btn" style="padding:2px 8px;" onclick="updateQty('${item.id}', -1)">-</button>
                             <b>${item.qty}</b>
-                            <button class="add-btn" style="padding:2px 8px;" onclick="updateQty(${item.id}, 1)">+</button>
-                            <button class="delete-btn" onclick="deleteFromCart(${item.id})">🗑️</button>
+                            <button class="add-btn" style="padding:2px 8px;" onclick="updateQty('${item.id}', 1)">+</button>
+                            <button class="delete-btn" onclick="deleteFromCart('${item.id}')">🗑️</button>
                         </div>
                     </div>
                 `;
@@ -1188,7 +1368,6 @@
             document.getElementById('checkoutModal').style.display = 'none';
         }
 
-        // Helper function to convert English numbers to Arabic Digits
         function toArabicDigits(num) {
             const indianDigits = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
             return num.toString().replace(/\d/g, d => indianDigits[d]);
@@ -1227,15 +1406,12 @@
                 const sub = i.qty * i.price;
                 total += sub;
 
-                // Split English and Arabic parts from item name
                 let parts = i.name.split(' - ');
                 let enName = parts[0] ? parts[0].trim() : i.name;
                 let arName = parts[1] ? parts[1].trim() : '';
 
-                // English Line
                 text += `*${i.qty} . ${enName} - ${sub.toFixed(2)} SAR*\n`;
                 
-                // Arabic Line (if Arabic name exists)
                 if (arName) {
                     let arQty = toArabicDigits(i.qty);
                     let arPrice = toArabicDigits(sub.toFixed(2));
