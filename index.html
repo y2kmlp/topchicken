@@ -813,11 +813,11 @@
             </div>
 
             <div class="order-type-selector">
-                <div class="type-btn active" id="btnPickup" onclick="setOrderType('pickup')">
-                    Pick up / استلام
-                </div>
-                <div class="type-btn" id="btnDelivery" onclick="setOrderType('delivery')">
+                <div class="type-btn active" id="btnDelivery" onclick="setOrderType('delivery')">
                     Delivery / توصيل
+                </div>
+                <div class="type-btn" id="btnPickup" onclick="setOrderType('pickup')">
+                    Pick up / استلام
                 </div>
             </div>
 
@@ -1099,7 +1099,7 @@
         ];
 
         let cart = {};
-        let currentOrderType = 'pickup';
+        let currentOrderType = 'delivery';
 
         // Saudi Clock & Shop Status Logic (12:30 PM to 01:50 AM)
         function updateSaudiClockAndStatus() {
@@ -1354,8 +1354,8 @@
         /* 📋 CHECKOUT FUNCTIONS */
         function setOrderType(type) {
             currentOrderType = type;
-            document.getElementById('btnPickup').classList.toggle('active', type === 'pickup');
             document.getElementById('btnDelivery').classList.toggle('active', type === 'delivery');
+            document.getElementById('btnPickup').classList.toggle('active', type === 'pickup');
             
             const ratesBox = document.getElementById('deliveryRatesBox');
             if(type === 'delivery') {
