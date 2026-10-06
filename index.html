@@ -812,10 +812,13 @@
                 <span style="cursor:pointer; font-size: 22px; font-weight: bold;" onclick="closeCheckout()">✕</span>
             </div>
 
-           <div class="order-type-selector">
-    <div class="type-btn active" id="btn-delivery" onclick="setOrderType('delivery')">Delivery / توصيل</div>
-    <div class="type-btn" id="btn-pickup" onclick="setOrderType('pickup')">Pick up / استلام</div>
-</div>
+            <div class="order-type-selector">
+                <div class="type-btn active" id="btnPickup" onclick="setOrderType('pickup')">
+                    Pick up / استلام
+                </div>
+                <div class="type-btn" id="btnDelivery" onclick="setOrderType('delivery')">
+                    Delivery / توصيل
+                </div>
             </div>
 
             <div class="delivery-rates-box" id="deliveryRatesBox">
