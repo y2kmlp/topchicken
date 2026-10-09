@@ -337,29 +337,121 @@
             transform: translateY(-1px);
         }
 
+        /* SEARCH BAR STYLING */
+        .search-container {
+            max-width: 600px;
+            margin: 10px auto 5px auto;
+            padding: 0 15px;
+        }
+
+        .search-box {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px 15px 10px 38px;
+            border-radius: 25px;
+            border: 2px solid #e0e0e0;
+            font-size: 13.5px;
+            outline: none;
+            transition: all 0.25s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+            background: #ffffff;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 3px 10px rgba(211, 47, 47, 0.15);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+            font-size: 14px;
+            pointer-events: none;
+        }
+
         .container {
             max-width: 600px;
             margin: 0 auto;
             padding: 15px;
         }
 
+        /* COLORFUL PASTEL THEME CARDS BY CATEGORY */
         .menu-item {
-            background: var(--card-bg);
             border-radius: 14px;
             padding: 14px;
             margin-bottom: 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.06);
-            border: 1px solid #e0e0e0;
-            border-left: 4px solid var(--primary-color);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+            border: 1px solid #e5e7eb;
             transition: transform 0.15s ease, box-shadow 0.15s ease;
         }
 
         .menu-item:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+        }
+
+        /* Broast */
+        .menu-item.cat-broast {
+            border-left: 5px solid #d32f2f;
+            background: linear-gradient(180deg, #ffffff 0%, #fff5f5 100%);
+        }
+
+        /* Pizza */
+        .menu-item.cat-pizza {
+            border-left: 5px solid #f57c00;
+            background: linear-gradient(180deg, #ffffff 0%, #fff8e1 100%);
+        }
+
+        /* Extra */
+        .menu-item.cat-extra {
+            border-left: 5px solid #00897b;
+            background: linear-gradient(180deg, #ffffff 0%, #e0f2f1 100%);
+        }
+
+        /* Tortilla */
+        .menu-item.cat-tortilla {
+            border-left: 5px solid #8e24aa;
+            background: linear-gradient(180deg, #ffffff 0%, #f3e5f5 100%);
+        }
+
+        /* Jumbo */
+        .menu-item.cat-jumbo {
+            border-left: 5px solid #2e7d32;
+            background: linear-gradient(180deg, #ffffff 0%, #f1f8e9 100%);
+        }
+
+        /* Burger */
+        .menu-item.cat-burger {
+            border-left: 5px solid #d81b60;
+            background: linear-gradient(180deg, #ffffff 0%, #fce4ec 100%);
+        }
+
+        /* Juices */
+        .menu-item.cat-juices {
+            border-left: 5px solid #fb8c00;
+            background: linear-gradient(180deg, #ffffff 0%, #fffde7 100%);
+        }
+
+        /* Pepsi */
+        .menu-item.cat-pepsi {
+            border-left: 5px solid #0288d1;
+            background: linear-gradient(180deg, #ffffff 0%, #e1f5fe 100%);
+        }
+
+        /* Fries & Meals */
+        .menu-item.cat-fries_meals {
+            border-left: 5px solid #fbc02d;
+            background: linear-gradient(180deg, #ffffff 0%, #fffde7 100%);
         }
 
         .item-info h3 {
@@ -415,7 +507,7 @@
         .juice-pill-label {
             display: inline-block;
             padding: 6px 10px;
-            background: #f1f3f5;
+            background: #ffffff;
             border: 1.5px solid #dcdfe6;
             border-radius: 20px;
             font-size: 11px;
@@ -554,7 +646,7 @@
             color: #111;
         }
 
-        /* NEW STEP 1: ORDER TYPE SELECTOR MODAL CARDS */
+        /* ORDER TYPE SELECTOR MODAL CARDS */
         .order-type-cards {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -826,6 +918,14 @@
         <button class="category-btn" onclick="filterCategory('juices', event)">JUICES / عصائر</button>
         <button class="category-btn" onclick="filterCategory('pepsi', event)">PEPSI / بيبسي</button>
         <button class="category-btn" onclick="filterCategory('fries_meals', event)">FRIES / MEALS / بطاطس وجبات</button>
+    </div>
+
+    <!-- SEARCH BAR SECTION -->
+    <div class="search-container">
+        <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" class="search-input" placeholder="Search menu items... / ابحث في المنيو" oninput="handleSearch()">
+        </div>
     </div>
 
     <div class="container" id="menu-container"></div>
@@ -1254,57 +1354,92 @@
             }
 
             filtered.forEach(item => {
-                const frozenBadgeHTML = item.isFrozen ? `<span class="frozen-badge">❄️ Frozen (مجمدة)</span>` : '';
+                renderSingleMenuItem(item, container);
+            });
+        }
 
-                if (filter === 'juices') {
-                    let pillsHTML = item.sizes.map((s, idx) => `
-                        <div class="juice-pill-option">
-                            <input type="radio" id="juice-${item.id}-size-${idx}" name="juice-size-${item.id}" value="${idx}" ${idx === 0 ? 'checked' : ''} onchange="updateJuicePriceDisplay(${item.id}, ${s.price})">
-                            <label for="juice-${item.id}-size-${idx}" class="juice-pill-label">
-                                ${s.sizeEn} / ${s.sizeAr}
-                            </label>
-                        </div>
-                    `).join('');
+        function renderSingleMenuItem(item, container) {
+            const frozenBadgeHTML = item.isFrozen ? `<span class="frozen-badge">❄️ Frozen (مجمدة)</span>` : '';
 
-                    const defaultPrice = item.sizes[0].price;
+            if (item.cat === 'juices') {
+                let pillsHTML = item.sizes.map((s, idx) => `
+                    <div class="juice-pill-option">
+                        <input type="radio" id="juice-${item.id}-size-${idx}" name="juice-size-${item.id}" value="${idx}" ${idx === 0 ? 'checked' : ''} onchange="updateJuicePriceDisplay(${item.id}, ${s.price})">
+                        <label for="juice-${item.id}-size-${idx}" class="juice-pill-label">
+                            ${s.sizeEn} / ${s.sizeAr}
+                        </label>
+                    </div>
+                `).join('');
 
-                    container.innerHTML += `
-                        <div class="menu-item">
-                            <div class="item-info" style="flex: 1; padding-right: 10px;">
-                                <h3>${item.nameEn} - ${item.nameAr} ${frozenBadgeHTML}</h3>
-                                <p>${item.desc}</p>
-                                <div class="juice-pills-container">
-                                    ${pillsHTML}
-                                </div>
-                                <div class="item-price" id="juice-price-${item.id}">${defaultPrice.toFixed(2)} SAR</div>
+                const defaultPrice = item.sizes[0].price;
+
+                container.innerHTML += `
+                    <div class="menu-item cat-${item.cat}">
+                        <div class="item-info" style="flex: 1; padding-right: 10px;">
+                            <h3>${item.nameEn} - ${item.nameAr} ${frozenBadgeHTML}</h3>
+                            <p>${item.desc}</p>
+                            <div class="juice-pills-container">
+                                ${pillsHTML}
                             </div>
-                            <div>
-                                <button class="add-btn" onclick="addJuiceToCart(${item.id})">+ Add / إضافة</button>
-                            </div>
+                            <div class="item-price" id="juice-price-${item.id}">${defaultPrice.toFixed(2)} SAR</div>
                         </div>
-                    `;
-                } else {
-                    const qty = cart[item.id] ? cart[item.id].qty : 0;
-                    container.innerHTML += `
-                        <div class="menu-item">
-                            <div class="item-info">
-                                <h3>${item.name} ${frozenBadgeHTML}</h3>
-                                <p>${item.desc}</p>
-                                <div class="item-price">${item.price.toFixed(2)} SAR</div>
-                            </div>
-                            <div>
-                                ${qty === 0 ? 
-                                    `<button class="add-btn" onclick="addToCart(${item.id})">+ Add / إضافة</button>` :
-                                    `<div style="display:flex; align-items:center; gap:8px;">
-                                        <button class="add-btn" style="padding:4px 10px;" onclick="updateQty('${item.id}', -1)">-</button>
-                                        <b>${qty}</b>
-                                        <button class="add-btn" style="padding:4px 10px;" onclick="updateQty('${item.id}', 1)">+</button>
-                                     </div>`
-                                }
-                            </div>
+                        <div>
+                            <button class="add-btn" onclick="addJuiceToCart(${item.id})">+ Add / إضافة</button>
                         </div>
-                    `;
-                }
+                    </div>
+                `;
+            } else {
+                const qty = cart[item.id] ? cart[item.id].qty : 0;
+                container.innerHTML += `
+                    <div class="menu-item cat-${item.cat}">
+                        <div class="item-info">
+                            <h3>${item.name} ${frozenBadgeHTML}</h3>
+                            <p>${item.desc}</p>
+                            <div class="item-price">${item.price.toFixed(2)} SAR</div>
+                        </div>
+                        <div>
+                            ${qty === 0 ? 
+                                `<button class="add-btn" onclick="addToCart(${item.id})">+ Add / إضافة</button>` :
+                                `<div style="display:flex; align-items:center; gap:8px;">
+                                    <button class="add-btn" style="padding:4px 10px;" onclick="updateQty('${item.id}', -1)">-</button>
+                                    <b>${qty}</b>
+                                    <button class="add-btn" style="padding:4px 10px;" onclick="updateQty('${item.id}', 1)">+</button>
+                                 </div>`
+                            }
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        /* LIVE SEARCH FUNCTIONALITY */
+        function handleSearch() {
+            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+            const container = document.getElementById('menu-container');
+
+            if (query === '') {
+                refreshCurrentCategoryView();
+                return;
+            }
+
+            // Unset active category highlight while searching
+            document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+
+            container.innerHTML = '';
+            
+            const matches = menuData.filter(item => {
+                const nameStr = item.name ? item.name.toLowerCase() : `${item.nameEn} ${item.nameAr}`.toLowerCase();
+                const descStr = item.desc ? item.desc.toLowerCase() : '';
+                return nameStr.includes(query) || descStr.includes(query);
+            });
+
+            if (matches.length === 0) {
+                container.innerHTML = `<div style="text-align:center; padding:30px; color:#888;">No items match "${query}" / لا توجد نتائج للبحث</div>`;
+                return;
+            }
+
+            matches.forEach(item => {
+                renderSingleMenuItem(item, container);
             });
         }
 
@@ -1336,6 +1471,7 @@
         }
 
         function filterCategory(cat, event) {
+            document.getElementById('searchInput').value = '';
             document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
             if(event) {
                 event.target.closest('.category-btn').classList.add('active');
@@ -1377,10 +1513,18 @@
         }
 
         function refreshCurrentCategoryView() {
+            const searchQuery = document.getElementById('searchInput').value.trim();
+            if (searchQuery !== '') {
+                handleSearch();
+                return;
+            }
+
             const activeBtn = document.querySelector('.category-btn.active');
             if (activeBtn) {
                 const activeCat = activeBtn.getAttribute('onclick').split("'")[1];
                 renderMenu(activeCat);
+            } else {
+                renderMenu('broast');
             }
         }
 
