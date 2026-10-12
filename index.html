@@ -382,6 +382,39 @@
             padding: 15px;
         }
 
+        /* BEST SELLER FEATURED BANNER STYLE */
+        .bestseller-banner {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border: 2px dashed #f57c00;
+            border-radius: 14px;
+            padding: 12px;
+            margin-bottom: 15px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(245, 124, 0, 0.15);
+        }
+
+        .bestseller-badge-title {
+            display: inline-block;
+            background: #d32f2f;
+            color: white;
+            font-size: 12px;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 8px;
+            box-shadow: 0 2px 5px rgba(211, 47, 47, 0.3);
+            letter-spacing: 0.5px;
+        }
+
+        .bestseller-banner img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 1px solid #ffd54f;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
         /* COLORFUL PASTEL THEME CARDS BY CATEGORY */
         .menu-item {
             border-radius: 14px;
@@ -1133,8 +1166,8 @@
             { id: 204, name: "Barbecue Chicken Pizza - بيتزا دجاج باربيكيو", cat: "pizza", price: 22, isDrink: false, isFrozen: false, desc: "Original Large Size / حجم كبير" },
             { id: 205, name: "Ranch Pizza - بيتزا رانش", cat: "pizza", price: 21, isDrink: false, isFrozen: false, desc: "Original Large Size / حجم كبير" },
             { id: 206, name: "Chicken Pizza - بيتزا دجاج", cat: "pizza", price: 20, isDrink: false, isFrozen: false, desc: "Original Large Size / حجم كبير" },
-            { id: 207, name: "Pepperoni Pizza - بيتزا ببروني", cat: "pizza", price: 19, isDrink: false, isFrozen: false, desc: "Original Large Size / حجم كبير" },
-            { id: 208, name: "Mixed Pizza - بيتزا مشكل", cat: "pizza", price: 19, isDrink: false, isFrozen: false, desc: "Original Large Size / حجم كبير" },
+            { id: 207, name: "Pepperoni Pizza - بيتزا ببروني", cat: "pizza", price: 20, isDrink: false, isFrozen: false, desc: "Original Large Size / حجم كبير" },
+            { id: 208, name: "Mixed Pizza - بيتزا مشكل", cat: "pizza", price: 20, isDrink: false, isFrozen: false, desc: "Original Large Size / حجم كبير" },
             { id: 209, name: "Margarita Pizza - بيتزا مارجريتا", cat: "pizza", price: 18, isDrink: false, isFrozen: false, desc: "Original Large Size / حجم كبير" },
             { id: 210, name: "Hot Dog Pizza - بيتزا هوت دوج", cat: "pizza", price: 18, isDrink: false, isFrozen: false, desc: "Original Large Size / حجم كبير" },
             { id: 211, name: "Vegetable Pizza - بيتزا خضار", cat: "pizza", price: 15, isDrink: false, isFrozen: false, desc: "Original Large Size / حجم كبير" },
@@ -1346,10 +1379,41 @@
             const container = document.getElementById('menu-container');
             container.innerHTML = '';
 
+            // Render Best Seller Banner if applicable for the category
+            if (filter === 'broast') {
+                container.innerHTML += `
+                    <div class="bestseller-banner">
+                        <div class="bestseller-badge-title">⭐ Best Seller / الأكثر مبيعاً</div>
+                        <img src="broast-bestseller.jpg" alt="Best Seller Broast">
+                    </div>
+                `;
+            } else if (filter === 'pizza') {
+                container.innerHTML += `
+                    <div class="bestseller-banner">
+                        <div class="bestseller-badge-title">⭐ Best Seller / الأكثر مبيعاً</div>
+                        <img src="pizza-bestseller.jpg" alt="Best Seller Pizza">
+                    </div>
+                `;
+            } else if (filter === 'tortilla') {
+                container.innerHTML += `
+                    <div class="bestseller-banner">
+                        <div class="bestseller-badge-title">⭐ Best Seller / الأكثر مبيعاً</div>
+                        <img src="tortilla-bestseller.jpg" alt="Best Seller Tortilla">
+                    </div>
+                `;
+            } else if (filter === 'burger') {
+                container.innerHTML += `
+                    <div class="bestseller-banner">
+                        <div class="bestseller-badge-title">⭐ Best Seller / الأكثر مبيعاً</div>
+                        <img src="burger-bestseller.jpg" alt="Best Seller Burger">
+                    </div>
+                `;
+            }
+
             const filtered = menuData.filter(i => i.cat === filter);
 
             if(filtered.length === 0) {
-                container.innerHTML = `<div style="text-align:center; padding:30px; color:#777;">No items in this category yet.</div>`;
+                container.innerHTML += `<div style="text-align:center; padding:30px; color:#777;">No items in this category yet.</div>`;
                 return;
             }
 
