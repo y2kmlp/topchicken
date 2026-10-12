@@ -382,7 +382,7 @@
             padding: 15px;
         }
 
-        /* BEST SELLER FEATURED BANNER STYLE */
+        /* BEST SELLER FEATURED BANNER STYLE (100% Visibility with object-fit: contain) */
         .bestseller-banner {
             background: linear-gradient(135deg, #fff3e0, #ffe0b2);
             border: 2px dashed #f57c00;
@@ -408,9 +408,10 @@
 
         .bestseller-banner img {
             width: 100%;
-            max-height: 200px;
-            object-fit: cover;
+            max-height: 280px;
+            object-fit: contain;
             border-radius: 10px;
+            background: #000;
             border: 1px solid #ffd54f;
             box-shadow: 0 2px 6px rgba(0,0,0,0.1);
         }
@@ -938,19 +939,19 @@
         </div>
     </div>
 
-   <!-- Category Nav -->
+   <!-- Category Nav (Reordered as Requested) -->
     <div class="category-nav">
         <button class="category-btn active" onclick="filterCategory('broast', event)">BROAST / بروستد</button>
         <button class="category-btn" onclick="filterCategory('pizza', event)">PIZZA / بيتزا</button>
-        <button class="category-btn" onclick="filterCategory('extra', event)">EXTRA / إضافات</button>
-
         <button class="category-btn" onclick="filterCategory('tortilla', event)">TORTILLA / تورتيلا</button>
+
         <button class="category-btn" onclick="filterCategory('jumbo', event)">JUMBO / جامبو</button>
         <button class="category-btn" onclick="filterCategory('burger', event)">BURGER / برجر</button>
+        <button class="category-btn" onclick="filterCategory('extra', event)">EXTRA / إضافات</button>
 
         <button class="category-btn" onclick="filterCategory('juices', event)">JUICES / عصائر</button>
+        <button class="category-btn" onclick="filterCategory('fries_meals', event)">FRIES & MEALS / بطاطس وجبات</button>
         <button class="category-btn" onclick="filterCategory('pepsi', event)">PEPSI / بيبسي</button>
-        <button class="category-btn" onclick="filterCategory('fries_meals', event)">FRIES / MEALS / بطاطس وجبات</button>
     </div>
 
     <!-- SEARCH BAR SECTION -->
@@ -1379,7 +1380,7 @@
             const container = document.getElementById('menu-container');
             container.innerHTML = '';
 
-            // Render Best Seller Banner if applicable for the category
+            // Render Best Seller Banner with fixed 100% image visibility
             if (filter === 'broast') {
                 container.innerHTML += `
                     <div class="bestseller-banner">
@@ -1399,6 +1400,13 @@
                     <div class="bestseller-banner">
                         <div class="bestseller-badge-title">⭐ Best Seller / الأكثر مبيعاً</div>
                         <img src="tortilla-bestseller.jpg" alt="Best Seller Tortilla">
+                    </div>
+                `;
+            } else if (filter === 'jumbo') {
+                container.innerHTML += `
+                    <div class="bestseller-banner">
+                        <div class="bestseller-badge-title">⭐ Best Seller / الأكثر مبيعاً</div>
+                        <img src="kudu-bestseller.jpg" alt="Best Seller Jumbo Kudu">
                     </div>
                 `;
             } else if (filter === 'burger') {
