@@ -689,12 +689,15 @@
             background-color: #b71c1c;
         }
 
+        /* Semi-transparent Cart Button with clear basket icon visibility */
         .floating-fab.cart-fab {
-            background-color: #25D366;
+            background-color: rgba(37, 211, 102, 0.85);
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255, 255, 255, 0.8);
         }
 
         .floating-fab.cart-fab:hover {
-            background-color: #1eb954;
+            background-color: rgba(30, 185, 84, 0.95);
         }
 
         .modal {
@@ -1045,10 +1048,10 @@
         </button>
     </div>
 
-    <!-- FLOATING QUICK ACCESS BUTTONS (Home & Cart Shortcuts) -->
+    <!-- FLOATING QUICK ACCESS BUTTONS (Home Icon & Semi-transparent Cart Shortcut) -->
     <div class="floating-action-container">
-        <a href="#top-header" class="floating-fab" title="Go to Top / الانتقال للأعلى">
-            🔼
+        <a href="#top-header" class="floating-fab" title="Go to Top / الرئيسية">
+            🏠
         </a>
         <a href="javascript:void(0);" onclick="openCartView()" class="floating-fab cart-fab" title="View Cart / السلة">
             🛒
