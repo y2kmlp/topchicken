@@ -1188,28 +1188,55 @@
             return num.toString().replace(/\d/g, d => indianDigits[d]);
         }
 
-        function sendToWhatsApp() {
-            const name = document.getElementById('custName').value.trim();
-            const address = document.getElementById('custAddress').value.trim();
-            if (!name) { alert('Please enter your Name.'); return; }
-            if (currentOrderType === 'delivery' && !address) { alert('Please enter your Address.'); return; }
-            if (!checkDeliveryMin()) { alert('Minimum 20 SAR required for food.'); return; }
+       function sendToWhatsApp() {
+    const name = document.getElementById('custName').value.trim();
+    const address = document.getElementById('custAddress').value.trim();
+    const notes = document.getElementById('custNotes') ? document.getElementById('custNotes').value.trim() : '';
 
-            let text = `*NEW ORDER - TOP CHICKEN*\n----------------------------------\n📍 *Type:* ${currentOrderType.toUpperCase()}\n👤 *Name:* ${name}\n`;
-            if (currentOrderType === 'delivery' && address) text += `🏠 *Address:* ${address}\n`;
-            text += `----------------------------------\n\n`;
+    if (!name) { alert('Please enter your Name.'); return; }
+    if (currentOrderType === 'delivery' && !address) { alert('Please enter your Address.'); return; }
+    if (!checkDeliveryMin()) { alert('Minimum 20 SAR required for food.'); return; }
 
-            let total = 0;
-            Object.values(cart).forEach(i => {
-                const sub = i.qty * i.price; total += sub;
-                text += `*${i.qty} . ${i.name} - ${sub.toFixed(2)} SAR*\n`;
-                if (i.itemNote) text += `    ↳ 📝 *Note:* ${i.itemNote}\n`;
-                text += `\n`;
-            });
-            text += `----------------------------------\n💵 *TOTAL: ${total.toFixed(2)} SAR*\n`;
-            
-            window.open(`https://wa.me/966554726280?text=${encodeURIComponent(text)}`, '_blank');
+    let text = `*NEW ORDER - TOP CHICKEN*\n----------------------------------\n📍 *Type:* ${currentOrderType.toUpperCase()}\n👤 *Name:* ${name}\n`;
+    if (currentOrderType === 'delivery' && address) text += `🏠 *Address:* ${address}\n`;
+    if (notes) text += `📝 *Overall Note:* ${notes}\n`;
+    text += `----------------------------------\n\n`;
+
+    let total = 0;
+    Object.values(cart).forEach(i => {
+        const sub = i.qty * i.price; 
+        total += sub;
+
+        // ഇംഗ്ലീഷ്, അറബിക് പേരുകൾ വേർതിരിക്കുന്നു
+        let nameEn = i.name;
+        let nameAr = i.name;
+
+        if (i.name.includes(' - ')) {
+            const parts = i.name.split(' - ');
+            nameEn = parts[0].trim();
+            nameAr = parts[1].trim();
+        } else if (i.nameEn && i.nameAr) {
+            nameEn = i.nameEn;
+            nameAr = i.nameAr;
         }
+
+        const qtyAr = toArabicDigits(i.qty);
+        const subAr = toArabicDigits(sub.toFixed(2));
+
+        // ഇംഗ്ലീഷ് ലൈൻ
+        text += `*${i.qty} . ${nameEn} - ${sub.toFixed(2)} SAR*\n`;
+        // അറബിക് ലൈൻ
+        text += `*${qtyAr} . ${nameAr} - ${subAr} ر.س*\n`;
+
+        if (i.itemNote) text += `    ↳ 📝 *Note:* ${i.itemNote}\n`;
+        text += `\n`;
+    });
+
+    const totalAr = toArabicDigits(total.toFixed(2));
+    text += `----------------------------------\n💵 *TOTAL AMOUNT: ${total.toFixed(2)} SAR*\n💵 *المبلغ الإجمالي: ${totalAr} ر.س*\n----------------------------------`;
+    
+    window.open(`https://wa.me/966554726280?text=${encodeURIComponent(text)}`, '_blank');
+}
 
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
