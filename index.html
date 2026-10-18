@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="ar" dir="ltr">
 <head>
     <meta charset="UTF-8">
@@ -416,22 +415,34 @@
             font-size: 13px;
         }
 
+        /* 4. Enhanced Scroll Down Hint Bar */
         .scroll-hint-bar {
+            max-width: 600px;
+            margin: 6px auto;
+            padding: 8px 15px;
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border: 2px dashed #f57c00;
+            border-radius: 12px;
             text-align: center;
-            font-size: 11px;
+            font-size: 13px;
             font-weight: 800;
             color: #d32f2f;
-            margin: 4px 0 6px 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
+            gap: 8px;
+            box-shadow: 0 2px 8px rgba(245, 124, 0, 0.2);
             animation: bounceAnim 1.5s infinite;
+        }
+
+        .scroll-hint-bar i {
+            font-size: 16px;
+            color: #f57c00;
         }
 
         @keyframes bounceAnim {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(3px); }
+            50% { transform: translateY(-3px); }
         }
 
         .container {
@@ -468,10 +479,10 @@
             white-space: nowrap;
         }
 
-        /* 2 & 3. Exact Updated Badge Positions */
-        .pos-tortilla { bottom: 25%; left: 6%; top: auto; }
-        .pos-broast { bottom: 20%; left: 6%; top: auto; }
-        .pos-burger { top: 8%; left: 8%; }
+        /* 1, 2 & 3. Perfectly Adjusted Badge Positions (Burger adjusted left only, Broast and Tortilla adjusted as requested) */
+        .pos-broast { bottom: 10%; left: 5%; top: auto; }
+        .pos-tortilla { bottom: 25%; left: 5%; top: auto; }
+        .pos-burger { top: 8%; left: 4%; }
         .pos-jumbo { top: 4%; left: 50%; transform: translateX(-50%); }
         .pos-pizza { top: 8%; right: 8%; }
 
@@ -705,9 +716,11 @@
         </div>
     </div>
 
-    <!-- SCROLL DOWN HINT -->
+    <!-- SCROLL DOWN HINT ENHANCED -->
     <div class="scroll-hint-bar">
-        <span>👇 Scroll Down  / أنزل للأسفل  👇</span>
+        <span>👉</span>
+        <span>👇 Scroll Down For Products / أنزل للأسفل لرؤية المنتجات 👇</span>
+        <span>👈</span>
     </div>
 
     <div class="container" id="menu-container"></div>
@@ -1207,7 +1220,6 @@
         const sub = i.qty * i.price; 
         total += sub;
 
-        // ഇംഗ്ലീഷ്, അറബിക് പേരുകൾ വേർതിരിക്കുന്നു
         let nameEn = i.name;
         let nameAr = i.name;
 
@@ -1223,9 +1235,7 @@
         const qtyAr = toArabicDigits(i.qty);
         const subAr = toArabicDigits(sub.toFixed(2));
 
-        // ഇംഗ്ലീഷ് ലൈൻ
         text += `*${i.qty} . ${nameEn} - ${sub.toFixed(2)} SAR*\n`;
-        // അറബിക് ലൈൻ
         text += `*${qtyAr} . ${nameAr} - ${subAr} ر.س*\n`;
 
         if (i.itemNote) text += `    ↳ 📝 *Note:* ${i.itemNote}\n`;
