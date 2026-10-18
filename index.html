@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="ar" dir="ltr">
 <head>
     <meta charset="UTF-8">
@@ -254,7 +255,6 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.25);
         }
 
-        /* 1. Slim Arabic Announcement Bar Height & Padding Reduced */
         .arabic-announcement-bar {
             background: linear-gradient(90deg, #f57c00, #d32f2f);
             color: #ffffff;
@@ -415,29 +415,29 @@
             font-size: 13px;
         }
 
-        /* 4. Enhanced Scroll Down Hint Bar */
+        /* Enhanced Scroll Down Hint Bar with Larger Font & Clear Hands */
         .scroll-hint-bar {
             max-width: 600px;
             margin: 6px auto;
-            padding: 8px 15px;
+            padding: 10px 15px;
             background: linear-gradient(135deg, #fff3e0, #ffe0b2);
             border: 2px dashed #f57c00;
             border-radius: 12px;
             text-align: center;
-            font-size: 13px;
+            font-size: 15px;
             font-weight: 800;
             color: #d32f2f;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
             box-shadow: 0 2px 8px rgba(245, 124, 0, 0.2);
             animation: bounceAnim 1.5s infinite;
         }
 
-        .scroll-hint-bar i {
-            font-size: 16px;
-            color: #f57c00;
+        .scroll-hint-bar span:first-child,
+        .scroll-hint-bar span:last-child {
+            font-size: 18px;
         }
 
         @keyframes bounceAnim {
@@ -479,7 +479,7 @@
             white-space: nowrap;
         }
 
-        /* 1, 2 & 3. Perfectly Adjusted Badge Positions (Burger adjusted left only, Broast and Tortilla adjusted as requested) */
+        /* Badge Positions */
         .pos-broast { bottom: 10%; left: 5%; top: auto; }
         .pos-tortilla { bottom: 25%; left: 5%; top: auto; }
         .pos-burger { top: 8%; left: 4%; }
@@ -716,11 +716,11 @@
         </div>
     </div>
 
-    <!-- SCROLL DOWN HINT ENHANCED -->
+    <!-- SCROLL DOWN HINT (Updated: larger font, hands included, no 'for products') -->
     <div class="scroll-hint-bar">
-        <span>👉</span>
-        <span>👇 Scroll Down For Products / أنزل للأسفل لرؤية المنتجات 👇</span>
-        <span>👈</span>
+        <span>👇</span>
+        <span>Scroll Down / أنزل للأسفل</span>
+        <span>👇</span>
     </div>
 
     <div class="container" id="menu-container"></div>
