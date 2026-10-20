@@ -1157,7 +1157,7 @@
                                 <button class="delete-btn" onclick="deleteFromCart('${item.id}')">🗑️</button>
                             </div>
                         </div>
-                        <input type="text" class="item-note-input" placeholder="✏️ Item Note" value="${item.itemNote || ''}" oninput="updateItemNote('${item.id}', this.value)">
+                        <input type="text" class="item-note-input" placeholder="✏️ Item Note / ملاحظة" value="${item.itemNote || ''}" oninput="updateItemNote('${item.id}', this.value)">
                     </div>`;
             });
         }
