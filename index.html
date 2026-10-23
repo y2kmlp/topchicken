@@ -340,6 +340,35 @@
             outline: 3px solid rgba(255, 179, 0, 0.4);
         }
 
+        /* Sub-category Filter Buttons styling */
+        .subcategory-filter {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 10px auto 15px auto;
+            max-width: 600px;
+            padding: 0 15px;
+        }
+
+        .sub-cat-btn {
+            flex: 1;
+            padding: 8px 10px;
+            border: 2px solid var(--primary-color);
+            border-radius: 20px;
+            background: #ffffff;
+            color: var(--primary-color);
+            font-weight: 800;
+            font-size: 12px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .sub-cat-btn.active, .sub-cat-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
         .pdf-menu-container {
             max-width: 600px;
             margin: 8px auto 4px auto;
@@ -396,14 +425,16 @@
             width: 100%;
         }
 
+        /* Search input with bold red border box */
         .search-input {
             width: 100%;
             padding: 9px 15px 9px 38px;
             border-radius: 25px;
-            border: 2px solid #e0e0e0;
+            border: 2.5px solid var(--primary-color);
             font-size: 13px;
             outline: none;
             background: #ffffff;
+            box-shadow: 0 2px 6px rgba(211, 47, 47, 0.15);
         }
 
         .search-icon {
@@ -411,7 +442,7 @@
             left: 14px;
             top: 50%;
             transform: translateY(-50%);
-            color: #888;
+            color: var(--primary-color);
             font-size: 13px;
         }
 
@@ -695,7 +726,7 @@
 
         <button class="category-btn" onclick="filterCategory('juices', event)">JUICES<br><span>عصائر</span></button>
         <button class="category-btn" onclick="filterCategory('fries_meals', event)">FRIES & MEALS<br><span>بطاطس وجبات</span></button>
-        <button class="category-btn" onclick="filterCategory('pepsi', event)">PEPSI<br><span>بيبسي</span></button>
+        <button class="category-btn" onclick="filterCategory('soft_drinks', event)">SOFT DRINKS<br><span>مشروبات غازية</span></button>
     </div>
 
     <!-- PDF MENU BUTTON -->
@@ -919,18 +950,27 @@
             { id: 716, name: "Extra Cheese - زيادة جبنة", cat: "extra", price: 1, isDrink: false, isFrozen: false, desc: "Extra Cheese / زيادة جبنة" },
             { id: 717, name: "Ketchup - كاتشب", cat: "extra", price: 1, isDrink: false, isFrozen: false, desc: "Ketchup / كاتشب" },
 
-            { id: 801, name: "Pepsi - بيبسي", cat: "pepsi", price: 2.50, isDrink: true, isFrozen: false, desc: "Pepsi Can / بيبسي" },
-            { id: 802, name: "Pepsi D - بيبسي دايت", cat: "pepsi", price: 2.00, isDrink: true, isFrozen: false, desc: "Pepsi Diet / بيبسي دايت" },
-            { id: 803, name: "Citrus - الحمضيات", cat: "pepsi", price: 2.50, isDrink: true, isFrozen: false, desc: "Citrus Can / حمضيات" },
-            { id: 804, name: "7UP - سفن اب", cat: "pepsi", price: 2.50, isDrink: true, isFrozen: false, desc: "7UP Can / سفن اب" },
-            { id: 805, name: "7UP D - سفن اب دايت", cat: "pepsi", price: 2.00, isDrink: true, isFrozen: false, desc: "7UP Diet / سفن اب دايت" },
-            { id: 806, name: "Dew - ديو", cat: "pepsi", price: 2.50, isDrink: true, isFrozen: false, desc: "Mountain Dew Can / ديو" },
-            { id: 807, name: "Mirinda Orange - میرندا برتقال", cat: "pepsi", price: 2.50, isDrink: true, isFrozen: false, desc: "Mirinda Orange / میرندا برتقال" },
-            { id: 808, name: "Pepsi 1L - بيبسي 1 لتر", cat: "pepsi", price: 5.00, isDrink: true, isFrozen: false, desc: "Pepsi 1 Liter / بيبسي ١ لتر" },
-            { id: 809, name: "7UP 1L - سفن اب 1 لتر", cat: "pepsi", price: 5.00, isDrink: true, isFrozen: false, desc: "7UP 1 Liter / سفن اب ١ لتر" },
-            { id: 810, name: "Citrus 1L - الحمضيات 1 لتر", cat: "pepsi", price: 5.00, isDrink: true, isFrozen: false, desc: "Citrus 1 Liter / حمضيات ١ لتر" },
-            { id: 811, name: "Rabia Juice - عصير ربيع", cat: "pepsi", price: 2.00, isDrink: true, isFrozen: false, desc: "Rabia Juice Box / عصير ربيع" },
-            { id: 812, name: "Water - ماء", cat: "pepsi", price: 1.00, isDrink: true, isFrozen: false, desc: "Mineral Water / ماء" },
+            /* Soft Drinks - Pepsi Sub-category */
+            { id: 801, name: "Pepsi - بيبسي", cat: "soft_drinks", subcat: "pepsi", price: 2.50, isDrink: true, isFrozen: false, desc: "Pepsi Can / بيبسي" },
+            { id: 802, name: "Pepsi D - بيبسي دايت", cat: "soft_drinks", subcat: "pepsi", price: 2.00, isDrink: true, isFrozen: false, desc: "Pepsi Diet / بيبسي دايت" },
+            { id: 803, name: "Citrus - الحمضيات", cat: "soft_drinks", subcat: "pepsi", price: 2.50, isDrink: true, isFrozen: false, desc: "Citrus Can / حمضيات" },
+            { id: 804, name: "7UP - سفن اب", cat: "soft_drinks", subcat: "pepsi", price: 2.50, isDrink: true, isFrozen: false, desc: "7UP Can / سفن اب" },
+            { id: 805, name: "7UP D - سفن اب دايت", cat: "soft_drinks", subcat: "pepsi", price: 2.00, isDrink: true, isFrozen: false, desc: "7UP Diet / سفن اب دايت" },
+            { id: 806, name: "Dew - ديو", cat: "soft_drinks", subcat: "pepsi", price: 2.50, isDrink: true, isFrozen: false, desc: "Mountain Dew Can / ديو" },
+            { id: 807, name: "Mirinda Orange - میرندا برتقال", cat: "soft_drinks", subcat: "pepsi", price: 2.50, isDrink: true, isFrozen: false, desc: "Mirinda Orange / میرندا برتقال" },
+            { id: 808, name: "Pepsi 1L - بيبسي 1 لتر", cat: "soft_drinks", subcat: "pepsi", price: 5.00, isDrink: true, isFrozen: false, desc: "Pepsi 1 Liter / بيبسي ١ لتر" },
+            { id: 809, name: "7UP 1L - سفن اب 1 لتر", cat: "soft_drinks", subcat: "pepsi", price: 5.00, isDrink: true, isFrozen: false, desc: "7UP 1 Liter / سفن اب ١ لتر" },
+            { id: 810, name: "Citrus 1L - الحمضيات 1 لتر", cat: "soft_drinks", subcat: "pepsi", price: 5.00, isDrink: true, isFrozen: false, desc: "Citrus 1 Liter / حمضيات ١ لتر" },
+            { id: 811, name: "Rabia Juice - عصير ربيع", cat: "soft_drinks", subcat: "pepsi", price: 2.00, isDrink: true, isFrozen: false, desc: "Rabia Juice Box / عصير ربيع" },
+            { id: 812, name: "Water - ماء", cat: "soft_drinks", subcat: "pepsi", price: 1.00, isDrink: true, isFrozen: false, desc: "Mineral Water / ماء" },
+
+            /* Soft Drinks - Kinza Sub-category (New 6 Products) */
+            { id: 820, name: "Kinza Lemon - كينزا ليمون", cat: "soft_drinks", subcat: "kinza", price: 2.50, isDrink: true, isFrozen: false, desc: "Kinza Lemon Can / كينزا ليمون" },
+            { id: 821, name: "Kinza Cola - كينزا كولا", cat: "soft_drinks", subcat: "kinza", price: 2.50, isDrink: true, isFrozen: false, desc: "Kinza Cola Can / كينزا كولا" },
+            { id: 822, name: "Kinza Orange - كينزا برتقال", cat: "soft_drinks", subcat: "kinza", price: 2.50, isDrink: true, isFrozen: false, desc: "Kinza Orange Can / كينزا برتقال" },
+            { id: 823, name: "Kinza Diet Cola - كينزا كولا دايت", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Diet Cola Can / كينزا كولا دايت" },
+            { id: 824, name: "Kinza Citrus - كينزا حمضيات", cat: "soft_drinks", subcat: "kinza", price: 2.50, isDrink: true, isFrozen: false, desc: "Kinza Citrus Can / كينزا حمضيات" },
+            { id: 825, name: "Kinza Zero Sugar - كينزا بدون سكر", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Zero Sugar Can / كينزا بدون سكر" },
 
             { id: 901, nameEn: "Cocktail Juice", nameAr: "عصير كوكتيل", cat: "juices", isDrink: true, isFrozen: false, desc: "Juice / عصير", sizes: [{ sizeEn: "Small", sizeAr: "صغير", price: 5 }, { sizeEn: "Big", sizeAr: "كبير", price: 7 }, { sizeEn: "Gallon", sizeAr: "جالون", price: 21 }] },
             { id: 902, nameEn: "Mango Juice", nameAr: "عصير مانجو", cat: "juices", isDrink: true, isFrozen: false, desc: "Juice / عصير", sizes: [{ sizeEn: "Small", sizeAr: "صغير", price: 5 }, { sizeEn: "Big", sizeAr: "كبير", price: 7 }, { sizeEn: "Gallon", sizeAr: "جالون", price: 21 }] },
@@ -945,6 +985,7 @@
 
         let cart = {};
         let currentOrderType = 'delivery';
+        let activeSoftDrinkSubcat = 'pepsi';
 
         function updateSaudiClockAndStatus() {
             const now = new Date();
@@ -1011,13 +1052,38 @@
                     </div>`;
             }
 
-            const filtered = menuData.filter(i => i.cat === filter);
+            let subcatFilterHtml = '';
+            let filtered = [];
+
+            if (filter === 'soft_drinks') {
+                subcatFilterHtml = `
+                    <div class="subcategory-filter">
+                        <button class="sub-cat-btn ${activeSoftDrinkSubcat === 'pepsi' ? 'active' : ''}" onclick="filterSoftDrinkSubcat('pepsi')">
+                            Pepsi / بيبسي
+                        </button>
+                        <button class="sub-cat-btn ${activeSoftDrinkSubcat === 'kinza' ? 'active' : ''}" onclick="filterSoftDrinkSubcat('kinza')">
+                            Kinza / كينزا
+                        </button>
+                    </div>
+                `;
+                filtered = menuData.filter(i => i.cat === 'soft_drinks' && i.subcat === activeSoftDrinkSubcat);
+            } else {
+                filtered = menuData.filter(i => i.cat === filter);
+            }
+
+            container.innerHTML += subcatFilterHtml;
+
             if(filtered.length === 0) {
                 container.innerHTML += `<div style="text-align:center; padding:30px; color:#777;">No items in this category yet.</div>`;
                 return;
             }
 
             filtered.forEach(item => { renderSingleMenuItem(item, container); });
+        }
+
+        function filterSoftDrinkSubcat(subcat) {
+            activeSoftDrinkSubcat = subcat;
+            renderMenu('soft_drinks');
         }
 
         function renderSingleMenuItem(item, container) {
@@ -1094,6 +1160,7 @@
             document.getElementById('searchInput').value = '';
             document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
             if(event) { event.target.closest('.category-btn').classList.add('active'); }
+            activeSoftDrinkSubcat = 'pepsi';
             renderMenu(cat);
         }
 
@@ -1241,7 +1308,6 @@
                 text += `\n`;
             });
 
-            // Overall Note placed right before the total amount underline
             if (notes) {
                 text += `----------------------------------\n`;
                 text += `📝 *Overall Note:* ${notes}\n`;
@@ -1250,7 +1316,6 @@
             const totalAr = toArabicDigits(total.toFixed(2));
             text += `----------------------------------\n💵 *TOTAL AMOUNT: ${total.toFixed(2)} SAR*\n💵 *المبلغ الإجمالي: ${totalAr} ر.س*\n----------------------------------`;
             
-            // Delivery charge notice at the very bottom
             text += `\n\nℹ️ *Note:*\nالمبلغ الإجمالي لا يشمل رسوم التوصيل\n(Delivery charges will be calculated based on location distance)`;
 
             window.open(`https://wa.me/966554726280?text=${encodeURIComponent(text)}`, '_blank');
