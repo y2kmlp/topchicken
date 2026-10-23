@@ -446,7 +446,7 @@
             font-size: 13px;
         }
 
-        /* Enhanced Scroll Down Hint Bar with Larger Font & Clear Hands */
+        /* Enhanced Scroll Down Hint Bar */
         .scroll-hint-bar {
             max-width: 600px;
             margin: 6px auto;
@@ -517,6 +517,7 @@
         .pos-jumbo { top: 4%; left: 50%; transform: translateX(-50%); }
         .pos-pizza { top: 8%; right: 8%; }
 
+        /* ITEM CARDS BY CATEGORY WITH DISTINCT COLORS */
         .menu-item {
             border-radius: 14px;
             padding: 14px;
@@ -534,8 +535,11 @@
         .menu-item.cat-jumbo { border-left: 5px solid #2e7d32; background: #f1f8e9; }
         .menu-item.cat-burger { border-left: 5px solid #d81b60; background: #fce4ec; }
         .menu-item.cat-juices { border-left: 5px solid #fb8c00; background: #fffde7; }
-        .menu-item.cat-pepsi { border-left: 5px solid #0288d1; background: #e1f5fe; }
         .menu-item.cat-fries_meals { border-left: 5px solid #fbc02d; background: #fffde7; }
+
+        /* Soft Drinks Specific Card Styling (Pepsi vs Kinza) */
+        .menu-item.subcat-pepsi { border-left: 5px solid #0288d1; background: #e1f5fe; }
+        .menu-item.subcat-kinza { border-left: 5px solid #7b1fa2; background: #f3e5f5; }
 
         .item-info h3 {
             font-size: 15.5px;
@@ -747,7 +751,7 @@
         </div>
     </div>
 
-    <!-- SCROLL DOWN HINT (Updated: larger font, hands included, no 'for products') -->
+    <!-- SCROLL DOWN HINT -->
     <div class="scroll-hint-bar">
         <span>👇</span>
         <span>Scroll Down / أنزل للأسفل</span>
@@ -964,12 +968,12 @@
             { id: 811, name: "Rabia Juice - عصير ربيع", cat: "soft_drinks", subcat: "pepsi", price: 2.00, isDrink: true, isFrozen: false, desc: "Rabia Juice Box / عصير ربيع" },
             { id: 812, name: "Water - ماء", cat: "soft_drinks", subcat: "pepsi", price: 1.00, isDrink: true, isFrozen: false, desc: "Mineral Water / ماء" },
 
-            /* Soft Drinks - Kinza Sub-category (New 6 Products) */
-            { id: 820, name: "Kinza Lemon - كينزا ليمون", cat: "soft_drinks", subcat: "kinza", price: 2.50, isDrink: true, isFrozen: false, desc: "Kinza Lemon Can / كينزا ليمون" },
-            { id: 821, name: "Kinza Cola - كينزا كولا", cat: "soft_drinks", subcat: "kinza", price: 2.50, isDrink: true, isFrozen: false, desc: "Kinza Cola Can / كينزا كولا" },
-            { id: 822, name: "Kinza Orange - كينزا برتقال", cat: "soft_drinks", subcat: "kinza", price: 2.50, isDrink: true, isFrozen: false, desc: "Kinza Orange Can / كينزا برتقال" },
+            /* Soft Drinks - Kinza Sub-category (Prices Updated to 2.00 SAR) */
+            { id: 820, name: "Kinza Lemon - كينزا ليمون", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Lemon Can / كينزا ليمون" },
+            { id: 821, name: "Kinza Cola - كينزا كولا", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Cola Can / كينزا كولا" },
+            { id: 822, name: "Kinza Orange - كينزا برتقال", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Orange Can / كينزا برتقال" },
             { id: 823, name: "Kinza Diet Cola - كينزا كولا دايت", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Diet Cola Can / كينزا كولا دايت" },
-            { id: 824, name: "Kinza Citrus - كينزا حمضيات", cat: "soft_drinks", subcat: "kinza", price: 2.50, isDrink: true, isFrozen: false, desc: "Kinza Citrus Can / كينزا حمضيات" },
+            { id: 824, name: "Kinza Citrus - كينزا حمضيات", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Citrus Can / كينزا حمضيات" },
             { id: 825, name: "Kinza Zero Sugar - كينزا بدون سكر", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Zero Sugar Can / كينزا بدون سكر" },
 
             { id: 901, nameEn: "Cocktail Juice", nameAr: "عصير كوكتيل", cat: "juices", isDrink: true, isFrozen: false, desc: "Juice / عصير", sizes: [{ sizeEn: "Small", sizeAr: "صغير", price: 5 }, { sizeEn: "Big", sizeAr: "كبير", price: 7 }, { sizeEn: "Gallon", sizeAr: "جالون", price: 21 }] },
@@ -1088,6 +1092,8 @@
 
         function renderSingleMenuItem(item, container) {
             const frozenBadgeHTML = item.isFrozen ? `<span style="background:#e0f2fe; color:#0284c7; font-size:10px; padding:2px 6px; border-radius:12px;">❄️ Frozen</span>` : '';
+            const subcatClass = item.subcat ? `subcat-${item.subcat}` : '';
+
             if (item.cat === 'juices') {
                 let pillsHTML = item.sizes.map((s, idx) => `
                     <div class="juice-pill-option">
@@ -1096,7 +1102,7 @@
                     </div>
                 `).join('');
                 container.innerHTML += `
-                    <div class="menu-item cat-${item.cat}">
+                    <div class="menu-item cat-${item.cat} ${subcatClass}">
                         <div class="item-info" style="flex:1; padding-right:10px;">
                             <h3>${item.nameEn} - ${item.nameAr} ${frozenBadgeHTML}</h3>
                             <p>${item.desc}</p>
@@ -1108,7 +1114,7 @@
             } else {
                 const qty = cart[item.id] ? cart[item.id].qty : 0;
                 container.innerHTML += `
-                    <div class="menu-item cat-${item.cat}">
+                    <div class="menu-item cat-${item.cat} ${subcatClass}">
                         <div class="item-info">
                             <h3>${item.name} ${frozenBadgeHTML}</h3>
                             <p>${item.desc}</p>
@@ -1141,6 +1147,51 @@
                 return;
             }
             matches.forEach(item => { renderSingleMenuItem(item, container); });
+        }
+
+        /* DYNAMIC SEARCH PLACEHOLDER TYPING EFFECT (9 CATEGORIES) */
+        const searchPlaceholders = [
+            "Search Broasted / ابحث عن البروستد...",
+            "Search Pizza / ابحث عن البيتزا...",
+            "Search Tortilla / ابحث عن التورتيلا...",
+            "Search Jumbo / ابحث عن الجامبو...",
+            "Search Burger / ابحث عن البرجر...",
+            "Search Extra / ابحث عن الإضافات...",
+            "Search Juices / ابحث عن العصائر...",
+            "Search Fries & Meals / ابحث عن البطاطس...",
+            "Search Soft Drinks / ابحث عن المشروبات..."
+        ];
+
+        let currentCategoryIdx = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const searchInputElem = document.getElementById('searchInput');
+
+        function typeSearchPlaceholder() {
+            if (document.activeElement === searchInputElem || searchInputElem.value !== '') {
+                setTimeout(typeSearchPlaceholder, 1000);
+                return;
+            }
+
+            const currentText = searchPlaceholders[currentCategoryIdx];
+
+            if (isDeleting) {
+                searchInputElem.setAttribute('placeholder', currentText.substring(0, charIndex--));
+                if (charIndex < 0) {
+                    isDeleting = false;
+                    currentCategoryIdx = (currentCategoryIdx + 1) % searchPlaceholders.length;
+                    setTimeout(typeSearchPlaceholder, 300);
+                    return;
+                }
+            } else {
+                searchInputElem.setAttribute('placeholder', currentText.substring(0, charIndex++));
+                if (charIndex > currentText.length) {
+                    isDeleting = true;
+                    setTimeout(typeSearchPlaceholder, 2000); // Wait 2s on full text
+                    return;
+                }
+            }
+            setTimeout(typeSearchPlaceholder, isDeleting ? 40 : 80);
         }
 
         function addJuiceToCart(itemId) {
@@ -1333,6 +1384,7 @@
         setInterval(updateSaudiClockAndStatus, 1000);
         updateSaudiClockAndStatus();
         renderMenu('broast');
+        typeSearchPlaceholder();
     </script>
 </body>
 </html>
