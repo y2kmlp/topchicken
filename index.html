@@ -904,7 +904,26 @@
         </div>
     </div>
 
+    <!-- Firebase SDK Imports (Compat Version for Realtime DB) -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+
     <script>
+        // TODO: Replace with your actual Firebase project config credentials
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
         const menuData = [
             { id: 101, name: "Broasted Chicken Spicy - دجاج بروستد حراق", cat: "broast", price: 20, isDrink: false, isFrozen: false, desc: "4 Pcs Chicken Spicy, Fries, Hummus, Kubus, Garlic, Ketchup / ٤ قطع دجاج حراق، بطاطس، حمص، خبز، ثوم، كاتشب" },
             { id: 102, name: "Broasted Chicken Normal - دجاج بروستد عادي", cat: "broast", price: 20, isDrink: false, isFrozen: false, desc: "4 Pcs Chicken, Fries, Hummus, Kubus, Garlic, Ketchup / ٤ قطع دجاج، بطاطس، حمص، خبز، ثوم، كاتشب" },
@@ -1025,34 +1044,27 @@
             { id: 909, nameEn: "Orange Fresh", nameAr: "برتقال كبس", cat: "juices", isDrink: true, isFrozen: false, desc: "Orange / عصير برتقال", sizes: [{ sizeEn: "Small", sizeAr: "صغير", price: 6 }, { sizeEn: "Big", sizeAr: "كبير", price: 9 }, { sizeEn: "Gallon", sizeAr: "جالون", price: 27 }] }
         ];
 
-        // Load Saved Sold Out Status from LocalStorage
-        function loadSoldOutStatus() {
-            const savedStatus = localStorage.getItem('top_chicken_sold_out');
-            if (savedStatus) {
-                try {
-                    const soldOutMap = JSON.parse(savedStatus);
-                    menuData.forEach(item => {
-                        if (soldOutMap[item.id] !== undefined) {
-                            item.soldOut = soldOutMap[item.id];
-                        } else {
-                            item.soldOut = false;
-                        }
-                    });
-                } catch (e) {
-                    console.error("Error loading sold out status", e);
+        // Real-time Firebase Sync Setup for Sold Out Status
+        function initRealtimeSync() {
+            database.ref('top_chicken_sold_out').on('value', (snapshot) => {
+                const soldOutMap = snapshot.val() || {};
+                menuData.forEach(item => {
+                    item.soldOut = soldOutMap[item.id] === true;
+                });
+                refreshCurrentCategoryView();
+                if (document.getElementById('adminPanelModal').style.display === 'flex') {
+                    renderAdminItemsList();
                 }
-            } else {
-                menuData.forEach(item => item.soldOut = false);
-            }
+            });
         }
 
-        // Save Sold Out Status to LocalStorage
+        // Save Sold Out Status to Firebase Cloud
         function saveSoldOutStatus() {
             const soldOutMap = {};
             menuData.forEach(item => {
-                soldOutMap[item.id] = item.soldOut;
+                soldOutMap[item.id] = !!item.soldOut;
             });
-            localStorage.setItem('top_chicken_sold_out', JSON.stringify(soldOutMap));
+            database.ref('top_chicken_sold_out').set(soldOutMap);
         }
 
         let cart = {};
@@ -1077,14 +1089,11 @@
             }
         }
         function openAdminPanel() {
-            loadSoldOutStatus();
             renderAdminItemsList();
             document.getElementById('adminPanelModal').style.display = 'flex';
         }
         function closeAdminPanel() {
             document.getElementById('adminPanelModal').style.display = 'none';
-            saveSoldOutStatus();
-            refreshCurrentCategoryView();
         }
         function renderAdminItemsList() {
             const container = document.getElementById('adminItemsList');
@@ -1103,7 +1112,6 @@
         function toggleSoldOut(index) {
             menuData[index].soldOut = !menuData[index].soldOut;
             saveSoldOutStatus();
-            renderAdminItemsList();
         }
 
         function updateSaudiClockAndStatus() {
@@ -1136,7 +1144,6 @@
         }
 
         function renderMenu(filter = 'broast') {
-            loadSoldOutStatus(); // Always fetch latest sync state
             const container = document.getElementById('menu-container');
             container.innerHTML = '';
 
@@ -1259,7 +1266,6 @@
         }
 
         function handleSearch() {
-            loadSoldOutStatus();
             const query = document.getElementById('searchInput').value.trim().toLowerCase();
             const container = document.getElementById('menu-container');
             if (query === '') { refreshCurrentCategoryView(); return; }
@@ -1322,7 +1328,6 @@
         }
 
         function addJuiceToCart(itemId) {
-            loadSoldOutStatus();
             const item = menuData.find(i => i.id === itemId);
             if (item.soldOut) return;
             const selectedRadio = document.querySelector(`input[name="juice-size-${itemId}"]:checked`);
@@ -1345,7 +1350,6 @@
         }
 
         function addToCart(id) {
-            loadSoldOutStatus();
             const item = menuData.find(i => i.id === id);
             if (item.soldOut) return;
             cart[id] = { ...item, qty: 1, itemNote: '' };
@@ -1512,17 +1516,11 @@
             }
         }, 3000);
 
-        // Sync state across storage events (if opened in multiple tabs/phones under same local storage domain)
-        window.addEventListener('storage', (event) => {
-            if (event.key === 'top_chicken_sold_out') {
-                refreshCurrentCategoryView();
-            }
-        });
-
         setInterval(updateSaudiClockAndStatus, 1000);
         updateSaudiClockAndStatus();
-        loadSoldOutStatus();
-        renderMenu('broast');
+        
+        // Initialize Realtime Sync on Page Load
+        initRealtimeSync();
         typeSearchPlaceholder();
     </script>
 </body>
