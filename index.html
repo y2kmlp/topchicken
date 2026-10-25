@@ -597,17 +597,6 @@
             cursor: pointer;
         }
 
-        .sold-out-badge {
-            background: #ffebee;
-            color: #c62828;
-            border: 1.5px solid #c62828;
-            padding: 6px 12px;
-            border-radius: 8px;
-            font-weight: 900;
-            font-size: 12px;
-            text-align: center;
-        }
-
         .gallery-section { margin: 25px 0 10px 0; }
         .slider-container { position: relative; overflow: hidden; border-radius: 14px; height: 220px; }
         .slider-wrapper { display: flex; transition: transform 0.4s ease-in-out; height: 100%; }
@@ -788,33 +777,6 @@
     <div class="footer">
         <p>© TOP CHICKEN. All rights reserved.</p>
         <p style="margin-top: 5px; font-weight: bold; color: #333;">Developer: y2kmlpcpr0501163652</p>
-        <p style="margin-top: 8px;"><button onclick="openAdminLogin()" style="background:none; border:none; color:#d32f2f; font-weight:bold; cursor:pointer; font-size:11px;">⚙️ Admin Panel / لوحة التحكم</button></p>
-    </div>
-
-    <!-- ADMIN LOGIN MODAL -->
-    <div class="modal" id="adminLoginModal">
-        <div class="modal-content" style="max-width: 320px; text-align: center;">
-            <div class="modal-header">
-                <h3>Admin Login</h3>
-                <span style="cursor:pointer; font-size: 20px;" onclick="closeAdminLogin()">✕</span>
-            </div>
-            <p style="font-size: 12px; color: #666; margin-bottom: 10px;">Enter password to manage stock:<br>أدخل كلمة المرور لإدارة المخزون</p>
-            <input type="password" id="adminPasswordInput" class="form-control" placeholder="Enter Password" style="margin-bottom: 10px; text-align: center;">
-            <button class="confirm-btn" style="background: var(--primary-color); padding: 10px;" onclick="verifyAdminPassword()">Login / دخول</button>
-        </div>
-    </div>
-
-    <!-- ADMIN PANEL DASHBOARD MODAL -->
-    <div class="modal" id="adminPanelModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>🛠️ Stock Manager (Sold Out)</h3>
-                <span style="cursor:pointer; font-size: 20px;" onclick="closeAdminPanel()">✕</span>
-            </div>
-            <p style="font-size: 12px; color: #666; margin-bottom: 12px;">Toggle items to mark as Sold Out:<br>قم بتفعيل أو إلغاء تفعيل المنتجات غير المتوفرة</p>
-            <div id="adminItemsList" style="max-height: 350px; overflow-y: auto;"></div>
-            <button class="confirm-btn" style="background: #333; margin-top: 15px;" onclick="closeAdminPanel()">Close & Save / إغلاق وحفظ</button>
-        </div>
     </div>
 
     <div class="cart-bar" id="cartBar" style="display: none;">
@@ -904,26 +866,7 @@
         </div>
     </div>
 
-    <!-- Firebase SDK Imports (Compat Version for Realtime DB) -->
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
-
     <script>
-        // TODO: Replace with your actual Firebase project config credentials
-        const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-            databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_PROJECT_ID.appspot.com",
-            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-            appId: "YOUR_APP_ID"
-        };
-
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const database = firebase.database();
-
         const menuData = [
             { id: 101, name: "Broasted Chicken Spicy - دجاج بروستد حراق", cat: "broast", price: 20, isDrink: false, isFrozen: false, desc: "4 Pcs Chicken Spicy, Fries, Hummus, Kubus, Garlic, Ketchup / ٤ قطع دجاج حراق، بطاطس، حمص، خبز، ثوم، كاتشب" },
             { id: 102, name: "Broasted Chicken Normal - دجاج بروستد عادي", cat: "broast", price: 20, isDrink: false, isFrozen: false, desc: "4 Pcs Chicken, Fries, Hummus, Kubus, Garlic, Ketchup / ٤ قطع دجاج، بطاطس، حمص، خبز، ثوم، كاتشب" },
@@ -1026,10 +969,11 @@
             { id: 812, name: "Water - ماء", cat: "soft_drinks", subcat: "pepsi", price: 1.00, isDrink: true, isFrozen: false, desc: "Mineral Water / ماء" },
 
             /* Soft Drinks - Kinza Sub-category (Updated & Ordered) */
-            { id: 820, name: "Kinza Lemon - كينزا ليمون", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Lemon Can / كينزا ليمون" },
-            { id: 825, name: "Kinza Lemon Zero Sugar - كينزا ليمون بدون سكر", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Lemon Zero Sugar Can / كينزا ليمون بدون سكر" },
+           
             { id: 821, name: "Kinza Cola - كينزا كولا", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Cola Can / كينزا كولا" },
             { id: 823, name: "Kinza Diet Cola - كينزا كولا دايت", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Diet Cola Can / كينزا كولا دايت" },
+            { id: 820, name: "Kinza Lemon - كينزا ليمون", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Lemon Can / كينزا ليمون" },
+            { id: 825, name: "Kinza Lemon Zero Sugar - كينزا ليمون بدون سكر", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Lemon Zero Sugar Can / كينزا ليمون بدون سكر" },
             { id: 822, name: "Kinza Orange - كينزا برتقال", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Orange Can / كينزا برتقال" },
             { id: 824, name: "Kinza Citrus - كينزا حمضيات", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Citrus Can / كينزا حمضيات" },
 
@@ -1044,75 +988,9 @@
             { id: 909, nameEn: "Orange Fresh", nameAr: "برتقال كبس", cat: "juices", isDrink: true, isFrozen: false, desc: "Orange / عصير برتقال", sizes: [{ sizeEn: "Small", sizeAr: "صغير", price: 6 }, { sizeEn: "Big", sizeAr: "كبير", price: 9 }, { sizeEn: "Gallon", sizeAr: "جالون", price: 27 }] }
         ];
 
-        // Real-time Firebase Sync Setup for Sold Out Status
-        function initRealtimeSync() {
-            database.ref('top_chicken_sold_out').on('value', (snapshot) => {
-                const soldOutMap = snapshot.val() || {};
-                menuData.forEach(item => {
-                    item.soldOut = soldOutMap[item.id] === true;
-                });
-                refreshCurrentCategoryView();
-                if (document.getElementById('adminPanelModal').style.display === 'flex') {
-                    renderAdminItemsList();
-                }
-            });
-        }
-
-        // Save Sold Out Status to Firebase Cloud
-        function saveSoldOutStatus() {
-            const soldOutMap = {};
-            menuData.forEach(item => {
-                soldOutMap[item.id] = !!item.soldOut;
-            });
-            database.ref('top_chicken_sold_out').set(soldOutMap);
-        }
-
         let cart = {};
         let currentOrderType = 'delivery';
         let activeSoftDrinkSubcat = 'pepsi';
-
-        // Admin Functions
-        function openAdminLogin() {
-            document.getElementById('adminLoginModal').style.display = 'flex';
-        }
-        function closeAdminLogin() {
-            document.getElementById('adminLoginModal').style.display = 'none';
-            document.getElementById('adminPasswordInput').value = '';
-        }
-        function verifyAdminPassword() {
-            const pass = document.getElementById('adminPasswordInput').value;
-            if (pass === 'top123') {
-                closeAdminLogin();
-                openAdminPanel();
-            } else {
-                alert('Incorrect Password!');
-            }
-        }
-        function openAdminPanel() {
-            renderAdminItemsList();
-            document.getElementById('adminPanelModal').style.display = 'flex';
-        }
-        function closeAdminPanel() {
-            document.getElementById('adminPanelModal').style.display = 'none';
-        }
-        function renderAdminItemsList() {
-            const container = document.getElementById('adminItemsList');
-            container.innerHTML = '';
-            menuData.forEach((item, index) => {
-                const displayName = item.name || `${item.nameEn} - ${item.nameAr}`;
-                container.innerHTML += `
-                    <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid #eee;">
-                        <span style="font-size:13px; font-weight:bold; flex:1; padding-right:10px;">${displayName}</span>
-                        <button onclick="toggleSoldOut(${index})" style="padding:6px 12px; border-radius:6px; border:none; font-weight:bold; cursor:pointer; background:${item.soldOut ? '#c62828' : '#2ea44f'}; color:white;">
-                            ${item.soldOut ? 'Sold Out (Off)' : 'Available (On)'}
-                        </button>
-                    </div>`;
-            });
-        }
-        function toggleSoldOut(index) {
-            menuData[index].soldOut = !menuData[index].soldOut;
-            saveSoldOutStatus();
-        }
 
         function updateSaudiClockAndStatus() {
             const now = new Date();
@@ -1224,11 +1102,6 @@
                         <label for="juice-${item.id}-size-${idx}" class="juice-pill-label">${s.sizeEn} / ${s.sizeAr}</label>
                     </div>
                 `).join('');
-                
-                let actionHTML = item.soldOut ? 
-                    `<div class="sold-out-badge">Sold Out / غير متوفر</div>` :
-                    `<div><button class="add-btn" onclick="addJuiceToCart(${item.id})">+ Add / إضافة</button></div>`;
-
                 container.innerHTML += `
                     <div class="menu-item cat-${item.cat} ${subcatClass}">
                         <div class="item-info" style="flex:1; padding-right:10px;">
@@ -1237,22 +1110,10 @@
                             <div class="juice-pills-container">${pillsHTML}</div>
                             <div class="item-price" id="juice-price-${item.id}">${item.sizes[0].price.toFixed(2)} SAR</div>
                         </div>
-                        <div>${actionHTML}</div>
+                        <div><button class="add-btn" onclick="addJuiceToCart(${item.id})">+ Add / إضافة</button></div>
                     </div>`;
             } else {
                 const qty = cart[item.id] ? cart[item.id].qty : 0;
-                let actionHTML = '';
-                if (item.soldOut) {
-                    actionHTML = `<div class="sold-out-badge">Sold Out / غير متوفر</div>`;
-                } else {
-                    actionHTML = qty === 0 ? `<button class="add-btn" onclick="addToCart(${item.id})">+ Add / إضافة</button>` :
-                    `<div style="display:flex; align-items:center; gap:8px;">
-                        <button class="add-btn" style="padding:4px 10px;" onclick="updateQty('${item.id}', -1)">-</button>
-                        <b>${qty}</b>
-                        <button class="add-btn" style="padding:4px 10px;" onclick="updateQty('${item.id}', 1)">+</button>
-                     </div>`;
-                }
-
                 container.innerHTML += `
                     <div class="menu-item cat-${item.cat} ${subcatClass}">
                         <div class="item-info">
@@ -1260,7 +1121,14 @@
                             <p>${item.desc}</p>
                             <div class="item-price">${item.price.toFixed(2)} SAR</div>
                         </div>
-                        <div>${actionHTML}</div>
+                        <div>
+                            ${qty === 0 ? `<button class="add-btn" onclick="addToCart(${item.id})">+ Add / إضافة</button>` :
+                            `<div style="display:flex; align-items:center; gap:8px;">
+                                <button class="add-btn" style="padding:4px 10px;" onclick="updateQty('${item.id}', -1)">-</button>
+                                <b>${qty}</b>
+                                <button class="add-btn" style="padding:4px 10px;" onclick="updateQty('${item.id}', 1)">+</button>
+                             </div>`}
+                        </div>
                     </div>`;
             }
         }
@@ -1329,7 +1197,6 @@
 
         function addJuiceToCart(itemId) {
             const item = menuData.find(i => i.id === itemId);
-            if (item.soldOut) return;
             const selectedRadio = document.querySelector(`input[name="juice-size-${itemId}"]:checked`);
             const selectedIdx = selectedRadio ? selectedRadio.value : 0;
             const selectedSize = item.sizes[selectedIdx];
@@ -1351,7 +1218,6 @@
 
         function addToCart(id) {
             const item = menuData.find(i => i.id === id);
-            if (item.soldOut) return;
             cart[id] = { ...item, qty: 1, itemNote: '' };
             updateCartBar(); refreshCurrentCategoryView(); renderCartItemsList();
         }
@@ -1518,9 +1384,7 @@
 
         setInterval(updateSaudiClockAndStatus, 1000);
         updateSaudiClockAndStatus();
-        
-        // Initialize Realtime Sync on Page Load
-        initRealtimeSync();
+        renderMenu('broast');
         typeSearchPlaceholder();
     </script>
 </body>
