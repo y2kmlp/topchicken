@@ -906,124 +906,154 @@
 
     <script>
         const menuData = [
-            { id: 101, name: "Broasted Chicken Spicy - دجاج بروستد حراق", cat: "broast", price: 20, isDrink: false, isFrozen: false, desc: "4 Pcs Chicken Spicy, Fries, Hummus, Kubus, Garlic, Ketchup / ٤ قطع دجاج حراق، بطاطس، حمص، خبز، ثوم، كاتشب", soldOut: false },
-            { id: 102, name: "Broasted Chicken Normal - دجاج بروستد عادي", cat: "broast", price: 20, isDrink: false, isFrozen: false, desc: "4 Pcs Chicken, Fries, Hummus, Kubus, Garlic, Ketchup / ٤ قطع دجاج، بطاطس، حمص، خبز، ثوم، كاتشب", soldOut: false },
-            { id: 103, name: "Fish Broasted Spicy - بروستد سمك حراق", cat: "broast", price: 19, isDrink: false, isFrozen: false, desc: "Spicy Fish Fillet, Fries, Hummus, Kubus, Garlic, Ketchup / فيليه سمك حراق، بطاطس، حمص، خبز، ثوم، كاتشب", soldOut: false },
-            { id: 104, name: "Fish Broasted Normal - بروستد سمك عادي", cat: "broast", price: 19, isDrink: false, isFrozen: false, desc: "Fish Fillet, Fries, Hummus, Kubus, Garlic, Ketchup / فيليه سمك، بطاطس، حمص، خبز، ثوم، كاتشب", soldOut: false },
-            { id: 105, name: "Shrimp Broast Spicy - بروست روبيان حراق", cat: "broast", price: 22, isDrink: false, isFrozen: false, desc: "13 Pcs Spicy Shrimp, Fries, Hummus, Kubus, Garlic, Ketchup / ١٣ قطعة روبيان حراق، بطاطس، حمص، خبز، ثوم، كاتشب", soldOut: false },
-            { id: 106, name: "Shrimp Broast Normal - بروست روبيان عادي", cat: "broast", price: 22, isDrink: false, isFrozen: false, desc: "17 Pcs Normal Shrimp, Fries, Hummus, Kubus, Garlic, Ketchup / ١٧ قطعة روبيان عادي، بطاطس، حمص، خبز، ثوم، كاتشب", soldOut: false },
-            { id: 107, name: "Chicken Nuggets Normal - نجتس عادي", cat: "broast", price: 20, isDrink: false, isFrozen: false, desc: "13 Pcs Nuggets, Fries, Hummus, Kubus, Garlic, Ketchup / ١٣ قطعة نغت، بطاطس، حمص، خبز، ثوم، كاتشب", soldOut: false },
-            { id: 108, name: "Chicken Strips Spicy - ستربس الدجاج حراق", cat: "broast", price: 20, isDrink: false, isFrozen: false, desc: "6 Pcs Spicy Strips, Fries, Hummus, Kubus, Garlic, Ketchup / ٦ قطع ستربس حراق، بطاطس، حمص، خبز، ثوم، كاتشب", soldOut: false },
-            { id: 109, name: "Chicken Strips Normal - ستربس الدجاج عادي", cat: "broast", price: 20, isDrink: false, isFrozen: false, desc: "6 Pcs Strips, Fries, Hummus, Kubus, Garlic, Ketchup / ٦ قطع ستربس، بطاطس، حمص، خبز، ثوم، كاتشب", soldOut: false },
-            { id: 110, name: "Finger Chicken Spicy - مسحب دجاج حراق", cat: "broast", price: 20, isDrink: false, isFrozen: false, desc: "10 Pcs Spicy Finger Chicken, Fries, Hummus, Kubus, Garlic, Ketchup / ١٠ قطع مسحب دجاج حراق، بطاطس، حمص، خبز، ثوم، كاتشب", soldOut: false },
-            { id: 111, name: "Finger Chicken Normal - مسحب دجاج عادي", cat: "broast", price: 20, isDrink: false, isFrozen: false, desc: "10 Pcs Finger Chicken, Fries, Hummus, Kubus, Garlic, Ketchup / ١٠ قطع مسحب دجاج عادي، بطاطس، حمص، خبز، ثوم، كاتشب", soldOut: false },
-            { id: 112, name: "Chicken Cheese Stick - اصابع دجاج بالجبن", cat: "broast", price: 20, isDrink: false, isFrozen: false, desc: "9 Pcs Cheese Chicken Sticks, Fries, Hummus, Kubus, Garlic, Ketchup / ٩ قطع اصابع دجاج بالجبن، بطاطس، حمص، خبز، ثوم، كاتشب", soldOut: false },
-            { id: 113, name: "Finger Fish - اصابع سمك", cat: "broast", price: 20, isDrink: false, isFrozen: false, desc: "9 Pcs Fish Sticks, Fries, Hummus, Kubus, Garlic, Ketchup / ٩ قطع اصابع سمك، بطاطس، حمص، خبز، ثوم، كاتشب", soldOut: false },
-            { id: 114, name: "Chicken Fillet Spicy - دجاج فيليه حراق", cat: "broast", price: 20, isDrink: false, isFrozen: false, desc: "Spicy Chicken Fillet, Fries, Hummus, Kubus, Garlic, Ketchup / دجاج فيليه حراق، بطاطس، حمص، خبز، ثوم، كاتشب", soldOut: false },
-            { id: 115, name: "Chicken Fillet Normal - فيليه دجاج عادي", cat: "broast", price: 20, isDrink: false, isFrozen: false, desc: "Chicken Fillet Normal, Fries, Hummus, Kubus, Garlic, Ketchup / فيليه دجاج عادي، بطاطس، حمص، خبز، ثوم، كاتشب", soldOut: false },
-            { id: 116, name: "Beef Kabab Plate - صحن كباب لحم", cat: "broast", price: 20, isDrink: false, isFrozen: true, desc: "6 Pcs Kabab, Fries, Hummus, Kubus, Garlic, Ketchup / ٦ قطع كباب لحم، بطاطس، حمص، خبز، ثوم، كاتشب", soldOut: false },
+            { id: 101, name: "Broasted Chicken Spicy - دجاج بروستد حراق", cat: "broast", price: 20, isDrink: false, isFrozen: false, desc: "4 Pcs Chicken Spicy, Fries, Hummus, Kubus, Garlic, Ketchup / ٤ قطع دجاج حراق، بطاطس، حمص، خبز، ثوم، كاتشب" },
+            { id: 102, name: "Broasted Chicken Normal - دجاج بروستد عادي", cat: "broast", price: 20, isDrink: false, isFrozen: false, desc: "4 Pcs Chicken, Fries, Hummus, Kubus, Garlic, Ketchup / ٤ قطع دجاج، بطاطس، حمص، خبز، ثوم، كاتشب" },
+            { id: 103, name: "Fish Broasted Spicy - بروستد سمك حراق", cat: "broast", price: 19, isDrink: false, isFrozen: false, desc: "Spicy Fish Fillet, Fries, Hummus, Kubus, Garlic, Ketchup / فيليه سمك حراق، بطاطس، حمص، خبز، ثوم، كاتشب" },
+            { id: 104, name: "Fish Broasted Normal - بروستد سمك عادي", cat: "broast", price: 19, isDrink: false, isFrozen: false, desc: "Fish Fillet, Fries, Hummus, Kubus, Garlic, Ketchup / فيليه سمك، بطاطس، حمص، خبز، ثوم، كاتشب" },
+            { id: 105, name: "Shrimp Broast Spicy - بروست روبيان حراق", cat: "broast", price: 22, isDrink: false, isFrozen: false, desc: "13 Pcs Spicy Shrimp, Fries, Hummus, Kubus, Garlic, Ketchup / ١٣ قطعة روبيان حراق، بطاطس، حمص، خبز، ثوم، كاتشب" },
+            { id: 106, name: "Shrimp Broast Normal - بروست روبيان عادي", cat: "broast", price: 22, isDrink: false, isFrozen: false, desc: "17 Pcs Normal Shrimp, Fries, Hummus, Kubus, Garlic, Ketchup / ١٧ قطعة روبيان عادي، بطاطس، حمص، خبز، ثوم، كاتشب" },
+            { id: 107, name: "Chicken Nuggets Normal - نجتس عادي", cat: "broast", price: 20, isDrink: false, isFrozen: false, desc: "13 Pcs Nuggets, Fries, Hummus, Kubus, Garlic, Ketchup / ١٣ قطعة نغت، بطاطس، حمص، خبز، ثوم، كاتشب" },
+            { id: 108, name: "Chicken Strips Spicy - ستربس الدجاج حراق", cat: "broast", price: 20, isDrink: false, isFrozen: false, desc: "6 Pcs Spicy Strips, Fries, Hummus, Kubus, Garlic, Ketchup / ٦ قطع ستربس حراق، بطاطس، حمص، خبز، ثوم، كاتشب" },
+            { id: 109, name: "Chicken Strips Normal - ستربس الدجاج عادي", cat: "broast", price: 20, isDrink: false, isFrozen: false, desc: "6 Pcs Strips, Fries, Hummus, Kubus, Garlic, Ketchup / ٦ قطع ستربس، بطاطس، حمص، خبز، ثوم، كاتشب" },
+            { id: 110, name: "Finger Chicken Spicy - مسحب دجاج حراق", cat: "broast", price: 20, isDrink: false, isFrozen: false, desc: "10 Pcs Spicy Finger Chicken, Fries, Hummus, Kubus, Garlic, Ketchup / ١٠ قطع مسحب دجاج حراق، بطاطس، حمص، خبز، ثوم، كاتشب" },
+            { id: 111, name: "Finger Chicken Normal - مسحب دجاج عادي", cat: "broast", price: 20, isDrink: false, isFrozen: false, desc: "10 Pcs Finger Chicken, Fries, Hummus, Kubus, Garlic, Ketchup / ١٠ قطع مسحب دجاج عادي، بطاطس، حمص، خبز، ثوم، كاتشب" },
+            { id: 112, name: "Chicken Cheese Stick - اصابع دجاج بالجبن", cat: "broast", price: 20, isDrink: false, isFrozen: false, desc: "9 Pcs Cheese Chicken Sticks, Fries, Hummus, Kubus, Garlic, Ketchup / ٩ قطع اصابع دجاج بالجبن، بطاطس، حمص، خبز، ثوم، كاتشب" },
+            { id: 113, name: "Finger Fish - اصابع سمك", cat: "broast", price: 20, isDrink: false, isFrozen: false, desc: "9 Pcs Fish Sticks, Fries, Hummus, Kubus, Garlic, Ketchup / ٩ قطع اصابع سمك، بطاطس، حمص، خبز، ثوم، كاتشب" },
+            { id: 114, name: "Chicken Fillet Spicy - دجاج فيليه حراق", cat: "broast", price: 20, isDrink: false, isFrozen: false, desc: "Spicy Chicken Fillet, Fries, Hummus, Kubus, Garlic, Ketchup / دجاج فيليه حراق، بطاطس، حمص، خبز، ثوم، كاتشب" },
+            { id: 115, name: "Chicken Fillet Normal - فيليه دجاج عادي", cat: "broast", price: 20, isDrink: false, isFrozen: false, desc: "Chicken Fillet Normal, Fries, Hummus, Kubus, Garlic, Ketchup / فيليه دجاج عادي، بطاطس، حمص، خبز، ثوم، كاتشب" },
+            { id: 116, name: "Beef Kabab Plate - صحن كباب لحم", cat: "broast", price: 20, isDrink: false, isFrozen: true, desc: "6 Pcs Kabab, Fries, Hummus, Kubus, Garlic, Ketchup / ٦ قطع كباب لحم، بطاطس، حمص، خبز، ثوم، كاتشب" },
 
-            { id: 301, name: "Chicken Tortilla Normal - تورتيلا دجاج عادي", cat: "tortilla", price: 13, isDrink: false, isFrozen: false, desc: "Chicken Wrap Normal / تورتيلا دجاج عادي", soldOut: false },
-            { id: 302, name: "Chicken Tortilla Spicy - تورتيلا دجاج حراق", cat: "tortilla", price: 13, isDrink: false, isFrozen: false, desc: "Chicken Wrap Spicy / تورتيلا دجاج حراق", soldOut: false },
-            { id: 303, name: "Tikka Tortilla - تورتيلا تكا", cat: "tortilla", price: 13, isDrink: false, isFrozen: false, desc: "Tikka Wrap / تورتيلا تكا", soldOut: false },
-            { id: 304, name: "Zinger Tortilla Normal - تورتيلا زنجر عادي", cat: "tortilla", price: 13, isDrink: false, isFrozen: false, desc: "Zinger Wrap Normal / تورتيلا زنجر عادي", soldOut: false },
-            { id: 305, name: "Zinger Tortilla Spicy - تورتيلا زنجر حراق", cat: "tortilla", price: 13, isDrink: false, isFrozen: false, desc: "Zinger Wrap Spicy / تورتيلا زنجر حراق", soldOut: false },
-            { id: 306, name: "Shrimp Tortilla Normal - تورتيلا روبيان عادي", cat: "tortilla", price: 13, isDrink: false, isFrozen: false, desc: "Shrimp Wrap Normal / تورتيلا روبيان عادي", soldOut: false },
-            { id: 307, name: "Shrimp Tortilla Spicy - تورتيلا روبيان حراق", cat: "tortilla", price: 13, isDrink: false, isFrozen: false, desc: "Shrimp Wrap Spicy / تورتيلا روبيان حراق", soldOut: false },
-            { id: 308, name: "Fish Tortilla - تورتيلا سمك", cat: "tortilla", price: 13, isDrink: false, isFrozen: false, desc: "Fish Wrap / تورتيلا سمك", soldOut: false },
-            { id: 309, name: "Beef Kabab Tortilla - تورتيلا كباب لحم", cat: "tortilla", price: 13, isDrink: false, isFrozen: false, desc: "Kabab Wrap / تورتيلا كباب لحم", soldOut: false },
+            { id: 301, name: "Chicken Tortilla Normal - تورتيلا دجاج عادي", cat: "tortilla", price: 13, isDrink: false, isFrozen: false, desc: "Chicken Wrap Normal / تورتيلا دجاج عادي" },
+            { id: 302, name: "Chicken Tortilla Spicy - تورتيلا دجاج حراق", cat: "tortilla", price: 13, isDrink: false, isFrozen: false, desc: "Chicken Wrap Spicy / تورتيلا دجاج حراق" },
+            { id: 303, name: "Tikka Tortilla - تورتيلا تكا", cat: "tortilla", price: 13, isDrink: false, isFrozen: false, desc: "Tikka Wrap / تورتيلا تكا" },
+            { id: 304, name: "Zinger Tortilla Normal - تورتيلا زنجر عادي", cat: "tortilla", price: 13, isDrink: false, isFrozen: false, desc: "Zinger Wrap Normal / تورتيلا زنجر عادي" },
+            { id: 305, name: "Zinger Tortilla Spicy - تورتيلا زنجر حراق", cat: "tortilla", price: 13, isDrink: false, isFrozen: false, desc: "Zinger Wrap Spicy / تورتيلا زنجر حراق" },
+            { id: 306, name: "Shrimp Tortilla Normal - تورتيلا روبيان عادي", cat: "tortilla", price: 13, isDrink: false, isFrozen: false, desc: "Shrimp Wrap Normal / تورتيلا روبيان عادي" },
+            { id: 307, name: "Shrimp Tortilla Spicy - تورتيلا روبيان حراق", cat: "tortilla", price: 13, isDrink: false, isFrozen: false, desc: "Shrimp Wrap Spicy / تورتيلا روبيان حراق" },
+            { id: 308, name: "Fish Tortilla - تورتيلا سمك", cat: "tortilla", price: 13, isDrink: false, isFrozen: false, desc: "Fish Wrap / تورتيلا سمك" },
+            { id: 309, name: "Beef Kabab Tortilla - تورتيلا كباب لحم", cat: "tortilla", price: 13, isDrink: false, isFrozen: false, desc: "Kabab Wrap / تورتيلا كباب لحم" },
 
-            { id: 601, name: "Small Fries - بطاطس صغير", cat: "fries_meals", price: 4, isDrink: false, isFrozen: false, desc: "Small Potato Fries / بطاطس مقلية صغير", soldOut: false },
-            { id: 602, name: "Medium Fries - بطاطس وسط", cat: "fries_meals", price: 6, isDrink: false, isFrozen: false, desc: "Medium Potato Fries / بطاطس مقلية وسط", soldOut: false },
-            { id: 603, name: "Big Fries - بطاطس كبير", cat: "fries_meals", price: 10, isDrink: false, isFrozen: false, desc: "Large Potato Fries / بطاطس مقلية كبير", soldOut: false },
-            { id: 604, name: "Fries Meal Deal - بطاطس وجبة", cat: "fries_meals", price: 6, isDrink: false, isFrozen: false, desc: "Fries & Pepsi Combo / بطاطس مع بيبسي", soldOut: false },
-            { id: 605, name: "Kids Meal Popcorn - وجبة أطفال بوب كورن", cat: "fries_meals", price: 12, isDrink: false, isFrozen: false, desc: "Kids Meal Popcorn with toy / وجبة اطفال مع لعبة", soldOut: false },
-            { id: 606, name: "Kids Meal Nuggets - وجبة أطفال نجتس", cat: "fries_meals", price: 13, isDrink: false, isFrozen: false, desc: "Nuggets Kids Meal / وجبة أطفال نجتس", soldOut: false },
+            { id: 601, name: "Small Fries - بطاطس صغير", cat: "fries_meals", price: 4, isDrink: false, isFrozen: false, desc: "Small Potato Fries / بطاطس مقلية صغير" },
+            { id: 602, name: "Medium Fries - بطاطس وسط", cat: "fries_meals", price: 6, isDrink: false, isFrozen: false, desc: "Medium Potato Fries / بطاطس مقلية وسط" },
+            { id: 603, name: "Big Fries - بطاطس كبير", cat: "fries_meals", price: 10, isDrink: false, isFrozen: false, desc: "Large Potato Fries / بطاطس مقلية كبير" },
+            { id: 604, name: "Fries Meal Deal - بطاطس وجبة", cat: "fries_meals", price: 6, isDrink: false, isFrozen: false, desc: "Fries & Pepsi Combo / بطاطس مع بيبسي" },
+            { id: 605, name: "Kids Meal Popcorn - وجبة أطفال بوب كورن", cat: "fries_meals", price: 12, isDrink: false, isFrozen: false, desc: "Kids Meal Popcorn with toy / وجبة اطفال مع لعبة" },
+            { id: 606, name: "Kids Meal Nuggets - وجبة أطفال نجتس", cat: "fries_meals", price: 13, isDrink: false, isFrozen: false, desc: "Nuggets Kids Meal / وجبة أطفال نجتس" },
 
-            { id: 501, name: "Jumbo Fillet Chicken - جامبو فيليه دجاج", cat: "jumbo", price: 12, isDrink: false, isFrozen: false, desc: "Jumbo Fillet Chicken Sandwich / ساندوتش جامبو فيليه دجاج", soldOut: false },
-            { id: 502, name: "Tikka Jumbo - تكا جامبو", cat: "jumbo", price: 12, isDrink: false, isFrozen: false, desc: "Jumbo Tikka Sandwich / ساندوتش تکا جامبو", soldOut: false },
-            { id: 503, name: "Kudu Jumbo Normal - كودو جامبو عادي", cat: "jumbo", price: 12, isDrink: false, isFrozen: false, desc: "Jumbo Kudu Sandwich / ساندوتش كودو جامبو عادي", soldOut: false },
-            { id: 504, name: "Kudu Jumbo Spicy - كودو جامبو حراق", cat: "jumbo", price: 12, isDrink: false, isFrozen: false, desc: "Jumbo Kudu Sandwich Spicy / ساندوتش كودو جامبو حراق", soldOut: false },
-            { id: 505, name: "Zinger Jumbo Normal - زنجر جامبو عادي", cat: "jumbo", price: 12, isDrink: false, isFrozen: false, desc: "Jumbo Zinger Sandwich / ساندوتش زنجر جامبو عادي", soldOut: false },
-            { id: 506, name: "Zinger Jumbo Spicy - زنجر جامبو حراق", cat: "jumbo", price: 12, isDrink: false, isFrozen: false, desc: "Jumbo Zinger Sandwich Spicy / ساندوتش زنجر جامبو حراق", soldOut: false },
-            { id: 507, name: "Shrimp Jumbo Normal - روبيان جامبو عادي", cat: "jumbo", price: 12, isDrink: false, isFrozen: false, desc: "Jumbo Shrimp Sandwich / ساندوتش روبيان جامبو عادي", soldOut: false },
-            { id: 508, name: "Shrimp Jumbo Spicy - روبيان جامبو حراق", cat: "jumbo", price: 12, isDrink: false, isFrozen: false, desc: "Jumbo Shrimp Sandwich Spicy / ساندوتش روبيان جامبو حراق", soldOut: false },
-            { id: 509, name: "Jumbo Fish - جامبو سمك", cat: "jumbo", price: 12, isDrink: false, isFrozen: false, desc: "Jumbo Fish Sandwich / ساندوتش جامبو سمك", soldOut: false },
-            { id: 510, name: "Beef Kabab Jumbo - كباب لحم جامبو", cat: "jumbo", price: 12, isDrink: false, isFrozen: false, desc: "Jumbo Beef Kabab / ساندوتش كباب لحم جامبو", soldOut: false },
+            { id: 501, name: "Jumbo Fillet Chicken - جامبو فيليه دجاج", cat: "jumbo", price: 12, isDrink: false, isFrozen: false, desc: "Jumbo Fillet Chicken Sandwich / ساندوتش جامبو فيليه دجاج" },
+            { id: 502, name: "Tikka Jumbo - تكا جامبو", cat: "jumbo", price: 12, isDrink: false, isFrozen: false, desc: "Jumbo Tikka Sandwich / ساندوتش تکا جامبو" },
+            { id: 503, name: "Kudu Jumbo Normal - كودو جامبو عادي", cat: "jumbo", price: 12, isDrink: false, isFrozen: false, desc: "Jumbo Kudu Sandwich / ساندوتش كودو جامبو عادي" },
+            { id: 504, name: "Kudu Jumbo Spicy - كودو جامبو حراق", cat: "jumbo", price: 12, isDrink: false, isFrozen: false, desc: "Jumbo Kudu Sandwich Spicy / ساندوتش كودو جامبو حراق" },
+            { id: 505, name: "Zinger Jumbo Normal - زنجر جامبو عادي", cat: "jumbo", price: 12, isDrink: false, isFrozen: false, desc: "Jumbo Zinger Sandwich / ساندوتش زنجر جامبو عادي" },
+            { id: 506, name: "Zinger Jumbo Spicy - زنجر جامبو حراق", cat: "jumbo", price: 12, isDrink: false, isFrozen: false, desc: "Jumbo Zinger Sandwich Spicy / ساندوتش زنجر جامبو حراق" },
+            { id: 507, name: "Shrimp Jumbo Normal - روبيان جامبو عادي", cat: "jumbo", price: 12, isDrink: false, isFrozen: false, desc: "Jumbo Shrimp Sandwich / ساندوتش روبيان جامبو عادي" },
+            { id: 508, name: "Shrimp Jumbo Spicy - روبيان جامبو حراق", cat: "jumbo", price: 12, isDrink: false, isFrozen: false, desc: "Jumbo Shrimp Sandwich Spicy / ساندوتش روبيان جامبو حراق" },
+            { id: 509, name: "Jumbo Fish - جامبو سمك", cat: "jumbo", price: 12, isDrink: false, isFrozen: false, desc: "Jumbo Fish Sandwich / ساندوتش جامبو سمك" },
+            { id: 510, name: "Beef Kabab Jumbo - كباب لحم جامبو", cat: "jumbo", price: 12, isDrink: false, isFrozen: false, desc: "Jumbo Beef Kabab / ساندوتش كباب لحم جامبو" },
 
-            { id: 401, name: "Chicken Burger Small - برجر دجاج صغير", cat: "burger", price: 7, isDrink: false, isFrozen: false, desc: "Chicken Burger Small / برجر دجاج صغير", soldOut: false },
-            { id: 402, name: "Chicken Burger Big - برجر دجاج كبير", cat: "burger", price: 8, isDrink: false, isFrozen: false, desc: "Chicken Burger Big / برجر دجاج كبير", soldOut: false },
-            { id: 403, name: "Chicken Grilled Burger - برجر دجاج مشوي", cat: "burger", price: 8, isDrink: false, isFrozen: false, desc: "Grilled Chicken Burger / برجر دجاج مشوي", soldOut: false },
-            { id: 404, name: "Beef Burger Small - برجر لحم صغير", cat: "burger", price: 8, isDrink: false, isFrozen: false, desc: "Beef Burger Small / برجر لحم صغير", soldOut: false },
-            { id: 405, name: "Beef Burger Big - برجر لحم كبير", cat: "burger", price: 9, isDrink: false, isFrozen: false, desc: "Beef Burger Big / برجر لحم كبير", soldOut: false },
-            { id: 406, name: "Zinger Burger Spicy - برجر زنجر حراق", cat: "burger", price: 10, isDrink: false, isFrozen: false, desc: "Zinger Burger Spicy / برجر زنجر حراق", soldOut: false },
-            { id: 407, name: "Zinger Burger Normal - برجر زنجر عادي", cat: "burger", price: 10, isDrink: false, isFrozen: false, desc: "Zinger Burger Normal / برجر زنجر عادي", soldOut: false },
-            { id: 408, name: "Double Chicken Burger Big - دبل برجر دجاج كبير", cat: "burger", price: 14, isDrink: false, isFrozen: false, desc: "Double Chicken Burger Big / دبل برجر دجاج كبير", soldOut: false },
-            { id: 409, name: "Double Beef Burger Big - دبل برجر لحم كبير", cat: "burger", price: 15, isDrink: false, isFrozen: false, desc: "Double Beef Burger Big / دبل برجر لحم كبير", soldOut: false },
-            { id: 410, name: "Double Zinger Burger - دبل برجر زنجر", cat: "burger", price: 17, isDrink: false, isFrozen: false, desc: "Double Zinger Burger / دبل برجر زنجر", soldOut: false },
+            { id: 401, name: "Chicken Burger Small - برجر دجاج صغير", cat: "burger", price: 7, isDrink: false, isFrozen: false, desc: "Chicken Burger Small / برجر دجاج صغير" },
+            { id: 402, name: "Chicken Burger Big - برجر دجاج كبير", cat: "burger", price: 8, isDrink: false, isFrozen: false, desc: "Chicken Burger Big / برجر دجاج كبير" },
+            { id: 403, name: "Chicken Grilled Burger - برجر دجاج مشوي", cat: "burger", price: 8, isDrink: false, isFrozen: false, desc: "Grilled Chicken Burger / برجر دجاج مشوي" },
+            { id: 404, name: "Beef Burger Small - برجر لحم صغير", cat: "burger", price: 8, isDrink: false, isFrozen: false, desc: "Beef Burger Small / برجر لحم صغير" },
+            { id: 405, name: "Beef Burger Big - برجر لحم كبير", cat: "burger", price: 9, isDrink: false, isFrozen: false, desc: "Beef Burger Big / برجر لحم كبير" },
+            { id: 406, name: "Zinger Burger Spicy - برجر زنجر حراق", cat: "burger", price: 10, isDrink: false, isFrozen: false, desc: "Zinger Burger Spicy / برجر زنجر حراق" },
+            { id: 407, name: "Zinger Burger Normal - برجر زنجر عادي", cat: "burger", price: 10, isDrink: false, isFrozen: false, desc: "Zinger Burger Normal / برجر زنجر عادي" },
+            { id: 408, name: "Double Chicken Burger Big - دبل برجر دجاج كبير", cat: "burger", price: 14, isDrink: false, isFrozen: false, desc: "Double Chicken Burger Big / دبل برجر دجاج كبير" },
+            { id: 409, name: "Double Beef Burger Big - دبل برجر لحم كبير", cat: "burger", price: 15, isDrink: false, isFrozen: false, desc: "Double Beef Burger Big / دبل برجر لحم كبير" },
+            { id: 410, name: "Double Zinger Burger - دبل برجر زنجر", cat: "burger", price: 17, isDrink: false, isFrozen: false, desc: "Double Zinger Burger / دبل برجر زنجر" },
 
-            { id: 201, name: "Dynamite Beef Pizza - بيتزا داينمايت لحم", cat: "pizza", price: 23, isDrink: false, isFrozen: false, desc: "Original Large Size / حجم كبير", soldOut: false },
-            { id: 202, name: "Four Season Pizza - بيتزا أربعة فصول", cat: "pizza", price: 23, isDrink: false, isFrozen: false, desc: "Original Large Size / (4 Types) - حجم كبير / (أربعة أنواع)", soldOut: false },
-            { id: 203, name: "Dynamite Chicken Pizza - بيتزا داينمايت دجاج", cat: "pizza", price: 22, isDrink: false, isFrozen: false, desc: "Original Large Size / حجم كبير", soldOut: false },
-            { id: 204, name: "Barbecue Chicken Pizza - بيتزا دجاج باربيكيو", cat: "pizza", price: 22, isDrink: false, isFrozen: false, desc: "Original Large Size / حجم كبير", soldOut: false },
-            { id: 205, name: "Ranch Pizza - بيتزا رانش", cat: "pizza", price: 21, isDrink: false, isFrozen: false, desc: "Original Large Size / حجم كبير", soldOut: false },
-            { id: 206, name: "Chicken Pizza - بيتزا دجاج", cat: "pizza", price: 20, isDrink: false, isFrozen: false, desc: "Original Large Size / حجم كبير", soldOut: false },
-            { id: 207, name: "Pepperoni Pizza - بيتزا ببروني", cat: "pizza", price: 19, isDrink: false, isFrozen: false, desc: "Original Large Size / حجم كبير", soldOut: false },
-            { id: 208, name: "Mixed Pizza - بيتزا مشكل", cat: "pizza", price: 19, isDrink: false, isFrozen: false, desc: "Original Large Size / حجم كبير", soldOut: false },
-            { id: 209, name: "Margarita Pizza - بيتزا مارجريتا", cat: "pizza", price: 18, isDrink: false, isFrozen: false, desc: "Original Large Size / حجم كبير", soldOut: false },
-            { id: 210, name: "Hot Dog Pizza - بيتزا هوت دوج", cat: "pizza", price: 18, isDrink: false, isFrozen: false, desc: "Original Large Size / حجم كبير", soldOut: false },
-            { id: 211, name: "Vegetable Pizza - بيتزا خضار", cat: "pizza", price: 15, isDrink: false, isFrozen: false, desc: "Original Large Size / حجم كبير", soldOut: false },
+            { id: 201, name: "Dynamite Beef Pizza - بيتزا داينمايت لحم", cat: "pizza", price: 23, isDrink: false, isFrozen: false, desc: "Original Large Size / حجم كبير" },
+            { id: 202, name: "Four Season Pizza - بيتزا أربعة فصول", cat: "pizza", price: 23, isDrink: false, isFrozen: false, desc: "Original Large Size / (4 Types) - حجم كبير / (أربعة أنواع)" },
+            { id: 203, name: "Dynamite Chicken Pizza - بيتزا داينمايت دجاج", cat: "pizza", price: 22, isDrink: false, isFrozen: false, desc: "Original Large Size / حجم كبير" },
+            { id: 204, name: "Barbecue Chicken Pizza - بيتزا دجاج باربيكيو", cat: "pizza", price: 22, isDrink: false, isFrozen: false, desc: "Original Large Size / حجم كبير" },
+            { id: 205, name: "Ranch Pizza - بيتزا رانش", cat: "pizza", price: 21, isDrink: false, isFrozen: false, desc: "Original Large Size / حجم كبير" },
+            { id: 206, name: "Chicken Pizza - بيتزا دجاج", cat: "pizza", price: 20, isDrink: false, isFrozen: false, desc: "Original Large Size / حجم كبير" },
+            { id: 207, name: "Pepperoni Pizza - بيتزا ببروني", cat: "pizza", price: 19, isDrink: false, isFrozen: false, desc: "Original Large Size / حجم كبير" },
+            { id: 208, name: "Mixed Pizza - بيتزا مشكل", cat: "pizza", price: 19, isDrink: false, isFrozen: false, desc: "Original Large Size / حجم كبير" },
+            { id: 209, name: "Margarita Pizza - بيتزا مارجريتا", cat: "pizza", price: 18, isDrink: false, isFrozen: false, desc: "Original Large Size / حجم كبير" },
+            { id: 210, name: "Hot Dog Pizza - بيتزا هوت دوج", cat: "pizza", price: 18, isDrink: false, isFrozen: false, desc: "Original Large Size / حجم كبير" },
+            { id: 211, name: "Vegetable Pizza - بيتزا خضار", cat: "pizza", price: 15, isDrink: false, isFrozen: false, desc: "Original Large Size / حجم كبير" },
 
-            { id: 701, name: "Onion Rings - حلقات بصل", cat: "extra", price: 6, isDrink: false, isFrozen: false, desc: "Onion Rings / حلقات بصل مقرمشة", soldOut: false },
-            { id: 702, name: "Popcorn Chicken - بوب كورن", cat: "extra", price: 6, isDrink: false, isFrozen: false, desc: "Chicken Popcorn / بوب كورن دجاج", soldOut: false },
-            { id: 703, name: "Baby Nuggets - بيبي نجتس", cat: "extra", price: 7, isDrink: false, isFrozen: false, desc: "Baby Nuggets / بيبي نجتس", soldOut: false },
-            { id: 704, name: "Coleslaw Salad - سلطة ملفوف", cat: "extra", price: 3, isDrink: false, isFrozen: false, desc: "Coleslaw Salad / سلطة ملفوف طازجة", soldOut: false },
-            { id: 705, name: "Cocktail Sauce - صوص كوكتيل", cat: "extra", price: 1, isDrink: false, isFrozen: false, desc: "Cocktail Dip / صوص كوكتيل", soldOut: false },
-            { id: 706, name: "Garlic Sauce - ثوم", cat: "extra", price: 1, isDrink: false, isFrozen: false, desc: "Garlic Dip / صلصة ثوم", soldOut: false },
-            { id: 707, name: "Spicy Garlic Sauce - ثوم حراق", cat: "extra", price: 1, isDrink: false, isFrozen: false, desc: "Spicy Garlic Dip / صلصة ثوم حراق", soldOut: false },
-            { id: 708, name: "Cheese Sauce - صوص جبنة", cat: "extra", price: 2, isDrink: false, isFrozen: false, desc: "Melted Cheese Sauce / صوص جبنة", soldOut: false },
-            { id: 709, name: "Dynamite Sauce - صوص ديناميت", cat: "extra", price: 2, isDrink: false, isFrozen: false, desc: "Dynamite Sauce Dip / صوص ديناميت", soldOut: false },
-            { id: 710, name: "Hummus - حمص", cat: "extra", price: 3, isDrink: false, isFrozen: false, desc: "Fresh Hummus Dip / حمص طازج", soldOut: false },
-            { id: 711, name: "Bottle Ketchup - زجاجة كاتشب", cat: "extra", price: 4, isDrink: false, isFrozen: false, desc: "Bottle Ketchup / زجاجة كاتشب", soldOut: false },
-            { id: 712, name: "Hot Sauce - شطة", cat: "extra", price: 2, isDrink: false, isFrozen: false, desc: "Hot Sauce / شطة", soldOut: false },
-            { id: 713, name: "Mixed Pickle - مخلل مشكل", cat: "extra", price: 1, isDrink: false, isFrozen: false, desc: "Mixed Pickle / مخلل مشكل", soldOut: false },
-            { id: 714, name: "Bread (Kubbus) - خبز (خبوز)", cat: "extra", price: 1, isDrink: false, isFrozen: false, desc: "Bread (Kubbus) / خبز", soldOut: false },
-            { id: 715, name: "Mayonnaise - مايونيز", cat: "extra", price: 1, isDrink: false, isFrozen: false, desc: "Mayonnaise / مايونيز", soldOut: false },
-            { id: 716, name: "Extra Cheese - زيادة جبنة", cat: "extra", price: 1, isDrink: false, isFrozen: false, desc: "Extra Cheese / زيادة جبنة", soldOut: false },
-            { id: 717, name: "Ketchup - كاتشب", cat: "extra", price: 1, isDrink: false, isFrozen: false, desc: "Ketchup / كاتشب", soldOut: false },
+            { id: 701, name: "Onion Rings - حلقات بصل", cat: "extra", price: 6, isDrink: false, isFrozen: false, desc: "Onion Rings / حلقات بصل مقرمشة" },
+            { id: 702, name: "Popcorn Chicken - بوب كورن", cat: "extra", price: 6, isDrink: false, isFrozen: false, desc: "Chicken Popcorn / بوب كورن دجاج" },
+            { id: 703, name: "Baby Nuggets - بيبي نجتس", cat: "extra", price: 7, isDrink: false, isFrozen: false, desc: "Baby Nuggets / بيبي نجتس" },
+            { id: 704, name: "Coleslaw Salad - سلطة ملفوف", cat: "extra", price: 3, isDrink: false, isFrozen: false, desc: "Coleslaw Salad / سلطة ملفوف طازجة" },
+            { id: 705, name: "Cocktail Sauce - صوص كوكتيل", cat: "extra", price: 1, isDrink: false, isFrozen: false, desc: "Cocktail Dip / صوص كوكتيل" },
+            { id: 706, name: "Garlic Sauce - ثوم", cat: "extra", price: 1, isDrink: false, isFrozen: false, desc: "Garlic Dip / صلصة ثوم" },
+            { id: 707, name: "Spicy Garlic Sauce - ثوم حراق", cat: "extra", price: 1, isDrink: false, isFrozen: false, desc: "Spicy Garlic Dip / صلصة ثوم حراق" },
+            { id: 708, name: "Cheese Sauce - صوص جبنة", cat: "extra", price: 2, isDrink: false, isFrozen: false, desc: "Melted Cheese Sauce / صوص جبنة" },
+            { id: 709, name: "Dynamite Sauce - صوص ديناميت", cat: "extra", price: 2, isDrink: false, isFrozen: false, desc: "Dynamite Sauce Dip / صوص ديناميت" },
+            { id: 710, name: "Hummus - حمص", cat: "extra", price: 3, isDrink: false, isFrozen: false, desc: "Fresh Hummus Dip / حمص طازج" },
+            { id: 711, name: "Bottle Ketchup - زجاجة كاتشب", cat: "extra", price: 4, isDrink: false, isFrozen: false, desc: "Bottle Ketchup / زجاجة كاتشب" },
+            { id: 712, name: "Hot Sauce - شطة", cat: "extra", price: 2, isDrink: false, isFrozen: false, desc: "Hot Sauce / شطة" },
+            { id: 713, name: "Mixed Pickle - مخلل مشكل", cat: "extra", price: 1, isDrink: false, isFrozen: false, desc: "Mixed Pickle / مخلل مشكل" },
+            { id: 714, name: "Bread (Kubbus) - خبز (خبوز)", cat: "extra", price: 1, isDrink: false, isFrozen: false, desc: "Bread (Kubbus) / خبز" },
+            { id: 715, name: "Mayonnaise - مايونيز", cat: "extra", price: 1, isDrink: false, isFrozen: false, desc: "Mayonnaise / مايونيز" },
+            { id: 716, name: "Extra Cheese - زيادة جبنة", cat: "extra", price: 1, isDrink: false, isFrozen: false, desc: "Extra Cheese / زيادة جبنة" },
+            { id: 717, name: "Ketchup - كاتشب", cat: "extra", price: 1, isDrink: false, isFrozen: false, desc: "Ketchup / كاتشب" },
 
             /* Soft Drinks - Pepsi Sub-category */
-            { id: 801, name: "Pepsi - بيبسي", cat: "soft_drinks", subcat: "pepsi", price: 2.50, isDrink: true, isFrozen: false, desc: "Pepsi Can / بيبسي", soldOut: false },
-            { id: 802, name: "Pepsi D - بيبسي دايت", cat: "soft_drinks", subcat: "pepsi", price: 2.00, isDrink: true, isFrozen: false, desc: "Pepsi Diet / بيبسي دايت", soldOut: false },
-            { id: 803, name: "Citrus - الحمضيات", cat: "soft_drinks", subcat: "pepsi", price: 2.50, isDrink: true, isFrozen: false, desc: "Citrus Can / حمضيات", soldOut: false },
-            { id: 804, name: "7UP - سفن اب", cat: "soft_drinks", subcat: "pepsi", price: 2.50, isDrink: true, isFrozen: false, desc: "7UP Can / سفن اب", soldOut: false },
-            { id: 805, name: "7UP D - سفن اب دايت", cat: "soft_drinks", subcat: "pepsi", price: 2.00, isDrink: true, isFrozen: false, desc: "7UP Diet / سفن اب دايت", soldOut: false },
-            { id: 806, name: "Dew - ديو", cat: "soft_drinks", subcat: "pepsi", price: 2.50, isDrink: true, isFrozen: false, desc: "Mountain Dew Can / ديو", soldOut: false },
-            { id: 807, name: "Mirinda Orange - میرندا برتقال", cat: "soft_drinks", subcat: "pepsi", price: 2.50, isDrink: true, isFrozen: false, desc: "Mirinda Orange / میرندا برتقال", soldOut: false },
-            { id: 808, name: "Pepsi 1L - بيبسي 1 لتر", cat: "soft_drinks", subcat: "pepsi", price: 5.00, isDrink: true, isFrozen: false, desc: "Pepsi 1 Liter / بيبسي ١ لتر", soldOut: false },
-            { id: 809, name: "7UP 1L - سفن اب 1 لتر", cat: "soft_drinks", subcat: "pepsi", price: 5.00, isDrink: true, isFrozen: false, desc: "7UP 1 Liter / سفن اب ١ لتر", soldOut: false },
-            { id: 810, name: "Citrus 1L - الحمضيات 1 لتر", cat: "soft_drinks", subcat: "pepsi", price: 5.00, isDrink: true, isFrozen: false, desc: "Citrus 1 Liter / حمضيات ١ لتر", soldOut: false },
-            { id: 811, name: "Rabia Juice - عصير ربيع", cat: "soft_drinks", subcat: "pepsi", price: 2.00, isDrink: true, isFrozen: false, desc: "Rabia Juice Box / عصير ربيع", soldOut: false },
-            { id: 812, name: "Water - ماء", cat: "soft_drinks", subcat: "pepsi", price: 1.00, isDrink: true, isFrozen: false, desc: "Mineral Water / ماء", soldOut: false },
+            { id: 801, name: "Pepsi - بيبسي", cat: "soft_drinks", subcat: "pepsi", price: 2.50, isDrink: true, isFrozen: false, desc: "Pepsi Can / بيبسي" },
+            { id: 802, name: "Pepsi D - بيبسي دايت", cat: "soft_drinks", subcat: "pepsi", price: 2.00, isDrink: true, isFrozen: false, desc: "Pepsi Diet / بيبسي دايت" },
+            { id: 803, name: "Citrus - الحمضيات", cat: "soft_drinks", subcat: "pepsi", price: 2.50, isDrink: true, isFrozen: false, desc: "Citrus Can / حمضيات" },
+            { id: 804, name: "7UP - سفن اب", cat: "soft_drinks", subcat: "pepsi", price: 2.50, isDrink: true, isFrozen: false, desc: "7UP Can / سفن اب" },
+            { id: 805, name: "7UP D - سفن اب دايت", cat: "soft_drinks", subcat: "pepsi", price: 2.00, isDrink: true, isFrozen: false, desc: "7UP Diet / سفن اب دايت" },
+            { id: 806, name: "Dew - ديو", cat: "soft_drinks", subcat: "pepsi", price: 2.50, isDrink: true, isFrozen: false, desc: "Mountain Dew Can / ديو" },
+            { id: 807, name: "Mirinda Orange - میرندا برتقال", cat: "soft_drinks", subcat: "pepsi", price: 2.50, isDrink: true, isFrozen: false, desc: "Mirinda Orange / میرندا برتقال" },
+            { id: 808, name: "Pepsi 1L - بيبسي 1 لتر", cat: "soft_drinks", subcat: "pepsi", price: 5.00, isDrink: true, isFrozen: false, desc: "Pepsi 1 Liter / بيبسي ١ لتر" },
+            { id: 809, name: "7UP 1L - سفن اب 1 لتر", cat: "soft_drinks", subcat: "pepsi", price: 5.00, isDrink: true, isFrozen: false, desc: "7UP 1 Liter / سفن اب ١ لتر" },
+            { id: 810, name: "Citrus 1L - الحمضيات 1 لتر", cat: "soft_drinks", subcat: "pepsi", price: 5.00, isDrink: true, isFrozen: false, desc: "Citrus 1 Liter / حمضيات ١ لتر" },
+            { id: 811, name: "Rabia Juice - عصير ربيع", cat: "soft_drinks", subcat: "pepsi", price: 2.00, isDrink: true, isFrozen: false, desc: "Rabia Juice Box / عصير ربيع" },
+            { id: 812, name: "Water - ماء", cat: "soft_drinks", subcat: "pepsi", price: 1.00, isDrink: true, isFrozen: false, desc: "Mineral Water / ماء" },
 
             /* Soft Drinks - Kinza Sub-category (Updated & Ordered) */
-            { id: 820, name: "Kinza Lemon - كينزا ليمون", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Lemon Can / كينزا ليمون", soldOut: false },
-            { id: 825, name: "Kinza Lemon Zero Sugar - كينزا ليمون بدون سكر", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Lemon Zero Sugar Can / كينزا ليمون بدون سكر", soldOut: false },
-            { id: 821, name: "Kinza Cola - كينزا كولا", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Cola Can / كينزا كولا", soldOut: false },
-            { id: 823, name: "Kinza Diet Cola - كينزا كولا دايت", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Diet Cola Can / كينزا كولا دايت", soldOut: false },
-            { id: 822, name: "Kinza Orange - كينزا برتقال", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Orange Can / كينزا برتقال", soldOut: false },
-            { id: 824, name: "Kinza Citrus - كينزا حمضيات", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Citrus Can / كينزا حمضيات", soldOut: false },
+            { id: 820, name: "Kinza Lemon - كينزا ليمون", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Lemon Can / كينزا ليمون" },
+            { id: 825, name: "Kinza Lemon Zero Sugar - كينزا ليمون بدون سكر", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Lemon Zero Sugar Can / كينزا ليمون بدون سكر" },
+            { id: 821, name: "Kinza Cola - كينزا كولا", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Cola Can / كينزا كولا" },
+            { id: 823, name: "Kinza Diet Cola - كينزا كولا دايت", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Diet Cola Can / كينزا كولا دايت" },
+            { id: 822, name: "Kinza Orange - كينزا برتقال", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Orange Can / كينزا برتقال" },
+            { id: 824, name: "Kinza Citrus - كينزا حمضيات", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Citrus Can / كينزا حمضيات" },
 
-            { id: 901, nameEn: "Cocktail Juice", nameAr: "عصير كوكتيل", cat: "juices", isDrink: true, isFrozen: false, desc: "Juice / عصير", sizes: [{ sizeEn: "Small", sizeAr: "صغير", price: 5 }, { sizeEn: "Big", sizeAr: "كبير", price: 7 }, { sizeEn: "Gallon", sizeAr: "جالون", price: 21 }], soldOut: false },
-            { id: 902, nameEn: "Mango Juice", nameAr: "عصير مانجو", cat: "juices", isDrink: true, isFrozen: false, desc: "Juice / عصير", sizes: [{ sizeEn: "Small", sizeAr: "صغير", price: 5 }, { sizeEn: "Big", sizeAr: "كبير", price: 7 }, { sizeEn: "Gallon", sizeAr: "جالون", price: 21 }], soldOut: false },
-            { id: 903, nameEn: "Guava Juice", nameAr: "عصير جوافة", cat: "juices", isDrink: true, isFrozen: false, desc: "Juice / عصير", sizes: [{ sizeEn: "Small", sizeAr: "صغير", price: 5 }, { sizeEn: "Big", sizeAr: "كبير", price: 7 }, { sizeEn: "Gallon", sizeAr: "جالون", price: 21 }], soldOut: false },
-            { id: 904, nameEn: "Strawberries Juice", nameAr: "عصير فراولة", cat: "juices", isDrink: true, isFrozen: false, desc: "Juice / عصير", sizes: [{ sizeEn: "Small", sizeAr: "صغير", price: 5 }, { sizeEn: "Big", sizeAr: "كبير", price: 7 }, { sizeEn: "Gallon", sizeAr: "جالون", price: 21 }], soldOut: false },
-            { id: 905, nameEn: "Lemon Juice", nameAr: "عصير ليمون", cat: "juices", isDrink: true, isFrozen: false, desc: "Juice / عصير", sizes: [{ sizeEn: "Small", sizeAr: "صغير", price: 5 }, { sizeEn: "Big", sizeAr: "كبير", price: 7 }, { sizeEn: "Gallon", sizeAr: "جالون", price: 21 }], soldOut: false },
-            { id: 906, nameEn: "Apple Juice", nameAr: "عصير تفاح", cat: "juices", isDrink: true, isFrozen: false, desc: "Juice / عصير", sizes: [{ sizeEn: "Small", sizeAr: "صغير", price: 6 }, { sizeEn: "Big", sizeAr: "كبير", price: 8 }, { sizeEn: "Gallon", sizeAr: "جالون", price: 25 }], soldOut: false },
-            { id: 907, nameEn: "Banana Milk", nameAr: "موز بالحليب", cat: "juices", isDrink: true, isFrozen: false, desc: "Juice / عصير", sizes: [{ sizeEn: "Small", sizeAr: "صغير", price: 6 }, { sizeEn: "Big", sizeAr: "كبير", price: 8 }, { sizeEn: "Gallon", sizeAr: "جالون", price: 25 }], soldOut: false },
-            { id: 908, nameEn: "Avocado", nameAr: "أفوكادو", cat: "juices", isDrink: true, isFrozen: false, desc: "Avocado / أفوكادو", sizes: [{ sizeEn: "Small", sizeAr: "صغير", price: 6 }, { sizeEn: "Big", sizeAr: "كبير", price: 9 }, { sizeEn: "Gallon", sizeAr: "جالون", price: 27 }], soldOut: false },
-            { id: 909, nameEn: "Orange Fresh", nameAr: "برتقال كبس", cat: "juices", isDrink: true, isFrozen: false, desc: "Orange / عصير برتقال", sizes: [{ sizeEn: "Small", sizeAr: "صغير", price: 6 }, { sizeEn: "Big", sizeAr: "كبير", price: 9 }, { sizeEn: "Gallon", sizeAr: "جالون", price: 27 }], soldOut: false }
+            { id: 901, nameEn: "Cocktail Juice", nameAr: "عصير كوكتيل", cat: "juices", isDrink: true, isFrozen: false, desc: "Juice / عصير", sizes: [{ sizeEn: "Small", sizeAr: "صغير", price: 5 }, { sizeEn: "Big", sizeAr: "كبير", price: 7 }, { sizeEn: "Gallon", sizeAr: "جالون", price: 21 }] },
+            { id: 902, nameEn: "Mango Juice", nameAr: "عصير مانجو", cat: "juices", isDrink: true, isFrozen: false, desc: "Juice / عصير", sizes: [{ sizeEn: "Small", sizeAr: "صغير", price: 5 }, { sizeEn: "Big", sizeAr: "كبير", price: 7 }, { sizeEn: "Gallon", sizeAr: "جالون", price: 21 }] },
+            { id: 903, nameEn: "Guava Juice", nameAr: "عصير جوافة", cat: "juices", isDrink: true, isFrozen: false, desc: "Juice / عصير", sizes: [{ sizeEn: "Small", sizeAr: "صغير", price: 5 }, { sizeEn: "Big", sizeAr: "كبير", price: 7 }, { sizeEn: "Gallon", sizeAr: "جالون", price: 21 }] },
+            { id: 904, nameEn: "Strawberries Juice", nameAr: "عصير فراولة", cat: "juices", isDrink: true, isFrozen: false, desc: "Juice / عصير", sizes: [{ sizeEn: "Small", sizeAr: "صغير", price: 5 }, { sizeEn: "Big", sizeAr: "كبير", price: 7 }, { sizeEn: "Gallon", sizeAr: "جالون", price: 21 }] },
+            { id: 905, nameEn: "Lemon Juice", nameAr: "عصير ليمون", cat: "juices", isDrink: true, isFrozen: false, desc: "Juice / عصير", sizes: [{ sizeEn: "Small", sizeAr: "صغير", price: 5 }, { sizeEn: "Big", sizeAr: "كبير", price: 7 }, { sizeEn: "Gallon", sizeAr: "جالون", price: 21 }] },
+            { id: 906, nameEn: "Apple Juice", nameAr: "عصير تفاح", cat: "juices", isDrink: true, isFrozen: false, desc: "Juice / عصير", sizes: [{ sizeEn: "Small", sizeAr: "صغير", price: 6 }, { sizeEn: "Big", sizeAr: "كبير", price: 8 }, { sizeEn: "Gallon", sizeAr: "جالون", price: 25 }] },
+            { id: 907, nameEn: "Banana Milk", nameAr: "موز بالحليب", cat: "juices", isDrink: true, isFrozen: false, desc: "Juice / عصير", sizes: [{ sizeEn: "Small", sizeAr: "صغير", price: 6 }, { sizeEn: "Big", sizeAr: "كبير", price: 8 }, { sizeEn: "Gallon", sizeAr: "جالون", price: 25 }] },
+            { id: 908, nameEn: "Avocado", nameAr: "أفوكادو", cat: "juices", isDrink: true, isFrozen: false, desc: "Avocado / أفوكادو", sizes: [{ sizeEn: "Small", sizeAr: "صغير", price: 6 }, { sizeEn: "Big", sizeAr: "كبير", price: 9 }, { sizeEn: "Gallon", sizeAr: "جالون", price: 27 }] },
+            { id: 909, nameEn: "Orange Fresh", nameAr: "برتقال كبس", cat: "juices", isDrink: true, isFrozen: false, desc: "Orange / عصير برتقال", sizes: [{ sizeEn: "Small", sizeAr: "صغير", price: 6 }, { sizeEn: "Big", sizeAr: "كبير", price: 9 }, { sizeEn: "Gallon", sizeAr: "جالون", price: 27 }] }
         ];
+
+        // Load Saved Sold Out Status from LocalStorage
+        function loadSoldOutStatus() {
+            const savedStatus = localStorage.getItem('top_chicken_sold_out');
+            if (savedStatus) {
+                try {
+                    const soldOutMap = JSON.parse(savedStatus);
+                    menuData.forEach(item => {
+                        if (soldOutMap[item.id] !== undefined) {
+                            item.soldOut = soldOutMap[item.id];
+                        } else {
+                            item.soldOut = false;
+                        }
+                    });
+                } catch (e) {
+                    console.error("Error loading sold out status", e);
+                }
+            } else {
+                menuData.forEach(item => item.soldOut = false);
+            }
+        }
+
+        // Save Sold Out Status to LocalStorage
+        function saveSoldOutStatus() {
+            const soldOutMap = {};
+            menuData.forEach(item => {
+                soldOutMap[item.id] = item.soldOut;
+            });
+            localStorage.setItem('top_chicken_sold_out', JSON.stringify(soldOutMap));
+        }
 
         let cart = {};
         let currentOrderType = 'delivery';
@@ -1047,11 +1077,13 @@
             }
         }
         function openAdminPanel() {
+            loadSoldOutStatus();
             renderAdminItemsList();
             document.getElementById('adminPanelModal').style.display = 'flex';
         }
         function closeAdminPanel() {
             document.getElementById('adminPanelModal').style.display = 'none';
+            saveSoldOutStatus();
             refreshCurrentCategoryView();
         }
         function renderAdminItemsList() {
@@ -1070,6 +1102,7 @@
         }
         function toggleSoldOut(index) {
             menuData[index].soldOut = !menuData[index].soldOut;
+            saveSoldOutStatus();
             renderAdminItemsList();
         }
 
@@ -1103,6 +1136,7 @@
         }
 
         function renderMenu(filter = 'broast') {
+            loadSoldOutStatus(); // Always fetch latest sync state
             const container = document.getElementById('menu-container');
             container.innerHTML = '';
 
@@ -1225,6 +1259,7 @@
         }
 
         function handleSearch() {
+            loadSoldOutStatus();
             const query = document.getElementById('searchInput').value.trim().toLowerCase();
             const container = document.getElementById('menu-container');
             if (query === '') { refreshCurrentCategoryView(); return; }
@@ -1287,6 +1322,7 @@
         }
 
         function addJuiceToCart(itemId) {
+            loadSoldOutStatus();
             const item = menuData.find(i => i.id === itemId);
             if (item.soldOut) return;
             const selectedRadio = document.querySelector(`input[name="juice-size-${itemId}"]:checked`);
@@ -1309,6 +1345,7 @@
         }
 
         function addToCart(id) {
+            loadSoldOutStatus();
             const item = menuData.find(i => i.id === id);
             if (item.soldOut) return;
             cart[id] = { ...item, qty: 1, itemNote: '' };
@@ -1475,8 +1512,16 @@
             }
         }, 3000);
 
+        // Sync state across storage events (if opened in multiple tabs/phones under same local storage domain)
+        window.addEventListener('storage', (event) => {
+            if (event.key === 'top_chicken_sold_out') {
+                refreshCurrentCategoryView();
+            }
+        });
+
         setInterval(updateSaudiClockAndStatus, 1000);
         updateSaudiClockAndStatus();
+        loadSoldOutStatus();
         renderMenu('broast');
         typeSearchPlaceholder();
     </script>
