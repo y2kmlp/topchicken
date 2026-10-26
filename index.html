@@ -947,15 +947,22 @@
         </div>
     </div>
 
-    <!-- ADMIN PANEL MODAL -->
+    <!-- ADMIN PANEL MODAL WITH SEARCH BOX -->
     <div class="modal" id="adminPanelModal">
         <div class="modal-content">
             <div class="modal-header">
                 <h3>Admin Control Panel / إدارة العناصر</h3>
                 <span style="cursor:pointer; font-size: 22px; font-weight: bold;" onclick="closeAdminPanel()">✕</span>
             </div>
-            <p style="font-size: 12px; color: #666; margin-bottom: 10px;">Toggle items to Sold Out or Available instantly:</p>
-            <div id="adminItemsList" style="max-height: 350px; overflow-y: auto;"></div>
+            <p style="font-size: 12px; color: #666; margin-bottom: 8px;">Toggle items to Sold Out or Available instantly:</p>
+            
+            <!-- ADMIN SEARCH BOX -->
+            <div style="margin-bottom: 12px; position: relative;">
+                <input type="text" id="adminSearchInput" class="form-control" placeholder="🔍 Search item name or ID / ابحث عن اسم أو رقم ഐറ്റം" oninput="renderAdminItemsList()" style="padding-left: 32px;">
+                <span style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: #888;">🔍</span>
+            </div>
+
+            <div id="adminItemsList" style="max-height: 320px; overflow-y: auto;"></div>
         </div>
     </div>
 
@@ -1101,19 +1108,35 @@
             }
         }
         function openAdminPanel() {
+            document.getElementById('adminSearchInput').value = '';
             renderAdminItemsList();
             document.getElementById('adminPanelModal').style.display = 'flex';
         }
         function closeAdminPanel() {
             document.getElementById('adminPanelModal').style.display = 'none';
         }
+
+        // Admin Items List with Search Filter
         function renderAdminItemsList() {
             const listContainer = document.getElementById('adminItemsList');
             if (!listContainer) return;
             listContainer.innerHTML = '';
             const map = window.soldOutItemsMap || {};
+            const searchQuery = document.getElementById('adminSearchInput') ? document.getElementById('adminSearchInput').value.trim().toLowerCase() : '';
 
-            menuData.forEach(item => {
+            // Filter items based on admin search query (name or ID)
+            const filteredItems = menuData.filter(item => {
+                const displayName = (item.name || `${item.nameEn} - ${item.nameAr}`).toLowerCase();
+                const itemIdStr = item.id.toString();
+                return displayName.includes(searchQuery) || itemIdStr.includes(searchQuery);
+            });
+
+            if (filteredItems.length === 0) {
+                listContainer.innerHTML = `<div style="text-align:center; padding:20px; color:#888; font-size:13px;">No items found</div>`;
+                return;
+            }
+
+            filteredItems.forEach(item => {
                 const isSoldOut = !!map[item.id];
                 const displayName = item.name || `${item.nameEn} - ${item.nameAr}`;
                 listContainer.innerHTML += `
