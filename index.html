@@ -13,6 +13,44 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700;800&family=Poppins:wght@500;700;800&display=swap" rel="stylesheet">
 
+    <!-- Firebase SDKs -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAXY9htWCi268ie2OMd1SXRBexExGePY28",
+            authDomain: "topchicken-4fbfb.firebaseapp.com",
+            databaseURL: "https://topchicken-4fbfb-default-rtdb.firebaseio.com",
+            projectId: "topchicken-4fbfb",
+            storageBucket: "topchicken-4fbfb.firebasestorage.app",
+            messagingSenderId: "419100823577",
+            appId: "1:419100823577:web:2bfead6591e4faacba5a88",
+            measurementId: "G-K2P8RJLBG9"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        window.soldOutItemsMap = {};
+
+        // Realtime listener for sold-out items
+        const soldOutRef = ref(db, 'soldOutItems');
+        onValue(soldOutRef, (snapshot) => {
+            window.soldOutItemsMap = snapshot.val() || {};
+            if (typeof renderMenu === 'function') {
+                renderMenu(window.currentActiveCat || 'broast');
+            }
+            if (typeof renderAdminItemsList === 'function') {
+                renderAdminItemsList();
+            }
+        });
+
+        window.firebaseUpdateSoldOut = function(itemId, isSoldOut) {
+            set(ref(db, 'soldOutItems/' + itemId), isSoldOut);
+        };
+    </script>
+
     <style>
         :root {
             --primary-color: #d32f2f;
@@ -36,7 +74,6 @@
             padding-bottom: 90px;
         }
 
-        /* 1. Slim Announcement Bar Height Reduced */
         .announcement-bar {
             background: linear-gradient(90deg, #d32f2f, #f57c00);
             color: #ffffff;
@@ -340,7 +377,6 @@
             outline: 3px solid rgba(255, 179, 0, 0.4);
         }
 
-        /* Sub-category Filter Buttons styling */
         .subcategory-filter {
             display: flex;
             justify-content: center;
@@ -425,7 +461,6 @@
             width: 100%;
         }
 
-        /* Search input with bold red border box */
         .search-input {
             width: 100%;
             padding: 9px 15px 9px 38px;
@@ -446,7 +481,6 @@
             font-size: 13px;
         }
 
-        /* Enhanced Scroll Down Hint Bar */
         .scroll-hint-bar {
             max-width: 600px;
             margin: 6px auto;
@@ -510,14 +544,12 @@
             white-space: nowrap;
         }
 
-        /* Badge Positions */
         .pos-broast { bottom: 10%; left: 5%; top: auto; }
         .pos-tortilla { bottom: 25%; left: 5%; top: auto; }
         .pos-burger { top: 8%; left: 4%; }
         .pos-jumbo { top: 4%; left: 50%; transform: translateX(-50%); }
         .pos-pizza { top: 8%; right: 8%; }
 
-        /* ITEM CARDS BY CATEGORY WITH DISTINCT COLORS */
         .menu-item {
             border-radius: 14px;
             padding: 14px;
@@ -529,6 +561,12 @@
             transition: all 0.3s ease;
         }
 
+        .menu-item.sold-out {
+            background: #e2e8f0 !important;
+            border-left: 5px solid #64748b !important;
+            opacity: 0.75;
+        }
+
         .menu-item.cat-broast { border-left: 5px solid #d32f2f; background: #fff5f5; }
         .menu-item.cat-pizza { border-left: 5px solid #f57c00; background: #fff8e1; }
         .menu-item.cat-extra { border-left: 5px solid #00897b; background: #e0f2f1; }
@@ -537,38 +575,8 @@
         .menu-item.cat-burger { border-left: 5px solid #d81b60; background: #fce4ec; }
         .menu-item.cat-juices { border-left: 5px solid #fb8c00; background: #fffde7; }
         .menu-item.cat-fries_meals { border-left: 5px solid #fbc02d; background: #fffde7; }
-
-        /* Soft Drinks Specific Card Styling (Pepsi vs Kinza) */
         .menu-item.subcat-pepsi { border-left: 5px solid #0288d1; background: #e1f5fe; }
         .menu-item.subcat-kinza { border-left: 5px solid #7b1fa2; background: #f3e5f5; }
-
-        /* Sold Out Card Overlay Styling */
-        .menu-item.is-sold-out {
-            opacity: 0.6;
-            filter: grayscale(0.8);
-            background: #f0f0f0 !important;
-            border-left-color: #888888 !important;
-        }
-
-        .sold-out-badge {
-            background-color: #d32f2f;
-            color: #ffffff;
-            font-size: 10px;
-            font-weight: 800;
-            padding: 2px 8px;
-            border-radius: 12px;
-            margin-left: 6px;
-            display: inline-block;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .sold-out-btn {
-            background: #757575 !important;
-            color: #ffffff !important;
-            cursor: not-allowed !important;
-            box-shadow: none !important;
-        }
 
         .item-info h3 {
             font-size: 15.5px;
@@ -587,6 +595,17 @@
             font-weight: 800;
             color: var(--primary-color);
             font-size: 15.5px;
+        }
+
+        .sold-out-badge {
+            background-color: #cb2431;
+            color: white;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            margin-bottom: 4px;
         }
 
         .juice-pills-container {
@@ -695,7 +714,20 @@
         .confirm-btn { width: 100%; background: #25D366; color: white; border: none; padding: 13px; border-radius: 12px; font-size: 15.5px; font-weight: bold; margin-top: 10px; cursor: pointer; }
         .delete-btn { background: #ff4d4d; color: white; border: none; padding: 4px 8px; border-radius: 6px; cursor: pointer; font-size: 12px; }
 
-        .footer { text-align: center; padding: 20px 10px; font-size: 12px; color: #666; background: #f1f1f1; margin-top: 30px; border-top: 1px solid #e0e0e0; }
+        .footer { text-align: center; padding: 20px 10px; font-size: 12px; color: #666; background: #f1f1f1; margin-top: 30px; border-top: 1px solid #e0e0e0; position: relative; }
+        
+        /* Footer Admin Trigger */
+        .footer-admin-btn {
+            background: none;
+            border: none;
+            color: #888;
+            font-size: 11px;
+            cursor: pointer;
+            text-decoration: underline;
+            margin-top: 8px;
+            display: inline-block;
+        }
+
         .min-alert { color: var(--primary-color); font-size: 12px; margin-top: 5px; font-weight: bold; display: none; background: #ffebee; padding: 8px; border-radius: 8px; }
         .delivery-rates-box { display: none; background: #fff8e1; border: 1px solid #ffe082; border-radius: 12px; padding: 12px; margin-bottom: 12px; font-size: 12px; }
         .delivery-ar-msg { margin-top: 8px; font-weight: bold; color: var(--primary-color); text-align: right; direction: rtl; }
@@ -762,7 +794,6 @@
         <button class="category-btn" onclick="filterCategory('soft_drinks', event)">SOFT DRINKS<br><span>مشروبات غازية</span></button>
     </div>
 
-    <!-- PDF MENU BUTTON -->
     <div class="pdf-menu-container">
         <a href="top-chicken-menu.pdf" target="_blank" class="btn-pdf-menu">
             <i class="fa-solid fa-file-pdf"></i>
@@ -780,7 +811,6 @@
         </div>
     </div>
 
-    <!-- SCROLL DOWN HINT -->
     <div class="scroll-hint-bar">
         <span>👇</span>
         <span>Scroll Down / أنزل للأسفل</span>
@@ -803,9 +833,13 @@
         </div>
     </div>
 
+    <!-- FOOTER WITH ADMIN PANEL TRIGGER -->
     <div class="footer">
         <p>© TOP CHICKEN. All rights reserved.</p>
         <p style="margin-top: 5px; font-weight: bold; color: #333;">Developer: y2kmlpcpr0501163652</p>
+        <div>
+            <button class="footer-admin-btn" onclick="openAdminLogin()">🔒 Admin Panel / لوحة التحكم</button>
+        </div>
     </div>
 
     <div class="cart-bar" id="cartBar" style="display: none;">
@@ -825,6 +859,7 @@
         </a>
     </div>
 
+    <!-- CART MODAL -->
     <div class="modal" id="cartModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -839,6 +874,7 @@
         </div>
     </div>
 
+    <!-- ORDER TYPE MODAL -->
     <div class="modal" id="orderTypeModal">
         <div class="modal-content" style="text-align: center;">
             <div class="modal-header">
@@ -864,6 +900,7 @@
         </div>
     </div>
 
+    <!-- CHECKOUT MODAL -->
     <div class="modal" id="checkoutModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -895,48 +932,33 @@
         </div>
     </div>
 
-    <!-- FIREBASE SDK INTEGRATION MODULE -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+    <!-- ADMIN LOGIN MODAL -->
+    <div class="modal" id="adminLoginModal">
+        <div class="modal-content" style="max-width: 350px;">
+            <div class="modal-header">
+                <h3>Admin Login / دخول المشرف</h3>
+                <span style="cursor:pointer; font-size: 22px; font-weight: bold;" onclick="closeAdminLogin()">✕</span>
+            </div>
+            <div class="form-group">
+                <label>Password (top123):</label>
+                <input type="password" id="adminPasswordInput" class="form-control" placeholder="Enter password">
+            </div>
+            <button class="confirm-btn" style="background: var(--primary-color);" onclick="verifyAdminPassword()">Login / دخول</button>
+        </div>
+    </div>
 
-        const firebaseConfig = {
-          apiKey: "AIzaSyAXY9htWCi268ie2OMd1SXRBexExGePY28",
-          authDomain: "topchicken-4fbfb.firebaseapp.com",
-          databaseURL: "https://topchicken-4fbfb-default-rtdb.firebaseio.com",
-          projectId: "topchicken-4fbfb",
-          storageBucket: "topchicken-4fbfb.firebasestorage.app",
-          messagingSenderId: "419100823577",
-          appId: "1:419100823577:web:2bfead6591e4faacba5a88",
-          measurementId: "G-K2P8RJLBG9"
-        };
+    <!-- ADMIN PANEL MODAL -->
+    <div class="modal" id="adminPanelModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Admin Control Panel / إدارة العناصر</h3>
+                <span style="cursor:pointer; font-size: 22px; font-weight: bold;" onclick="closeAdminPanel()">✕</span>
+            </div>
+            <p style="font-size: 12px; color: #666; margin-bottom: 10px;">Toggle items to Sold Out or Available instantly:</p>
+            <div id="adminItemsList" style="max-height: 350px; overflow-y: auto;"></div>
+        </div>
+    </div>
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const database = getDatabase(app);
-
-        // Listen for Realtime "Sold Out" Status Sync
-        const soldOutRef = ref(database, 'soldOutItems');
-        onValue(soldOutRef, (snapshot) => {
-            const data = snapshot.val() || {};
-            
-            // Sync soldOut status into menuData array
-            window.menuData.forEach(item => {
-                if (data[item.id] !== undefined) {
-                    item.soldOut = data[item.id];
-                } else {
-                    item.soldOut = false;
-                }
-            });
-
-            // Re-render menu live without page refresh
-            if (typeof window.refreshCurrentCategoryView === 'function') {
-                window.refreshCurrentCategoryView();
-            }
-        });
-    </script>
-
-    <!-- MAIN APP SCRIPT -->
     <script>
         const menuData = [
             { id: 101, name: "Broasted Chicken Spicy - دجاج بروستد حراق", cat: "broast", price: 20, isDrink: false, isFrozen: false, desc: "4 Pcs Chicken Spicy, Fries, Hummus, Kubus, Garlic, Ketchup / ٤ قطع دجاج حراق، بطاطس، حمص، خبز، ثوم، كاتشب" },
@@ -1025,7 +1047,6 @@
             { id: 716, name: "Extra Cheese - زيادة جبنة", cat: "extra", price: 1, isDrink: false, isFrozen: false, desc: "Extra Cheese / زيادة جبنة" },
             { id: 717, name: "Ketchup - كاتشب", cat: "extra", price: 1, isDrink: false, isFrozen: false, desc: "Ketchup / كاتشب" },
 
-            /* Soft Drinks - Pepsi Sub-category */
             { id: 801, name: "Pepsi - بيبسي", cat: "soft_drinks", subcat: "pepsi", price: 2.50, isDrink: true, isFrozen: false, desc: "Pepsi Can / بيبسي" },
             { id: 802, name: "Pepsi D - بيبسي دايت", cat: "soft_drinks", subcat: "pepsi", price: 2.00, isDrink: true, isFrozen: false, desc: "Pepsi Diet / بيبسي دايت" },
             { id: 803, name: "Citrus - الحمضيات", cat: "soft_drinks", subcat: "pepsi", price: 2.50, isDrink: true, isFrozen: false, desc: "Citrus Can / حمضيات" },
@@ -1039,7 +1060,6 @@
             { id: 811, name: "Rabia Juice - عصير ربيع", cat: "soft_drinks", subcat: "pepsi", price: 2.00, isDrink: true, isFrozen: false, desc: "Rabia Juice Box / عصير ربيع" },
             { id: 812, name: "Water - ماء", cat: "soft_drinks", subcat: "pepsi", price: 1.00, isDrink: true, isFrozen: false, desc: "Mineral Water / ماء" },
 
-            /* Soft Drinks - Kinza Sub-category (Updated & Ordered) */
             { id: 820, name: "Kinza Lemon - كينزا ليمون", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Lemon Can / كينزا ليمون" },
             { id: 825, name: "Kinza Lemon Zero Sugar - كينزا ليمون بدون سكر", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Lemon Zero Sugar Can / كينزا ليمون بدون سكر" },
             { id: 821, name: "Kinza Cola - كينزا كولا", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Cola Can / كينزا كولا" },
@@ -1058,11 +1078,59 @@
             { id: 909, nameEn: "Orange Fresh", nameAr: "برتقال كبس", cat: "juices", isDrink: true, isFrozen: false, desc: "Orange / عصير برتقال", sizes: [{ sizeEn: "Small", sizeAr: "صغير", price: 6 }, { sizeEn: "Big", sizeAr: "كبير", price: 9 }, { sizeEn: "Gallon", sizeAr: "جالون", price: 27 }] }
         ];
 
-        window.menuData = menuData; // Expose to global scope for Firebase Module
-
         let cart = {};
         let currentOrderType = 'delivery';
         let activeSoftDrinkSubcat = 'pepsi';
+        window.currentActiveCat = 'broast';
+
+        // Admin Panel Functions
+        function openAdminLogin() {
+            document.getElementById('adminLoginModal').style.display = 'flex';
+        }
+        function closeAdminLogin() {
+            document.getElementById('adminLoginModal').style.display = 'none';
+            document.getElementById('adminPasswordInput').value = '';
+        }
+        function verifyAdminPassword() {
+            const pass = document.getElementById('adminPasswordInput').value;
+            if (pass === 'top123') {
+                closeAdminLogin();
+                openAdminPanel();
+            } else {
+                alert('Incorrect Password! (Use top123)');
+            }
+        }
+        function openAdminPanel() {
+            renderAdminItemsList();
+            document.getElementById('adminPanelModal').style.display = 'flex';
+        }
+        function closeAdminPanel() {
+            document.getElementById('adminPanelModal').style.display = 'none';
+        }
+        function renderAdminItemsList() {
+            const listContainer = document.getElementById('adminItemsList');
+            if (!listContainer) return;
+            listContainer.innerHTML = '';
+            const map = window.soldOutItemsMap || {};
+
+            menuData.forEach(item => {
+                const isSoldOut = !!map[item.id];
+                const displayName = item.name || `${item.nameEn} - ${item.nameAr}`;
+                listContainer.innerHTML += `
+                    <div style="display:flex; justify-content:space-between; align-items:center; background:#fff; padding:10px; margin-bottom:8px; border-radius:8px; border:1px solid #ddd;">
+                        <div>
+                            <div style="font-weight:bold; font-size:13px;">${displayName}</div>
+                            <div style="font-size:11px; color:#666;">ID: ${item.id}</div>
+                        </div>
+                        <div>
+                            <button onclick="window.firebaseUpdateSoldOut(${item.id}, ${!isSoldOut})" style="background:${isSoldOut ? '#2ea44f' : '#cb2431'}; color:white; border:none; padding:6px 12px; border-radius:6px; font-weight:bold; cursor:pointer; font-size:12px;">
+                                ${isSoldOut ? 'Make Available' : 'Mark Sold Out'}
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
 
         function updateSaudiClockAndStatus() {
             const now = new Date();
@@ -1094,6 +1162,7 @@
         }
 
         function renderMenu(filter = 'broast') {
+            window.currentActiveCat = filter;
             const container = document.getElementById('menu-container');
             container.innerHTML = '';
 
@@ -1164,46 +1233,45 @@
         }
 
         function renderSingleMenuItem(item, container) {
+            const soldOutMap = window.soldOutItemsMap || {};
+            const isSoldOut = !!soldOutMap[item.id];
+            const soldOutClass = isSoldOut ? 'sold-out' : '';
+            const soldOutBadgeHTML = isSoldOut ? `<span class="sold-out-badge">SOLD OUT / غير متوفر</span><br>` : '';
             const frozenBadgeHTML = item.isFrozen ? `<span style="background:#e0f2fe; color:#0284c7; font-size:10px; padding:2px 6px; border-radius:12px;">❄️ Frozen</span>` : '';
             const subcatClass = item.subcat ? `subcat-${item.subcat}` : '';
-            const isSoldOut = item.soldOut === true;
-            const soldOutCardClass = isSoldOut ? 'is-sold-out' : '';
-            const soldOutBadgeHTML = isSoldOut ? `<span class="sold-out-badge">SOLD OUT / غير متوفر</span>` : '';
 
             if (item.cat === 'juices') {
                 let pillsHTML = item.sizes.map((s, idx) => `
                     <div class="juice-pill-option">
-                        <input type="radio" id="juice-${item.id}-size-${idx}" name="juice-size-${item.id}" value="${idx}" ${idx === 0 ? 'checked' : ''} ${isSoldOut ? 'disabled' : ''} onchange="updateJuicePriceDisplay(${item.id}, ${s.price})">
+                        <input type="radio" id="juice-${item.id}-size-${idx}" name="juice-size-${item.id}" value="${idx}" ${idx === 0 ? 'checked' : ''} onchange="updateJuicePriceDisplay(${item.id}, ${s.price})">
                         <label for="juice-${item.id}-size-${idx}" class="juice-pill-label">${s.sizeEn} / ${s.sizeAr}</label>
                     </div>
                 `).join('');
                 container.innerHTML += `
-                    <div class="menu-item cat-${item.cat} ${subcatClass} ${soldOutCardClass}">
+                    <div class="menu-item cat-${item.cat} ${subcatClass} ${soldOutClass}">
                         <div class="item-info" style="flex:1; padding-right:10px;">
-                            <h3>${item.nameEn} - ${item.nameAr} ${frozenBadgeHTML} ${soldOutBadgeHTML}</h3>
+                            ${soldOutBadgeHTML}
+                            <h3>${item.nameEn} - ${item.nameAr} ${frozenBadgeHTML}</h3>
                             <p>${item.desc}</p>
                             <div class="juice-pills-container">${pillsHTML}</div>
                             <div class="item-price" id="juice-price-${item.id}">${item.sizes[0].price.toFixed(2)} SAR</div>
                         </div>
                         <div>
-                            ${isSoldOut ? 
-                            `<button class="add-btn sold-out-btn" disabled>Unavailable</button>` : 
-                            `<button class="add-btn" onclick="addJuiceToCart(${item.id})">+ Add / إضافة</button>`}
+                            ${isSoldOut ? `<span style="color:#666; font-weight:bold; font-size:12px;">Unavailable</span>` : `<button class="add-btn" onclick="addJuiceToCart(${item.id})">+ Add / إضافة</button>`}
                         </div>
                     </div>`;
             } else {
                 const qty = cart[item.id] ? cart[item.id].qty : 0;
                 container.innerHTML += `
-                    <div class="menu-item cat-${item.cat} ${subcatClass} ${soldOutCardClass}">
+                    <div class="menu-item cat-${item.cat} ${subcatClass} ${soldOutClass}">
                         <div class="item-info">
-                            <h3>${item.name} ${frozenBadgeHTML} ${soldOutBadgeHTML}</h3>
+                            ${soldOutBadgeHTML}
+                            <h3>${item.name} ${frozenBadgeHTML}</h3>
                             <p>${item.desc}</p>
                             <div class="item-price">${item.price.toFixed(2)} SAR</div>
                         </div>
                         <div>
-                            ${isSoldOut ? 
-                            `<button class="add-btn sold-out-btn" disabled>Unavailable</button>` :
-                            (qty === 0 ? `<button class="add-btn" onclick="addToCart(${item.id})">+ Add / إضافة</button>` :
+                            ${isSoldOut ? `<span style="color:#666; font-weight:bold; font-size:12px;">Unavailable</span>` : (qty === 0 ? `<button class="add-btn" onclick="addToCart(${item.id})">+ Add / إضافة</button>` :
                             `<div style="display:flex; align-items:center; gap:8px;">
                                 <button class="add-btn" style="padding:4px 10px;" onclick="updateQty('${item.id}', -1)">-</button>
                                 <b>${qty}</b>
@@ -1231,7 +1299,6 @@
             matches.forEach(item => { renderSingleMenuItem(item, container); });
         }
 
-        /* DYNAMIC SEARCH PLACEHOLDER TYPING EFFECT (9 CATEGORIES) */
         const searchPlaceholders = [
             "Search Broasted / ابحث عن البروستد...",
             "Search Pizza / ابحث عن البيتزا...",
@@ -1269,7 +1336,7 @@
                 searchInputElem.setAttribute('placeholder', currentText.substring(0, charIndex++));
                 if (charIndex > currentText.length) {
                     isDeleting = true;
-                    setTimeout(typeSearchPlaceholder, 2000); // Wait 2s on full text
+                    setTimeout(typeSearchPlaceholder, 2000);
                     return;
                 }
             }
@@ -1277,8 +1344,9 @@
         }
 
         function addJuiceToCart(itemId) {
+            const soldOutMap = window.soldOutItemsMap || {};
+            if (soldOutMap[itemId]) return;
             const item = menuData.find(i => i.id === itemId);
-            if (item.soldOut) return;
             const selectedRadio = document.querySelector(`input[name="juice-size-${itemId}"]:checked`);
             const selectedIdx = selectedRadio ? selectedRadio.value : 0;
             const selectedSize = item.sizes[selectedIdx];
@@ -1299,8 +1367,9 @@
         }
 
         function addToCart(id) {
+            const soldOutMap = window.soldOutItemsMap || {};
+            if (soldOutMap[id]) return;
             const item = menuData.find(i => i.id === id);
-            if (item.soldOut) return;
             cart[id] = { ...item, qty: 1, itemNote: '' };
             updateCartBar(); refreshCurrentCategoryView(); renderCartItemsList();
         }
@@ -1319,11 +1388,8 @@
         function refreshCurrentCategoryView() {
             const searchQuery = document.getElementById('searchInput').value.trim();
             if (searchQuery !== '') { handleSearch(); return; }
-            const activeBtn = document.querySelector('.category-btn.active');
-            renderMenu(activeBtn ? activeBtn.getAttribute('onclick').split("'")[1] : 'broast');
+            renderMenu(window.currentActiveCat || 'broast');
         }
-
-        window.refreshCurrentCategoryView = refreshCurrentCategoryView; // Expose globally
 
         function updateCartBar() {
             let count = 0, total = 0;
