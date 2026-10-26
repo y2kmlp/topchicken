@@ -716,16 +716,31 @@
 
         .footer { text-align: center; padding: 20px 10px; font-size: 12px; color: #666; background: #f1f1f1; margin-top: 30px; border-top: 1px solid #e0e0e0; position: relative; }
         
-        /* Footer Admin Trigger */
-        .footer-admin-btn {
-            background: none;
-            border: none;
-            color: #888;
-            font-size: 11px;
+        /* Secret Admin Trigger on TOP CHICKEN text */
+        .secret-admin-trigger {
             cursor: pointer;
-            text-decoration: underline;
-            margin-top: 8px;
-            display: inline-block;
+            user-select: none;
+        }
+
+        /* WhatsApp Developer Button Styling */
+        .dev-whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background-color: #25D366;
+            color: white !important;
+            padding: 3px 8px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 11px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+            transition: all 0.2s ease;
+            margin-top: 4px;
+        }
+        .dev-whatsapp-btn:hover {
+            background-color: #20ba5a;
+            transform: translateY(-1px);
         }
 
         .min-alert { color: var(--primary-color); font-size: 12px; margin-top: 5px; font-weight: bold; display: none; background: #ffebee; padding: 8px; border-radius: 8px; }
@@ -833,12 +848,13 @@
         </div>
     </div>
 
-    <!-- FOOTER WITH ADMIN PANEL TRIGGER -->
+    <!-- FOOTER WITH SECRET ADMIN TRIGGER & WHATSAPP DEV BUTTON -->
     <div class="footer">
-        <p>© TOP CHICKEN. All rights reserved.</p>
-        <p style="margin-top: 5px; font-weight: bold; color: #333;">Developer: y2kmlpcpr0501163652</p>
-        <div>
-            <button class="footer-admin-btn" onclick="openAdminLogin()">🔒 Admin Panel / لوحة التحكم</button>
+        <p>© <span class="secret-admin-trigger" onclick="openAdminLogin()" title="Admin Panel">TOP CHICKEN</span>. All rights reserved.</p>
+        <div style="margin-top: 6px;">
+            <a href="https://wa.me/966501163652?text=Hi,%20I%20want%20to%20know%20more%20about%20this%20digital%20menu%20/%20I%20want%20to%20build%20this" target="_blank" class="dev-whatsapp-btn">
+                <i class="fa-brands fa-whatsapp"></i> Developer Support / الدعم الفني
+            </a>
         </div>
     </div>
 
@@ -940,8 +956,8 @@
                 <span style="cursor:pointer; font-size: 22px; font-weight: bold;" onclick="closeAdminLogin()">✕</span>
             </div>
             <div class="form-group">
-                <label>Password ():</label>
-                <input type="password" id="adminPasswordInput" class="form-control" ....>
+                <label>Password:</label>
+                <input type="password" id="adminPasswordInput" class="form-control" placeholder="••••">
             </div>
             <button class="confirm-btn" style="background: var(--primary-color);" onclick="verifyAdminPassword()">Login / دخول</button>
         </div>
@@ -956,7 +972,6 @@
             </div>
             <p style="font-size: 12px; color: #666; margin-bottom: 8px;">Toggle items to Sold Out or Available instantly:</p>
             
-            <!-- ADMIN SEARCH BOX -->
             <div style="margin-bottom: 12px; position: relative;">
                 <input type="text" id="adminSearchInput" class="form-control" placeholder="🔍 Search item name or ID / ابحث عن اسم أو رقم ഐറ്റം" oninput="renderAdminItemsList()" style="padding-left: 32px;">
                 <span style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: #888;">🔍</span>
@@ -1013,11 +1028,11 @@
             { id: 509, name: "Jumbo Fish - جامبو سمك", cat: "jumbo", price: 12, isDrink: false, isFrozen: false, desc: "Jumbo Fish Sandwich / ساندوتش جامبو سمك" },
             { id: 510, name: "Beef Kabab Jumbo - كباب لحم جامبو", cat: "jumbo", price: 12, isDrink: false, isFrozen: false, desc: "Jumbo Beef Kabab / ساندوتش كباب لحم جامبو" },
 
-            { id: 401, name: "Chicken Burger Small - برجر دجاج صغير", cat: "burger", price: 7, isDrink: false, isFrozen: false, desc: "Chicken Burger Small / برجر دجاج صغير" },
-            { id: 402, name: "Chicken Burger Big - برجر دجاج كبير", cat: "burger", price: 8, isDrink: false, isFrozen: false, desc: "Chicken Burger Big / برجر دجاج كبير" },
+            { id: 401, nameEn: "Chicken Burger Small", nameAr: "برجر دجاج صغير", cat: "burger", isDrink: false, isFrozen: false, desc: "Chicken Burger Small / برجر دجاج صغير", options: [{ optEn: "With Cheese", optAr: "مع جبنة", price: 7 }, { optEn: "Without Cheese", optAr: "بدون جبنة", price: 6 }] },
+            { id: 402, nameEn: "Chicken Burger Big", nameAr: "برجر دجاج كبير", cat: "burger", isDrink: false, isFrozen: false, desc: "Chicken Burger Big / برجر دجاج كبير", options: [{ optEn: "With Cheese", optAr: "مع جبنة", price: 8 }, { optEn: "Without Cheese", optAr: "بدون جبنة", price: 7 }] },
             { id: 403, name: "Chicken Grilled Burger - برجر دجاج مشوي", cat: "burger", price: 8, isDrink: false, isFrozen: false, desc: "Grilled Chicken Burger / برجر دجاج مشوي" },
-            { id: 404, name: "Beef Burger Small - برجر لحم صغير", cat: "burger", price: 8, isDrink: false, isFrozen: false, desc: "Beef Burger Small / برجر لحم صغير" },
-            { id: 405, name: "Beef Burger Big - برجر لحم كبير", cat: "burger", price: 9, isDrink: false, isFrozen: false, desc: "Beef Burger Big / برجر لحم كبير" },
+            { id: 404, nameEn: "Beef Burger Small", nameAr: "برجر لحم صغير", cat: "burger", isDrink: false, isFrozen: false, desc: "Beef Burger Small / برجر لحم صغير", options: [{ optEn: "With Cheese", optAr: "مع جبنة", price: 8 }, { optEn: "Without Cheese", optAr: "بدون جبنة", price: 7 }] },
+            { id: 405, nameEn: "Beef Burger Big", nameAr: "برجر لحم كبير", cat: "burger", isDrink: false, isFrozen: false, desc: "Beef Burger Big / برجر لحم كبير", options: [{ optEn: "With Cheese", optAr: "مع جبنة", price: 9 }, { optEn: "Without Cheese", optAr: "بدون جبنة", price: 8 }] },
             { id: 406, name: "Zinger Burger Spicy - برجر زنجر حراق", cat: "burger", price: 10, isDrink: false, isFrozen: false, desc: "Zinger Burger Spicy / برجر زنجر حراق" },
             { id: 407, name: "Zinger Burger Normal - برجر زنجر عادي", cat: "burger", price: 10, isDrink: false, isFrozen: false, desc: "Zinger Burger Normal / برجر زنجر عادي" },
             { id: 408, name: "Double Chicken Burger Big - دبل برجر دجاج كبير", cat: "burger", price: 14, isDrink: false, isFrozen: false, desc: "Double Chicken Burger Big / دبل برجر دجاج كبير" },
@@ -1090,7 +1105,6 @@
         let activeSoftDrinkSubcat = 'pepsi';
         window.currentActiveCat = 'broast';
 
-        // Admin Panel Functions
         function openAdminLogin() {
             document.getElementById('adminLoginModal').style.display = 'flex';
         }
@@ -1104,7 +1118,7 @@
                 closeAdminLogin();
                 openAdminPanel();
             } else {
-                alert('Incorrect Password! (Use top123)');
+                alert('Incorrect Password!');
             }
         }
         function openAdminPanel() {
@@ -1116,7 +1130,6 @@
             document.getElementById('adminPanelModal').style.display = 'none';
         }
 
-        // Admin Items List with Search Filter
         function renderAdminItemsList() {
             const listContainer = document.getElementById('adminItemsList');
             if (!listContainer) return;
@@ -1124,7 +1137,6 @@
             const map = window.soldOutItemsMap || {};
             const searchQuery = document.getElementById('adminSearchInput') ? document.getElementById('adminSearchInput').value.trim().toLowerCase() : '';
 
-            // Filter items based on admin search query (name or ID)
             const filteredItems = menuData.filter(item => {
                 const displayName = (item.name || `${item.nameEn} - ${item.nameAr}`).toLowerCase();
                 const itemIdStr = item.id.toString();
@@ -1181,6 +1193,11 @@
 
         function updateJuicePriceDisplay(itemId, price) {
             const priceElem = document.getElementById(`juice-price-${itemId}`);
+            if (priceElem) priceElem.innerText = `${price.toFixed(2)} SAR`;
+        }
+
+        function updateBurgerPriceDisplay(itemId, price) {
+            const priceElem = document.getElementById(`burger-price-${itemId}`);
             if (priceElem) priceElem.innerText = `${price.toFixed(2)} SAR`;
         }
 
@@ -1283,13 +1300,35 @@
                             ${isSoldOut ? `<span style="color:#666; font-weight:bold; font-size:12px;">Unavailable</span>` : `<button class="add-btn" onclick="addJuiceToCart(${item.id})">+ Add / إضافة</button>`}
                         </div>
                     </div>`;
+            } else if (item.options) {
+                let pillsHTML = item.options.map((opt, idx) => `
+                    <div class="juice-pill-option">
+                        <input type="radio" id="burger-${item.id}-opt-${idx}" name="burger-opt-${item.id}" value="${idx}" ${idx === 0 ? 'checked' : ''} onchange="updateBurgerPriceDisplay(${item.id}, ${opt.price})">
+                        <label for="burger-${item.id}-opt-${idx}" class="juice-pill-label">${opt.optEn} / ${opt.optAr}</label>
+                    </div>
+                `).join('');
+                const displayName = item.name || `${item.nameEn} - ${item.nameAr}`;
+                container.innerHTML += `
+                    <div class="menu-item cat-${item.cat} ${subcatClass} ${soldOutClass}">
+                        <div class="item-info" style="flex:1; padding-right:10px;">
+                            ${soldOutBadgeHTML}
+                            <h3>${displayName} ${frozenBadgeHTML}</h3>
+                            <p>${item.desc}</p>
+                            <div class="juice-pills-container">${pillsHTML}</div>
+                            <div class="item-price" id="burger-price-${item.id}">${item.options[0].price.toFixed(2)} SAR</div>
+                        </div>
+                        <div>
+                            ${isSoldOut ? `<span style="color:#666; font-weight:bold; font-size:12px;">Unavailable</span>` : `<button class="add-btn" onclick="addBurgerToCart(${item.id})">+ Add / إضافة</button>`}
+                        </div>
+                    </div>`;
             } else {
                 const qty = cart[item.id] ? cart[item.id].qty : 0;
+                const displayName = item.name || `${item.nameEn} - ${item.nameAr}`;
                 container.innerHTML += `
                     <div class="menu-item cat-${item.cat} ${subcatClass} ${soldOutClass}">
                         <div class="item-info">
                             ${soldOutBadgeHTML}
-                            <h3>${item.name} ${frozenBadgeHTML}</h3>
+                            <h3>${displayName} ${frozenBadgeHTML}</h3>
                             <p>${item.desc}</p>
                             <div class="item-price">${item.price.toFixed(2)} SAR</div>
                         </div>
@@ -1381,6 +1420,22 @@
             updateCartBar(); renderCartItemsList();
         }
 
+        function addBurgerToCart(itemId) {
+            const soldOutMap = window.soldOutItemsMap || {};
+            if (soldOutMap[itemId]) return;
+            const item = menuData.find(i => i.id === itemId);
+            const selectedRadio = document.querySelector(`input[name="burger-opt-${itemId}"]:checked`);
+            const selectedIdx = selectedRadio ? selectedRadio.value : 0;
+            const selectedOpt = item.options[selectedIdx];
+            const cartKey = `${itemId}_${selectedIdx}`;
+            const displayName = item.name || `${item.nameEn} - ${item.nameAr}`;
+            const fullName = `${displayName} (${selectedOpt.optEn} / ${selectedOpt.optAr})`;
+
+            if (cart[cartKey]) { cart[cartKey].qty += 1; }
+            else { cart[cartKey] = { id: cartKey, name: fullName, cat: item.cat, price: selectedOpt.price, isDrink: item.isDrink, qty: 1, itemNote: '' }; }
+            updateCartBar(); renderCartItemsList();
+        }
+
         function filterCategory(cat, event) {
             document.getElementById('searchInput').value = '';
             document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
@@ -1393,7 +1448,8 @@
             const soldOutMap = window.soldOutItemsMap || {};
             if (soldOutMap[id]) return;
             const item = menuData.find(i => i.id === id);
-            cart[id] = { ...item, qty: 1, itemNote: '' };
+            const displayName = item.name || `${item.nameEn} - ${item.nameAr}`;
+            cart[id] = { ...item, name: displayName, qty: 1, itemNote: '' };
             updateCartBar(); refreshCurrentCategoryView(); renderCartItemsList();
         }
 
