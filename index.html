@@ -526,6 +526,7 @@
             justify-content: space-between;
             align-items: center;
             border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
         }
 
         .menu-item.cat-broast { border-left: 5px solid #d32f2f; background: #fff5f5; }
@@ -540,6 +541,34 @@
         /* Soft Drinks Specific Card Styling (Pepsi vs Kinza) */
         .menu-item.subcat-pepsi { border-left: 5px solid #0288d1; background: #e1f5fe; }
         .menu-item.subcat-kinza { border-left: 5px solid #7b1fa2; background: #f3e5f5; }
+
+        /* Sold Out Card Overlay Styling */
+        .menu-item.is-sold-out {
+            opacity: 0.6;
+            filter: grayscale(0.8);
+            background: #f0f0f0 !important;
+            border-left-color: #888888 !important;
+        }
+
+        .sold-out-badge {
+            background-color: #d32f2f;
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 2px 8px;
+            border-radius: 12px;
+            margin-left: 6px;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .sold-out-btn {
+            background: #757575 !important;
+            color: #ffffff !important;
+            cursor: not-allowed !important;
+            box-shadow: none !important;
+        }
 
         .item-info h3 {
             font-size: 15.5px;
@@ -866,6 +895,48 @@
         </div>
     </div>
 
+    <!-- FIREBASE SDK INTEGRATION MODULE -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+        const firebaseConfig = {
+          apiKey: "AIzaSyAXY9htWCi268ie2OMd1SXRBexExGePY28",
+          authDomain: "topchicken-4fbfb.firebaseapp.com",
+          databaseURL: "https://topchicken-4fbfb-default-rtdb.firebaseio.com",
+          projectId: "topchicken-4fbfb",
+          storageBucket: "topchicken-4fbfb.firebasestorage.app",
+          messagingSenderId: "419100823577",
+          appId: "1:419100823577:web:2bfead6591e4faacba5a88",
+          measurementId: "G-K2P8RJLBG9"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        // Listen for Realtime "Sold Out" Status Sync
+        const soldOutRef = ref(database, 'soldOutItems');
+        onValue(soldOutRef, (snapshot) => {
+            const data = snapshot.val() || {};
+            
+            // Sync soldOut status into menuData array
+            window.menuData.forEach(item => {
+                if (data[item.id] !== undefined) {
+                    item.soldOut = data[item.id];
+                } else {
+                    item.soldOut = false;
+                }
+            });
+
+            // Re-render menu live without page refresh
+            if (typeof window.refreshCurrentCategoryView === 'function') {
+                window.refreshCurrentCategoryView();
+            }
+        });
+    </script>
+
+    <!-- MAIN APP SCRIPT -->
     <script>
         const menuData = [
             { id: 101, name: "Broasted Chicken Spicy - دجاج بروستد حراق", cat: "broast", price: 20, isDrink: false, isFrozen: false, desc: "4 Pcs Chicken Spicy, Fries, Hummus, Kubus, Garlic, Ketchup / ٤ قطع دجاج حراق، بطاطس، حمص، خبز، ثوم، كاتشب" },
@@ -969,11 +1040,10 @@
             { id: 812, name: "Water - ماء", cat: "soft_drinks", subcat: "pepsi", price: 1.00, isDrink: true, isFrozen: false, desc: "Mineral Water / ماء" },
 
             /* Soft Drinks - Kinza Sub-category (Updated & Ordered) */
-           
-            { id: 821, name: "Kinza Cola - كينزا كولا", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Cola Can / كينزا كولا" },
-            { id: 823, name: "Kinza Diet Cola - كينزا كولا دايت", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Diet Cola Can / كينزا كولا دايت" },
             { id: 820, name: "Kinza Lemon - كينزا ليمون", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Lemon Can / كينزا ليمون" },
             { id: 825, name: "Kinza Lemon Zero Sugar - كينزا ليمون بدون سكر", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Lemon Zero Sugar Can / كينزا ليمون بدون سكر" },
+            { id: 821, name: "Kinza Cola - كينزا كولا", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Cola Can / كينزا كولا" },
+            { id: 823, name: "Kinza Diet Cola - كينزا كولا دايت", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Diet Cola Can / كينزا كولا دايت" },
             { id: 822, name: "Kinza Orange - كينزا برتقال", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Orange Can / كينزا برتقال" },
             { id: 824, name: "Kinza Citrus - كينزا حمضيات", cat: "soft_drinks", subcat: "kinza", price: 2.00, isDrink: true, isFrozen: false, desc: "Kinza Citrus Can / كينزا حمضيات" },
 
@@ -987,6 +1057,8 @@
             { id: 908, nameEn: "Avocado", nameAr: "أفوكادو", cat: "juices", isDrink: true, isFrozen: false, desc: "Avocado / أفوكادو", sizes: [{ sizeEn: "Small", sizeAr: "صغير", price: 6 }, { sizeEn: "Big", sizeAr: "كبير", price: 9 }, { sizeEn: "Gallon", sizeAr: "جالون", price: 27 }] },
             { id: 909, nameEn: "Orange Fresh", nameAr: "برتقال كبس", cat: "juices", isDrink: true, isFrozen: false, desc: "Orange / عصير برتقال", sizes: [{ sizeEn: "Small", sizeAr: "صغير", price: 6 }, { sizeEn: "Big", sizeAr: "كبير", price: 9 }, { sizeEn: "Gallon", sizeAr: "جالون", price: 27 }] }
         ];
+
+        window.menuData = menuData; // Expose to global scope for Firebase Module
 
         let cart = {};
         let currentOrderType = 'delivery';
@@ -1094,40 +1166,49 @@
         function renderSingleMenuItem(item, container) {
             const frozenBadgeHTML = item.isFrozen ? `<span style="background:#e0f2fe; color:#0284c7; font-size:10px; padding:2px 6px; border-radius:12px;">❄️ Frozen</span>` : '';
             const subcatClass = item.subcat ? `subcat-${item.subcat}` : '';
+            const isSoldOut = item.soldOut === true;
+            const soldOutCardClass = isSoldOut ? 'is-sold-out' : '';
+            const soldOutBadgeHTML = isSoldOut ? `<span class="sold-out-badge">SOLD OUT / غير متوفر</span>` : '';
 
             if (item.cat === 'juices') {
                 let pillsHTML = item.sizes.map((s, idx) => `
                     <div class="juice-pill-option">
-                        <input type="radio" id="juice-${item.id}-size-${idx}" name="juice-size-${item.id}" value="${idx}" ${idx === 0 ? 'checked' : ''} onchange="updateJuicePriceDisplay(${item.id}, ${s.price})">
+                        <input type="radio" id="juice-${item.id}-size-${idx}" name="juice-size-${item.id}" value="${idx}" ${idx === 0 ? 'checked' : ''} ${isSoldOut ? 'disabled' : ''} onchange="updateJuicePriceDisplay(${item.id}, ${s.price})">
                         <label for="juice-${item.id}-size-${idx}" class="juice-pill-label">${s.sizeEn} / ${s.sizeAr}</label>
                     </div>
                 `).join('');
                 container.innerHTML += `
-                    <div class="menu-item cat-${item.cat} ${subcatClass}">
+                    <div class="menu-item cat-${item.cat} ${subcatClass} ${soldOutCardClass}">
                         <div class="item-info" style="flex:1; padding-right:10px;">
-                            <h3>${item.nameEn} - ${item.nameAr} ${frozenBadgeHTML}</h3>
+                            <h3>${item.nameEn} - ${item.nameAr} ${frozenBadgeHTML} ${soldOutBadgeHTML}</h3>
                             <p>${item.desc}</p>
                             <div class="juice-pills-container">${pillsHTML}</div>
                             <div class="item-price" id="juice-price-${item.id}">${item.sizes[0].price.toFixed(2)} SAR</div>
                         </div>
-                        <div><button class="add-btn" onclick="addJuiceToCart(${item.id})">+ Add / إضافة</button></div>
+                        <div>
+                            ${isSoldOut ? 
+                            `<button class="add-btn sold-out-btn" disabled>Unavailable</button>` : 
+                            `<button class="add-btn" onclick="addJuiceToCart(${item.id})">+ Add / إضافة</button>`}
+                        </div>
                     </div>`;
             } else {
                 const qty = cart[item.id] ? cart[item.id].qty : 0;
                 container.innerHTML += `
-                    <div class="menu-item cat-${item.cat} ${subcatClass}">
+                    <div class="menu-item cat-${item.cat} ${subcatClass} ${soldOutCardClass}">
                         <div class="item-info">
-                            <h3>${item.name} ${frozenBadgeHTML}</h3>
+                            <h3>${item.name} ${frozenBadgeHTML} ${soldOutBadgeHTML}</h3>
                             <p>${item.desc}</p>
                             <div class="item-price">${item.price.toFixed(2)} SAR</div>
                         </div>
                         <div>
-                            ${qty === 0 ? `<button class="add-btn" onclick="addToCart(${item.id})">+ Add / إضافة</button>` :
+                            ${isSoldOut ? 
+                            `<button class="add-btn sold-out-btn" disabled>Unavailable</button>` :
+                            (qty === 0 ? `<button class="add-btn" onclick="addToCart(${item.id})">+ Add / إضافة</button>` :
                             `<div style="display:flex; align-items:center; gap:8px;">
                                 <button class="add-btn" style="padding:4px 10px;" onclick="updateQty('${item.id}', -1)">-</button>
                                 <b>${qty}</b>
                                 <button class="add-btn" style="padding:4px 10px;" onclick="updateQty('${item.id}', 1)">+</button>
-                             </div>`}
+                             </div>`)}
                         </div>
                     </div>`;
             }
@@ -1197,6 +1278,7 @@
 
         function addJuiceToCart(itemId) {
             const item = menuData.find(i => i.id === itemId);
+            if (item.soldOut) return;
             const selectedRadio = document.querySelector(`input[name="juice-size-${itemId}"]:checked`);
             const selectedIdx = selectedRadio ? selectedRadio.value : 0;
             const selectedSize = item.sizes[selectedIdx];
@@ -1218,6 +1300,7 @@
 
         function addToCart(id) {
             const item = menuData.find(i => i.id === id);
+            if (item.soldOut) return;
             cart[id] = { ...item, qty: 1, itemNote: '' };
             updateCartBar(); refreshCurrentCategoryView(); renderCartItemsList();
         }
@@ -1239,6 +1322,8 @@
             const activeBtn = document.querySelector('.category-btn.active');
             renderMenu(activeBtn ? activeBtn.getAttribute('onclick').split("'")[1] : 'broast');
         }
+
+        window.refreshCurrentCategoryView = refreshCurrentCategoryView; // Expose globally
 
         function updateCartBar() {
             let count = 0, total = 0;
