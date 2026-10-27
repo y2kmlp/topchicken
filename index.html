@@ -1585,14 +1585,18 @@
             }
             checkDeliveryMin();
             
-            // Load saved customer details from Local Storage if available
-            const savedName = localStorage.getItem('topChicken_custName');
-            const savedAddress = localStorage.getItem('topChicken_custAddress');
-            if (savedName && !document.getElementById('custName').value) {
-                document.getElementById('custName').value = savedName;
-            }
-            if (savedAddress && !document.getElementById('custAddress').value) {
-                document.getElementById('custAddress').value = savedAddress;
+            // Load saved customer details safely from Local Storage (iPhone compatible try-catch)
+            try {
+                const savedName = localStorage.getItem('topChicken_custName');
+                const savedAddress = localStorage.getItem('topChicken_custAddress');
+                if (savedName && !document.getElementById('custName').value) {
+                    document.getElementById('custName').value = savedName;
+                }
+                if (savedAddress && !document.getElementById('custAddress').value) {
+                    document.getElementById('custAddress').value = savedAddress;
+                }
+            } catch (e) {
+                console.log('LocalStorage getItem blocked or not supported');
             }
 
             let summaryHTML = '<div style="font-size:14px; font-weight:bold; margin-bottom:8px;">📋 Order Summary</div>';
@@ -1626,10 +1630,14 @@
             if (currentOrderType === 'delivery' && !address) { alert('Please enter your Address.'); return; }
             if (!checkDeliveryMin()) { alert('Minimum 20 SAR required for food.'); return; }
 
-            // Save customer details to Local Storage for future orders
-            localStorage.setItem('topChicken_custName', name);
-            if (address) {
-                localStorage.setItem('topChicken_custAddress', address);
+            // Save customer details safely to Local Storage (iPhone compatible try-catch)
+            try {
+                localStorage.setItem('topChicken_custName', name);
+                if (address) {
+                    localStorage.setItem('topChicken_custAddress', address);
+                }
+            } catch (e) {
+                console.log('LocalStorage setItem blocked or not supported');
             }
 
             let text = `*NEW ORDER - TOP CHICKEN*\n----------------------------------\n📍 *Type:* ${currentOrderType.toUpperCase()}\n👤 *Name:* ${name}\n`;
