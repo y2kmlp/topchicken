@@ -786,7 +786,7 @@
                     <div class="logo-text-en">DAILY FRESH CHICKEN</div>
                     <div class="logo-text-ar">دجاج طازج يومياً</div>
                 </div>
-                <img src="logo.jpg" alt="Top Chicken Logo" class="logo-img">
+                <img src="logo.jpg" alt="Top Chicken Logo" class="logo-img" loading="lazy">
             </div>
 
             <div class="main-brand-title">
@@ -855,12 +855,12 @@
         <h3 style="font-size: 14px; margin-bottom: 8px; color: #555;">Restaurant Gallery / معرض الصور</h3>
         <div class="slider-container">
             <div class="slider-wrapper" id="sliderWrapper">
-                <div class="slide"><img src="2.jpg" alt="Interior 1"></div>
-                <div class="slide"><img src="3.jpg" alt="Interior 2"></div>
-                <div class="slide"><img src="4.jpg" alt="Interior 3"></div>
-                <div class="slide"><img src="5.jpg" alt="Interior 4"></div>
-                <div class="slide"><img src="7.jpg" alt="Interior 5"></div>
-                <div class="slide"><img src="8.jpg" alt="Interior 6"></div>
+                <div class="slide"><img src="2.jpg" alt="Interior 1" loading="lazy"></div>
+                <div class="slide"><img src="3.jpg" alt="Interior 2" loading="lazy"></div>
+                <div class="slide"><img src="4.jpg" alt="Interior 3" loading="lazy"></div>
+                <div class="slide"><img src="5.jpg" alt="Interior 4" loading="lazy"></div>
+                <div class="slide"><img src="7.jpg" alt="Interior 5" loading="lazy"></div>
+                <div class="slide"><img src="8.jpg" alt="Interior 6" loading="lazy"></div>
             </div>
         </div>
     </div>
@@ -997,6 +997,21 @@
             </div>
 
             <div id="adminItemsList" style="max-height: 350px; overflow-y: auto;"></div>
+        </div>
+    </div>
+
+    <!-- CLOSED STATUS POPUP MODAL -->
+    <div class="modal" id="closedPopupModal">
+        <div class="modal-content" style="text-align: center; max-width: 380px; border-top: 5px solid var(--primary-color);">
+            <div style="font-size: 38px; margin-bottom: 10px;">🕒</div>
+            <h3 style="color: var(--primary-color); margin-bottom: 10px; font-size: 16px;">Notice / تنبيه</h3>
+            <p style="font-size: 14px; font-weight: bold; color: #333; margin-bottom: 8px; line-height: 1.4;">
+                🔴 Shop is Closed Now!<br>However, you can send your Advance Order via WhatsApp.
+            </p>
+            <p style="font-size: 14px; font-weight: bold; color: #333; direction: rtl; margin-bottom: 20px; line-height: 1.4;">
+                🔴 المتجر مغلق الآن!<br>ولكن يمكنك إرسال طلبك المسبق عبر الواتساب.
+            </p>
+            <button class="confirm-btn" onclick="closeClosedPopup()" style="background: var(--primary-color); font-size: 14px; padding: 10px;">OK / موافق</button>
         </div>
     </div>
 
@@ -1265,31 +1280,31 @@
                 container.innerHTML += `
                     <div class="bestseller-banner">
                         <div class="bestseller-badge-overlay pos-broast">⭐ Best Seller / الأكثر مبيعاً</div>
-                        <img src="broast-bestseller.jpg" alt="Best Seller Broast">
+                        <img src="broast-bestseller.jpg" alt="Best Seller Broast" loading="lazy">
                     </div>`;
             } else if (filter === 'pizza') {
                 container.innerHTML += `
                     <div class="bestseller-banner">
                         <div class="bestseller-badge-overlay pos-pizza">⭐ Best Seller / الأكثر مبيعاً</div>
-                        <img src="pizza-bestseller.jpg" alt="Best Seller Pizza">
+                        <img src="pizza-bestseller.jpg" alt="Best Seller Pizza" loading="lazy">
                     </div>`;
             } else if (filter === 'tortilla') {
                 container.innerHTML += `
                     <div class="bestseller-banner">
                         <div class="bestseller-badge-overlay pos-tortilla">⭐ Best Seller / الأكثر مبيعاً</div>
-                        <img src="tortilla-bestseller.jpg" alt="Best Seller Tortilla">
+                        <img src="tortilla-bestseller.jpg" alt="Best Seller Tortilla" loading="lazy">
                     </div>`;
             } else if (filter === 'jumbo') {
                 container.innerHTML += `
                     <div class="bestseller-banner">
                         <div class="bestseller-badge-overlay pos-jumbo">⭐ Best Seller / الأكثر مبيعاً</div>
-                        <img src="kudu-bestseller.jpg" alt="Best Seller Jumbo Kudu">
+                        <img src="kudu-bestseller.jpg" alt="Best Seller Jumbo Kudu" loading="lazy">
                     </div>`;
             } else if (filter === 'burger') {
                 container.innerHTML += `
                     <div class="bestseller-banner">
                         <div class="bestseller-badge-overlay pos-burger">⭐ Best Seller / الأكثر مبيعاً</div>
-                        <img src="burger-bestseller.jpg" alt="Best Seller Burger">
+                        <img src="burger-bestseller.jpg" alt="Best Seller Burger" loading="lazy">
                     </div>`;
             }
 
@@ -1688,8 +1703,37 @@
             }
         }, 3000);
 
-        setInterval(updateSaudiClockAndStatus, 1000);
+        // Smart Closed Popup Check on Landing
+        let hasShownClosedPopup = false;
+        function checkClosedPopupStatus() {
+            const now = new Date();
+            const utcTime = now.getTime() + (now.getTimezoneOffset() * 60000);
+            const saudiDate = new Date(utcTime + (3600000 * 3));
+            const hours = saudiDate.getHours();
+            const minutes = saudiDate.getMinutes();
+            const currentTimeInMinutes = hours * 60 + minutes;
+            const openTimeInMinutes = 12 * 60 + 30;
+            const closeTimeInMinutes = 1 * 60 + 50;
+
+            const isClosed = !(currentTimeInMinutes >= openTimeInMinutes || currentTimeInMinutes < closeTimeInMinutes);
+
+            if (isClosed && !hasShownClosedPopup) {
+                document.getElementById('closedPopupModal').style.display = 'flex';
+                hasShownClosedPopup = true;
+            }
+        }
+
+        function closeClosedPopup() {
+            document.getElementById('closedPopupModal').style.display = 'none';
+        }
+
+        setInterval(() => {
+            updateSaudiClockAndStatus();
+            checkClosedPopupStatus();
+        }, 1000);
+
         updateSaudiClockAndStatus();
+        checkClosedPopupStatus();
         renderMenu('broast');
         typeSearchPlaceholder();
     </script>
