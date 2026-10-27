@@ -33,6 +33,7 @@
         const db = getDatabase(app);
 
         window.soldOutItemsMap = {};
+        window.customPricesMap = {};
 
         // Realtime listener for sold-out items
         const soldOutRef = ref(db, 'soldOutItems');
@@ -46,8 +47,24 @@
             }
         });
 
+        // Realtime listener for custom item prices
+        const pricesRef = ref(db, 'customPrices');
+        onValue(pricesRef, (snapshot) => {
+            window.customPricesMap = snapshot.val() || {};
+            if (typeof renderMenu === 'function') {
+                renderMenu(window.currentActiveCat || 'broast');
+            }
+            if (typeof renderAdminItemsList === 'function') {
+                renderAdminItemsList();
+            }
+        });
+
         window.firebaseUpdateSoldOut = function(itemId, isSoldOut) {
             set(ref(db, 'soldOutItems/' + itemId), isSoldOut);
+        };
+
+        window.firebaseUpdatePrice = function(itemId, newPrice) {
+            set(ref(db, 'customPrices/' + itemId), newPrice);
         };
     </script>
 
@@ -973,14 +990,14 @@
                 <h3>Admin Control Panel / إدارة العناصر</h3>
                 <span style="cursor:pointer; font-size: 22px; font-weight: bold;" onclick="closeAdminPanel()">✕</span>
             </div>
-            <p style="font-size: 12px; color: #666; margin-bottom: 8px;">Toggle items to Sold Out or Available instantly:</p>
+            <p style="font-size: 12px; color: #666; margin-bottom: 8px;">Toggle items to Sold Out or update prices instantly:</p>
             
             <div style="margin-bottom: 12px; position: relative;">
                 <input type="text" id="adminSearchInput" class="form-control" placeholder="🔍 Search item name or ID / ابحث عن اسم أو رقم ഐറ്റം" oninput="renderAdminItemsList()" style="padding-left: 32px;">
                 <span style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: #888;">🔍</span>
             </div>
 
-            <div id="adminItemsList" style="max-height: 320px; overflow-y: auto;"></div>
+            <div id="adminItemsList" style="max-height: 350px; overflow-y: auto;"></div>
         </div>
     </div>
 
@@ -1133,11 +1150,19 @@
             document.getElementById('adminPanelModal').style.display = 'none';
         }
 
+        function getItemCurrentPrice(item) {
+            const customPrices = window.customPricesMap || {};
+            if (customPrices[item.id] !== undefined) {
+                return parseFloat(customPrices[item.id]);
+            }
+            return item.price;
+        }
+
         function renderAdminItemsList() {
             const listContainer = document.getElementById('adminItemsList');
             if (!listContainer) return;
             listContainer.innerHTML = '';
-            const map = window.soldOutItemsMap || {};
+            const soldOutMap = window.soldOutItemsMap || {};
             const searchQuery = document.getElementById('adminSearchInput') ? document.getElementById('adminSearchInput').value.trim().toLowerCase() : '';
 
             const filteredItems = menuData.filter(item => {
@@ -1152,22 +1177,50 @@
             }
 
             filteredItems.forEach(item => {
-                const isSoldOut = !!map[item.id];
+                const isSoldOut = !!soldOutMap[item.id];
                 const displayName = item.name || `${item.nameEn} - ${item.nameAr}`;
+                const currentPrice = getItemCurrentPrice(item);
+
+                let priceControlHTML = '';
+                if (!item.sizes && !item.options) {
+                    priceControlHTML = `
+                        <div style="display:flex; align-items:center; gap:5px; margin-top:6px;">
+                            <input type="number" step="0.5" id="price-input-${item.id}" value="${currentPrice}" class="form-control" style="width:75px; padding:4px 6px; font-size:12px; height:28px;">
+                            <span style="font-size:11px; font-weight:bold;">SAR</span>
+                            <button onclick="updatePriceAction(${item.id})" style="background:#25D366; color:white; border:none; padding:4px 8px; border-radius:5px; font-weight:bold; cursor:pointer; font-size:11px;">Update Price</button>
+                        </div>
+                    `;
+                }
+
                 listContainer.innerHTML += `
-                    <div style="display:flex; justify-content:space-between; align-items:center; background:#fff; padding:10px; margin-bottom:8px; border-radius:8px; border:1px solid #ddd;">
-                        <div>
-                            <div style="font-weight:bold; font-size:13px;">${displayName}</div>
-                            <div style="font-size:11px; color:#666;">ID: ${item.id}</div>
+                    <div style="background:#fff; padding:10px; margin-bottom:8px; border-radius:8px; border:1px solid #ddd;">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <div>
+                                <div style="font-weight:bold; font-size:13px;">${displayName}</div>
+                                <div style="font-size:11px; color:#666;">ID: ${item.id} | Base: ${item.price !== undefined ? item.price + ' SAR' : 'N/A'}</div>
+                            </div>
+                            <div>
+                                <button onclick="window.firebaseUpdateSoldOut(${item.id}, ${!isSoldOut})" style="background:${isSoldOut ? '#2ea44f' : '#cb2431'}; color:white; border:none; padding:6px 10px; border-radius:6px; font-weight:bold; cursor:pointer; font-size:11px;">
+                                    ${isSoldOut ? 'Make Available' : 'Mark Sold Out'}
+                                </button>
+                            </div>
                         </div>
-                        <div>
-                            <button onclick="window.firebaseUpdateSoldOut(${item.id}, ${!isSoldOut})" style="background:${isSoldOut ? '#2ea44f' : '#cb2431'}; color:white; border:none; padding:6px 12px; border-radius:6px; font-weight:bold; cursor:pointer; font-size:12px;">
-                                ${isSoldOut ? 'Make Available' : 'Mark Sold Out'}
-                            </button>
-                        </div>
+                        ${priceControlHTML}
                     </div>
                 `;
             });
+        }
+
+        function updatePriceAction(itemId) {
+            const inputElem = document.getElementById(`price-input-${itemId}`);
+            if (!inputElem) return;
+            const newPrice = parseFloat(inputElem.value);
+            if (isNaN(newPrice) || newPrice < 0) {
+                alert('Please enter a valid price!');
+                return;
+            }
+            window.firebaseUpdatePrice(itemId, newPrice);
+            alert('Price updated successfully! / تم تحديث السعر بنجاح');
         }
 
         function updateSaudiClockAndStatus() {
@@ -1327,13 +1380,14 @@
             } else {
                 const qty = cart[item.id] ? cart[item.id].qty : 0;
                 const displayName = item.name || `${item.nameEn} - ${item.nameAr}`;
+                const currentPrice = getItemCurrentPrice(item);
                 container.innerHTML += `
                     <div class="menu-item cat-${item.cat} ${subcatClass} ${soldOutClass}">
                         <div class="item-info">
                             ${soldOutBadgeHTML}
                             <h3>${displayName} ${frozenBadgeHTML}</h3>
                             <p>${item.desc}</p>
-                            <div class="item-price">${item.price.toFixed(2)} SAR</div>
+                            <div class="item-price">${currentPrice.toFixed(2)} SAR</div>
                         </div>
                         <div>
                             ${isSoldOut ? `<span style="color:#666; font-weight:bold; font-size:12px;">Unavailable</span>` : (qty === 0 ? `<button class="add-btn" onclick="addToCart(${item.id})">+ Add / إضافة</button>` :
@@ -1452,7 +1506,8 @@
             if (soldOutMap[id]) return;
             const item = menuData.find(i => i.id === id);
             const displayName = item.name || `${item.nameEn} - ${item.nameAr}`;
-            cart[id] = { ...item, name: displayName, qty: 1, itemNote: '' };
+            const currentPrice = getItemCurrentPrice(item);
+            cart[id] = { ...item, name: displayName, price: currentPrice, qty: 1, itemNote: '' };
             updateCartBar(); refreshCurrentCategoryView(); renderCartItemsList();
         }
 
