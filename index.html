@@ -961,7 +961,6 @@
             <div class="checkout-section-card">
                 <div class="form-group"><label>Name / Room / Building No * (الاسم / رقم الغرفة)</label><input type="text" id="custName" class="form-control" placeholder="e.g. Abu Muhammad"></div>
                 <div class="form-group" id="addressGroup"><label>Address / Landmark (العنوان / الموقع) *</label><input type="text" id="custAddress" class="form-control" placeholder="e.g. Building 30"></div>
-                <div class="form-group"><label>Overall Order Notes / ملاحظات عامة</label><input type="text" id="custNotes" class="form-control" placeholder="e.g. Arrive before 8 PM"></div>
             </div>
             <div class="checkout-section-card" id="orderSummary" style="font-size: 13px;"></div>
             <button class="confirm-btn" onclick="sendToWhatsApp()">Send Order to WhatsApp / ارسال الطلب 💬</button>
@@ -1622,7 +1621,6 @@
         function sendToWhatsApp() {
             const name = document.getElementById('custName').value.trim();
             const address = document.getElementById('custAddress').value.trim();
-            const notes = document.getElementById('custNotes') ? document.getElementById('custNotes').value.trim() : '';
 
             if (!name) { alert('Please enter your Name.'); return; }
             if (currentOrderType === 'delivery' && !address) { alert('Please enter your Address.'); return; }
@@ -1664,11 +1662,6 @@
                 if (i.itemNote) text += `    ↳ 📝 *Note:* ${i.itemNote}\n`;
                 text += `\n`;
             });
-
-            if (notes) {
-                text += `----------------------------------\n`;
-                text += `📝 *Overall Note:* ${notes}\n`;
-            }
 
             const totalAr = toArabicDigits(total.toFixed(2));
             text += `----------------------------------\n💵 *TOTAL AMOUNT: ${total.toFixed(2)} SAR*\n💵 *المبلغ الإجمالي: ${totalAr} ر.س*\n----------------------------------`;
