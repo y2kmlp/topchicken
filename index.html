@@ -134,32 +134,35 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 10px;
-            margin: 6px auto 10px auto;
-            flex-wrap: wrap;
-            max-width: 600px;
+            gap: 8px;
+            margin: 2px auto 8px auto;
+            flex-wrap: nowrap;
+            max-width: 100%;
+            padding: 0 4px;
         }
 
         .live-clock {
-            background: rgba(0, 0, 0, 0.65);
+            background: rgba(0, 0, 0, 0.75);
             color: #ffffff;
-            padding: 3px 10px;
+            padding: 4px 12px;
             border-radius: 20px;
             font-size: 11px;
             font-weight: 700;
-            border: 1px solid rgba(255, 235, 59, 0.6);
+            border: 1px solid rgba(255, 235, 59, 0.8);
             backdrop-filter: blur(4px);
             white-space: nowrap;
+            letter-spacing: 0.2px;
         }
 
         .shop-status {
-            padding: 3px 12px;
+            padding: 4px 14px;
             border-radius: 20px;
             font-weight: 800;
             font-size: 11px;
             color: white;
             box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
         }
 
         .status-open {
@@ -1238,6 +1241,11 @@
             alert('Price updated successfully! / تم تحديث السعر بنجاح');
         }
 
+        function toArabicDigits(str) {
+            const arabicNums = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+            return str.toString().replace(/[0-9]/g, d => arabicNums[d]);
+        }
+
         function updateSaudiClockAndStatus() {
             const now = new Date();
             const utcTime = now.getTime() + (now.getTimezoneOffset() * 60000);
@@ -1251,7 +1259,10 @@
             hours = hours % 12;
             hours = hours ? hours : 12;
 
-            const formattedTime = String(hours).padStart(2, '0') + ":" + String(minutes).padStart(2, '0') + ":" + String(seconds).padStart(2, '0') + " " + ampmEn + " (" + ampmAr + ")";
+            const timeStrEn = String(hours).padStart(2, '0') + ":" + String(minutes).padStart(2, '0') + ":" + String(seconds).padStart(2, '0') + " " + ampmEn;
+            const timeStrAr = toArabicDigits(String(hours).padStart(2, '0') + ":" + String(minutes).padStart(2, '0') + ":" + String(seconds).padStart(2, '0')) + " " + ampmAr;
+
+            const formattedTime = timeStrEn + " (" + timeStrAr + ")";
             document.getElementById('liveClock').innerText = formattedTime;
 
             const currentTotalMinutes = saudiDate.getHours() * 60 + minutes;
@@ -1260,10 +1271,10 @@
             const statusElement = document.getElementById('shopStatus');
 
             if (currentTotalMinutes >= openTimeInMinutes || currentTotalMinutes < closeTimeInMinutes) {
-                statusElement.innerText = "🟢 OPEN NOW";
+                statusElement.innerText = "🟢 OPEN NOW / مفتوح الآن";
                 statusElement.className = "shop-status status-open";
             } else {
-                statusElement.innerText = "🔴 CLOSED NOW";
+                statusElement.innerText = "🔴 CLOSED NOW / مغلق الآن";
                 statusElement.className = "shop-status status-closed";
             }
         }
@@ -1637,11 +1648,6 @@
             const alertBox = document.getElementById('minAlert');
             alertBox.style.display = (currentOrderType === 'delivery' && foodTotal < 20) ? 'block' : 'none';
             return !(currentOrderType === 'delivery' && foodTotal < 20);
-        }
-
-        function toArabicDigits(num) {
-            const indianDigits = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
-            return num.toString().replace(/\d/g, d => indianDigits[d]);
         }
 
         function sendToWhatsApp() {
